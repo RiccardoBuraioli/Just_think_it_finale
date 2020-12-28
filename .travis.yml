@@ -1,14 +1,14 @@
 language: java 
 jdk: 
     - openjdk11
-script: ant build
+
 
 addons:
-sonarcloud:
-organization:"riccardoburaioli"
-token:"1e5a5c29aa0af3ce68e0057162364889926a4f01"
+  sonarcloud:
+    organization:"riccardoburaioli"
+    token: "1e5a5c29aa0af3ce68e0057162364889926a4f01"
 	
 
 script:
--ant build
--sonar-scanner
+- ant build
+- sonar-scanner
