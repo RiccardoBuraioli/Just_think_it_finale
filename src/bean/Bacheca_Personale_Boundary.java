@@ -69,6 +69,8 @@ public class Bacheca_Personale_Boundary {
 		
 	}
 
+	
+	
 	@FXML
 	void crea_necessità(ActionEvent event) {
 		try {
