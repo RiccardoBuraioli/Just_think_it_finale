@@ -4,3 +4,11 @@ jdk:
 script: ant build
 
 
+addons:
+  sonarcloud:
+    organization: "riccardoburaioli" 
+    token: "54a421544f4c993c51f5a200ca6adf634f38feec"
+
+script:
+- ant build
+- sonar-scanner
