@@ -5,7 +5,7 @@ script: ant build
 addons:
 sonarcloud:
 	organization:riccardoburaioli
-	token: f64895682f9236d3e713e72dba6c052f98856e5b
+	token:1e5a5c29aa0af3ce68e0057162364889926a4f01
 	
 
 script:
