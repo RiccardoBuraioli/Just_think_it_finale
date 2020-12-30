@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import dao.Evento_dao;
+import dao.EventoDao;
 import dao.Prenota_dao;
 import entity.Orario;
 import entity.Turno;

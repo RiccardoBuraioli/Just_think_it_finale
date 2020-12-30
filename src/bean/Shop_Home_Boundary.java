@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 public class Shop_Home_Boundary implements Initializable {
 	
 	private Shop_home_controller Shop_c;
-	private Gestisci_eventi_Boundary gestisci_b;
+	private GestisciEventiBoundary gestisci_b;
 	private Image img1;
 	private Image img2;
 	private Image img3;
@@ -162,7 +162,7 @@ public class Shop_Home_Boundary implements Initializable {
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
 	       
 	       // donationController = fxmlLoader.getController();
-	        gestisci_b = fxmlLoader.getController();
+	        this.gestisci_b = fxmlLoader.getController();
 	        
 	   //    Stage stage = new Stage();
 			Stage stage = (Stage) gest_event.getScene().getWindow();

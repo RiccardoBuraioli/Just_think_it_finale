@@ -1,22 +1,25 @@
 package bean;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 
 public class Caritas_Home_Boundary {
@@ -29,57 +32,60 @@ public class Caritas_Home_Boundary {
 	private  static Caritas_Home_Boundary instance = null;
 
 	private CaritasUser currentUser;
+	private Gestisci_Turni_Boundary gestTurn;
 
 	private Bacheca_Personale_Boundary bacheca;
-
-	@FXML // ResourceBundle that was given to the FXMLLoader
-	private ResourceBundle resources;
-
-	@FXML // URL location of the FXML file that was given to the FXMLLoader
-	private URL location;
-
-	@FXML // fx:id="CreaPacco"
-	private Button CreaPacco; // Value injected by FXMLLoader
-
-	@FXML // fx:id="arrowLeft"
-	private ImageView arrowLeft; // Value injected by FXMLLoader
-
-	@FXML // fx:id="arrowRight"
-	private ImageView arrowRight; // Value injected by FXMLLoader
-
-	@FXML // fx:id="deleteAccountButton"
-	private Button deleteAccountButton; // Value injected by FXMLLoader
-
-	@FXML // fx:id="helpButton"
-	private Button helpButton; // Value injected by FXMLLoader
-
-	@FXML // fx:id="imagePresentation"
-	private ImageView imagePresentation; // Value injected by FXMLLoader
-
-	@FXML // fx:id="leftArrowButton"
-	private Button leftArrowButton; // Value injected by FXMLLoader
-
-	@FXML // fx:id="logoutButton"
-	private Button logoutButton; // Value injected by FXMLLoader
-
-	@FXML // fx:id="nomeCognome"
-	private Text nomeCognome; // Value injected by FXMLLoader
-
-	@FXML // fx:id="profileButton"
-	private Button profileButton; // Value injected by FXMLLoader
-
-	@FXML // fx:id="profileImage"
-	private ImageView profileImage; // Value injected by FXMLLoader
-
-	@FXML // fx:id="rightArrowButton"
-	private Button rightArrowButton; // Value injected by FXMLLoader
-
 	@FXML
-	private Button v_bacheca; // Value injected by FXMLLoader
+    private Button profileButton;
 
-	@FXML 
-	private Text textOverImages; // Value injected by FXMLLoader
-	
+    @FXML
+    private Button helpButton;
+
+    @FXML
+    private Button deleteAccountButton;
+
+    @FXML
+    private ImageView imagePresentation;
+
+    @FXML
+    private Button vBacheca;
+
+    @FXML
+    private Font x1;
+
+    @FXML
+    private Button eventiC;
+
+    @FXML
+    private Button Turni;
+
+    @FXML
+    private Text textOverImages;
+
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private ImageView arrowRight;
+
+    @FXML
+    private ImageView arrowLeft;
+
+    @FXML
+    private Text nomeCognome;
+
+    @FXML
+    private Button leftArrowButton;
+
+    @FXML
+    private Button rightArrowButton;
+
+    @FXML
+    private ImageView profileImage;
+
+    @FXML
+    private Button gestisciDona;
+
 	
 	
 	public static Caritas_Home_Boundary getInstance() {
@@ -93,30 +99,71 @@ public class Caritas_Home_Boundary {
 
 	public Caritas_Home_Boundary() {
 		bacheca = new Bacheca_Personale_Boundary();
+		gestTurn = new Gestisci_Turni_Boundary();
 	}
 
 	@FXML
-	void Gestisci_donazioni(ActionEvent event) {
+	void GestisciDonazioni(ActionEvent event) {
 		// handle the event here
 	}
 
 	@FXML
-	void Gestisci_eventi(ActionEvent event) {
+	void GestisciEventi(ActionEvent event) {
 		// handle the event here
+		
+		try {
+
+
+	        FXMLLoader fxmlLoader = new FXMLLoader();
+	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_eventi_caritas.fxml"));       
+	        Gestisci_Eventi_Caritas_Boundary gestisci_b = fxmlLoader.getController();
+	        Stage stage = (Stage) eventiC.getScene().getWindow();
+    		stage.setTitle("Gestisci Eventi");	
+    		gestisci_b.setCaritas(currentUser);
+    		gestisci_b.load_shop(currentUser.getID());    		
+    		stage.setScene(new Scene(rootNode, 800, 500));
+    		stage.setResizable(false);
+    		stage.show();
+    		
+    				} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 	@FXML
-	void Gestisci_turni(ActionEvent event) {
-		// handle the event here
+	void GestisciTurni(ActionEvent event) {
+		try {     
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/gestisci_turni_caritas.fxml"));
+			Parent root = loader.load();
+
+			Stage home = (Stage) Turni.getScene().getWindow();
+		
+			 gestTurn = loader.getController();
+    		 gestTurn.set_currentUser(this.currentUser);
+    		 gestTurn.loadFormBoundary(currentUser.getID());
+    		 
+			home.setScene(new Scene(root,883, 550));
+			home.show();
+    		
+    
+
+    		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	
 	@FXML  // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
-	void Visualizza_bacheca(ActionEvent event) {
+	void VisualizzaBacheca(ActionEvent event) {
 		try {     
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
 			Parent root = loader.load();
 
-			Stage home = (Stage) v_bacheca.getScene().getWindow();
+			Stage home = (Stage) vBacheca.getScene().getWindow();
 			home.setScene(new Scene(root,775, 500));
 			home.show();
     		

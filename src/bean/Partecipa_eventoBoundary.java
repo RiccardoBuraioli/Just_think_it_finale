@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.Partecipa_evento_controller;
-import dao.Evento_dao;
+import dao.EventoDao;
 import entity.partecipa_evento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

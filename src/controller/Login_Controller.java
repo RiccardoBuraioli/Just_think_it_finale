@@ -19,7 +19,7 @@ public class Login_Controller {
 		this.vrep = new VolunteerRepository();
 	}
 	
-   public Object LoginAccess(Window window, String user, String pass) {
+   public Object LoginAccess(String user, String pass) {
     	
     
     	

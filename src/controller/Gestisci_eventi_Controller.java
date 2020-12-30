@@ -2,21 +2,21 @@ package controller;
 
 import java.util.List;
 
-import bean.Gestisci_eventi_Boundary;
-import dao.Evento_dao;
+import bean.GestisciEventiBoundary;
+import dao.EventoDao;
 import entity.EventTab;
 import entity.Evento;
 
 public class Gestisci_eventi_Controller {
-	private Gestisci_eventi_Boundary gestisci_eventi_b;
+	private GestisciEventiBoundary gestisci_eventi_b;
 	private List<EventTab> lista_ev;
-	private Evento_dao event_dao;
+	private EventoDao event_dao;
 	
 	
 	
 	public Gestisci_eventi_Controller() {
 	
-		event_dao = new Evento_dao();
+		event_dao = new EventoDao();
 	}
 	
 	

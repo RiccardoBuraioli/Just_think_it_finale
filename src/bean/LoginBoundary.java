@@ -22,7 +22,7 @@ public class LoginBoundary implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Login_Controller login_c = new Login_Controller();
+	private Login_Controller loginC = new Login_Controller();
 	private Object loggedUser;
 	private User_Home_Boundary UserHomeBoundary;
 	private static LoginBoundary instance = null;
@@ -52,7 +52,7 @@ public class LoginBoundary implements Serializable {
     @FXML
     void loginPressed(ActionEvent event) {
     
-    loggedUser=	login_c.LoginAccess(loginButton.getScene().getWindow(), usernameField.getText(), passwordField.getText());
+    loggedUser=	loginC.LoginAccess(usernameField.getText(), passwordField.getText());
    	if(loggedUser.getClass()==VolunteerUser.class) {
    		
    		try {

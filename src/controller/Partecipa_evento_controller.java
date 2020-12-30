@@ -6,7 +6,7 @@ import entity.partecipa_evento;
 import java.net.URL;
 import java.util.ResourceBundle;
 import bean.Partecipa_eventoBoundary;
-import dao.Evento_dao;
+import dao.EventoDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,7 +38,7 @@ public class Partecipa_evento_controller {
 
     	partecipaz.setImport(importo);
     	
-    	Evento_dao partecipazione = new Evento_dao();
+    	EventoDao partecipazione = new EventoDao();
     	partecipazione.Crea_partecipazione(partecipaz);
     	
     	

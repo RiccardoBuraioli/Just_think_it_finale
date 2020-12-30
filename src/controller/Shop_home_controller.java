@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import bean.DonationBoundary;
-import bean.Gestisci_eventi_Boundary;
+import bean.GestisciEventiBoundary;
 import entity.ShopUser;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
@@ -30,7 +30,7 @@ import javafx.stage.Window;
 
 public class Shop_home_controller implements Initializable {
 
-	private Gestisci_eventi_Boundary gestisci_b;
+	private GestisciEventiBoundary gestisci_b;
 
 	private ShopUser currentUser;
 
@@ -43,7 +43,7 @@ public class Shop_home_controller implements Initializable {
 	}
 
 	public Shop_home_controller() {
-		gestisci_b = new Gestisci_eventi_Boundary();
+		gestisci_b = new GestisciEventiBoundary();
 	}
 
 	public void cerca_caritas(Window event) {

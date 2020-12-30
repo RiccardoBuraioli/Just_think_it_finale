@@ -13,6 +13,7 @@ import connector.Connector;
 import entity.partecipa_turno;
 import entity.Orario;
 import entity.Turno;
+import entity.TurnoTab;
 
 public class Prenota_dao {
 
@@ -20,7 +21,7 @@ public class Prenota_dao {
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
 
-
+    private List<TurnoTab> listTurn;
 	private String[] resGiorno = {null, null, null, null, null, null, null, null};
 	private Orario[] ora;
 	private List<Orario> oraArrayList;
@@ -199,6 +200,99 @@ public class Prenota_dao {
 	       }
 
 		return ID;
+		
+	}
+
+
+
+
+
+	public List<TurnoTab> visualizzaTurni(int idCaritas) {
+		String 	sql = "call Visualizza_turno(?)";
+		ResultSet res = null;
+		listTurn = new ArrayList<TurnoTab>();
+		try (Connection conn = connector.getConnection();
+	            PreparedStatement stmt = conn.prepareStatement(sql)) {
+	
+	           stmt.setInt(1,idCaritas);
+	       
+	           res = stmt.executeQuery();
+	
+	           while (res.next()) {
+	        	   this.listTurn.add(new TurnoTab(res.getInt("id_turno") ,res.getInt("codCar"),res.getString("Giorno"), res.getString("OraInizio"),res.getString("OraFine"),  res.getString("Note"),  res.getInt("Partecipanti")));
+	        	 
+	           }
+	       } catch (SQLException ex) {
+	           System.out.println(ex.getMessage());
+	       } finally {
+	           try {
+	               if (res != null) res.close();
+	           } catch (SQLException e) {
+	               System.out.println(e.getMessage());
+	           }
+	       }
+		return listTurn;
+	}
+	
+	
+	
+	public boolean cancellaTurno(int idTurn) {
+		   int rowAffected;
+	 		ResultSet rs = null;
+
+	    	//Registra Caritas
+		    String sql = "call cancella_turno(?)";
+
+	        try (Connection conn = connector.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+		       	  pstmt.setInt(1, idTurn);
+	      
+	            rowAffected = pstmt.executeUpdate();
+
+	            if (rowAffected == 1) {
+	                System.out.println(SUCCESS);
+	            } else { System.out.println(FAILED); return false;}
+
+
+	        } catch (SQLException ex) {
+	            System.out.println((ex.getMessage()));
+	        }
+			    	
+	        return true;
+	
+	}
+	
+	
+	
+	public boolean modificaTurno(int idTurn, String newNote, int codCar) {
+		
+		   int rowAffected;
+	 		ResultSet rs = null;
+
+	    	//Registra Caritas
+		    String sql = "call modifica_turno(?,?,?)";
+
+	        try (Connection conn = connector.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+		       	  pstmt.setInt(1, idTurn);
+		       	  pstmt.setInt(2, codCar);
+		       	  pstmt.setString(3, newNote);
+	            rowAffected = pstmt.executeUpdate();
+
+	            if (rowAffected == 1) {
+	                System.out.println(SUCCESS);
+	            } else { System.out.println(FAILED); return false;}
+
+
+	        } catch (SQLException ex) {
+	            System.out.println((ex.getMessage()));
+	        }
+			    	
+	        return true;
+	
+		
+		
+		
 		
 	}
 	
