@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bean.CreaTurnoBoundary">
    <children>
       <Button fx:id="back" layoutX="57.0" layoutY="391.0" mnemonicParsing="false" onAction="#backPressed" prefHeight="49.0" prefWidth="78.0" text="Indietro" />
       <Button fx:id="creaTurno" layoutX="561.0" layoutY="391.0" mnemonicParsing="false" onAction="#creaTurnoPressed" prefHeight="49.0" prefWidth="78.0" text="Crea Turno" />

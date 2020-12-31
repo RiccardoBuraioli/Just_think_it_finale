@@ -208,7 +208,7 @@ public class Prenota_dao {
 
 
 	public List<TurnoTab> visualizzaTurni(int idCaritas) {
-		String 	sql = "call Visualizza_turno(?)";
+		String 	sql = "call Visualizza_turno_caritas(?)";
 		ResultSet res = null;
 		listTurn = new ArrayList<TurnoTab>();
 		try (Connection conn = connector.getConnection();
@@ -219,7 +219,7 @@ public class Prenota_dao {
 	           res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   this.listTurn.add(new TurnoTab(res.getInt("id_turno") ,res.getInt("codCar"),res.getString("Giorno"), res.getString("OraInizio"),res.getString("OraFine"),  res.getString("Note"),  res.getInt("Partecipanti")));
+	        	   this.listTurn.add(new TurnoTab(res.getInt("numMaxParte"), res.getInt("id_turno") ,res.getInt("codCar"),res.getString("Giorno"), res.getString("OraInizio"),res.getString("OraFine"),  res.getString("Note"),  res.getInt("Partecipanti")));
 	        	 
 	           }
 	       } catch (SQLException ex) {
@@ -262,6 +262,38 @@ public class Prenota_dao {
 	
 	}
 	
+	
+	
+	public boolean creaTurno(int codCar,String nomGiorn, String newNote,String oraIniz, String oraFin, int numParte) {
+		  int rowAffected;
+	 		ResultSet rs = null;
+
+	    	//Registra Caritas
+		    String sql = "call crea_turno(?,?,?,?,?,?)";
+
+	        try (Connection conn = connector.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+		       	  pstmt.setInt(1, codCar);
+		       	  pstmt.setString(2, newNote);
+		       	  pstmt.setString(3, oraIniz);
+		       	  pstmt.setString(4, oraFin);
+		       	  pstmt.setInt(5, numParte);
+		       	  pstmt.setString(6, nomGiorn);
+
+
+	            rowAffected = pstmt.executeUpdate();
+
+	            if (rowAffected == 1) {
+	                System.out.println(SUCCESS);
+	            } else { System.out.println(FAILED); return false;}
+
+
+	        } catch (SQLException ex) {
+	            System.out.println((ex.getMessage()));
+	        }
+		return false;
+		
+	}
 	
 	
 	public boolean modificaTurno(int idTurn, String newNote, int codCar) {

@@ -45,7 +45,7 @@ public class Gestisci_Turni_Boundary {
 	    private TableColumn<TurnoTab, String> orario;
 
 	    @FXML
-	    private TableColumn<TurnoTab, Integer> numParte;
+	    private TableColumn<TurnoTab, String> numParte;
 
 	    @FXML
 	    private TableColumn<TurnoTab, String> note;
@@ -66,11 +66,13 @@ public class Gestisci_Turni_Boundary {
 
 	    private GestioneTurniCaritas gestTurn;
 	    
+	    private CreaTurnoBoundary CaritasTurniBoundary;
+	    
 	    private boolean check;
 	    
 	    public Gestisci_Turni_Boundary() {
-	    	gestTurn = new GestioneTurniCaritas();
-	    	
+	    	this.gestTurn = new GestioneTurniCaritas();
+	    	this.CaritasTurniBoundary = new CreaTurnoBoundary();
 	    }
 	    
 	    @FXML
@@ -81,6 +83,22 @@ public class Gestisci_Turni_Boundary {
 	    @FXML
 	    void CreaTurno(ActionEvent event) {
 	    		
+	   	 try {
+	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CreaTurno.fxml"));
+	 			Parent root = loader.load();
+	 		
+	 			this.CaritasTurniBoundary = loader.getController();
+	 			this.CaritasTurniBoundary.setCaritas(caritas);
+	 			Stage home = (Stage) creaTurn.getScene().getWindow();
+	 			home.setScene(new Scene(root, 770, 500));
+	 			
+	 			home.show();
+	 		} catch (IOException e) {
+	 			e.printStackTrace();
+	 		}
+	    	
+	    	
+	    	
 	    }
 
 	    @FXML

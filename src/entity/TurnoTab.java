@@ -10,18 +10,21 @@ public class TurnoTab {
 	private SimpleStringProperty oraInizio;
 	private SimpleStringProperty oraFine;
 	private SimpleStringProperty note;
-	private SimpleIntegerProperty partecipanti;
+	private SimpleStringProperty partecipanti;
+
+
 	private SimpleStringProperty orario;
 
-	public TurnoTab(int id,int caritas, String giorno, String oraIn, String oraFin, String note, int parte) {
+	public TurnoTab(int partecipantiMax,int id,int caritas, String giorno, String oraIn, String oraFin, String note, int parte) {
 		this.idCar = new SimpleIntegerProperty(caritas);
 		this.id = new SimpleIntegerProperty(id);
 		this.giorno = new SimpleStringProperty(giorno);
 		this.oraInizio = new SimpleStringProperty(oraIn);
 		this.oraFine = new SimpleStringProperty(oraFin);
 		this.note = new SimpleStringProperty(note);
-		this.partecipanti = new SimpleIntegerProperty(parte);
+		this.partecipanti = new SimpleStringProperty(parte + "/" + partecipantiMax);
 		this.orario = new SimpleStringProperty(oraIn + "/" + oraFin);
+
 	}
 
 	public String getGiorno() {
@@ -48,11 +51,11 @@ public class TurnoTab {
 		this.note.set(note);
 	}
 
-	public int getPartecipanti() {
+	public String getPartecipanti() {
 		return this.partecipanti.get();
 	}
 
-	public void setPartecipanti(int partecipanti) {
+	public void setPartecipanti(String partecipanti) {
 		this.partecipanti.set(partecipanti);
 	}
 
@@ -87,5 +90,6 @@ public class TurnoTab {
 	public void setIdCar(int idCar) {
 		this.idCar.set(idCar);
 	}
+
 
 }
