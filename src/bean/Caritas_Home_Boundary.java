@@ -1,12 +1,15 @@
 package bean;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.io.IOException;
-
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,6 +36,7 @@ public class Caritas_Home_Boundary {
 
 	private CaritasUser currentUser;
 	private Gestisci_Turni_Boundary gestTurn;
+	private Gestisci_Donazioni_Boundary gestDon;
 
 	private Bacheca_Personale_Boundary bacheca;
 	@FXML
@@ -100,11 +104,29 @@ public class Caritas_Home_Boundary {
 	public Caritas_Home_Boundary() {
 		bacheca = new Bacheca_Personale_Boundary();
 		gestTurn = new Gestisci_Turni_Boundary();
+		gestDon = new Gestisci_Donazioni_Boundary();
 	}
 
 	@FXML
 	void GestisciDonazioni(ActionEvent event) {
-		// handle the event here
+
+		try {
+
+
+	        FXMLLoader fxmlLoader = new FXMLLoader();
+	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_Donazioni.fxml"));       
+	        gestDon = fxmlLoader.getController();
+	        Stage stage = (Stage) eventiC.getScene().getWindow();
+    		stage.setTitle("Gestisci Eventi");	
+    		gestDon.setCaritas(this.currentUser);
+    		gestDon.loadFormBoundary();  		
+    		stage.setScene(new Scene(rootNode, 800, 500));
+    		stage.setResizable(false);
+    		stage.show();
+    		
+    				} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -195,7 +217,26 @@ public class Caritas_Home_Boundary {
 
 	@FXML
 	void logoutButtonPressed(ActionEvent event) {
-		// handle the event here
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Logout");
+    	alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
+    	alert.setContentText("Sei sicuro di voler eseguire il logout?");
+
+    	Optional<ButtonType> result = alert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    		try {
+    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
+    			Parent root = loader.load();
+    			Stage home = (Stage) logoutButton.getScene().getWindow();
+    			home.setScene(new Scene(root, 600, 385));
+    			home.show();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+        	
+    	} else {
+    	    //nothing
+    	}
 	}
 
 	@FXML

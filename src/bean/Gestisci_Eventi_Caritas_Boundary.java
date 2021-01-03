@@ -46,6 +46,9 @@ public class Gestisci_Eventi_Caritas_Boundary {
 
 		    @FXML
 		    private TableColumn<EventTab, Integer> numPartecipanti;
+		    
+		    @FXML
+		    private TableColumn<EventTab, String> stato;
 
 		    @FXML
 		    private Button CancellaEvento;
@@ -67,7 +70,7 @@ public class Gestisci_Eventi_Caritas_Boundary {
 
 		    @FXML
 		    void ModificaEvent(ActionEvent event) {
-
+		    		gestEventC.modificaEvento(this.event.getId());
 		    }
 
 		    @FXML
@@ -144,7 +147,7 @@ public class Gestisci_Eventi_Caritas_Boundary {
 			nomeNegozio.setCellValueFactory(new PropertyValueFactory<>("NomeNegozio"));
 			noteEvento.setCellValueFactory(new PropertyValueFactory<>("NoteEvento"));
 			numPartecipanti.setCellValueFactory(new PropertyValueFactory<>("NumPartecipanti"));
-		
+			stato.setCellValueFactory(new PropertyValueFactory<>("StatoEvento"));
 			
 			
 			tab.setItems(data);

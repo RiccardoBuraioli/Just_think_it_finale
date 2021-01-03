@@ -13,13 +13,18 @@ public class Gestisci_Eventi_Caritas_Controller {
 	
 public List<EventTab> carica_eventi(int id_caritas){
 		
-		listaEv = eventDao.cercaEventiCaritas(id_caritas);
+		this.listaEv = this.eventDao.cercaEventiCaritas(id_caritas);
 		
 		
 		return listaEv;
 		
 	}
 	
+
+public boolean modificaEvento(int idEve) {
+	return eventDao.modificaEvento(idEve);
+	
+}
 	
 public Gestisci_Eventi_Caritas_Controller() {
 	eventDao = new EventoDao();

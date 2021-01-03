@@ -5,20 +5,53 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sothawo.mapjfx.Coordinate;
 
 import connector.Connector;
 import entity.Donazione;
+import entity.DonazioneTab;
+import entity.EventTab;
 
 public class Donation_dao {
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
 
-
+    private List<DonazioneTab> listDon;
     private final Connector connector;
 	
 	
+    
+    
+    
+   public boolean modificaDonazione(int idDon) {
+	   int rowAffected;
+  		ResultSet rs = null;
+
+     	//Registra Caritas
+ 	    String sql = "call modifica_donazione(?)";
+
+         try (Connection conn = connector.getConnection();
+              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        	 pstmt.setInt(1, idDon);
+   
+             rowAffected = pstmt.executeUpdate();
+
+             if (rowAffected == 1) {
+                 System.out.println(SUCCESS);
+             } else System.out.println(FAILED);
+
+
+         } catch (SQLException ex) {
+             System.out.println((ex.getMessage()));
+      
+         }
+		return false;
+        
+	   
+   }
     
     
    public int crea_donazione(Donazione dono ) {
@@ -55,8 +88,70 @@ public class Donation_dao {
    }
     
 
+   public List<DonazioneTab> visualizzaDonazioni(int codCaritas){
+	   
+	   	String sql = "call visualizza_donazioni(?) ";
+
+		ResultSet res = null;
+		try (Connection conn = connector.getConnection();
+	            PreparedStatement stmt = conn.prepareStatement(sql)) {
+				stmt.setInt(1, codCaritas );
+	            res = stmt.executeQuery();
+	
+	           while (res.next()) {
+	        	   listDon.add(new DonazioneTab(res.getInt("cod_dona"),res.getInt("cod_volontario"), res.getString("tipo"), res.getString("descrizione"), res.getString("IndirizzoVolontario"), res.getString("consegnato")));
+	           }
+	       } catch (SQLException ex) {
+	           System.out.println(ex.getMessage());
+	       } finally {
+	           try {
+	               if (res != null) res.close();
+	           } catch (SQLException e) {
+	               System.out.println(e.getMessage());
+	           }
+	       }
+    	
+    	
+    	
+    	
+    	return this.listDon;
+	   
+   }
+   
+   
+   
+   
     
     public Donation_dao() {
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
+    	listDon = new ArrayList<DonazioneTab>();
     }
+
+
+	public boolean CancellaDonazione(int idDon) {
+		   int rowAffected;
+	  		ResultSet rs = null;
+
+	     	//Registra Caritas
+	 	    String sql = "call cancella_donazione(?)";
+
+	         try (Connection conn = connector.getConnection();
+	              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	        	 pstmt.setInt(1, idDon);
+	   
+	             rowAffected = pstmt.executeUpdate();
+
+	             if (rowAffected == 1) {
+	                 System.out.println(SUCCESS);
+	             } else System.out.println(FAILED);
+
+
+	         } catch (SQLException ex) {
+	             System.out.println((ex.getMessage()));
+	      
+	         }
+			return false;
+	        
+	
+	}
 }

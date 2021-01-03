@@ -41,7 +41,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getInt("Completato")));
+	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -65,7 +65,7 @@ public class EventoDao {
     public List<EventTab> cercaEventiCaritas(int idCar){
 
 	   	String sql = "call visualizza_eventi_caritas(?) ";
-	   	int i = 0;
+	 
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -73,7 +73,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab(res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("Completato"), res.getInt("CodiceNegozio")));
+	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -189,6 +189,38 @@ public class EventoDao {
 		    	
         return true;
         
+   }
+   
+   
+   public boolean modificaEvento(int idEve) {
+	   
+	   
+	   int rowAffected;
+ 		ResultSet rs = null;
+
+    	//Registra Caritas
+	    String sql = "call modifica_evento(?)";
+
+        try (Connection conn = connector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+	       	  pstmt.setInt(1, idEve);
+      
+            rowAffected = pstmt.executeUpdate();
+
+            if (rowAffected == 1) {
+                System.out.println(SUCCESS);
+            } else { System.out.println(FAILED); return false;}
+
+
+        } catch (SQLException ex) {
+            System.out.println((ex.getMessage()));
+        }
+		    	
+        return true;
+        
+	   
+	   
+	   
    }
    
    

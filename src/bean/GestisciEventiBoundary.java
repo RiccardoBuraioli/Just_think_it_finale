@@ -122,6 +122,7 @@ public class GestisciEventiBoundary {
 	    @FXML
 	    void modificaEvento(ActionEvent event) {
 	
+	    	
 	    }
 
 	    @FXML
