@@ -125,11 +125,16 @@ public class Prenota_dao {
 
 			while (res.next()) {
 				oraArrayList.add(new Orario(res.getString("ora_inizio"), res.getString("ora_fine")));
-			}
-			res.close();
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-		} 
+			
+			 } } catch (SQLException ex) {
+		            System.out.println(ex.getMessage());
+		        } finally {
+		            try {
+		                if (res != null) res.close();
+		            } catch (SQLException e) {
+		                System.out.println(e.getMessage());
+		            }
+		        }
 		
 		return oraArrayList;
 
