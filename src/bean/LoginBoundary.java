@@ -3,7 +3,7 @@ package bean;
 import java.io.IOException;
 import java.io.Serializable;
 
-import controller.Login_Controller;
+import controller.LoginController;
 import entity.CaritasUser;
 import entity.ShopUser;
 import entity.VolunteerUser;
@@ -22,11 +22,12 @@ public class LoginBoundary implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Login_Controller loginC = new Login_Controller();
+	private LoginController loginC = new LoginController();
 	private Object loggedUser;
-	private User_Home_Boundary UserHomeBoundary;
+	private UserHomeBoundary UserHomeBoundary;
+	private ShopHomeBoundary ShopHomeBoundary;
 	private static LoginBoundary instance = null;
-	
+	private CaritasHomeBoundary CaritasHomeBoundary;
 	
 	public static LoginBoundary getInstance() {
 		if(instance == null) {
@@ -58,7 +59,7 @@ public class LoginBoundary implements Serializable {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
-			UserHomeBoundary = User_Home_Boundary.getInstance();
+			UserHomeBoundary = UserHomeBoundary.getInstance();
 			UserHomeBoundary = loader.getController();
 			UserHomeBoundary.initData((VolunteerUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
@@ -72,9 +73,9 @@ public class LoginBoundary implements Serializable {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
-			Caritas_Home_Boundary CaritasHomeController = Caritas_Home_Boundary.getInstance();
-			CaritasHomeController = loader.getController();
-			CaritasHomeController.initData((CaritasUser)loggedUser);
+			CaritasHomeBoundary = CaritasHomeBoundary.getInstance();
+			CaritasHomeBoundary = loader.getController();
+			CaritasHomeBoundary.initData((CaritasUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
@@ -86,7 +87,7 @@ public class LoginBoundary implements Serializable {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
-			Shop_Home_Boundary ShopHomeBoundary = Shop_Home_Boundary.getInstance(); 
+			ShopHomeBoundary = ShopHomeBoundary.getInstance(); 
 			ShopHomeBoundary = loader.getController();
 			ShopHomeBoundary.initData((ShopUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();

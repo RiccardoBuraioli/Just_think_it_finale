@@ -2,16 +2,16 @@ package controller;
 
 import java.util.List;
 
-import dao.Prenota_dao;
+import dao.PrenotaDao;
 import entity.TurnoTab;
 
 public class GestioneTurniCaritas {
 	
-	private Prenota_dao turni_dao;
+	private PrenotaDao turni_dao;
 	private List<TurnoTab> list;
 	
 	public GestioneTurniCaritas() {
-		this.turni_dao = new Prenota_dao();
+		this.turni_dao = new PrenotaDao();
 	}
 	
 	

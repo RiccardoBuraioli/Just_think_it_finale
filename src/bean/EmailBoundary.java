@@ -1,6 +1,6 @@
 package bean;
 
-import controller.Email_controller;
+import controller.EmailController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +12,7 @@ public class EmailBoundary {
 	
 	private String[] mit_dest;
 	
-	private Email_controller email_c;
+	private EmailController email_c;
 
 	@FXML
 	private Stage stage;
@@ -47,7 +47,7 @@ public class EmailBoundary {
 	@FXML
 	void initialize() {
 	
-		email_c = new Email_controller();
+		email_c = new EmailController();
 		
 	}
 	

@@ -1,15 +1,15 @@
 package controller;
 
-import dao.Prenota_dao;
+import dao.PrenotaDao;
 import entity.TurnoTab;
 
 public class CreaTurnoController {
 
 
-	private Prenota_dao turnodao;
+	private PrenotaDao turnodao;
 	
 	public CreaTurnoController() {
-		turnodao = new Prenota_dao();
+		turnodao = new PrenotaDao();
 	}
 	
 	

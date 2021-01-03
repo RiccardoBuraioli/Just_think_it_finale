@@ -12,7 +12,7 @@ import connector.Connector;
 import entity.EventTab;
 import entity.Evento;
 import entity.Necessità;
-import entity.partecipa_evento;
+import entity.PartecipaEvento;
 
 public class EventoDao {
 
@@ -131,7 +131,7 @@ public class EventoDao {
     	
     }
     
-   public partecipa_evento Crea_partecipazione(partecipa_evento partepaEvento) {
+   public PartecipaEvento Crea_partecipazione(PartecipaEvento partepaEvento) {
 	   int rowAffected;
   		ResultSet rs = null;
 

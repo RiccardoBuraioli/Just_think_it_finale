@@ -1,6 +1,6 @@
 package controller;
 
-import dao.Donation_dao;
+import dao.DonationDao;
 import entity.Donazione;
 
 
@@ -9,12 +9,12 @@ public class DonationController {
 	private static DonationController instance = null;
 	
 	private Donazione donazione;
-	private Donation_dao donazione_dao;
+	private DonationDao donazione_dao;
 
 	
 	private DonationController() {
 		donazione = new Donazione();
-		donazione_dao = new Donation_dao();
+		donazione_dao = new DonationDao();
 	}
 	
 

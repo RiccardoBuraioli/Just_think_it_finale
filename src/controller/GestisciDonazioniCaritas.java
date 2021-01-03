@@ -2,18 +2,18 @@ package controller;
 
 import java.util.List;
 
-import dao.Donation_dao;
+import dao.DonationDao;
 import entity.DonazioneTab;
 
 public class GestisciDonazioniCaritas {
 	private List<DonazioneTab> listDon;
-	private Donation_dao donDao;
+	private DonationDao donDao;
 	
 	
 	
 	
 	public GestisciDonazioniCaritas() {
-		this.donDao = new Donation_dao();
+		this.donDao = new DonationDao();
 		
 	}
 	

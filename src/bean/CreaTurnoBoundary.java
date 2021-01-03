@@ -3,7 +3,7 @@ package bean;
 import java.io.IOException;
 
 import controller.CreaTurnoController;
-import controller.Prenota_turno_controller;
+import controller.PrenotaTurnoController;
 import entity.CaritasUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +50,7 @@ public class CreaTurnoBoundary {
 			Parent root = loader.load();
 
 			Stage home = (Stage) back.getScene().getWindow();
-			Gestisci_Turni_Boundary gestTurn = new Gestisci_Turni_Boundary();
+			GestisciTurniBoundary gestTurn = new GestisciTurniBoundary();
 			gestTurn = loader.getController();
 			gestTurn.set_currentUser(this.caritas);
 			gestTurn.loadFormBoundary(this.caritas.getID());

@@ -5,12 +5,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import controller.Gestisci_eventi_Controller;
+import controller.GestisciEventiController;
 import entity.CaritasUser;
 import entity.EventTab;
 import entity.Evento;
 import entity.Necessità;
-import entity.Partecipanti_evento;
+import entity.PartecipantiEvento;
 import entity.ShopUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,11 +28,12 @@ import javafx.stage.Stage;
 
 public class GestisciEventiBoundary {
 
-	private Gestisci_eventi_Controller gestEventC;
+	private GestisciEventiController gestEventC;
 	private int idShop;
 	private List<EventTab> listEv;
 	private EventTab event;
 	private ShopUser shop;
+	private ShopHomeBoundary ShopHomeBoundary;
 	
 	@FXML
 	private ResourceBundle resources;
@@ -72,7 +73,7 @@ public class GestisciEventiBoundary {
 	    	 try {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 	 			Parent root = loader.load();
-	 			Shop_Home_Boundary ShopHomeBoundary = Shop_Home_Boundary.getInstance();
+	 			ShopHomeBoundary = ShopHomeBoundary.getInstance();
 	 			ShopHomeBoundary = loader.getController();
 	 			ShopHomeBoundary.initData(shop);
 	 			Stage home = (Stage) back.getScene().getWindow();
@@ -134,13 +135,13 @@ public class GestisciEventiBoundary {
 
 	public GestisciEventiBoundary() {
 
-		gestEventC = new Gestisci_eventi_Controller();
+		gestEventC = new GestisciEventiController();
 
 	}
 
 	public GestisciEventiBoundary(int i) {
 
-		gestEventC = new Gestisci_eventi_Controller();
+		gestEventC = new GestisciEventiController();
 		this.idShop = i;
 
 	}

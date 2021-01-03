@@ -3,7 +3,7 @@ package bean;
 
 import java.io.IOException;
 import java.util.List;
-import controller.Bacheca_Controller;
+import controller.BachecaController;
 import entity.Necessità;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class BachecaBoundary {
 	@FXML
 	private TextArea vestiti;
 
-	private Bacheca_Controller bacheca_controller;
+	private BachecaController bacheca_controller;
 	
 	private List<Necessità> necessità;
 	
@@ -112,7 +112,7 @@ public class BachecaBoundary {
 	public void loadFormBoundary(int id_car, int id_ute) {
 		this.id_car = id_car;
 		this.id_ute = id_ute;
-		bacheca_controller = new Bacheca_Controller();
+		bacheca_controller = new BachecaController();
 		necessità = bacheca_controller.loadForm(id_car, id_ute);
 		
 		
