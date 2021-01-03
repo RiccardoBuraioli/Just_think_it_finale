@@ -69,52 +69,9 @@ public class Prenota_dao {
 	
 	
 	
-	public Orario[] visualizza_orario() {
 
-		int numRows = 0;
-
-		
-		ResultSet res = null;
-		try {
-			Connection conn = connector.getConnection();
-
-			String sql0 = "Select count(*) from orari ";
-
-			PreparedStatement stmt0 = conn.prepareStatement(sql0);
-			ResultSet res0 = null;
-			res0 = stmt0.executeQuery();
-			if (res0.next()) {
-				numRows = res0.getInt("count(*)");
-				ora = new Orario[numRows];
-				
-				
-				String sql = "Select ora_inizio, ora_fine from orari ";
-				PreparedStatement stmt = conn.prepareStatement(sql);
-				res = stmt.executeQuery();
-
-				int i = 0;
-				while (res.next()) {
-					ora[i] = new Orario(res.getString("ora_inizio"), res.getString("ora_fine"));
-					i++;
-				}
-			}
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-		} finally {
-			try {
-				if (res != null)
-					res.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-
-		return ora;
-
-	}	
-	
 	public List<Orario> visualizza_orario2() {
-		oraArrayList = new ArrayList<Orario>();
+		this.oraArrayList = new ArrayList<Orario>();
 		ResultSet res = null;
 		try {
 			Connection conn = connector.getConnection();
