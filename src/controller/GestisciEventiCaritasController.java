@@ -11,9 +11,9 @@ public class GestisciEventiCaritasController {
 	
 	
 	
-public List<EventTab> carica_eventi(int id_caritas){
+public List<EventTab> caricaEventi(int idCaritas){
 		
-		this.listaEv = this.eventDao.cercaEventiCaritas(id_caritas);
+		this.listaEv = this.eventDao.cercaEventiCaritas(idCaritas);
 		
 		
 		return listaEv;
@@ -30,7 +30,7 @@ public GestisciEventiCaritasController() {
 	eventDao = new EventoDao();
 }
 	
-public boolean elimina_evento(String nomeEvento) {
+public boolean eliminaEvento(String nomeEvento) {
 	return eventDao.deliteEvent(nomeEvento);
 }
 }

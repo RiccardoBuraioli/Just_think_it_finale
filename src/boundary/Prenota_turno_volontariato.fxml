@@ -15,8 +15,8 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="cb_ora_inizio" layoutX="116.0" layoutY="310.0" prefHeight="25.0" prefWidth="88.0" />
-      <ChoiceBox fx:id="cb_ora_fine" layoutX="227.0" layoutY="310.0" prefHeight="25.0" prefWidth="88.0" />
+      <ChoiceBox fx:id="CBoraInizio" layoutX="116.0" layoutY="310.0" prefHeight="25.0" prefWidth="88.0" />
+      <ChoiceBox fx:id="CBoraFine" layoutX="227.0" layoutY="310.0" prefHeight="25.0" prefWidth="88.0" />
       <Text layoutX="221.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just Think It">
          <font>
             <Font size="30.0" />
@@ -28,7 +28,7 @@
          </font>
       </Text>
       <TextField fx:id="CV" layoutX="182.0" layoutY="252.0" prefHeight="25.0" prefWidth="157.0" />
-      <Button fx:id="prenota" layoutX="513.0" layoutY="323.0" mnemonicParsing="false" onAction="#prenota_turno" prefHeight="53.0" prefWidth="98.0" text="Prenota">
+      <Button fx:id="prenota" layoutX="513.0" layoutY="323.0" mnemonicParsing="false" onAction="#prenotaTurno" prefHeight="53.0" prefWidth="98.0" text="Prenota">
          <font>
             <Font size="16.0" />
          </font>

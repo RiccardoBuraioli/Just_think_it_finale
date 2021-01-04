@@ -27,8 +27,8 @@ import javafx.stage.Stage;
 
 public class ShopHomeBoundary implements Initializable {
 	
-	private ShopHomeController Shop_c;
-	private GestisciEventiBoundary gestisci_b;
+	private ShopHomeController ShopController;
+	private GestisciEventiBoundary gestisciBoundary;
 	private Image img1;
 	private Image img2;
 	private Image img3;
@@ -59,11 +59,11 @@ public class ShopHomeBoundary implements Initializable {
 		img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
 		img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
 		currentImage = 0;
-		Shop_c = new ShopHomeController();
+		ShopController = new ShopHomeController();
 	}
 		
     @FXML
-    private Button gest_event;
+    private Button gestEvent;
 
     @FXML
     private ResourceBundle resources;
@@ -114,7 +114,7 @@ public class ShopHomeBoundary implements Initializable {
 
 
     @FXML
-    void cerca_caritas(ActionEvent event) {
+    void cercaCaritas(ActionEvent event) {
     }
 
   
@@ -154,7 +154,7 @@ public class ShopHomeBoundary implements Initializable {
     }
 
     @FXML
-    void gestisci_eventi(ActionEvent event) {
+    void gestisciEventi(ActionEvent event) {
     	try {
 
 
@@ -162,16 +162,16 @@ public class ShopHomeBoundary implements Initializable {
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
 	       
 	       // donationController = fxmlLoader.getController();
-	        this.gestisci_b = fxmlLoader.getController();
+	        this.gestisciBoundary = fxmlLoader.getController();
 	        
 	   //    Stage stage = new Stage();
-			Stage stage = (Stage) gest_event.getScene().getWindow();
+			Stage stage = (Stage) gestEvent.getScene().getWindow();
 
     		stage.setTitle("Gestisci Eventi");
     		
     		
-    		gestisci_b.setShop(currentUser);
-    		gestisci_b.load_shop(currentUser.getID());
+    		gestisciBoundary.setShop(currentUser);
+    		gestisciBoundary.loadShop(currentUser.getID());
     		
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);

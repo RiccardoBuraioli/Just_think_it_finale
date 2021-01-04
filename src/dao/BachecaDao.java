@@ -26,14 +26,14 @@ public class BachecaDao {
 	
 	
 	
-	public List<Necessità> visualizza_necessità(int id_caritas) {
+	public List<Necessità> visualizza_necessità(int idCaritas) {
 		
 	   	String sql = "call visualizza_necessità(?) ";
 	   	int i = 0;
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setInt(1, id_caritas );
+				stmt.setInt(1, idCaritas );
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
@@ -56,7 +56,7 @@ public class BachecaDao {
 		
 	}
 	
-	public int crea_necessità(Necessità necessità, int cod_caritas) {
+	public int creaNecessita(Necessità necessita, int codCaritas) {
 		 ResultSet rs = null;
 	        int NecID = 0;
 
@@ -65,10 +65,10 @@ public class BachecaDao {
 	        try (Connection conn = connector.getConnection();
 	             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 	           
-	        	pstmt.setString(1,necessità.getTipologia());
-	        	pstmt.setString(2, necessità.getUrgenza());        	
-	        	pstmt.setString(3, necessità.getDescrizione());
-	        	pstmt.setInt(4, cod_caritas);
+	        	pstmt.setString(1,necessita.getTipologia());
+	        	pstmt.setString(2, necessita.getUrgenza());        	
+	        	pstmt.setString(3, necessita.getDescrizione());
+	        	pstmt.setInt(4, codCaritas);
 
 	            int rowAffected = pstmt.executeUpdate();
 	            if (rowAffected == 1) {
@@ -90,7 +90,7 @@ public class BachecaDao {
 	}
 	
 	
-	public boolean elimina_necessità(int nece) {
+	public boolean eliminaNecessita(int nece) {
 		 ResultSet rs = null;
 		  
 		   int rowAffected;

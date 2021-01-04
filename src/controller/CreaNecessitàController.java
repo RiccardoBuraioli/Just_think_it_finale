@@ -4,29 +4,29 @@ import dao.BachecaDao;
 import entity.Necessit‡;
 
 public class CreaNecessit‡Controller {
-	private BachecaDao crea_n;
-	private Necessit‡ necessit‡;
-	private int id_caritas;
+	private BachecaDao creaBachecaDao;
+	private Necessit‡ necessita;
+	private int idCaritas;
 	
 	public CreaNecessit‡Controller() {
-		crea_n = new BachecaDao();
+		creaBachecaDao = new BachecaDao();
 		
 	}
 	
-	public int crea_necessit‡(String tipo, String urg, String desc) {
+	public int creaNecessit‡(String tipo, String urg, String desc) {
 		
-		necessit‡ = new Necessit‡(tipo, desc, urg);
+		necessita = new Necessit‡(tipo, desc, urg);
 		
 		
-		crea_n.crea_necessit‡(necessit‡, id_caritas);
+		creaBachecaDao.creaNecessita(necessita, idCaritas);
 		return 0;
 		
 	}
 	
 	
 	
-	public void inizializza(int cod_car) {
-		this.id_caritas = cod_car;
+	public void inizializza(int codCar) {
+		this.idCaritas = codCar;
 	}
 	
 }

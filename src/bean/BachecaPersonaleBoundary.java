@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import controller.BachecaController;
-import controller.Bacheca_Personale_Controller;
+import controller.BachecaPersonaleController;
 import entity.CaritasUser;
 import entity.EventTab;
 import entity.Necessit‡;
@@ -22,9 +22,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class BachecaPersonaleBoundary {
-	private List<Necessit‡> necessit‡_l;
-	private int id_car;
-	private Bacheca_Personale_Controller bacheca_controller;
+	private List<Necessit‡> necessitaList;
+	private int idCar;
+	private BachecaPersonaleController bachecaController;
 	private Necessit‡ nec;
 	private CaritasUser caritas;
 
@@ -41,7 +41,7 @@ public class BachecaPersonaleBoundary {
 	private TableColumn<Necessit‡, String> urgenza;
 
 	@FXML
-	private Button necessit‡;
+	private Button necessita;
 
 
 	@FXML
@@ -55,8 +55,8 @@ public class BachecaPersonaleBoundary {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
-			CaritasHomeBoundary home_c = loader.getController();
-			home_c.setCurrentUser(caritas);
+			CaritasHomeBoundary homeC = loader.getController();
+			homeC.setCurrentUser(caritas);
 			
 			Stage home = (Stage) back.getScene().getWindow();
 			home.setScene(new Scene(root,  800, 600));
@@ -72,13 +72,13 @@ public class BachecaPersonaleBoundary {
 	
 	
 	@FXML
-	void crea_necessit‡(ActionEvent event) {
+	void creaNecessita(ActionEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Crea_Necessit‡.fxml"));
 			Parent root = loader.load();
-			CreaNecessit‡Boundary crea_nec = loader.getController();
-			crea_nec.set_caritas(id_car);
-			Stage home = (Stage) necessit‡.getScene().getWindow();
+			CreaNecessit‡Boundary creaNec = loader.getController();
+			creaNec.setCaritas(idCar);
+			Stage home = (Stage) necessita.getScene().getWindow();
 			home.setScene(new Scene(root, 600, 500));
 
 			home.show();
@@ -88,19 +88,19 @@ public class BachecaPersonaleBoundary {
 	}
 
 	@FXML
-	void elimina_necessit‡(ActionEvent event) {
+	void eliminaNecessita(ActionEvent event) {
 		nec = bacheca.getSelectionModel().getSelectedItem();
-		bacheca_controller.elimina_annuncio(nec.getId_nece());
+		bachecaController.elimina_annuncio(nec.getId_nece());
 	}
 
 
 
 	public void loadFormBoundary(int id_car) {
-		this.id_car = id_car;
+		this.idCar = id_car;
 
-		bacheca_controller = new Bacheca_Personale_Controller();
-		necessit‡_l = bacheca_controller.loadForm(id_car);
-		ObservableList<Necessit‡> data = FXCollections.observableArrayList(necessit‡_l);
+		bachecaController = new BachecaPersonaleController();
+		necessitaList = bachecaController.loadForm(id_car);
+		ObservableList<Necessit‡> data = FXCollections.observableArrayList(necessitaList);
 
 		descrizione.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
 

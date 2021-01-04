@@ -97,7 +97,7 @@ public class GestisciEventiBoundary {
     	       // donationController = fxmlLoader.getController();
     	        EmailBoundary email = new EmailBoundary();
     	        email = fxmlLoader.getController();
-    	        email.load_email(this.idShop, this.event.getId_caritas());
+    	        email.loadEmail(this.idShop, this.event.getIdCaritas());
     	        Stage stage = new Stage();
 	    		stage.setTitle("Email");
 	    		
@@ -117,7 +117,7 @@ public class GestisciEventiBoundary {
 
 	    @FXML
 	    boolean eliminaEvento(ActionEvent event) {
-	    	return gestEventC.elimina_evento(this.event.getNomeEvento());
+	    	return gestEventC.eliminaEvento(this.event.getNomeEvento());
 	    }
 
 	    @FXML
@@ -149,9 +149,9 @@ public class GestisciEventiBoundary {
 	
 	
 
-	public void load_shop(int id_shop) {
-		this.idShop = id_shop;
-		this.listEv = gestEventC.carica_eventi(this.idShop);
+	public void loadShop(int idShop) {
+		this.idShop = idShop;
+		this.listEv = gestEventC.caricaEventi(this.idShop);
 		System.out.println(listEv.get(0).getNomeEvento());
 
 		ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);
@@ -164,20 +164,7 @@ public class GestisciEventiBoundary {
 		
 		
 		table.setItems(data);
-		// table.getColumns().addAll(nome_evento);
-
-		/*
-		 * for (int i = 0; i < list_ev.size(); i++) { Evento tmp = list_ev.get(i);
-		 * System.out.println(tmp.getNome());
-		 * 
-		 * // Id_evento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
-		 * // table.setItems(data); //Id_evento.setCellFactory( new
-		 * PropertyValueFactory<Evento,Integer>(tmp.getNome() ));
-		 * 
-		 * //id_caritas.setText(Integer.toString(tmp.getId_caritas()));
-		 * 
-		 * // initialize(); }
-		 */
+	
 
 	}
 

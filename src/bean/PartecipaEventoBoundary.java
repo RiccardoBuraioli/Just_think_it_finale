@@ -15,10 +15,10 @@ import javafx.stage.Stage;
 
 public class PartecipaEventoBoundary {
 	
-		private int id_utente;
-		private int id_evento;
+		private int idUtente;
+		private int idEvento;
 		
-		private PartecipaEventoController Parte_c;
+		private PartecipaEventoController ParteCon;
 
 		private TextField[] textFields;
 		
@@ -43,9 +43,9 @@ public class PartecipaEventoBoundary {
 	    
 	    
 	    @FXML
-	   void partecipa_evento(ActionEvent event) {
-	    	Parte_c = new PartecipaEventoController();
-	    	Parte_c.partecipa_evento(Float.parseFloat(importo.getText()));
+	   void partecipaEvento(ActionEvent event) {
+	    	ParteCon = new PartecipaEventoController();
+	    	ParteCon.partecipaEvento(Float.parseFloat(importo.getText()));
 	    	Stage st = (Stage) partecipa.getScene().getWindow();
 	    	st.close();
 
@@ -78,21 +78,21 @@ public class PartecipaEventoBoundary {
 		
 		 
 	    
-	    public void setData(int id_evento, int id_volontario) {
-	    	this.id_evento = id_evento;
-	    	this.id_utente= id_volontario;
+	    public void setData(int idEvento, int idVolontario) {
+	    	this.idEvento = idEvento;
+	    	this.idUtente= idVolontario;
 	   }
 
 
 
-		public int getId_utente() {
-			return id_utente;
+		public int getIdUtente() {
+			return idUtente;
 		}
 
 
 
-		public int getId_evento() {
-			return id_evento;
+		public int getIdEvento() {
+			return idEvento;
 		}
 
     

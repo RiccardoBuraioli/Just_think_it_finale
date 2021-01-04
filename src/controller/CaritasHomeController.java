@@ -25,48 +25,10 @@ public class CaritasHomeController {
 
 	public CaritasHomeController() {
 	
-
-	}
-
-	public void Gestisci_donazioni(Window event) {
-		// handle the event here
-	}
-
-	// Handler for Button[Button[id=null, styleClass=button]] onAction
-
-	public void Gestisci_eventi(Window event) {
-		// handle the event here
-	}
-
-	// Handler for Button[fx:id="CreaPacco"] onAction
-
-	public void Gestisci_turni(Window event) {
-		// handle the event here
-	}
-
-
-	// Handler for Button[fx:id="deleteAccountButton"] onAction
-
-	public void deleteAccountButtonPressed(Window event) {
-		// handle the event here
-	}
-
-	// Handler for Button[fx:id="helpButton"] onAction
-
-	public void helpButtonPressed(Window event) {
-		// handle the event here
-	}
-
-	public void logoutButtonPressed(Window event) {
-		// handle the event here
-	}
-
-	public void profileButtonPressed(Window event) {
-		// handle the event here
 	}
 
 	public CaritasUser getCurrentUser() {
-		return currentUser;
+		return this.currentUser;
 	}
 
 	public void setCurrentUser(CaritasUser currentUser) {

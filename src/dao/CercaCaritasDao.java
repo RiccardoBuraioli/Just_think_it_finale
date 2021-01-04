@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
 
-import entity.marker_id;
+import entity.markerID;
 import connector.Connector;
 
 
@@ -23,14 +23,14 @@ public class CercaCaritasDao {
 
 	 
 	
-	public marker_id assegna_marker() {
+	public markerID assegnaMarker() {
 		
 		//Marker[] markerCaritas = {null,null,null,null,null,null,null};
 		// id[] = {0,0,0,0,0,0,0,0};
 		String sql = "Call assegna_marker()";
 		ResultSet rs = null;
 		int count = 0;
-		marker_id markerC = new marker_id();
+		markerID markerC = new markerID();
 
 		
 		try (Connection conn = connector.getConnection();
@@ -40,8 +40,8 @@ public class CercaCaritasDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Coordinate caritas_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritas_coordinate));
+				Coordinate caritasCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritasCoordinate));
 				markerC.setID(count,  rs.getInt("CodiceCaritas"));
 				count++;
         	 
@@ -64,7 +64,7 @@ public class CercaCaritasDao {
 		}
 		
 	
-	public Marker[] assegna_marker_evento() {
+	public Marker[] assegnaMarkerEvento() {
 		
 		Marker[] markerEvento = {null,null,null,null,null,null,null};
 		
@@ -79,8 +79,8 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
-	        	 Coordinate evento_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-	        	 markerEvento[count] = Marker.createProvided(Marker.Provided.BLUE).setPosition(evento_coordinate);
+	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+	        	 markerEvento[count] = Marker.createProvided(Marker.Provided.BLUE).setPosition(eventoCoordinate);
 	        	
 	        	 count++;
 	        	 
@@ -98,7 +98,7 @@ public class CercaCaritasDao {
 		}
 	
 	
-	public Marker[] assegna_marker_donazione() {
+	public Marker[] assegnaMarkerDonazione() {
 		
 		Marker[] markerDonazione = {null,null,null,null,null,null,null};
 		
@@ -113,8 +113,8 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
-	        	 Coordinate donazione_coordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
-	        	 markerDonazione[count] = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazione_coordinate);
+	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+	        	 markerDonazione[count] = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazioneCoordinate);
 	        	 
 	        	 count++;
 	        	 

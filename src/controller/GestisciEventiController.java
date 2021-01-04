@@ -8,33 +8,33 @@ import entity.EventTab;
 import entity.Evento;
 
 public class GestisciEventiController {
-	private GestisciEventiBoundary gestisci_eventi_b;
-	private List<EventTab> lista_ev;
-	private EventoDao event_dao;
+	private GestisciEventiBoundary gestisciEventiB;
+	private List<EventTab> listaEv;
+	private EventoDao eventDao;
 	
 	
 	
 	public GestisciEventiController() {
 	
-		event_dao = new EventoDao();
+		eventDao = new EventoDao();
 	}
 	
 	
-	public List<EventTab> carica_eventi(int id_shop){
+	public List<EventTab> caricaEventi(int idShop){
 		
-		lista_ev = event_dao.cerca_eventi(id_shop);
+		listaEv = eventDao.cercaEventi(idShop);
 		
 		
-		return lista_ev;
+		return listaEv;
 		
 	}
 	
-	public boolean elimina_evento(String nomeEvento) {
-		return event_dao.deliteEvent(nomeEvento);
+	public boolean eliminaEvento(String nomeEvento) {
+		return eventDao.deliteEvent(nomeEvento);
 	}
 	
 	
-	public boolean modifica_note_evento(String noteEvento) {
+	public boolean modificaNoteEvento(String noteEvento) {
 		return false;
 		
 	}

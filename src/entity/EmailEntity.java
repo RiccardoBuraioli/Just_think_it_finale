@@ -1,54 +1,57 @@
 package entity;
 
 public class EmailEntity {
-	private int id_email;
-	public int getId_email() {
-		return id_email;
+	private int idEmail;
+	
+	
+	
+	public int getIdEmail() {
+		return idEmail;
 	}
 
-	public void setId_email(int id_email) {
-		this.id_email = id_email;
+	public void setIdEmail(int idEmail) {
+		this.idEmail = idEmail;
 	}
 
 
-	private String email_mittente;
-	private String email_destinatario;
+	private String emailMittente;
+	private String emailDestinatario;
 	private String messaggio;
 	private String oggetto;
 	
 	
-	public EmailEntity(String id_c, String id_u, String mes, String ogg) {
-		this.email_mittente = id_c;
-		this.email_destinatario = id_u;
+	public EmailEntity(String idM, String idD, String mes, String ogg) {
+		this.emailMittente = idM;
+		this.emailDestinatario = idD;
 		this.messaggio = mes;
 		this.oggetto = ogg;
-		this.id_email = 0;
+		this.idEmail = 0;
 	}
 	
-	public EmailEntity(int id_email, String messaggio, String oggetto) {
-		this.id_email = id_email;
+	public EmailEntity(int idEmail, String messaggio, String oggetto) {
+		this.idEmail = idEmail;
 		this.messaggio = messaggio;
 		this.oggetto = oggetto;
 	}
 
 
-	public String getId_mittente() {
-		return email_mittente;
+	public String getIdMittente() {
+		return emailMittente;
 	}
 
 
-	public void setId_mittente(String id_caritas) {
-		this.email_mittente = id_caritas;
+	public void setIdMittente(String idCaritas) {
+		this.emailMittente = idCaritas;
 	}
 
 
-	public String getId_destinatario() {
-		return email_destinatario;
+	public String getIdDestinatario() {
+		return emailDestinatario;
 	}
 
 
-	public void setId_destinatario(String id_utente) {
-		this.email_destinatario = id_utente;
+	public void setIdDestinatario(String idUtente) {
+		this.emailDestinatario = idUtente;
 	}
 
 

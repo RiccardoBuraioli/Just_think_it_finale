@@ -7,11 +7,11 @@ import entity.TurnoTab;
 
 public class GestioneTurniCaritas {
 	
-	private PrenotaDao turni_dao;
+	private PrenotaDao turniDao;
 	private List<TurnoTab> list;
 	
 	public GestioneTurniCaritas() {
-		this.turni_dao = new PrenotaDao();
+		this.turniDao = new PrenotaDao();
 	}
 	
 	
@@ -20,23 +20,23 @@ public class GestioneTurniCaritas {
 	
 	public boolean modificaTurno(int idTurn, String newNote, int codCar) {
 		
-		return this.turni_dao.modificaTurno(idTurn, newNote, codCar);
+		return this.turniDao.modificaTurno(idTurn, newNote, codCar);
 		
 	}
 	
 	
 	
-	public boolean cancella_turno(int idTurn) {
+	public boolean cancellaTurno(int idTurn) {
 		
-		return this.turni_dao.cancellaTurno(idTurn);
+		return this.turniDao.cancellaTurno(idTurn);
 		
 	}
 	
 	
 	
-	public List<TurnoTab> carica_turni(int idCaritas) {
+	public List<TurnoTab> caricaTurni(int idCaritas) {
 
-		this.list = this.turni_dao.visualizzaTurni(idCaritas);
+		this.list = this.turniDao.visualizzaTurni(idCaritas);
 		
 		
 		return this.list;

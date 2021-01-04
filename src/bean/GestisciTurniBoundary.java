@@ -79,7 +79,7 @@ public class GestisciTurniBoundary {
 	    
 	    @FXML
 	    void CancellaTurno(ActionEvent event) {
-	    	check = gestTurn.cancella_turno(turn.getId());
+	    	check = gestTurn.cancellaTurno(turn.getId());
 	    }
 
 	    @FXML
@@ -135,14 +135,14 @@ public class GestisciTurniBoundary {
 
 	    }
 
-		public void set_currentUser(CaritasUser currentUser) {
+		public void setCurrentUser(CaritasUser currentUser) {
 			this.caritas = currentUser;
 			
 		}
 
 		public void loadFormBoundary(int id) {
 			this.idCaritas = id;
-			this.listT = gestTurn.carica_turni(this.idCaritas);
+			this.listT = gestTurn.caricaTurni(this.idCaritas);
 
 			ObservableList<TurnoTab> data = FXCollections.observableArrayList(this.listT);
 			this.giorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));

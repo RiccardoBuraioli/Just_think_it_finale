@@ -11,25 +11,25 @@ import javafx.scene.control.TextField;
 
 public class EmailController {
 
-	private EmailDao email_d;
-	private EmailEntity email_e;
-	private String[] email_list;
+	private EmailDao emailDao;
+	private EmailEntity emailEntity;
+	private String[] emailList;
 	
-    public int send_message_controller(String mit, String dest, String mess, String ogg) {
+    public int sendMessageController(String mit, String dest, String mess, String ogg) {
     	
     	int i=0;
-    	email_e = new EmailEntity(mit, dest, mess, ogg);
+    	emailEntity = new EmailEntity(mit, dest, mess, ogg);
 
-    	email_d = new EmailDao();
-    	i = email_d.invia_email(email_e);
+    	emailDao = new EmailDao();
+    	i = emailDao.inviaEmail(emailEntity);
     	return i;
     	
     }
     
-    public String[] load_mittente_destinatario_c(int id_dest, int id_mit) {
-    	email_d = new EmailDao();
-    	email_list = email_d.visualizza_mittente_destinatario(id_dest, id_mit);
-    	return email_list;
+    public String[] loadMittenteDestinatario(int idDest, int idMit) {
+    	emailDao = new EmailDao();
+    	emailList = emailDao.visualizzaMittenteDestinatario(idDest, idMit);
+    	return emailList;
     	
     }
     

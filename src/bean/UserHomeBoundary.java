@@ -42,7 +42,7 @@ private static UserHomeBoundary instance = null;
 
 private VolunteerUser currentUser;
 	
-	private UserHomeController user_c ;
+	private UserHomeController userController ;
 	private int idUtente;
 	
 	//Images slideshow
@@ -73,7 +73,7 @@ private VolunteerUser currentUser;
 		 img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
 		 img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
 		 currentImage = 0;
-		 user_c = new UserHomeController();
+		 userController = new UserHomeController();
 	
 	}
 	
@@ -132,7 +132,7 @@ private VolunteerUser currentUser;
 
     @FXML
     void helpButtonPressed(ActionEvent event) {
-    	this.user_c.helpButtonPressed(this.helpButton.getScene().getWindow());
+    	this.userController.helpButtonPressed(this.helpButton.getScene().getWindow());
     }
 
     @FXML
@@ -245,13 +245,13 @@ private VolunteerUser currentUser;
     	    }
     	}, 0, delay);
     	
-    	this.user_c.setCurrentUser(user);
+    	this.userController.setCurrentUser(user);
     }
     
     
 
-	public void setIdUtente(int id_utente) {
-		this.idUtente = id_utente;
+	public void setIdUtente(int idUtente) {
+		this.idUtente = idUtente;
 		
 	}
 

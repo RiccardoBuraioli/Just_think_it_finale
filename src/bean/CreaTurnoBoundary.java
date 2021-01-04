@@ -52,7 +52,7 @@ public class CreaTurnoBoundary {
 			Stage home = (Stage) back.getScene().getWindow();
 			GestisciTurniBoundary gestTurn = new GestisciTurniBoundary();
 			gestTurn = loader.getController();
-			gestTurn.set_currentUser(this.caritas);
+			gestTurn.setCurrentUser(this.caritas);
 			gestTurn.loadFormBoundary(this.caritas.getID());
 			home.setScene(new Scene(root, 883, 550));
 			home.show();

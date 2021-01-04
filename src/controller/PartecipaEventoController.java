@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 public class PartecipaEventoController {
 	
 	private PartecipaEvento partecipaz;
-	private PartecipaEventoBoundary parte_b;
+	private PartecipaEventoBoundary parteBoundary;
 	
 	
   
@@ -32,14 +32,14 @@ public class PartecipaEventoController {
     }
     
 
-    public int partecipa_evento(float importo) {
+    public int partecipaEvento(float importo) {
     	
     	int error = 0;
 
     	partecipaz.setImport(importo);
     	
     	EventoDao partecipazione = new EventoDao();
-    	partecipazione.Crea_partecipazione(partecipaz);
+    	partecipazione.CreaPartecipazione(partecipaz);
     	
     	
     	return error;
@@ -47,9 +47,9 @@ public class PartecipaEventoController {
     }
     
     
-    public void setData_controller() {
-    	parte_b = new PartecipaEventoBoundary();
-    	partecipaz =  new PartecipaEvento(parte_b.getId_evento(),parte_b.getId_utente());
+    public void setDataController() {
+    	parteBoundary = new PartecipaEventoBoundary();
+    	partecipaz =  new PartecipaEvento(parteBoundary.getIdEvento(),parteBoundary.getIdUtente());
 
     	
 

@@ -19,6 +19,6 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Button fx:id="invia" layoutX="557.0" layoutY="373.0" mnemonicParsing="false" onAction="#send_message" prefHeight="29.0" prefWidth="83.0" text="Invia" />
+      <Button fx:id="invia" layoutX="557.0" layoutY="373.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="29.0" prefWidth="83.0" text="Invia" />
    </children>
 </AnchorPane>

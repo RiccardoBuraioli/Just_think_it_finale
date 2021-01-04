@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 public class RegistraCaritasBoundary implements Initializable {
 
-	private RegistrazioneCaritasController reg_c;
+	private RegistrazioneCaritasController regController;
 
 	private TextField[] textFields;
 
@@ -77,12 +77,12 @@ public class RegistraCaritasBoundary implements Initializable {
 	private PasswordField confermaPassCaritas;
 
 	public RegistraCaritasBoundary() {
-		reg_c = new RegistrazioneCaritasController();
+		regController = new RegistrazioneCaritasController();
 	}
 
 	@FXML
 	void backButtonPressed(ActionEvent event) {
-		reg_c.backButtonPressed(backButton.getScene().getWindow());
+		regController.backButtonPressed(backButton.getScene().getWindow());
 
 	}
 
@@ -90,7 +90,7 @@ public class RegistraCaritasBoundary implements Initializable {
 	public void completaButtonPressed(ActionEvent event) throws SQLException {
 		int resCheck = checker();
 		if (resCheck == 0) {
-			reg_c.completaButtonPressed( nomeCaritas.getText(),
+			regController.completaButtonPressed( nomeCaritas.getText(),
 					passwordCaritas.getText(), via.getText(), tipo, telefono.getText(), email.getText(),
 					cittadiResidenza.getText());
 		}

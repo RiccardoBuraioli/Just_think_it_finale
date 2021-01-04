@@ -30,14 +30,14 @@ public class EventoDao {
     }
 	
     
-    public List<EventTab> cerca_eventi(int id_shop){
+    public List<EventTab> cercaEventi(int idShop){
 
 	   	String sql = "call visualizza_tuoi_eventi(?) ";
 	   	int i = 0;
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setInt(1, id_shop );
+				stmt.setInt(1, idShop );
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
@@ -95,7 +95,7 @@ public class EventoDao {
     
     
     
-    public Evento crea_evento(Evento event) {
+    public Evento creaEvento(Evento event) {
 		
     	
     	int rowAffected;
@@ -131,7 +131,7 @@ public class EventoDao {
     	
     }
     
-   public PartecipaEvento Crea_partecipazione(PartecipaEvento partepaEvento) {
+   public PartecipaEvento CreaPartecipazione(PartecipaEvento partepaEvento) {
 	   int rowAffected;
   		ResultSet rs = null;
 

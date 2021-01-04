@@ -25,12 +25,12 @@ public class CreaNecessit‡Boundary {
 	    private ChoiceBox<String> Urgenza;
 
 	    @FXML
-	    private Button crea_annuncio;
+	    private Button creaAnnuncio;
 
 	    @FXML
 	    private Button back;
 	    
-		private int id_caritas;
+		private int idCaritas;
 
 	    @FXML
 	    void backPressed(ActionEvent event) {
@@ -38,12 +38,12 @@ public class CreaNecessit‡Boundary {
 	    }
 
 	    @FXML
-	    void crea_annuncio_pressed(ActionEvent event) {
-	    	CreaNecessit‡Controller crea_nec_c = new CreaNecessit‡Controller();
-	    	crea_nec_c.inizializza(id_caritas);
-	    	int i = crea_nec_c.crea_necessit‡(tipologia.getValue().toString(), Urgenza.getValue().toString(), descrizione.getText());
+	    void creaAnnuncioPressed(ActionEvent event) {
+	    	CreaNecessit‡Controller creaNec = new CreaNecessit‡Controller();
+	    	creaNec.inizializza(idCaritas);
+	    	int i = creaNec.creaNecessit‡(tipologia.getValue().toString(), Urgenza.getValue().toString(), descrizione.getText());
 	    	if ( i == 0) {
-	    		Stage st = (Stage) crea_annuncio.getScene().getWindow();
+	    		Stage st = (Stage) creaAnnuncio.getScene().getWindow();
 	    		st.close();
 	    	}
 	    	else System.out.println("errore nella creazione dell'annuncio");
@@ -58,8 +58,8 @@ public class CreaNecessit‡Boundary {
 	    
 	    }
 	    
-	    public void set_caritas(int id_car) {
-	    	this.id_caritas = id_car;
+	    public void setCaritas(int idCar) {
+	    	this.idCaritas = idCar;
 	    }
 	    
 	

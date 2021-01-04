@@ -16,8 +16,8 @@
             <TableColumn fx:id="urgenza" prefWidth="88.0" text="Urgenza" />
         </columns>
       </TableView>
-      <Button fx:id="necessità" layoutX="627.0" layoutY="127.0" mnemonicParsing="false" onAction="#crea_necessità" prefHeight="37.0" prefWidth="121.0" text="Crea Necessità" />
-      <Button fx:id="elimina" layoutX="627.0" layoutY="279.0" mnemonicParsing="false" onAction="#elimina_necessità" prefHeight="37.0" prefWidth="121.0" text="Elimina Necessità" />
+      <Button fx:id="necessita" layoutX="627.0" layoutY="127.0" mnemonicParsing="false" onAction="#creaNecessita" prefHeight="37.0" prefWidth="121.0" text="Crea Necessità" />
+      <Button fx:id="elimina" layoutX="627.0" layoutY="279.0" mnemonicParsing="false" onAction="#eliminaNecessita" prefHeight="37.0" prefWidth="121.0" text="Elimina Necessità" />
       <Button fx:id="back" layoutX="43.0" layoutY="423.0" mnemonicParsing="false" onAction="#backPressed" prefHeight="37.0" prefWidth="121.0" text="Indietro" />
       <Text layoutX="43.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bacheca Necessità">
          <font>

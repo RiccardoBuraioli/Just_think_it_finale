@@ -95,7 +95,7 @@ public class GestisciDonazioniBoundary {
     	       // donationController = fxmlLoader.getController();
     	        EmailBoundary email = new EmailBoundary();
     	        email = fxmlLoader.getController();
-    	        email.load_email(this.idVolontario, this.caritas.getID());
+    	        email.loadEmail(this.idVolontario, this.caritas.getID());
     	        Stage stage = new Stage();
 	    		stage.setTitle("Email");
 	    		

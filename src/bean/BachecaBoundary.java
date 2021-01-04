@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class BachecaBoundary {
 
-	private int id_car, id_ute;
+	private int idCar, idUte;
 	
 	@FXML
 	private Text nomeCaritas;
@@ -31,9 +31,9 @@ public class BachecaBoundary {
 	@FXML
 	private TextArea vestiti;
 
-	private BachecaController bacheca_controller;
+	private BachecaController bachecaController;
 	
-	private List<Necessità> necessità;
+	private List<Necessità> necessita;
 	
 	public BachecaBoundary() {
 		
@@ -52,7 +52,7 @@ public class BachecaBoundary {
 	        
 	        Stage stage = new Stage();
     		stage.setTitle("Donazione");
-    		donationBoundary.initBoundary(id_car, id_ute);
+    		donationBoundary.initBoundary(idCar, idUte);
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     		stage.show();
@@ -85,7 +85,7 @@ public class BachecaBoundary {
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     	
-    		email_c.load_email(id_car, id_ute);
+    		email_c.loadEmail(idCar, idUte);
     		
     		 
     		stage.show();
@@ -109,15 +109,15 @@ public class BachecaBoundary {
 		
 	}
 	
-	public void loadFormBoundary(int id_car, int id_ute) {
-		this.id_car = id_car;
-		this.id_ute = id_ute;
-		bacheca_controller = new BachecaController();
-		necessità = bacheca_controller.loadForm(id_car, id_ute);
+	public void loadFormBoundary(int idCar, int idUte) {
+		this.idCar = idCar;
+		this.idUte = idUte;
+		bachecaController = new BachecaController();
+		necessita = bachecaController.loadForm(idCar, idUte);
 		
 		
-		for (int i = 0; i < necessità.size(); i++) {
-			Necessità tmp = necessità.get(i);
+		for (int i = 0; i < necessita.size(); i++) {
+			Necessità tmp = necessita.get(i);
 			
 			switch (tmp.getTipologia()) {
 				case "Vestiti":
@@ -126,7 +126,7 @@ public class BachecaBoundary {
 	
 				case "Cibo":
 					cibo.setText(tmp.getDescrizione());
-	
+					break;
 				case "Varie":
 					varie.setText(tmp.getDescrizione());
 					break;

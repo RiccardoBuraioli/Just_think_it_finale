@@ -35,7 +35,7 @@ public class PrenotaDao {
 		
 	
 	
-	public String[] visualizza_giorni() {
+	public String[] visualizzaGiorni() {
 		
 		
 	   	String sql = "Select * from giorni order by num_giorno ";
@@ -70,7 +70,7 @@ public class PrenotaDao {
 	
 	
 
-	public List<Orario> visualizza_orario2() {
+	public List<Orario> visualizzaOrario() {
 		this.oraArrayList = new ArrayList<Orario>();
 		ResultSet res = null;
 		String sql = "Select ora_inizio, ora_fine from orari ";
@@ -100,7 +100,7 @@ public class PrenotaDao {
 	
 	
 	
-	public boolean partecipazione_turno(PartecipaTurno turno) {
+	public boolean partecipazioneTurno(PartecipaTurno turno) {
 	
     	int rowAffected;
    		ResultSet rs = null;
@@ -133,7 +133,7 @@ public class PrenotaDao {
 	}
 	
 	
-	public int trova_turno(Turno turno ) {
+	public int trovaTurno(Turno turno ) {
 		String sql;
 		
 		int ID = 0;
@@ -248,7 +248,7 @@ public class PrenotaDao {
 
 	            if (rowAffected == 1) {
 	                System.out.println(SUCCESS);
-	            } else { System.out.println(FAILED); return false;}
+	            } else { System.out.println(FAILED); return true;}
 
 
 	        } catch (SQLException ex) {

@@ -138,11 +138,11 @@ public class CaritasHomeBoundary {
 
 	        FXMLLoader fxmlLoader = new FXMLLoader();
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_eventi_caritas.fxml"));       
-	        GestisciEventiCaritasBoundary gestisci_b = fxmlLoader.getController();
+	        GestisciEventiCaritasBoundary gestisciB = fxmlLoader.getController();
 	        Stage stage = (Stage) eventiC.getScene().getWindow();
     		stage.setTitle("Gestisci Eventi");	
-    		gestisci_b.setCaritas(currentUser);
-    		gestisci_b.load_shop(currentUser.getID());    		
+    		gestisciB.setCaritas(currentUser);
+    		gestisciB.load_shop(currentUser.getID());    		
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     		stage.show();
@@ -164,7 +164,7 @@ public class CaritasHomeBoundary {
 			Stage home = (Stage) Turni.getScene().getWindow();
 		
 			 gestTurn = loader.getController();
-    		 gestTurn.set_currentUser(this.currentUser);
+    		 gestTurn.setCurrentUser(this.currentUser);
     		 gestTurn.loadFormBoundary(currentUser.getID());
     		 
 			home.setScene(new Scene(root,883, 550));

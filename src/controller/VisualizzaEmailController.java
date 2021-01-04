@@ -66,11 +66,11 @@ public class VisualizzaEmailController {
 	    void initialize() {
 	    	
 	    	int i = 0;
-	    	email_e = email_dao.visualizza_email(email_utente);
+	    	email_e = email_dao.visualizzaEmail(email_utente);
 	    	
 	    	while( i < email_e.size()) {
 	    	
-	    	email_m.getItems().add(email_e.get(i).getId_email());
+	    	email_m.getItems().add(email_e.get(i).getIdEmail());
 	    	i++;
 	    	}
 	    	

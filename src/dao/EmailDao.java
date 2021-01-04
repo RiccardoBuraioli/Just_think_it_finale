@@ -15,7 +15,7 @@ public class EmailDao {
 	Connector connector;
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
-    private List<EmailEntity> email_list;
+    private List<EmailEntity> emailList;
 
 	
 	public EmailDao() {
@@ -23,7 +23,7 @@ public class EmailDao {
 	}
 	
 	
-	public int invia_email(EmailEntity email) {
+	public int inviaEmail(EmailEntity email) {
 
    		int rowAffected;
    		ResultSet rs = null;
@@ -33,8 +33,8 @@ public class EmailDao {
 
           try (Connection conn = connector.getConnection();
                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        	  pstmt.setString(1, email.getId_mittente() );
-        	  pstmt.setString(2, email.getId_destinatario());
+        	  pstmt.setString(1, email.getIdMittente() );
+        	  pstmt.setString(2, email.getIdDestinatario());
         	  pstmt.setString(3, email.getMessaggio());
         	  pstmt.setString(4,email.getOggetto());
         	
@@ -62,21 +62,21 @@ public class EmailDao {
 	
 	
 	
-	public List<EmailEntity> visualizza_email(String id_utente){
+	public List<EmailEntity> visualizzaEmail(String idUtente){
 	
 	 	String sql = "call visuallizza_email(?) ";
 	   	int i = 0;
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setString(1,id_utente );
+				stmt.setString(1,idUtente );
 
 	           res = stmt.executeQuery();
 	           
 	
 	           
 	           while (res.next()) {
-	        	   email_list.add( new EmailEntity(res.getInt("id_email"), res.getString("messaggio"), res.getString("oggetto")));
+	        	   emailList.add( new EmailEntity(res.getInt("id_email"), res.getString("messaggio"), res.getString("oggetto")));
 	        	   i++;
 	           }
 	       } catch (SQLException ex) {
@@ -93,23 +93,23 @@ public class EmailDao {
 		
 		
 		
-		return email_list;
+		return emailList;
 		
 		
 		
 	}
 	
 	
-	public String[] visualizza_mittente_destinatario(int id_dest, int id_mit) {
+	public String[] visualizzaMittenteDestinatario(int idDest, int idMit) {
 		
 		String sql = "call visualizza_mittente_destinatario(?,?,?,?) ";
 	   	int i = 0;
-	   	String[] Email_md = {"",""};
+	   	String[] EmailMD = {"",""};
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            CallableStatement stmt = conn.prepareCall((sql))) {
-				stmt.setInt(1, id_mit );
-				stmt.setInt(2, id_dest );
+				stmt.setInt(1, idMit );
+				stmt.setInt(2, idDest );
 				stmt.registerOutParameter(3, java.sql.Types.VARCHAR);
 				stmt.registerOutParameter(4, java.sql.Types.VARCHAR);
 
@@ -120,8 +120,8 @@ public class EmailDao {
 	        	
 	        	
 	           }*/
-	            Email_md[0] = stmt.getString("email_m");
-	            Email_md[1] = stmt.getString("email_d");
+	            EmailMD[0] = stmt.getString("email_m");
+	            EmailMD[1] = stmt.getString("email_d");
 	            
 	            
 	       } catch (SQLException ex) {
@@ -136,7 +136,7 @@ public class EmailDao {
 	
 		
 	
-		return Email_md;
+		return EmailMD;
 	}
 	
 	

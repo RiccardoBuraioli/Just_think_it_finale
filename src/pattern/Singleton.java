@@ -13,9 +13,5 @@ public class Singleton {
 		return instance;
 	}
 	
-	@Override
-	public Object clone(){
-		return instance;
-	}
 
 }

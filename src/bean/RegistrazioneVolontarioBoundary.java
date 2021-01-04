@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegistrazioneVolontarioBoundary implements Initializable {
-	private RegistrazioneVolontarioController Reg_c;
+	private RegistrazioneVolontarioController RegC;
 
 	TextField[] textFields;
 
@@ -75,13 +75,13 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 
 
 	public RegistrazioneVolontarioBoundary() {
-		Reg_c = new RegistrazioneVolontarioController();
+		RegC = new RegistrazioneVolontarioController();
 	}
 
 	@FXML
 	void backButtonPressed(ActionEvent event) {
 
-		Reg_c.backButtonPressed(backButton.getScene().getWindow());
+		RegC.backButtonPressed(backButton.getScene().getWindow());
 
 	}
 
@@ -90,7 +90,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 
 		if (checker() == 0) {
 			//Date date2 = java.sql.Date.valueOf(Date.getValue());
-		VolunteerUser id =	Reg_c.completaButtonPressed( nome.getText(), cognome.getText(),
+		VolunteerUser id =	RegC.completaButtonPressed( nome.getText(), cognome.getText(),
 					password.getText(), via.getText(), tel.getText(), mail.getText(), Date.getText(),
 					cittaRes.getText());
 		

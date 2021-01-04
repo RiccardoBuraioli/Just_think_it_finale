@@ -17,15 +17,15 @@ import javafx.scene.control.TextField;
 
 public class PrenotaTurnoController {
 
-	private int id_utente;
+	private int idUtente;
 
-	private int id_caritas;
+	private int idCaritas;
 
 	private String[] giorni;
 
 	private Turno turno;
 
-	private PrenotaDao check_turni_possibili;
+	private PrenotaDao checkTurniPossibili;
 
 	private PartecipaTurno partecipazione;
 
@@ -40,18 +40,18 @@ public class PrenotaTurnoController {
 
 	}
 
-	public boolean prenota_turno(String giorno, String ora_in, String ora_fin, String cv) {
+	public boolean prenotaTurno(String giorno, String oraIn, String oraFin, String cv) {
 		boolean error;
 
-		int id_turno = 0;
+		int idTurno = 0;
 
-		turno = new Turno(giorno ,ora_in, ora_fin);
+		turno = new Turno(giorno ,oraIn, oraFin);
 
-		id_turno = check_turni_possibili.trova_turno(turno);
+		idTurno = checkTurniPossibili.trovaTurno(turno);
 
-		partecipazione = new PartecipaTurno(id_utente, id_turno, id_caritas, cv);
+		partecipazione = new PartecipaTurno(idUtente, idTurno, idCaritas, cv);
 
-		error = check_turni_possibili.partecipazione_turno(partecipazione);
+		error = checkTurniPossibili.partecipazioneTurno(partecipazione);
 
 		return error;
 
@@ -59,23 +59,23 @@ public class PrenotaTurnoController {
 	
 	
 
-	public void setData_controller(int id_car, int id_ute) {
-		this.id_caritas = id_car;
-		this.id_utente = id_ute;
+	public void setDataController(int idCar, int idUte) {
+		this.idCaritas = idCar;
+		this.idUtente = idUte;
 	}
 
-	public String[] inizializza_giorni() {
+	public String[] inizializzaGiorni() {
 		this.giorni = new String[8];
 
-		check_turni_possibili = new PrenotaDao();
-		giorni = check_turni_possibili.visualizza_giorni();
+		checkTurniPossibili = new PrenotaDao();
+		giorni = checkTurniPossibili.visualizzaGiorni();
 		return giorni;
 	}
 
 	
-	public  List<Orario> initializza_orari() {
+	public  List<Orario> initializzaOrari() {
 		
-		oraArrayList = check_turni_possibili.visualizza_orario2();
+		oraArrayList = checkTurniPossibili.visualizzaOrario();
 		
 		return oraArrayList;
 		// ora = (Orario[]) oraArrayList.toArray();

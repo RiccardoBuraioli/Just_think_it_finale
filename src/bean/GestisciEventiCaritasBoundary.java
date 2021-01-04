@@ -64,7 +64,7 @@ public class GestisciEventiCaritasBoundary {
 
 		    @FXML
 		    boolean CancellaEvent(ActionEvent event) {
-		    	return gestEventC.elimina_evento(this.event.getNomeEvento());
+		    	return gestEventC.eliminaEvento(this.event.getNomeEvento());
 
 		    }
 
@@ -101,8 +101,8 @@ public class GestisciEventiCaritasBoundary {
 	    	       // donationController = fxmlLoader.getController();
 	    	        EmailBoundary email = new EmailBoundary();
 	    	        email = fxmlLoader.getController();
-	    	        System.out.println(this.event.getCodice_negozio());
-	    	        email.load_email(this.event.getCodice_negozio(), idCar);
+	    	        System.out.println(this.event.getCodiceNegozio());
+	    	        email.loadEmail(this.event.getCodiceNegozio(), idCar);
 	    	        Stage stage = new Stage();
 		    		stage.setTitle("Email");
 		    		
@@ -120,7 +120,7 @@ public class GestisciEventiCaritasBoundary {
 		    }
 
 		    @FXML
-		    void event_clicked(MouseEvent event) {
+		    void eventClicked(MouseEvent event) {
 		    	this.event = tab.getSelectionModel().getSelectedItem();
 		    	
 		    }
@@ -138,7 +138,7 @@ public class GestisciEventiCaritasBoundary {
 		
 		public void load_shop(int idCar) {
 			this.idCar = idCar;
-			this.listEv = gestEventC.carica_eventi(this.idCar);
+			this.listEv = gestEventC.caricaEventi(this.idCar);
 			System.out.println(listEv.get(0).getNomeEvento());
 
 			ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);

@@ -10,9 +10,9 @@ import javafx.stage.Stage;
 
 public class EmailBoundary {
 	
-	private String[] mit_dest;
+	private String[] mitDest;
 	
-	private EmailController email_c;
+	private EmailController emailC;
 
 	@FXML
 	private Stage stage;
@@ -33,10 +33,10 @@ public class EmailBoundary {
     private Button invia;
 
     @FXML
-    public int send_message(ActionEvent event) {
+    public int sendMessage(ActionEvent event) {
     	int i = 0;
     	
-   	i =email_c.send_message_controller(mittente.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
+   	i =emailC.sendMessageController(mittente.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
 
     Stage st = (Stage) invia.getScene().getWindow();
     st.close();
@@ -47,7 +47,7 @@ public class EmailBoundary {
 	@FXML
 	void initialize() {
 	
-		email_c = new EmailController();
+		emailC = new EmailController();
 		
 	}
 	
@@ -58,10 +58,10 @@ public class EmailBoundary {
 	
 	
 	
-	public void load_email(int id_destinatario, int id_mittente) {
-		this.mit_dest = email_c.load_mittente_destinatario_c(id_destinatario, id_mittente);
-		this.mittente.setText(mit_dest[0]);
-		this.destinatario.setText(mit_dest[1]);
+	public void loadEmail(int idDestinatario, int idMittente) {
+		this.mitDest = emailC.loadMittenteDestinatario(idDestinatario, idMittente);
+		this.mittente.setText(mitDest[0]);
+		this.destinatario.setText(mitDest[1]);
 		
 	}
 	

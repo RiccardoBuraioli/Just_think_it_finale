@@ -17,14 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class PrenotaTurnoBoundary {
-		private int id_caritas;
-		private int id_volontario;
+		private int idCaritas;
+		private int idVolontario;
 		private List<Orario> oraArrayList;
 		private String[] giorni;
 		
 		
 		
-		private PrenotaTurnoController Prenota_c;
+		private PrenotaTurnoController PrenotaC;
 	
 	    @FXML
 	    private ResourceBundle resources;
@@ -36,10 +36,10 @@ public class PrenotaTurnoBoundary {
 	    private ChoiceBox<String> Turni;
 
 	    @FXML
-	    private ChoiceBox<String> cb_ora_inizio;
+	    private ChoiceBox<String> CBoraInizio;
 
 	    @FXML
-	    private ChoiceBox<String> cb_ora_fine;
+	    private ChoiceBox<String> CBoraFine;
 
 	    @FXML
 	    private TextField CV;
@@ -61,9 +61,9 @@ public class PrenotaTurnoBoundary {
 	    }
 	    
 	    @FXML
-	    void prenota_turno(ActionEvent event) { 
+	    void prenotaTurno(ActionEvent event) { 
 		
-	    	Prenota_c.prenota_turno(Turni.getValue().toString(), cb_ora_inizio.getValue().toString(), cb_ora_fine.getValue().toString(), CV.getText());
+	    	PrenotaC.prenotaTurno(Turni.getValue().toString(), CBoraInizio.getValue().toString(), CBoraFine.getValue().toString(), CV.getText());
 	    	Stage st = (Stage) prenota.getScene().getWindow();
 	    	st.close();
 		}
@@ -84,12 +84,12 @@ public class PrenotaTurnoBoundary {
 
 	    @FXML
 	    void initialize() {
-	    	Prenota_c = new PrenotaTurnoController();
+	    	PrenotaC = new PrenotaTurnoController();
 	    	
 	    	this.giorni = new String[8];
 		
 	    	
-	    	giorni = Prenota_c.inizializza_giorni();
+	    	giorni = PrenotaC.inizializzaGiorni();
 	   
 	    	
 	    	for(int i=0; i<8; i++) {
@@ -97,15 +97,15 @@ public class PrenotaTurnoBoundary {
 	    	}
 	    	
 	    	
-	    	oraArrayList =Prenota_c.initializza_orari();
+	    	oraArrayList =PrenotaC.initializzaOrari();
 	    	//ora = (Orario[]) oraArrayList.toArray();
 	    	
 	    	int i = 0;
 	    	while(i<oraArrayList.size()) {
 	    
-		    	cb_ora_inizio.getItems().add(oraArrayList.get(i).getOra_fine());
+		    	CBoraInizio.getItems().add(oraArrayList.get(i).getOraFine());
 		    	
-		    	cb_ora_fine.getItems().add(oraArrayList.get(i).getOra_inizio());
+		    	CBoraFine.getItems().add(oraArrayList.get(i).getOraInizio());
 		    	
 		    	i++;
 		    	
@@ -113,7 +113,7 @@ public class PrenotaTurnoBoundary {
 	    	
 	    }
 	    
-	    public void setData(int id_car, int id_ute) {
-		  	Prenota_c.setData_controller(id_car, id_ute);
+	    public void setData(int idCar, int idUte) {
+		  	PrenotaC.setDataController(idCar, idUte);
 		  }
 }

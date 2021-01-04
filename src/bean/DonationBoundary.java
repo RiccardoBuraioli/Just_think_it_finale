@@ -94,8 +94,8 @@ public int checker() {
     	
   }
 
-	public void initBoundary(int id_car, int id_ut) {
-		controller.initController(id_car, id_ut);
+	public void initBoundary(int idCar, int idUte) {
+		controller.initController(idCar, idUte);
 	}
 
 

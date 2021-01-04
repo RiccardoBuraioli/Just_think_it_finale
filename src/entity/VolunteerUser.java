@@ -15,7 +15,7 @@ public class VolunteerUser {
     private String cartaDiCredito;
     private String nascita;
     private String città;
-    private final String TABLE_NAME = "volontari";
+    private final String TableName = "volontari";
 
     public VolunteerUser() {
     	 this.nome = "";
@@ -125,8 +125,8 @@ public class VolunteerUser {
 
  
 
-    public String getTABLE_NAME() {
-        return TABLE_NAME;
+    public String getTableName() {
+        return TableName;
     }
 
     @Override

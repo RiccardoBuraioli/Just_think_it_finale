@@ -34,7 +34,7 @@ import bean.PrenotaTurnoBoundary;
 //import connector.Connector;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
-import entity.marker_id;
+import entity.markerID;
 //import javafx.animation.AnimationTimer;
 //	import javafx.animation.Transition;
 	import javafx.beans.binding.Bindings;
@@ -118,14 +118,14 @@ import java.sql.SQLException;
 	    private static Coordinate posMarker = null;
 	    
 	    /** default zoom value. */
-	    private static final int ZOOM_DEFAULT = 14;
+	    private static final int ZOOMDEFAULT = 14;
 
 	    /** the markers. */
 	    
-	    marker_id markerC = new marker_id();
+	    markerID markerC = new markerID();
 	    
 	    public Marker[] markerCaritas = {null,null,null,null,null,null,null};
-	    int[] id_caritas;
+	    int[] IdCaritaList;
 	    
 
 	    
@@ -317,7 +317,7 @@ import java.sql.SQLException;
 	    
 	    
 	    
-	    private void vediNecessità(int id_car, int id_ut){
+	    private void vediNecessità(int idCar, int idUt){
 	    	try {     
 		        FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -337,7 +337,7 @@ import java.sql.SQLException;
 	    		
 	    		 bacheca = fxmlLoader.getController();
 	
-	    		 bacheca.loadFormBoundary(id_car, id_ut);
+	    		 bacheca.loadFormBoundary(idCar, idUt);
 	    		 
 	    		stage.show();
 	    		
@@ -352,7 +352,7 @@ import java.sql.SQLException;
 
 
 	    
-	    private void apriDonazione(int id_car, int id_ut) {
+	    private void apriDonazione(int idCar, int idUt) {
 	    	try {
 
     	        FXMLLoader fxmlLoader = new FXMLLoader();
@@ -364,7 +364,7 @@ import java.sql.SQLException;
     	        Stage stage = new Stage();
 	    		stage.setTitle("Donazione");
 	    		
-	    		donationBoundary.initBoundary(id_car, id_ut);
+	    		donationBoundary.initBoundary(idCar, idUt);
 	    		
 	    		stage.setScene(new Scene(rootNode, 800, 500));
 	    		stage.setResizable(false);
@@ -380,7 +380,7 @@ import java.sql.SQLException;
 	   
 	    }
 	    
-	    private void prenotaTurno(int id_car, int id_ut) {
+	    private void prenotaTurno(int idCar, int idUt) {
 	    	try {
 	    	    
     	        FXMLLoader fxmlLoader = new FXMLLoader();
@@ -390,7 +390,7 @@ import java.sql.SQLException;
     	        
     	        Stage stage = new Stage();
 	    		stage.setTitle("Prenota Turno");
-	    		prenotaController.setData(id_car, id_ut);
+	    		prenotaController.setData(idCar, idUt);
 	    		stage.setScene(new Scene(rootNode, 630,400));
 	    		stage.setResizable(false);
 	    		stage.show();
@@ -403,7 +403,7 @@ import java.sql.SQLException;
 	    
 	    }
 	    
-	    private void partecipaEvento(int id_event, int id_ut) {
+	    private void partecipaEvento(int idEvent, int idUt) {
 	    	try {
 	  	        FXMLLoader fxmlLoader = new FXMLLoader();
     	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Partecipa_evento.fxml"));
@@ -412,7 +412,7 @@ import java.sql.SQLException;
     	        
     	        Stage stage = new Stage();
 	    		stage.setTitle("Prenota Turno");
-	    		partecipaEvent.setData(id_event, id_ut);
+	    		partecipaEvent.setData(idEvent, idUt);
 	    		stage.setScene(new Scene(rootNode, 700,450));
 	    		stage.setResizable(false);
 	    		stage.show();
@@ -433,12 +433,10 @@ import java.sql.SQLException;
 			 countCaritas=0;
 			 countEvent=0;
 			 countDonation=0;
-	    	//chiamata sql per coordinate evento
-	    	//donationController = new Donation_controller();
-			
+	    	
 	       
 			
-	        markerEvento=marker.assegna_marker_evento();
+	        markerEvento=marker.assegnaMarkerEvento();
 	        while(markerEvento[countEvent]!= null) {
 	        markerEvento[countEvent].setVisible(false);
 	           
@@ -446,7 +444,7 @@ import java.sql.SQLException;
 	        };
 	        //chiamata sql per coordinante donazioni
 	        
-	        markerDonazione= marker.assegna_marker_donazione();
+	        markerDonazione= marker.assegnaMarkerDonazione();
 	        while(markerDonazione[countDonation]!=null) {
 	        markerDonazione[countDonation].setVisible(false);
 	        countDonation++;
@@ -459,12 +457,12 @@ import java.sql.SQLException;
 	        
 	        
 	       CercaCaritasDao prova = new CercaCaritasDao();
-	       markerC = prova.assegna_marker();
+	       markerC = prova.assegnaMarker();
 	       int i = 0;
 	     
 	       
 	       while(markerC.getMarker(i)!=null) {
-	       id_caritas =  markerC.id_marker(i);//.marker.assegna_marker();
+	       IdCaritaList =  markerC.idMarker(i);//.marker.assegna_marker();
 	       markerCaritas[i] = markerC.getMarker(i);
 	       i++;
 	       }
@@ -550,7 +548,7 @@ import java.sql.SQLException;
 	        buttonEvento.setVisible(false);
 	        buttonAllLocations.setVisible(false);
 	        // wire the zoom button and connect the slider to the map's zoom
-	        buttonZoom.setOnAction(event -> mapView.setZoom(ZOOM_DEFAULT));
+	        buttonZoom.setOnAction(event -> mapView.setZoom(ZOOMDEFAULT));
 	        sliderZoom.valueProperty().bindBidirectional(mapView.zoomProperty());
 
 	        // add a listener to the animationDuration field and make sure we only accept int values
@@ -768,7 +766,7 @@ import java.sql.SQLException;
 	            	 buttonAllLocations.setVisible(true);
 	            	 buttonEvento.setVisible(false);
 
-	            	 idCaritas = id_caritas[i];
+	            	 idCaritas = IdCaritaList[i];
 	     	      
 	            }
 	            }
@@ -855,7 +853,7 @@ import java.sql.SQLException;
 	        logger.trace("map intialized");
 	        logger.debug("setting center and enabling controls...");
 	        // start at the harbour with default zoom
-	        mapView.setZoom(ZOOM_DEFAULT);
+	        mapView.setZoom(ZOOMDEFAULT);
 	        mapView.setCenter(RomaCentro);
 	        // add the markers to the map - they are still invisible
 	       
