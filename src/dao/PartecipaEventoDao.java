@@ -19,7 +19,7 @@ public class PartecipaEventoDao {
     	partecipanti = new PartecipantiEvento();
 	}
 
-	public PartecipantiEvento conta_partecipanti(int id_evento) {
+	public PartecipantiEvento contaPartecipanti(int idEvento) {
 		
 		
 	   	String sql = "call visualizza_tuoi_eventi(?) ";
@@ -27,7 +27,7 @@ public class PartecipaEventoDao {
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
-				stmt.setInt(1, id_evento );
+				stmt.setInt(1, idEvento );
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {

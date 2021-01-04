@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class EmailBoundary {
 	
-	private String[] mitDest;
+
 	
 	private EmailController emailC;
 
@@ -51,15 +51,8 @@ public class EmailBoundary {
 		
 	}
 	
-	
-	public EmailBoundary() {
-		
-	}
-	
-	
-	
 	public void loadEmail(int idDestinatario, int idMittente) {
-		this.mitDest = emailC.loadMittenteDestinatario(idDestinatario, idMittente);
+		String[] mitDest = emailC.loadMittenteDestinatario(idDestinatario, idMittente);
 		this.mittente.setText(mitDest[0]);
 		this.destinatario.setText(mitDest[1]);
 		

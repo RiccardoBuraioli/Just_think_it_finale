@@ -14,19 +14,16 @@ import connector.Connector;
 
 public class CercaCaritasDao {
 	
-//	private static final Marker[]  = null;
 	private final Connector connector;
 	 
 	 public CercaCaritasDao() {
-		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
+		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
 		}
 
 	 
 	
 	public markerID assegnaMarker() {
 		
-		//Marker[] markerCaritas = {null,null,null,null,null,null,null};
-		// id[] = {0,0,0,0,0,0,0,0};
 		String sql = "Call assegna_marker()";
 		ResultSet rs = null;
 		int count = 0;
@@ -40,7 +37,9 @@ public class CercaCaritasDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Coordinate caritasCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+				double lati = Double.parseDouble(rs.getString("latitudine"));
+				double longi = Double.parseDouble(rs.getString("longitudine"));
+				Coordinate caritasCoordinate = new Coordinate(lati,longi);
 				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritasCoordinate));
 				markerC.setID(count,  rs.getInt("CodiceCaritas"));
 				count++;

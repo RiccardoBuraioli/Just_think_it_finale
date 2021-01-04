@@ -23,9 +23,9 @@ public class LoginBoundary implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private LoginController loginC = new LoginController();
-	private Object loggedUser;
-	private UserHomeBoundary UserHomeBoundary;
-	private ShopHomeBoundary ShopHomeBoundary;
+
+	private UserHomeBoundary userHomeBoundary;
+	private ShopHomeBoundary shopHomeBoundary;
 	private static LoginBoundary instance = null;
 	private CaritasHomeBoundary CaritasHomeBoundary;
 	
@@ -53,15 +53,15 @@ public class LoginBoundary implements Serializable {
     @FXML
     void loginPressed(ActionEvent event) {
     
-    loggedUser=	loginC.LoginAccess(usernameField.getText(), passwordField.getText());
+    Object loggedUser=	loginC.loginAccess(usernameField.getText(), passwordField.getText());
    	if(loggedUser.getClass()==VolunteerUser.class) {
    		
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
-			UserHomeBoundary = UserHomeBoundary.getInstance();
-			UserHomeBoundary = loader.getController();
-			UserHomeBoundary.initData((VolunteerUser)loggedUser);
+			userHomeBoundary = userHomeBoundary.getInstance();
+			userHomeBoundary = loader.getController();
+			userHomeBoundary.initData((VolunteerUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
@@ -87,9 +87,9 @@ public class LoginBoundary implements Serializable {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
-			ShopHomeBoundary = ShopHomeBoundary.getInstance(); 
-			ShopHomeBoundary = loader.getController();
-			ShopHomeBoundary.initData((ShopUser)loggedUser);
+			shopHomeBoundary = shopHomeBoundary.getInstance(); 
+			shopHomeBoundary = loader.getController();
+			shopHomeBoundary.initData((ShopUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			

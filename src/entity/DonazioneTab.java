@@ -7,7 +7,7 @@ public class DonazioneTab {
 	private SimpleIntegerProperty idDon;
 	private SimpleIntegerProperty codVol;
 	private SimpleStringProperty tipologia;
-	private SimpleStringProperty Descrizione;
+	private SimpleStringProperty descrizione;
 	private SimpleStringProperty indirizzo;
 	private SimpleStringProperty stato;
 
@@ -17,7 +17,7 @@ public class DonazioneTab {
 	public DonazioneTab(int id, int codVol, String tipo, String desc, String ind, String stato) {
 		this.idDon = new SimpleIntegerProperty(id);
 		this.tipologia = new SimpleStringProperty(tipo);
-		this.Descrizione = new SimpleStringProperty(desc);
+		this.descrizione = new SimpleStringProperty(desc);
 		this.indirizzo = new SimpleStringProperty(ind);
 		this.codVol = new SimpleIntegerProperty(codVol);
 		this.stato = new SimpleStringProperty(stato);
@@ -33,10 +33,10 @@ public class DonazioneTab {
 		this.tipologia.set(tipologia);
 	}
 	public String getDescrizione() {
-		return this.Descrizione.get();
+		return this.descrizione.get();
 	}
 	public void setDescrizione(String descrizione) {
-		this.Descrizione.set(descrizione);
+		this.descrizione.set(descrizione);
 	}
 	public String getIndirizzo() {
 		return this.indirizzo.get();

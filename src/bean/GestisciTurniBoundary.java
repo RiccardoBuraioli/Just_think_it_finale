@@ -56,41 +56,41 @@ public class GestisciTurniBoundary {
 	    @FXML
 	    private Button back;
 
-	    private List<TurnoTab> listT;
+	    
 	    
 	    private TurnoTab turn;
 	    
-		private int idCaritas;
+	
 		
 		private CaritasUser caritas;
 
 	    private GestioneTurniCaritas gestTurn;
 	    
-	    private CreaTurnoBoundary CaritasTurniBoundary;
+	    private CreaTurnoBoundary caritasTurniBoundary;
 	    
-	    private CaritasHomeBoundary CaritasHomeBoundary;
+	    private CaritasHomeBoundary caritasHomeBoundary;
 	    
 	    private boolean check;
 	    
 	    public GestisciTurniBoundary() {
 	    	this.gestTurn = new GestioneTurniCaritas();
-	    	this.CaritasTurniBoundary = new CreaTurnoBoundary();
+	    	this.caritasTurniBoundary = new CreaTurnoBoundary();
 	    }
 	    
 	    @FXML
-	    void CancellaTurno(ActionEvent event) {
+	    void cancellaTurno(ActionEvent event) {
 	    	check = gestTurn.cancellaTurno(turn.getId());
 	    }
 
 	    @FXML
-	    void CreaTurno(ActionEvent event) {
+	    void creaTurno(ActionEvent event) {
 	    		
 	   	 try {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CreaTurno.fxml"));
 	 			Parent root = loader.load();
 	 		
-	 			this.CaritasTurniBoundary = loader.getController();
-	 			this.CaritasTurniBoundary.setCaritas(caritas);
+	 			this.caritasTurniBoundary = loader.getController();
+	 			this.caritasTurniBoundary.setCaritas(caritas);
 	 			Stage home = (Stage) creaTurn.getScene().getWindow();
 	 			home.setScene(new Scene(root, 770, 500));
 	 			
@@ -104,11 +104,9 @@ public class GestisciTurniBoundary {
 	    }
 
 	    @FXML
-	    void ModificaTurno(ActionEvent event) {
-	    	check = gestTurn.modificaTurno(turn.getId(), newNote.getText(), turn.getIdCar());
-	    	if(check == true) {
-	    		System.out.println("dajeru");
-	    	}
+	    void modificaTurno(ActionEvent event) {
+	    	gestTurn.modificaTurno(turn.getId(), newNote.getText(), turn.getIdCar());
+	    
 	    }
 
 	    @FXML
@@ -116,9 +114,9 @@ public class GestisciTurniBoundary {
 	   	 try {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 	 			Parent root = loader.load();
-	 			 CaritasHomeBoundary = CaritasHomeBoundary.getInstance();
-	 			CaritasHomeBoundary = loader.getController();
-	 			CaritasHomeBoundary.initData(caritas);
+	 			 caritasHomeBoundary = caritasHomeBoundary.getInstance();
+	 			caritasHomeBoundary = loader.getController();
+	 			caritasHomeBoundary.initData(caritas);
 	 			Stage home = (Stage) back.getScene().getWindow();
 	 			home.setScene(new Scene(root, 800, 600));
 	 			
@@ -141,10 +139,10 @@ public class GestisciTurniBoundary {
 		}
 
 		public void loadFormBoundary(int id) {
-			this.idCaritas = id;
-			this.listT = gestTurn.caricaTurni(this.idCaritas);
+			
+			 List<TurnoTab> listT = gestTurn.caricaTurni(id);
 
-			ObservableList<TurnoTab> data = FXCollections.observableArrayList(this.listT);
+			ObservableList<TurnoTab> data = FXCollections.observableArrayList(listT);
 			this.giorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));
 			this.orario.setCellValueFactory(new PropertyValueFactory<>("orario"));
 			this.note.setCellValueFactory(new PropertyValueFactory<>("note"));

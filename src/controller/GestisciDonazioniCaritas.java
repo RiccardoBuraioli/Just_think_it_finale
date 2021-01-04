@@ -6,7 +6,7 @@ import dao.DonationDao;
 import entity.DonazioneTab;
 
 public class GestisciDonazioniCaritas {
-	private List<DonazioneTab> listDon;
+
 	private DonationDao donDao;
 	
 	
@@ -17,8 +17,8 @@ public class GestisciDonazioniCaritas {
 		
 	}
 	
-	public boolean CancellaDonazione(int idDon) {
-		return donDao.CancellaDonazione(idDon);
+	public boolean cancellaDonazione(int idDon) {
+		return donDao.cancellaDonazione(idDon);
 	}
 	
 	
@@ -28,7 +28,7 @@ public class GestisciDonazioniCaritas {
 	
 	
 	public List<DonazioneTab> visualizzaDonazioni(int idCar){
-		this.listDon= donDao.visualizzaDonazioni(idCar);
+		List<DonazioneTab> listDon= donDao.visualizzaDonazioni(idCar);
 		return listDon;
 	}
 	

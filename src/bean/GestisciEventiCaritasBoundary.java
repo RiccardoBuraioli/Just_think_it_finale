@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.GestisciEventiCaritasController;
 import entity.CaritasUser;
-import entity.EventTab;
+import entity.eventTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,31 +24,31 @@ public class GestisciEventiCaritasBoundary {
 
 		private GestisciEventiCaritasController gestEventC;
 		private int idCar;
-		private List<EventTab> listEv;
-		private EventTab event;
+		
+		private eventTab event;
 		private CaritasUser caritas;
-		private CaritasHomeBoundary CaritasHomeBoundary;
+		private CaritasHomeBoundary caritasHomeBoundary;
 	
 		 @FXML
-		    private TableView<EventTab> tab;
+		    private TableView<eventTab> tab;
 
 		    @FXML
-		    private TableColumn<EventTab, String> NomeEvento;
+		    private TableColumn<eventTab, String> nomeEvento;
 
 		    @FXML
-		    private TableColumn<EventTab, String> nomeNegozio;
+		    private TableColumn<eventTab, String> nomeNegozio;
 
 		    @FXML
-		    private TableColumn<EventTab, String> noteEvento;
+		    private TableColumn<eventTab, String> noteEvento;
 
 		    @FXML
-		    private TableColumn<EventTab, Float> importo;
+		    private TableColumn<eventTab, Float> importo;
 
 		    @FXML
-		    private TableColumn<EventTab, Integer> numPartecipanti;
+		    private TableColumn<eventTab, Integer> numPartecipanti;
 		    
 		    @FXML
-		    private TableColumn<EventTab, String> stato;
+		    private TableColumn<eventTab, String> stato;
 
 		    @FXML
 		    private Button CancellaEvento;
@@ -63,13 +63,13 @@ public class GestisciEventiCaritasBoundary {
 		    private Button back;
 
 		    @FXML
-		    boolean CancellaEvent(ActionEvent event) {
+		    boolean cancellaEvent(ActionEvent event) {
 		    	return gestEventC.eliminaEvento(this.event.getNomeEvento());
 
 		    }
 
 		    @FXML
-		    void ModificaEvent(ActionEvent event) {
+		    void modificaEvent(ActionEvent event) {
 		    		gestEventC.modificaEvento(this.event.getId());
 		    }
 
@@ -78,9 +78,9 @@ public class GestisciEventiCaritasBoundary {
 		   	 try {
 		 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 		 			Parent root = loader.load();
-		 			 CaritasHomeBoundary = CaritasHomeBoundary.getInstance();
-		 			CaritasHomeBoundary = loader.getController();
-		 			CaritasHomeBoundary.initData(caritas);
+		 			 caritasHomeBoundary = caritasHomeBoundary.getInstance();
+		 			caritasHomeBoundary = loader.getController();
+		 			caritasHomeBoundary.initData(caritas);
 		 			Stage home = (Stage) back.getScene().getWindow();
 		 			home.setScene(new Scene(root, 800, 600));
 		 			
@@ -98,10 +98,8 @@ public class GestisciEventiCaritasBoundary {
 	    	        FXMLLoader fxmlLoader = new FXMLLoader();
 	    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
 	    	       
-	    	       // donationController = fxmlLoader.getController();
-	    	        EmailBoundary email = new EmailBoundary();
+	    	        EmailBoundary email;
 	    	        email = fxmlLoader.getController();
-	    	        System.out.println(this.event.getCodiceNegozio());
 	    	        email.loadEmail(this.event.getCodiceNegozio(), idCar);
 	    	        Stage stage = new Stage();
 		    		stage.setTitle("Email");
@@ -136,13 +134,12 @@ public class GestisciEventiCaritasBoundary {
 
 		
 		
-		public void load_shop(int idCar) {
+		public void loadShop(int idCar) {
 			this.idCar = idCar;
-			this.listEv = gestEventC.caricaEventi(this.idCar);
-			System.out.println(listEv.get(0).getNomeEvento());
+			 List<eventTab> listEv = gestEventC.caricaEventi(this.idCar);
 
-			ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);
-			NomeEvento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
+			ObservableList<eventTab> data = FXCollections.observableArrayList(listEv);
+			nomeEvento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
 			importo.setCellValueFactory(new PropertyValueFactory<>("rapportoDenaro"));
 			nomeNegozio.setCellValueFactory(new PropertyValueFactory<>("NomeNegozio"));
 			noteEvento.setCellValueFactory(new PropertyValueFactory<>("NoteEvento"));

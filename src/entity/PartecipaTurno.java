@@ -1,16 +1,16 @@
 package entity;
 
 public class PartecipaTurno {
-	private int codice_volontario;
-	private int codice_turno;
-	private int codice_caritas; 
+	private int codiceVolontario;
+	private int codiceTurno;
+	private int codiceCaritas; 
 	private String curriculum;
 	
-	public PartecipaTurno(int cod_v, int cod_t, int cod_c, String CV) {
-		this.codice_caritas = cod_c;
-		this.codice_turno = cod_t;
-		this.codice_volontario= cod_v;
-		this.curriculum = CV;
+	public PartecipaTurno(int codV, int codT, int codC, String cv) {
+		this.codiceCaritas = codC;
+		this.codiceTurno = codT;
+		this.codiceVolontario= codV;
+		this.curriculum = cv;
 	}
 	
 	
@@ -27,23 +27,23 @@ public class PartecipaTurno {
 
 
 
-	public int getCodice_volontario() {
-		return codice_volontario;
+	public int getCodiceVolontario() {
+		return codiceVolontario;
 	}
-	public void setCodice_volontario(int codice_volontario) {
-		this.codice_volontario = codice_volontario;
+	public void setCodiceVolontario(int codiceV) {
+		this.codiceVolontario = codiceV;
 	}
-	public int getCodice_Turno() {
-		return codice_turno;
+	public int getCodiceTurno() {
+		return codiceTurno;
 	}
-	public void setCodice_Turno(int codice_Turno) {
-		this.codice_turno = codice_Turno;
+	public void setCodiceTurno(int codiceTurn) {
+		this.codiceTurno = codiceTurn;
 	}
-	public int getCodice_caritas() {
-		return codice_caritas;
+	public int getCodiceCaritas() {
+		return this.codiceCaritas;
 	}
-	public void setCodice_caritas(int codice_caritas) {
-		this.codice_caritas = codice_caritas;
+	public void setCodiceCaritas(int codiceCaritas) {
+		this.codiceCaritas = codiceCaritas;
 	}
 	
 	

@@ -20,8 +20,8 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="475.0" layoutY="131.0" mnemonicParsing="false" onAction="#crea_email" prefHeight="58.0" prefWidth="101.0" text="Contatta Caritas" />
-      <Button layoutX="475.0" layoutY="262.0" mnemonicParsing="false" onAction="#crea_donazione" prefHeight="58.0" prefWidth="101.0" text="Crea Donazione" />
+      <Button layoutX="475.0" layoutY="131.0" mnemonicParsing="false" onAction="#creaEmail" prefHeight="58.0" prefWidth="101.0" text="Contatta Caritas" />
+      <Button layoutX="475.0" layoutY="262.0" mnemonicParsing="false" onAction="#creaDonazione" prefHeight="58.0" prefWidth="101.0" text="Crea Donazione" />
       <TabPane layoutX="61.0" layoutY="88.0" prefHeight="268.0" prefWidth="360.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Cibo">

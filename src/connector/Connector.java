@@ -19,15 +19,8 @@ package connector;
 		    //tipo di ritorno: Connection.class obj
 		    public Connection getConnection() throws SQLException {
 		        return DriverManager.getConnection(host, user, password);
-//		        if (connection != null) {
-//		            System.out.println("Connected to the database!");
-//		        } else {
-//		            System.out.println("Failed to make connection!");
-//		        }
+		      
 		    }
-
-		
-
 
 		}
 	

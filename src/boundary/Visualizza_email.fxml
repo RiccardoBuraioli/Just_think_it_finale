@@ -11,7 +11,7 @@
    <children>
       <TextArea fx:id="mess" layoutX="34.0" layoutY="167.0" prefHeight="200.0" prefWidth="408.0" />
       <Button fx:id="indietro" layoutX="479.0" layoutY="322.0" mnemonicParsing="false" onAction="#indietro" prefHeight="36.0" prefWidth="82.0" text="Indietro" />
-      <ChoiceBox fx:id="email_m" layoutX="34.0" layoutY="104.0" onDragDetected="#drag_detected" prefWidth="150.0" />
+      <ChoiceBox fx:id="emailch" layoutX="34.0" layoutY="104.0" onDragDetected="#dragDetected" prefWidth="150.0" />
       <Text layoutX="37.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona l'id del messaggio e leggi le tue email">
          <font>
             <Font size="25.0" />

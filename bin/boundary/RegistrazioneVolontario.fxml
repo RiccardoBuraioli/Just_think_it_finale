@@ -46,7 +46,7 @@
       <PasswordField fx:id="password" layoutX="325.0" layoutY="130.0" prefHeight="26.0" prefWidth="230.0" />
       <PasswordField fx:id="confermaPass" layoutX="327.0" layoutY="181.0" prefHeight="26.0" prefWidth="230.0" />
   	 <Text fx:id="passwordMatch" fill="RED" layoutX="350.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Le password non corrispondono!" visible="false" wrappingWidth="181.336669921875" />
-      <TextField fx:id="Date" layoutX="325.0" layoutY="238.0" prefHeight="26.0" prefWidth="230.0" promptText="es. 05/05/95" />
+      <TextField fx:id="date" layoutX="325.0" layoutY="238.0" prefHeight="26.0" prefWidth="230.0" promptText="es. 05/05/95" />
       <Text layoutX="327.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data di Nascita" />
    </children>
 </AnchorPane>

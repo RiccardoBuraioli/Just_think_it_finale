@@ -4,7 +4,7 @@ package bean;
 import java.io.IOException;
 import java.util.List;
 import controller.BachecaController;
-import entity.Necessità;
+import entity.Necessita;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 
 public class BachecaBoundary {
 
-	private int idCar, idUte;
+	private int idCar;
+	private int idUte;
 	
 	@FXML
 	private Text nomeCaritas;
@@ -30,20 +31,15 @@ public class BachecaBoundary {
 
 	@FXML
 	private TextArea vestiti;
-
-	private BachecaController bachecaController;
 	
-	private List<Necessità> necessita;
+	private List<Necessita> necessita;
 	
-	public BachecaBoundary() {
-		
-	}
 	
 	@FXML
-	void crea_donazione(ActionEvent event) {
+	void creaDonazione(ActionEvent event) {
 		try {
 			
-			DonationBoundary donationBoundary = new DonationBoundary();
+			DonationBoundary donationBoundary;
 
 	        FXMLLoader fxmlLoader = new FXMLLoader();
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
@@ -67,9 +63,9 @@ public class BachecaBoundary {
 	}
 
 	@FXML
-	void crea_email(ActionEvent event) {
+	void creaEmail(ActionEvent event) {
 		
-		EmailBoundary email_c;
+		EmailBoundary emailBoundary;
 
 		try {     
 			
@@ -77,7 +73,7 @@ public class BachecaBoundary {
 
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
 	        
-	        email_c = fxmlLoader.getController();
+	        emailBoundary = fxmlLoader.getController();
 	        
 	        Stage stage = new Stage();
     		stage.setTitle("Email");
@@ -85,7 +81,7 @@ public class BachecaBoundary {
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     	
-    		email_c.loadEmail(idCar, idUte);
+    		emailBoundary.loadEmail(idCar, idUte);
     		
     		 
     		stage.show();
@@ -101,23 +97,16 @@ public class BachecaBoundary {
 		
 	}
 
-
-	@FXML
-	void initialize() {
-	
-
-		
-	}
 	
 	public void loadFormBoundary(int idCar, int idUte) {
 		this.idCar = idCar;
 		this.idUte = idUte;
-		bachecaController = new BachecaController();
+		BachecaController bachecaController = new BachecaController();
 		necessita = bachecaController.loadForm(idCar, idUte);
 		
 		
 		for (int i = 0; i < necessita.size(); i++) {
-			Necessità tmp = necessita.get(i);
+			Necessita tmp = necessita.get(i);
 			
 			switch (tmp.getTipologia()) {
 				case "Vestiti":

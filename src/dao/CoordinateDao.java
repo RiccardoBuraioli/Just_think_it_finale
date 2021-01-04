@@ -15,22 +15,21 @@ public class CoordinateDao {
 	private int idUtente;
 	
     
-    public CoordinateDao(int id_utente) {
+    public CoordinateDao(int idUtente) {
     	
     	 // a couple of markers using the provided ones
     	this.connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     	
-    	this.idUtente = id_utente;
+    	this.idUtente = idUtente;
     }
 	
-    public void Coordinate() {
-    	
-    }
+ 
     
     public Coordinate getCoordinate() {
 
     	String sql;
-    	String lat="", lon ="";
+    	String lat=""; 
+    	String lon ="";
     	
        	sql = "call get_coordinate(?)";
     
@@ -67,7 +66,7 @@ public class CoordinateDao {
     	try {
 			connector.getConnection().close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     }

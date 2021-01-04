@@ -25,10 +25,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class ShopHomeBoundary implements Initializable {
+public class ShopHomeBoundary {
 	
-	private ShopHomeController ShopController;
-	private GestisciEventiBoundary gestisciBoundary;
+
+
 	private Image img1;
 	private Image img2;
 	private Image img3;
@@ -58,8 +58,7 @@ public class ShopHomeBoundary implements Initializable {
 		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
 		img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
 		img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
-		currentImage = 0;
-		ShopController = new ShopHomeController();
+		this.currentImage = 0;
 	}
 		
     @FXML
@@ -115,6 +114,7 @@ public class ShopHomeBoundary implements Initializable {
 
     @FXML
     void cercaCaritas(ActionEvent event) {
+    	//mo lo faremo, giuro
     }
 
   
@@ -149,7 +149,7 @@ public class ShopHomeBoundary implements Initializable {
     	alert.setContentText("Sei sicuro di voler cancellare il tuo account?");
     	Optional<ButtonType> result = alert.showAndWait();
     	if (result.get() == ButtonType.OK){
-    		
+    		System.out.println("sei morto");
     	}
     }
 
@@ -161,10 +161,8 @@ public class ShopHomeBoundary implements Initializable {
 	        FXMLLoader fxmlLoader = new FXMLLoader();
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
 	       
-	       // donationController = fxmlLoader.getController();
-	        this.gestisciBoundary = fxmlLoader.getController();
+	        GestisciEventiBoundary gestisciBoundary = fxmlLoader.getController();
 	        
-	   //    Stage stage = new Stage();
 			Stage stage = (Stage) gestEvent.getScene().getWindow();
 
     		stage.setTitle("Gestisci Eventi");
@@ -186,6 +184,7 @@ public class ShopHomeBoundary implements Initializable {
 
     @FXML
     void helpButtonPressed(ActionEvent event) {
+    	//lo faremo sicuro sicuro
     }
 
     @FXML
@@ -228,7 +227,7 @@ public class ShopHomeBoundary implements Initializable {
 
     @FXML
     void profileButtonPressed(ActionEvent event) {
- 	
+ 	 //questo forse no
     }
 
     @FXML
@@ -245,12 +244,6 @@ public class ShopHomeBoundary implements Initializable {
     }
 
 
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

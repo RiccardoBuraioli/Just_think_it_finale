@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.PartecipaEventoController;
-import dao.EventoDao;
-import entity.PartecipaEvento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,8 +15,6 @@ public class PartecipaEventoBoundary {
 	
 		private int idUtente;
 		private int idEvento;
-		
-		private PartecipaEventoController ParteCon;
 
 		private TextField[] textFields;
 		
@@ -44,8 +40,8 @@ public class PartecipaEventoBoundary {
 	    
 	    @FXML
 	   void partecipaEvento(ActionEvent event) {
-	    	ParteCon = new PartecipaEventoController();
-	    	ParteCon.partecipaEvento(Float.parseFloat(importo.getText()));
+	    	PartecipaEventoController parteCon = new PartecipaEventoController();
+	    	parteCon.partecipaEvento(Float.parseFloat(importo.getText()));
 	    	Stage st = (Stage) partecipa.getScene().getWindow();
 	    	st.close();
 
@@ -68,7 +64,7 @@ public class PartecipaEventoBoundary {
 	    }
 	    
 	    
-		public void initialize(URL location, ResourceBundle resources) {
+		public void initialize(ResourceBundle resources) {
 			
 			
 			textFields = new TextField[] {importo, cdc};

@@ -8,7 +8,7 @@ import entity.TurnoTab;
 public class GestioneTurniCaritas {
 	
 	private PrenotaDao turniDao;
-	private List<TurnoTab> list;
+
 	
 	public GestioneTurniCaritas() {
 		this.turniDao = new PrenotaDao();
@@ -36,10 +36,10 @@ public class GestioneTurniCaritas {
 	
 	public List<TurnoTab> caricaTurni(int idCaritas) {
 
-		this.list = this.turniDao.visualizzaTurni(idCaritas);
+		List<TurnoTab> list = this.turniDao.visualizzaTurni(idCaritas);
 		
 		
-		return this.list;
+		return list;
 	}
 
 }

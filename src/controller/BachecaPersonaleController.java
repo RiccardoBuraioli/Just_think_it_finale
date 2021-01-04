@@ -4,14 +4,13 @@ import java.util.List;
 
 import dao.BachecaDao;
 import entity.BachecaEntity;
-import entity.Necessità;
+import entity.Necessita;
 
 public class BachecaPersonaleController {
 	
 	private BachecaDao bacheca;
-	private int id_caritas;
-	private BachecaEntity bacheca_e;
-	private List<Necessità> necessità;
+
+	private List<Necessita> necessita;
 
 	
 	
@@ -20,7 +19,7 @@ public class BachecaPersonaleController {
 	
 	
 	
-	public boolean elimina_annuncio(int nece) {
+	public boolean eliminaAnnuncio(int nece) {
 	
 		return	bacheca.eliminaNecessita(nece); 
 		
@@ -29,14 +28,14 @@ public class BachecaPersonaleController {
 	
 	
 	
-	public List<Necessità> loadForm(int id_car) {
-		this.id_caritas = id_car;
+	public List<Necessita> loadForm(int idCar) {
+		
 		bacheca = new BachecaDao();
-		bacheca_e = new BachecaEntity();
-		necessità = bacheca.visualizza_necessità(id_car);
-		bacheca_e.setNecessità(necessità);
+		BachecaEntity bachecaE = new BachecaEntity();
+		necessita = bacheca.visualizzaNecessita(idCar);
+		bachecaE.setNecessita(necessita);
 	
-		return necessità;
+		return necessita;
 	}
 	
 }

@@ -61,7 +61,7 @@ public class CaritasHomeBoundary {
     private Button eventiC;
 
     @FXML
-    private Button Turni;
+    private Button turni;
 
     @FXML
     private Text textOverImages;
@@ -108,7 +108,7 @@ public class CaritasHomeBoundary {
 	}
 
 	@FXML
-	void GestisciDonazioni(ActionEvent event) {
+	void gestisciDonazioni(ActionEvent event) {
 
 		try {
 
@@ -130,7 +130,7 @@ public class CaritasHomeBoundary {
 	}
 
 	@FXML
-	void GestisciEventi(ActionEvent event) {
+	void gestisciEventi(ActionEvent event) {
 		// handle the event here
 		
 		try {
@@ -142,7 +142,7 @@ public class CaritasHomeBoundary {
 	        Stage stage = (Stage) eventiC.getScene().getWindow();
     		stage.setTitle("Gestisci Eventi");	
     		gestisciB.setCaritas(currentUser);
-    		gestisciB.load_shop(currentUser.getID());    		
+    		gestisciB.loadShop(currentUser.getID());    		
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     		stage.show();
@@ -156,12 +156,12 @@ public class CaritasHomeBoundary {
 	}
 
 	@FXML
-	void GestisciTurni(ActionEvent event) {
+	void gestisciTurni(ActionEvent event) {
 		try {     
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/gestisci_turni_caritas.fxml"));
 			Parent root = loader.load();
 
-			Stage home = (Stage) Turni.getScene().getWindow();
+			Stage home = (Stage) turni.getScene().getWindow();
 		
 			 gestTurn = loader.getController();
     		 gestTurn.setCurrentUser(this.currentUser);
@@ -180,7 +180,7 @@ public class CaritasHomeBoundary {
 
 	
 	@FXML  // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
-	void VisualizzaBacheca(ActionEvent event) {
+	void visualizzaBacheca(ActionEvent event) {
 		try {     
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
 			Parent root = loader.load();
@@ -190,7 +190,7 @@ public class CaritasHomeBoundary {
 			home.show();
     		
     		 bacheca = loader.getController();
-    		 bacheca.set_currentUser(this.currentUser);
+    		 bacheca.setCurrentUser(this.currentUser);
     		 bacheca.loadFormBoundary(currentUser.getID());
 
     		
@@ -276,11 +276,6 @@ public class CaritasHomeBoundary {
 				}
 			}
 		}, 0, delay);
-
-	}
-
-	@FXML
-	void initialize() {
 
 	}
 

@@ -9,12 +9,12 @@ public class DonationController {
 	private static DonationController instance = null;
 	
 	private Donazione donazione;
-	private DonationDao donazione_dao;
+	private DonationDao donazioneDao;
 
 	
 	private DonationController() {
 		donazione = new Donazione();
-		donazione_dao = new DonationDao();
+		donazioneDao = new DonationDao();
 	}
 	
 
@@ -26,9 +26,9 @@ public class DonationController {
 	}
 
 	
-	public void initController(int id_car, int id_ut) {
-		this.donazione.setId_caritas(id_car);
-		this.donazione.setId_utente(id_ut);
+	public void initController(int idCar, int idUt) {
+		this.donazione.setId_caritas(idCar);
+		this.donazione.setId_utente(idUt);
 	}
 
 	public void setTipologia(int tipo) {
@@ -52,7 +52,7 @@ public class DonationController {
 	}
 
 	public int creaDonazione() {
-		int error = donazione_dao.crea_donazione(donazione);
+		int error = donazioneDao.creaDonazione(donazione);
 		return error;
 	}
 

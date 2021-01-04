@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import dao.CaritasRepository;
 import dao.ShopRepository;
 import dao.VolunteerRepository;
@@ -8,7 +7,6 @@ import dao.LoginDao;
 import entity.CaritasUser;
 import entity.ShopUser;
 import entity.VolunteerUser;
-import javafx.stage.Window;
 
 public class LoginController {
 	private LoginDao login;
@@ -19,7 +17,7 @@ public class LoginController {
 		this.vrep = new VolunteerRepository();
 	}
 	
-   public Object LoginAccess(String user, String pass) {
+   public Object loginAccess(String user, String pass) {
     	
     
     	
@@ -28,22 +26,19 @@ public class LoginController {
     		
     		
     		//OK MANDA ALLA HOME CORRETTA
-    		System.out.println("Login succesfull");
-    		System.out.println(login.getTableUser());
+    	
     	
     		//Volontario
-    		if (login.getTableUser().equals("Volontario") == true) {
+    		if (login.getTableUser().equals("Volontario")) {
     			
     		
     			
-    			int userID = login.returnID(user, 1);
-    			System.out.println(userID);
+    			int userID = login.returnID(user);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
     			}
     			
     			VolunteerUser loggedUser = vrep.getVolunteerByID(userID);
-    			System.out.println(loggedUser.getCognome());
     			loggedUser.setID(userID);
     			
     			return loggedUser;
@@ -54,18 +49,16 @@ public class LoginController {
     		}
     		
     		//Caritas
-    		else if (login.getTableUser().equals("Negozio") == true) {
+    		else if (login.getTableUser().equals("Negozio")) {
     			
     			ShopRepository srep = new ShopRepository(); 
 
-    			int userID = login.returnID(user, 1);
-    			System.out.println(userID);
+    			int userID = login.returnID(user);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
     			}
     			
     			ShopUser loggedShop = srep.getShopByID(userID);
-    			System.out.println(loggedShop.getNomeShop());
     			loggedShop.setId(userID);
     			
     			return loggedShop;
@@ -74,17 +67,15 @@ public class LoginController {
     		}
     		
     		//Negozio
-    		else if (login.getTableUser().equals("Caritas") == true) {
+    		else if (login.getTableUser().equals("Caritas")) {
      			CaritasRepository srep = new CaritasRepository(); 
 
-    			int userID = login.returnID(user, 1);
-    			System.out.println(userID);
+    			int userID = login.returnID(user);
     			if (userID == -1) {
     				System.out.println("Errore nel ritornare l'ID");
     			}
     			
     			CaritasUser loggedCaritas = srep.getCaritasByID(userID);
-    			System.out.println(loggedCaritas.getNomeCaritas());
     			loggedCaritas.setId(userID);
 
     			return loggedCaritas;
@@ -102,13 +93,6 @@ public class LoginController {
 		return loginResult;
     }
 
-  
-  
-
-	public void aprimenu(String cdc) {
-		// TODO Auto-generated method stub
-		
-	}
-
+ 
 	
 }

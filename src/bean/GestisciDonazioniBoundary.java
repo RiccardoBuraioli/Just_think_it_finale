@@ -6,7 +6,6 @@ import java.util.List;
 import controller.GestisciDonazioniCaritas;
 import entity.CaritasUser;
 import entity.DonazioneTab;
-import entity.TurnoTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,22 +48,23 @@ public class GestisciDonazioniBoundary {
 	    private Button back;
 	    
 	    @FXML
-	    private Button Cancella;
+	    private Button cancella;
 	    
 	    private List<DonazioneTab> listDon;
 
 	    private CaritasUser caritas;
 	    
-	    private int idVolontario, idDono;
+	    private int idVolontario;
+	    private int idDono;
 	    
 	    private GestisciDonazioniCaritas gestDon;
-	    private CaritasHomeBoundary CaritasHomeBoundary;
+	    private CaritasHomeBoundary caritasHomeBoundary;
 	   
 
 	    @FXML
-	    void CancellaDonazione(ActionEvent event) {
+	    void cancellaDonazione(ActionEvent event) {
 
-	    	gestDon.CancellaDonazione(this.idDono);
+	    	gestDon.cancellaDonazione(this.idDono);
 	    	
 	    }
 	    
@@ -73,9 +73,9 @@ public class GestisciDonazioniBoundary {
 	   	 try {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 	 			Parent root = loader.load();
-	 			 CaritasHomeBoundary = CaritasHomeBoundary.getInstance();
-	 			CaritasHomeBoundary = loader.getController();
-	 			CaritasHomeBoundary.initData(caritas);
+	 			caritasHomeBoundary = caritasHomeBoundary.getInstance();
+	 			caritasHomeBoundary = loader.getController();
+	 			caritasHomeBoundary.initData(caritas);
 	 			Stage home = (Stage) back.getScene().getWindow();
 	 			home.setScene(new Scene(root, 800, 600));
 	 			
@@ -92,8 +92,7 @@ public class GestisciDonazioniBoundary {
     	        FXMLLoader fxmlLoader = new FXMLLoader();
     	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
     	       
-    	       // donationController = fxmlLoader.getController();
-    	        EmailBoundary email = new EmailBoundary();
+    	        EmailBoundary email;
     	        email = fxmlLoader.getController();
     	        email.loadEmail(this.idVolontario, this.caritas.getID());
     	        Stage stage = new Stage();
@@ -140,7 +139,7 @@ public class GestisciDonazioniBoundary {
 
 		public GestisciDonazioniBoundary() {
 			this.gestDon = new GestisciDonazioniCaritas();
-			listDon = new ArrayList<DonazioneTab>();
+			listDon = new ArrayList<>();
 		}
 		
 		public CaritasUser getCaritas() {

@@ -2,14 +2,12 @@ package controller;
 
 import java.util.List;
 
-import bean.GestisciEventiBoundary;
 import dao.EventoDao;
-import entity.EventTab;
-import entity.Evento;
+import entity.eventTab;
 
 public class GestisciEventiController {
-	private GestisciEventiBoundary gestisciEventiB;
-	private List<EventTab> listaEv;
+
+
 	private EventoDao eventDao;
 	
 	
@@ -20,9 +18,9 @@ public class GestisciEventiController {
 	}
 	
 	
-	public List<EventTab> caricaEventi(int idShop){
+	public List<eventTab> caricaEventi(int idShop){
 		
-		listaEv = eventDao.cercaEventi(idShop);
+		List<eventTab> listaEv = eventDao.cercaEventi(idShop);
 		
 		
 		return listaEv;
@@ -34,7 +32,8 @@ public class GestisciEventiController {
 	}
 	
 	
-	public boolean modificaNoteEvento(String noteEvento) {
+	public boolean modificaNoteEvento() {
+		//da fare?
 		return false;
 		
 	}

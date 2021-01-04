@@ -1,9 +1,7 @@
 package dao;
 
 import connector.Connector;
-import entity.Necessità;
-import entity.Orario;
-
+import entity.Necessita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,22 +12,21 @@ import java.util.List;
 
 public class BachecaDao {
 	Connector connector;
-	
-	List<Necessità> necessità;
+	List<Necessita> necessita;
 	
 	public BachecaDao() {
 		
 		
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
-    	necessità = new ArrayList();
+    	necessita = new ArrayList<>();
 	}
 	
 	
 	
-	public List<Necessità> visualizza_necessità(int idCaritas) {
+	public List<Necessita> visualizzaNecessita(int idCaritas) {
 		
 	   	String sql = "call visualizza_necessità(?) ";
-	   	int i = 0;
+	
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -37,7 +34,7 @@ public class BachecaDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   necessità.add(new Necessità(res.getInt("id_necessità"), res.getString("tipologia"),res.getString("richiesta"), res.getString("urgenza")));
+	        	   necessita.add(new Necessita(res.getInt("id_necessità"), res.getString("tipologia"),res.getString("richiesta"), res.getString("urgenza")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -50,15 +47,15 @@ public class BachecaDao {
 	           }
 	       }
 		
-	return necessità;
+	return necessita;
 		
 		
 		
 	}
 	
-	public int creaNecessita(Necessità necessita, int codCaritas) {
+	public int creaNecessita(Necessita necessita, int codCaritas) {
 		 ResultSet rs = null;
-	        int NecID = 0;
+	        int necID = 0;
 
 	        String sql = "call crea_necessità(?,?,?,?)";
 
@@ -75,7 +72,7 @@ public class BachecaDao {
 
 	                rs = pstmt.getGeneratedKeys();
 	                if (rs.next())
-	                    NecID = rs.getInt(1);
+	                    necID = rs.getInt(1);
 	            }
 	        } catch (SQLException ex) {
 	            System.out.println(ex.getMessage());
@@ -86,12 +83,12 @@ public class BachecaDao {
 	                System.out.println(e.getMessage());
 	            }
 	        }
-	        return NecID;
+	        return necID;
 	}
 	
 	
 	public boolean eliminaNecessita(int nece) {
-		 ResultSet rs = null;
+		 
 		  
 		   int rowAffected;
 	        String sql = "call elimina_necessità(?)";

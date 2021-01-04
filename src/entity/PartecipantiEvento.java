@@ -9,12 +9,6 @@ public class PartecipantiEvento {
 	
 	
 	
-	
-	public PartecipantiEvento() {
-		
-	}
-	
-	
 	public List<PartecipaEvento> getPartecipanti() {
 		return partecipanti;
 	}

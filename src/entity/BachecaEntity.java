@@ -3,27 +3,20 @@ package entity;
 import java.util.List;
 
 public class BachecaEntity {
-	private int id_caritas;
-	private List<Necessità> necessità;
+	private int idCaritas;
+	private List<Necessita> necessita;
 	
 	
-	
-	public BachecaEntity() {
-		
+	public int getIdCaritas() {
+		return idCaritas;
 	}
-	
-	
-	
-	public int getId_caritas() {
-		return id_caritas;
+	public void setIdCaritas(int id_caritas) {
+		this.idCaritas = id_caritas;
 	}
-	public void setId_caritas(int id_caritas) {
-		this.id_caritas = id_caritas;
+	public List<Necessita> getNecessità() {
+		return necessita;
 	}
-	public List<Necessità> getNecessità() {
-		return necessità;
-	}
-	public void setNecessità(List<Necessità> necessità) {
-		this.necessità = necessità;
+	public void setNecessita(List<Necessita> necessita) {
+		this.necessita = necessita;
 	}
 }

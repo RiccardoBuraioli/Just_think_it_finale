@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import ch.qos.logback.classic.Logger;
 import connector.Connector;
 import entity.PartecipaTurno;
 import entity.Orario;
@@ -21,13 +19,12 @@ public class PrenotaDao {
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
 
-    private List<TurnoTab> listTurn;
+    
 	private String[] resGiorno = {null, null, null, null, null, null, null, null};
-	private Orario[] ora;
-	private List<Orario> oraArrayList;
+	
 	public PrenotaDao() {
 		
-        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
+        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
         
 	}
 	
@@ -71,7 +68,7 @@ public class PrenotaDao {
 	
 
 	public List<Orario> visualizzaOrario() {
-		this.oraArrayList = new ArrayList<Orario>();
+		List<Orario> oraArrayList = new ArrayList<Orario>();
 		ResultSet res = null;
 		String sql = "Select ora_inizio, ora_fine from orari ";
 		
@@ -103,16 +100,13 @@ public class PrenotaDao {
 	public boolean partecipazioneTurno(PartecipaTurno turno) {
 	
     	int rowAffected;
-   		ResultSet rs = null;
-   		
-      	//Registra Caritas
   	    String sql = "call prenota_turno(?,?,?, ?)";
 
           try (Connection conn = connector.getConnection();
                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        	  pstmt.setInt(3, turno.getCodice_caritas());
-        	  pstmt.setInt(1, turno.getCodice_volontario());
-        	  pstmt.setInt(2, turno.getCodice_Turno());
+        	  pstmt.setInt(3, turno.getCodiceCaritas());
+        	  pstmt.setInt(1, turno.getCodiceVolontario());
+        	  pstmt.setInt(2, turno.getCodiceTurno());
         	  pstmt.setString(4, turno.getCurriculum());
            
           
@@ -136,7 +130,7 @@ public class PrenotaDao {
 	public int trovaTurno(Turno turno ) {
 		String sql;
 		
-		int ID = 0;
+		int id = 0;
 		
 	   	sql = "call trova_id_turno(?,?,?)";
 	
@@ -150,7 +144,7 @@ public class PrenotaDao {
 	           res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	  ID = res.getInt("id_turno");
+	        	  id = res.getInt("id_turno");
 	           }
 	       } catch (SQLException ex) {
 	           System.out.println(ex.getMessage());
@@ -162,7 +156,7 @@ public class PrenotaDao {
 	           }
 	       }
 
-		return ID;
+		return id;
 		
 	}
 
@@ -173,7 +167,7 @@ public class PrenotaDao {
 	public List<TurnoTab> visualizzaTurni(int idCaritas) {
 		String 	sql = "call Visualizza_turno_caritas(?)";
 		ResultSet res = null;
-		listTurn = new ArrayList<TurnoTab>();
+		List<TurnoTab> listTurn = new ArrayList<>();
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
 	
@@ -182,7 +176,7 @@ public class PrenotaDao {
 	           res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   this.listTurn.add(new TurnoTab(res.getInt("numMaxParte"), res.getInt("id_turno") ,res.getInt("codCar"),res.getString("Giorno"), res.getString("OraInizio"),res.getString("OraFine"),  res.getString("Note"),  res.getInt("Partecipanti")));
+	        	   listTurn.add(new TurnoTab(res.getInt("numMaxParte"), res.getInt("id_turno") ,res.getInt("codCar"),res.getString("Giorno"), res.getString("OraInizio"),res.getString("OraFine"),  res.getString("Note"),  res.getInt("Partecipanti")));
 	        	 
 	           }
 	       } catch (SQLException ex) {
@@ -201,9 +195,6 @@ public class PrenotaDao {
 	
 	public boolean cancellaTurno(int idTurn) {
 		   int rowAffected;
-	 		ResultSet rs = null;
-
-	    	//Registra Caritas
 		    String sql = "call cancella_turno(?)";
 
 	        try (Connection conn = connector.getConnection();
@@ -229,9 +220,7 @@ public class PrenotaDao {
 	
 	public boolean creaTurno(int codCar,String nomGiorn, String newNote,String oraIniz, String oraFin, int numParte) {
 		  int rowAffected;
-	 		ResultSet rs = null;
-
-	    	//Registra Caritas
+	 	
 		    String sql = "call crea_turno(?,?,?,?,?,?)";
 
 	        try (Connection conn = connector.getConnection();
@@ -262,9 +251,7 @@ public class PrenotaDao {
 	public boolean modificaTurno(int idTurn, String newNote, int codCar) {
 		
 		   int rowAffected;
-	 		ResultSet rs = null;
-
-	    	//Registra Caritas
+	 	
 		    String sql = "call modifica_turno(?,?,?)";
 
 	        try (Connection conn = connector.getConnection();

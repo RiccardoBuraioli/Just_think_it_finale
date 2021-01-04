@@ -7,13 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sothawo.mapjfx.Coordinate;
-
 import connector.Connector;
 import entity.Donazione;
 import entity.DonazioneTab;
-import entity.EventTab;
 
 public class DonationDao {
 	private static final String SUCCESS = "Voce modificata con successo!";
@@ -28,9 +24,6 @@ public class DonationDao {
     
    public boolean modificaDonazione(int idDon) {
 	   int rowAffected;
-  		ResultSet rs = null;
-
-     	//Registra Caritas
  	    String sql = "call modifica_donazione(?)";
 
          try (Connection conn = connector.getConnection();
@@ -54,12 +47,11 @@ public class DonationDao {
    }
     
     
-   public int crea_donazione(Donazione dono ) {
+   public int creaDonazione(Donazione dono ) {
    
 	   		int rowAffected;
 	   		ResultSet rs = null;
 
-          	//Registra Caritas
       	    String sql = "call crea_donazione(?,?,?,?,?)";
 
               try (Connection conn = connector.getConnection();
@@ -124,15 +116,13 @@ public class DonationDao {
     
     public DonationDao() {
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
-    	listDon = new ArrayList<DonazioneTab>();
+    	listDon = new ArrayList<>();
     }
 
 
-	public boolean CancellaDonazione(int idDon) {
+	public boolean cancellaDonazione(int idDon) {
 		   int rowAffected;
-	  		ResultSet rs = null;
 
-	     	//Registra Caritas
 	 	    String sql = "call cancella_donazione(?)";
 
 	         try (Connection conn = connector.getConnection();

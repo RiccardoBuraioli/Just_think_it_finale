@@ -7,18 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import connector.Connector;
-import entity.EventTab;
+import entity.eventTab;
 import entity.Evento;
-import entity.Necessità;
 import entity.PartecipaEvento;
 
 public class EventoDao {
 
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
-    private List<EventTab> listEv;
+    private List<eventTab> listEv;
 
 
     private final Connector connector;
@@ -26,14 +24,13 @@ public class EventoDao {
 	
     public EventoDao() {
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
-    	listEv = new ArrayList<EventTab>();
+    	listEv = new ArrayList<>();
     }
 	
     
-    public List<EventTab> cercaEventi(int idShop){
+    public List<eventTab> cercaEventi(int idShop){
 
 	   	String sql = "call visualizza_tuoi_eventi(?) ";
-	   	int i = 0;
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -41,7 +38,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
+	        	   listEv.add(new eventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -62,7 +59,7 @@ public class EventoDao {
     }
 	
     
-    public List<EventTab> cercaEventiCaritas(int idCar){
+    public List<eventTab> cercaEventiCaritas(int idCar){
 
 	   	String sql = "call visualizza_eventi_caritas(?) ";
 	 
@@ -73,7 +70,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
+	        	   listEv.add(new eventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -96,12 +93,8 @@ public class EventoDao {
     
     
     public Evento creaEvento(Evento event) {
-		
-    	
+		   	
     	int rowAffected;
-   		ResultSet rs = null;
-
-      	//Registra Caritas
   	    String sql = "call crea_evento(?,?,?,?,?,?)";
 
           try (Connection conn = connector.getConnection();
@@ -131,11 +124,9 @@ public class EventoDao {
     	
     }
     
-   public PartecipaEvento CreaPartecipazione(PartecipaEvento partepaEvento) {
+   public PartecipaEvento creaPartecipazione(PartecipaEvento partepaEvento) {
 	   int rowAffected;
-  		ResultSet rs = null;
-
-     	//Registra Caritas
+  	
  	    String sql = "call partecipa_evento(?,?,?)";
 
          try (Connection conn = connector.getConnection();
@@ -167,9 +158,7 @@ public class EventoDao {
    public boolean deliteEvent(String evento) {
 	   
 	   int rowAffected;
- 		ResultSet rs = null;
-
-    	//Registra Caritas
+ 	
 	    String sql = "call cancella_evento(?)";
 
         try (Connection conn = connector.getConnection();
@@ -196,9 +185,7 @@ public class EventoDao {
 	   
 	   
 	   int rowAffected;
- 		ResultSet rs = null;
-
-    	//Registra Caritas
+ 	
 	    String sql = "call modifica_evento(?)";
 
         try (Connection conn = connector.getConnection();

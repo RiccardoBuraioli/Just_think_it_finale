@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import controller.RegistrationShopManagerController;
-import controller.RegistrazioneCaritasController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -131,7 +130,6 @@ public class RegistrationShopBoundary implements Initializable{
 				passwordMatch.setVisible(true);
 				return -1;
 			}
-		//	else if (type.isSelected() || type2.isSelected()) {
 			else if(typeCiboNeg.isSelected()) {
 				 tipo = "Vestiti";
 	    		 //Almeno uno dei tipi deve essere selezionato
@@ -153,7 +151,6 @@ public class RegistrationShopBoundary implements Initializable{
     	//Valida che i campi password e conferma password siano uguali
     	
     	if (passwordNeg.getText().equalsIgnoreCase(confermaPassNeg.getText())) {
-    	//	passwordMatch.setVisible(true);
     		System.out.println("Password confirmed");
     		return 0;
     	}

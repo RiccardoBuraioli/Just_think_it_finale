@@ -4,57 +4,57 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Evento {
 	
-	private SimpleStringProperty NomeEvento;
-	private String TipoEvento;
-	private String NoteEvento;
-	private float PrezzoEvento;
-	private int id_negozio;
+	private SimpleStringProperty nomeEvento;
+	private String tipoEvento;
+	private String noteEvento;
+	private float prezzoEvento;
+	private int idNegozio;
 	private String coord;
-	private int id_caritas;
+	private int idCaritas;
 
 	
 	
-	public Evento(String NomeEvento,String TipoEvento,String NoteEvento,float PrezzoEvento,int id_negozio,String coord, int id_caritas) {
+	public Evento(String nomeEvento,String tipoEvento,String noteEvento,float prezzoEvento,int idNegozio,String coord, int idCaritas) {
 		
-		this.NomeEvento = new SimpleStringProperty(NomeEvento);
-		this.TipoEvento = TipoEvento;
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);
+		this.tipoEvento = tipoEvento;
 		
-		this.PrezzoEvento = PrezzoEvento;
-		this.id_negozio = id_negozio;
+		this.prezzoEvento = prezzoEvento;
+		this.idNegozio = idNegozio;
 		this.coord = coord;
-		this.id_caritas = id_caritas;
+		this.idCaritas = idCaritas;
 	}
 	
-	public Evento(String NomeEvento,String TipoEvento,String NoteEvento,float PrezzoEvento,int id_negozio, int id_caritas) {
-		this.NomeEvento = new SimpleStringProperty(NomeEvento);
-		this.TipoEvento = TipoEvento;
+	public Evento(String nomeEvento,String tipoEvento,String noteEvento,float prezzoEvento,int idNegozio, int idCaritas) {
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);
+		this.tipoEvento = tipoEvento;
 	
-		this.PrezzoEvento = PrezzoEvento;
-		this.id_negozio = id_negozio;
-		this.id_caritas = id_caritas;
+		this.prezzoEvento = prezzoEvento;
+		this.idNegozio = idNegozio;
+		this.idCaritas = idCaritas;
 	}
 	
 	
 	public String getNomeEvento() {
-		return NomeEvento.get();
+		return nomeEvento.get();
 	}
 
-	public void setNomeEvento(String nomeEvento) {
-		NomeEvento.set(nomeEvento);
+	public void setNomeEvento(String nomeEve) {
+		nomeEvento.set(nomeEve);
 	}
 
 	public String getTipo() {
-		return this.TipoEvento;
+		return this.tipoEvento;
 	}
 	public String getNote() {
-		return this.NoteEvento;
+		return this.noteEvento;
 	}
 	
 	public float getPrezzo() {
-		return this.PrezzoEvento;
+		return this.prezzoEvento;
 	}
 	public int getNeg() {
-		return this.id_negozio;
+		return this.idNegozio;
 	}
 	public String getCoord() {
 		return this.coord;
@@ -66,11 +66,11 @@ public class Evento {
 	}
 
 	public int getId_caritas() {
-		return id_caritas;
+		return idCaritas;
 	}
 
 	public void setId_caritas(int id_caritas) {
-		this.id_caritas = id_caritas;
+		this.idCaritas = id_caritas;
 	}
 	
 	

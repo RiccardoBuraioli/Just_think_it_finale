@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import controller.RegistrazioneVolontarioController;
-import dao.VolunteerRepository;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,14 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegistrazioneVolontarioBoundary implements Initializable {
-	private RegistrazioneVolontarioController RegC;
+	private RegistrazioneVolontarioController regC;
 
 	TextField[] textFields;
 
@@ -68,20 +66,20 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 
 
 	    @FXML
-	    private TextField Date;
+	    private TextField date;
 	  
 
 
 
 
 	public RegistrazioneVolontarioBoundary() {
-		RegC = new RegistrazioneVolontarioController();
+		regC = new RegistrazioneVolontarioController();
 	}
 
 	@FXML
 	void backButtonPressed(ActionEvent event) {
 
-		RegC.backButtonPressed(backButton.getScene().getWindow());
+		regC.backButtonPressed(backButton.getScene().getWindow());
 
 	}
 
@@ -89,9 +87,8 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	void registraVolontarioPressed(ActionEvent event) {
 
 		if (checker() == 0) {
-			//Date date2 = java.sql.Date.valueOf(Date.getValue());
-		VolunteerUser id =	RegC.completaButtonPressed( nome.getText(), cognome.getText(),
-					password.getText(), via.getText(), tel.getText(), mail.getText(), Date.getText(),
+		VolunteerUser id =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
+					password.getText(), via.getText(), tel.getText(), mail.getText(), date.getText(),
 					cittaRes.getText());
 		
 			try {
@@ -127,7 +124,6 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 
 		if (password.getText().equals(confermaPass.getText())) {
 			passwordMatch.setVisible(false);
-			System.out.println("Password confirmed");
 			return 0;
 		} else {
 			passwordMatch.setText("Le password non corrispondono");

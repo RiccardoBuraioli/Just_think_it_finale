@@ -462,7 +462,7 @@ import java.sql.SQLException;
 	     
 	       
 	       while(markerC.getMarker(i)!=null) {
-	       IdCaritaList =  markerC.idMarker(i);//.marker.assegna_marker();
+	       IdCaritaList =  markerC.idMarker();//.marker.assegna_marker();
 	       markerCaritas[i] = markerC.getMarker(i);
 	       i++;
 	       }

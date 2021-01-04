@@ -12,9 +12,10 @@ public class ShopRepository {
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
-
+    private String p = "Password";
+    
     public ShopRepository() {
-        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
+        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
 
@@ -33,7 +34,7 @@ public class ShopRepository {
         	pstmt.setString(2, shopUser.getPassword());        	
         	pstmt.setString(3, shopUser.getNomeShop());
         	pstmt.setString(4, shopUser.getIndirizzoShop());
-        	pstmt.setString(5, shopUser.getcittà());
+        	pstmt.setString(5, shopUser.getcitta());
             pstmt.setString(6,shopUser.getTipologia());
             pstmt.setString(7,"Negozio");
             pstmt.setString(8,shopUser.getRecapitoTelefonico());
@@ -71,7 +72,7 @@ public class ShopRepository {
             res = pstmt.executeQuery();
 
             while (res.next()){
-                password = res.getString("Password");
+                password = res.getString(this.p);
             }
         } catch (SQLException ex){
             System.out.println(ex.getMessage());
@@ -127,14 +128,14 @@ public class ShopRepository {
             while (rs.next()) {
 
                 String nomeShop = rs.getString("NomeNegozio");
-                String password = rs.getString("Password");
+                String password = rs.getString(this.p);
                 String indirizzoNegozio = rs.getString("IndirizzoNegozio");
                 String tipologia = rs.getString("Tipologia");
                 String recapitoTel = rs.getString("RecapitoTel");
                 String email = rs.getString("Email");
-                String città = rs.getString("città");
+                String citta = rs.getString("città");
 
-                ShopUser shopUser = new ShopUser(nomeShop, password, indirizzoNegozio, tipologia, recapitoTel, email, città);
+                ShopUser shopUser = new ShopUser(nomeShop, password, indirizzoNegozio, tipologia, recapitoTel, email, citta);
                 shopUser.setId(rs.getInt("ID"));
                 shopUsers.add(shopUser);
             }

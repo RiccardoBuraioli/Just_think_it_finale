@@ -1,7 +1,6 @@
 package controller;
 
 import dao.PrenotaDao;
-import entity.TurnoTab;
 
 public class CreaTurnoController {
 
@@ -13,7 +12,7 @@ public class CreaTurnoController {
 	}
 	
 	
-	public boolean creaEvento(int codCar, String Giorno, String oraIni, String oraFin, int numPart, String newNote) {
-		return turnodao.creaTurno(codCar, Giorno, newNote, oraIni, oraFin, numPart);
+	public boolean creaEvento(int codCar, String giorno, String oraIni, String oraFin, int numPart, String newNote) {
+		return turnodao.creaTurno(codCar, giorno, newNote, oraIni, oraFin, numPart);
 	}
 }

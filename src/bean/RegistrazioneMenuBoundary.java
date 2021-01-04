@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 
 public class RegistrazioneMenuBoundary {
 	
-	
-	private RegistrazioneMenuController reg;
 
     @FXML
     private Button caritasButton;
@@ -139,10 +137,6 @@ public class RegistrazioneMenuBoundary {
  			e.printStackTrace();
  		}
     }
-    
-    public RegistrazioneMenuBoundary() {
-    	 reg = new RegistrazioneMenuController();
-    }
-    
+
 
 }

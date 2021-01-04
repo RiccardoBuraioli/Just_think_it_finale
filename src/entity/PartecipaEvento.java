@@ -1,36 +1,36 @@
 package entity;
 
 public class PartecipaEvento {
-	private int codice_part;
-	private int codice_evento;
-	private int codice_volontario;
+	private int codicePart;
+	private int codiceEvento;
+	private int codiceVolontario;
 	private float importo;
 	
 	
 	
 	
-	public PartecipaEvento(int codice_part,int codice_evento,int codice_volontario,	float importo) {
-		this.codice_part = codice_part;
-		this.codice_evento = codice_evento;
-		this.codice_volontario = codice_volontario;
+	public PartecipaEvento(int codicePart,int codiceEvento,int codiceVolontario,float importo) {
+		this.codicePart = codicePart;
+		this.codiceEvento = codiceEvento;
+		this.codiceVolontario = codiceVolontario;
 		this.importo = importo;
 		
 		
 		
 		
 	}
-	public PartecipaEvento(int codice_evento, int codice_volontario) {
-		this.codice_evento = codice_evento;
-		this.codice_volontario = codice_volontario;
+	public PartecipaEvento(int codiceEvento, int codiceVolontario) {
+		this.codiceEvento = codiceEvento;
+		this.codiceVolontario = codiceVolontario;
 	}
 	
 
 	
 	public int getEvento() {
-		return this.codice_evento;
+		return this.codiceEvento;
 	}
 	public int getVolo() {
-		return this.codice_volontario;
+		return this.codiceVolontario;
 	}
 	
 	public float getImporto() {
@@ -39,17 +39,17 @@ public class PartecipaEvento {
 
 
 	public int getcodice() {
-		return this.codice_evento;
+		return this.codiceEvento;
 	}
 	
 	
 	
 	public void setCodcie(int evento) {
-		this.codice_evento = evento;
+		this.codiceEvento = evento;
 	}
 	
 	public void setCodVol(int vol) {
-		this.codice_volontario = vol;
+		this.codiceVolontario = vol;
 	}
 	
 	public void setImport(float importo) {

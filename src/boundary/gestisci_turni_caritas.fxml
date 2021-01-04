@@ -18,9 +18,9 @@
             <TableColumn fx:id="note" prefWidth="253.0" text="note" />
         </columns>
       </TableView>
-      <Button fx:id="cancTurn" layoutX="701.0" layoutY="366.0" mnemonicParsing="false" onAction="#CancellaTurno" prefHeight="35.0" prefWidth="104.0" text="Cancella Turno" />
-      <Button fx:id="modTurn" layoutX="701.0" layoutY="86.0" mnemonicParsing="false" onAction="#ModificaTurno" prefHeight="35.0" prefWidth="104.0" text="Modifica note" />
-      <Button fx:id="creaTurn" layoutX="701.0" layoutY="463.0" mnemonicParsing="false" onAction="#CreaTurno" prefHeight="35.0" prefWidth="104.0" text="Crea Turno" />
+      <Button fx:id="cancTurn" layoutX="701.0" layoutY="366.0" mnemonicParsing="false" onAction="#cancellaTurno" prefHeight="35.0" prefWidth="104.0" text="Cancella Turno" />
+      <Button fx:id="modTurn" layoutX="701.0" layoutY="86.0" mnemonicParsing="false" onAction="#modificaTurno" prefHeight="35.0" prefWidth="104.0" text="Modifica note" />
+      <Button fx:id="creaTurn" layoutX="701.0" layoutY="463.0" mnemonicParsing="false" onAction="#creaTurno" prefHeight="35.0" prefWidth="104.0" text="Crea Turno" />
       <Button fx:id="back" layoutX="58.0" layoutY="463.0" mnemonicParsing="false" onAction="#backPressed" prefHeight="35.0" prefWidth="104.0" text="Back" />
       <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestisci i tuoi turni">
          <font>

@@ -9,23 +9,25 @@ public class ShopUser {
     private String tipologia;
     private String recapitoTelefonico;
     private String email;
-    private String città;
-    private final String TABLE_NAME = "negozi";
+    private String citta;
+    private static final String tableName = "negozi";
 
    
-    public ShopUser(String nomeShop, String password, String indirizzoShop, String tipologia, String recapitoTelefonico, String email, String città) {
+    public ShopUser(String nomeShop, String password, String indirizzoShop, String tipologia, String recapitoTelefonico, String email, String citta) {
         this.nomeShop = nomeShop;
         this.password = password;
         this.indirizzoShop = indirizzoShop;
         this.tipologia = tipologia;
         this.recapitoTelefonico = recapitoTelefonico;
         this.email = email;
-        this.città = città;
+        this.citta = citta;
     }
 
-    public ShopUser() {
-		// TODO Auto-generated constructor stub
+
+	public ShopUser() {
+		//
 	}
+
 
 	public int getID() {
         return id;
@@ -84,8 +86,8 @@ public class ShopUser {
         this.email = email;
     }
 
-    public String getTABLE_NAME() {
-        return TABLE_NAME;
+    public String getTableName() {
+        return tableName;
     }
 
     @Override
@@ -98,13 +100,13 @@ public class ShopUser {
                 '}';
     }
 
-	public String getcittà() {
-		return città;
+	public String getcitta() {
+		return citta;
 		// TODO Auto-generated method stub
 		
 	}
-	public void setCittà(String newcity) {
-		this.città = newcity;
+	public void setCitta(String newcity) {
+		this.citta = newcity;
 	}
    
 

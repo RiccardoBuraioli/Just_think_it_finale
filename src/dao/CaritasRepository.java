@@ -13,7 +13,7 @@ public class CaritasRepository {
     private static final String FAILED = "Operazione non riuscita.";
 
     public CaritasRepository() {
-        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
+        this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
     public int insertCaritas(CaritasUser caritasUser) {
@@ -26,14 +26,13 @@ public class CaritasRepository {
 
             try (Connection conn = connector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            	System.out.println(caritasUser.getEmail() + caritasUser.getIndirizzoCaritas());
             	pstmt.setString(1,caritasUser.getEmail());
             	pstmt.setString(2, caritasUser.getPassword());
                 pstmt.setString(3, caritasUser.getNomeCaritas());
                 pstmt.setString(4, caritasUser.getIndirizzoCaritas());
                 pstmt.setString(5,caritasUser.getRecapitoTelefonico());
                 pstmt.setString(6, caritasUser.getTipologia());
-                pstmt.setString(7, caritasUser.getCittà());
+                pstmt.setString(7, caritasUser.getCitta());
                 pstmt.setString(8, "Caritas");
                 
             int rowAffected = pstmt.executeUpdate();
@@ -57,36 +56,8 @@ public class CaritasRepository {
     }
 
 
-  /*  public List<CaritasUser> getAllCaritas() {
-        List<CaritasUser> carUsrs = new ArrayList<>();
+ 
 
-        String sql = "SELECT * FROM caritas";
-
-        try (Connection conn = connector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-            
-                String nomeCaritas = rs.getString("NomeCaritas");
-              
-                String indirizzoCaritas = rs.getString("IndirizzoCaritas");
-                String tipologia = rs.getString("Tipologia");
-                String recapitoTel = rs.getString("RecapitoTel");
-               
-
-                CaritasUser carUsr = new CaritasUser(nomeCaritas, indirizzoCaritas, tipologia, recapitoTel, email);
-                carUsr.setId(rs.getInt("ID"));
-                carUsrs.add(carUsr);
-            }
-            return carUsrs;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            throw new IllegalStateException("error fetching users", ex);
-        }
-    }
-
-*/
   public CaritasUser getCaritasByID(int id) {
 
         String sql = "SELECT  NomeCaritas, IndirizzoCaritas, Tipologia, RecapitoTel FROM caritas WHERE CodiceCaritas=?";
@@ -339,7 +310,7 @@ public class CaritasRepository {
         System.out.printf("%n %-22s %-22s %-22s %-22s %-22s %-22s %-22s %-22s %n", s1, s2, s3, s4, s5, s6, s7, s8);
         for(CaritasUser car:caritasUsers){
             System.out.printf("%-22s %-22s %-22s %-22s %-22s %-22s %-22s %n", car.getID(), car.getNomeCaritas(), car.getPassword(),
-                    car.getIndirizzoCaritas(), car.getTipologia(), car.getRecapitoTelefonico(), car.getEmail(), car.getCittà());
+                    car.getIndirizzoCaritas(), car.getTipologia(), car.getRecapitoTelefonico(), car.getEmail(), car.getCitta());
         }
     }
 

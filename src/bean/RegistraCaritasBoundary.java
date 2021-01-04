@@ -97,7 +97,7 @@ public class RegistraCaritasBoundary implements Initializable {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
-			CaritasHomeBoundary CaritasHomeBoundary = loader.getController();
+			CaritasHomeBoundary caritasHomeBoundary = loader.getController();
 
 			Stage home = (Stage) completaButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
@@ -117,7 +117,6 @@ public class RegistraCaritasBoundary implements Initializable {
 				passwordMatch.setVisible(true);
 				return -1;
 			}
-			// else if (type.isSelected() || type2.isSelected()) {
 			else if (type.isSelected()) {
 				tipo = "Vestiti";
 				return 0; // Almeno uno dei tipi deve essere selezionato
@@ -134,7 +133,6 @@ public class RegistraCaritasBoundary implements Initializable {
 
 		if (passwordCaritas.getText().equals(confermaPassCaritas.getText())) {
 			passwordMatch.setVisible(false);
-			System.out.println("Password confirmed");
 			return 0;
 		} else {
 			passwordMatch.setText("Le password non corrispondono");

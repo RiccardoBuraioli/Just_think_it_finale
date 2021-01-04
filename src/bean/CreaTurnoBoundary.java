@@ -3,10 +3,7 @@ package bean;
 import java.io.IOException;
 
 import controller.CreaTurnoController;
-import controller.PrenotaTurnoController;
 import entity.CaritasUser;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +47,7 @@ public class CreaTurnoBoundary {
 			Parent root = loader.load();
 
 			Stage home = (Stage) back.getScene().getWindow();
-			GestisciTurniBoundary gestTurn = new GestisciTurniBoundary();
+			GestisciTurniBoundary gestTurn;
 			gestTurn = loader.getController();
 			gestTurn.setCurrentUser(this.caritas);
 			gestTurn.loadFormBoundary(this.caritas.getID());
@@ -65,8 +62,8 @@ public class CreaTurnoBoundary {
 
 	@FXML
 	void creaTurnoPressed(ActionEvent event) {
-		CreaTurnoController creaTurno = new CreaTurnoController();
-		creaTurno.creaEvento(caritas.getID(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),Integer.parseInt(numParte.getText()), note.getText());
+		CreaTurnoController creaTurn = new CreaTurnoController();
+		creaTurn.creaEvento(caritas.getID(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),Integer.parseInt(numParte.getText()), note.getText());
 		
 		
 		

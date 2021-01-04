@@ -26,9 +26,6 @@ public class EmailDao {
 	public int inviaEmail(EmailEntity email) {
 
    		int rowAffected;
-   		ResultSet rs = null;
-
-      	//Registra Caritas
   	    String sql = "call inserisci_email(?,?,?,?)";
 
           try (Connection conn = connector.getConnection();
@@ -65,8 +62,7 @@ public class EmailDao {
 	public List<EmailEntity> visualizzaEmail(String idUtente){
 	
 	 	String sql = "call visuallizza_email(?) ";
-	   	int i = 0;
-		ResultSet res = null;
+	 	ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
 				stmt.setString(1,idUtente );
@@ -77,7 +73,7 @@ public class EmailDao {
 	           
 	           while (res.next()) {
 	        	   emailList.add( new EmailEntity(res.getInt("id_email"), res.getString("messaggio"), res.getString("oggetto")));
-	        	   i++;
+	        	   
 	           }
 	       } catch (SQLException ex) {
 	           System.out.println(ex.getMessage());
@@ -103,8 +99,7 @@ public class EmailDao {
 	public String[] visualizzaMittenteDestinatario(int idDest, int idMit) {
 		
 		String sql = "call visualizza_mittente_destinatario(?,?,?,?) ";
-	   	int i = 0;
-	   	String[] EmailMD = {"",""};
+	   	String[] emailMD = {"",""};
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            CallableStatement stmt = conn.prepareCall((sql))) {
@@ -115,13 +110,8 @@ public class EmailDao {
 
 	          res = stmt.executeQuery(); 
 	         
-	           
-	           /* while (res.next()) {
-	        	
-	        	
-	           }*/
-	            EmailMD[0] = stmt.getString("email_m");
-	            EmailMD[1] = stmt.getString("email_d");
+	            emailMD[0] = stmt.getString("email_m");
+	            emailMD[1] = stmt.getString("email_d");
 	            
 	            
 	       } catch (SQLException ex) {
@@ -136,7 +126,7 @@ public class EmailDao {
 	
 		
 	
-		return EmailMD;
+		return emailMD;
 	}
 	
 	

@@ -77,10 +77,7 @@ public class ProfileController {
 
     }
 
-    
-   public void editButtonPressed(ActionEvent event) {
-
-    }
+ 
     
 
 }

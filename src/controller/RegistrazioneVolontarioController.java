@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import bean.UserHomeBoundary;
 import dao.VolunteerRepository;
 import entity.VolunteerUser;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +12,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import java.util.Date;
 
-public class RegistrazioneVolontarioController implements Initializable {
-
-
-    public RegistrazioneVolontarioController() {
-    
-    }
-
+public class RegistrazioneVolontarioController {
 
 
    
@@ -57,13 +49,6 @@ public class RegistrazioneVolontarioController implements Initializable {
     }
 
 
-
-
-@Override
-public void initialize(URL arg0, ResourceBundle arg1) {
-	// TODO Auto-generated method stub
-	
-}
 
 
 

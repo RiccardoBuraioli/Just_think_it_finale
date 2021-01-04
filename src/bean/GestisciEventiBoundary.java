@@ -6,11 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.GestisciEventiController;
-import entity.CaritasUser;
-import entity.EventTab;
-import entity.Evento;
-import entity.Necessità;
-import entity.PartecipantiEvento;
+import entity.eventTab;
 import entity.ShopUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,10 +26,10 @@ public class GestisciEventiBoundary {
 
 	private GestisciEventiController gestEventC;
 	private int idShop;
-	private List<EventTab> listEv;
-	private EventTab event;
+	
+	private eventTab event;
 	private ShopUser shop;
-	private ShopHomeBoundary ShopHomeBoundary;
+	private ShopHomeBoundary shopHomeBoundary;
 	
 	@FXML
 	private ResourceBundle resources;
@@ -45,25 +41,25 @@ public class GestisciEventiBoundary {
 	private Button caritas;
 
 	@FXML
-	private TableView<EventTab> table;
+	private TableView<eventTab> table;
 
 	@FXML
-	private TableColumn<EventTab, String> nomeEvento;
+	private TableColumn<eventTab, String> nomeEvento;
 
 	@FXML
-	private TableColumn<EventTab, String> nomeCaritas;
+	private TableColumn<eventTab, String> nomeCaritas;
 	 @FXML
-	 private TableColumn<EventTab, Integer> noteEvento;
+	 private TableColumn<eventTab, Integer> noteEvento;
 
 	@FXML
-	private TableColumn<EventTab, Integer> numPartecipanti;
+	private TableColumn<eventTab, Integer> numPartecipanti;
 	@FXML
-	private TableColumn<EventTab, Float> importo;
+	private TableColumn<eventTab, Float> importo;
 	  @FXML
 	    private Button modificaE;
 
 	    @FXML
-	    private Button EliminaE;
+	    private Button eliminaE;
 
 	    @FXML
 	    private Button back;
@@ -73,9 +69,9 @@ public class GestisciEventiBoundary {
 	    	 try {
 	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 	 			Parent root = loader.load();
-	 			ShopHomeBoundary = ShopHomeBoundary.getInstance();
-	 			ShopHomeBoundary = loader.getController();
-	 			ShopHomeBoundary.initData(shop);
+	 			shopHomeBoundary = shopHomeBoundary.getInstance();
+	 			shopHomeBoundary = loader.getController();
+	 			shopHomeBoundary.initData(shop);
 	 			Stage home = (Stage) back.getScene().getWindow();
 	 			home.setScene(new Scene(root, 800, 600));
 	 			
@@ -94,8 +90,7 @@ public class GestisciEventiBoundary {
     	        FXMLLoader fxmlLoader = new FXMLLoader();
     	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
     	       
-    	       // donationController = fxmlLoader.getController();
-    	        EmailBoundary email = new EmailBoundary();
+    	        EmailBoundary email;
     	        email = fxmlLoader.getController();
     	        email.loadEmail(this.idShop, this.event.getIdCaritas());
     	        Stage stage = new Stage();
@@ -122,14 +117,14 @@ public class GestisciEventiBoundary {
 
 	    @FXML
 	    void modificaEvento(ActionEvent event) {
-	
+	    	//non si sa se è da fare o no
 	    	
 	    }
 
 	    @FXML
 	    void prendiEvento(MouseEvent e) {
 	    	this.event = table.getSelectionModel().getSelectedItem();
-	    	System.out.println(event.getNomeEvento());
+	    	
 	    }
 
 
@@ -151,10 +146,9 @@ public class GestisciEventiBoundary {
 
 	public void loadShop(int idShop) {
 		this.idShop = idShop;
-		this.listEv = gestEventC.caricaEventi(this.idShop);
-		System.out.println(listEv.get(0).getNomeEvento());
+		List<eventTab> listEv = gestEventC.caricaEventi(this.idShop);
 
-		ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);
+		ObservableList<eventTab> data = FXCollections.observableArrayList(listEv);
 		nomeEvento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
 		importo.setCellValueFactory(new PropertyValueFactory<>("rapportoDenaro"));
 		nomeCaritas.setCellValueFactory(new PropertyValueFactory<>("NomeCaritas"));

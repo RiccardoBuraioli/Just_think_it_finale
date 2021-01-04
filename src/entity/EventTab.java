@@ -4,111 +4,111 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class EventTab {
+public class eventTab {
 	
 	private SimpleIntegerProperty id;
-	private SimpleStringProperty NomeEvento;
-	private SimpleStringProperty NoteEvento;
-	private SimpleFloatProperty PrezzoEvento;
-	private SimpleIntegerProperty NumPartecipanti;
-	private SimpleFloatProperty ImportoRaggiunto;
-	private SimpleStringProperty NomeCaritas;
+	private SimpleStringProperty nomeEvento;
+	private SimpleStringProperty noteEvento;
+	private SimpleFloatProperty prezzoEvento;
+	private SimpleIntegerProperty numPartecipanti;
+	private SimpleFloatProperty importoRaggiunto;
+	private SimpleStringProperty nomeCaritas;
 	private SimpleStringProperty rapportoDenaro;
-	private SimpleIntegerProperty CodiceCaritas;
+	private SimpleIntegerProperty codiceCaritas;
 	private SimpleIntegerProperty completamento;
-	private SimpleIntegerProperty CodiceNegozio;
-	private SimpleStringProperty NomeNegozio;
-	private SimpleStringProperty StatoEvento;
+	private SimpleIntegerProperty codiceNegozio;
+	private SimpleStringProperty nomeNegozio;
+	private SimpleStringProperty statoEvento;
 
 
     
 	
 	
 	
-	public EventTab(int id, String NomeEvento, String NoteEvento, float PrezzoEvento,
-			String nomeNegozio, float ImportoRaggiunto, int numPart,  int CodiceNeg, String stato) {
+	public eventTab(int id, String nomeEvento, String noteEvento, float prezzoEvento,
+			String nomeNegozio, float importoRaggiunto, int numPart,  int codiceNeg, String stato) {
 		this.id = new SimpleIntegerProperty(id);
-		this.StatoEvento = new SimpleStringProperty(stato);
-		this.NomeEvento = new SimpleStringProperty(NomeEvento);
+		this.statoEvento = new SimpleStringProperty(stato);
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);
 	
-		this.NumPartecipanti = new SimpleIntegerProperty(numPart);
-		this.PrezzoEvento = new SimpleFloatProperty(PrezzoEvento);
-		this.NoteEvento = new SimpleStringProperty(NoteEvento);
+		this.numPartecipanti = new SimpleIntegerProperty(numPart);
+		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
+		this.noteEvento = new SimpleStringProperty(noteEvento);
 		
 		
-		this.NomeNegozio = new SimpleStringProperty(nomeNegozio);
-		this.ImportoRaggiunto = new SimpleFloatProperty(ImportoRaggiunto);
-		this.rapportoDenaro = new SimpleStringProperty(ImportoRaggiunto + "/" + PrezzoEvento);
+		this.nomeNegozio = new SimpleStringProperty(nomeNegozio);
+		this.importoRaggiunto = new SimpleFloatProperty(importoRaggiunto);
+		this.rapportoDenaro = new SimpleStringProperty(importoRaggiunto + "/" + prezzoEvento);
 
-		this.CodiceNegozio = new SimpleIntegerProperty(CodiceNeg);
+		this.codiceNegozio = new SimpleIntegerProperty(codiceNeg);
 		
 	}
 
-	public EventTab(String NomeEvento, String nomeCaritas, String NoteEvento, float PrezzoEvento,
-			float ImportoRaggiunto, int NumPartecipanti, int idCaritas, String complet) {
-		this.NomeEvento = new SimpleStringProperty(NomeEvento);
-		this.NomeCaritas = new SimpleStringProperty(nomeCaritas);
+	public eventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento,
+			float importoRaggiunto, int numPartecipanti, int idCaritas, String complet) {
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);
+		this.nomeCaritas = new SimpleStringProperty(nomeCaritas);
 		if (complet.equalsIgnoreCase("Terminato")) {
-			this.NoteEvento = new SimpleStringProperty("COMPLETATO");
+			this.noteEvento = new SimpleStringProperty("COMPLETATO");
 		} else {
-			this.NoteEvento = new SimpleStringProperty(NoteEvento);
+			this.noteEvento = new SimpleStringProperty(noteEvento);
 		}
 
-		this.NumPartecipanti = new SimpleIntegerProperty(NumPartecipanti);
-		this.PrezzoEvento = new SimpleFloatProperty(PrezzoEvento);
-		this.ImportoRaggiunto = new SimpleFloatProperty(ImportoRaggiunto);
-		this.rapportoDenaro = new SimpleStringProperty(ImportoRaggiunto + "/" + PrezzoEvento);
-		this.CodiceCaritas = new SimpleIntegerProperty(idCaritas);
-		this.StatoEvento = new SimpleStringProperty(complet);
+		this.numPartecipanti = new SimpleIntegerProperty(numPartecipanti);
+		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
+		this.importoRaggiunto = new SimpleFloatProperty(importoRaggiunto);
+		this.rapportoDenaro = new SimpleStringProperty(importoRaggiunto + "/" + prezzoEvento);
+		this.codiceCaritas = new SimpleIntegerProperty(idCaritas);
+		this.statoEvento = new SimpleStringProperty(complet);
 	}
 
 	public String getNomeEvento() {
-		return this.NomeEvento.get();
+		return this.nomeEvento.get();
 	}
 
 	public void setNomeEvento(String nomeEvento) {
-		this.NomeEvento.set(nomeEvento);
+		this.nomeEvento.set(nomeEvento);
 	}
 
 
 	public String getNoteEvento() {
-		return this.NoteEvento.get();
+		return this.noteEvento.get();
 	}
 
 	public void setNoteEvento(String noteEvento) {
-		this.NoteEvento.set(noteEvento);
+		this.noteEvento.set(noteEvento);
 	}
 
 	public float getPrezzoEvento() {
-		return this.PrezzoEvento.get();
+		return this.prezzoEvento.get();
 	}
 
 	public void setPrezzoEvento(float prezzoEvento) {
-		this.PrezzoEvento.set(prezzoEvento);
+		this.prezzoEvento.set(prezzoEvento);
 	}
 
 	public int getNumPartecipanti() {
-		return this.NumPartecipanti.get();
+		return this.numPartecipanti.get();
 	}
 
 	public void setNumPartecipanti(int numPartecipanti) {
-		this.NumPartecipanti.set(numPartecipanti);
+		this.numPartecipanti.set(numPartecipanti);
 	}
 
 	public float getImportoRaggiunto() {
-		return this.ImportoRaggiunto.get();
+		return this.importoRaggiunto.get();
 	}
 
 	public void setImportoRaggiunto(float importoRaggiunto) {
-		this.ImportoRaggiunto.set(importoRaggiunto);
+		this.importoRaggiunto.set(importoRaggiunto);
 	}
 
 	public String getNomeCaritas() {
-		return this.NomeCaritas.get();
+		return this.nomeCaritas.get();
 	}
 
 	public void setNomeCaritas(String nomeCaritas) {
-		this.NomeCaritas.set(nomeCaritas);
+		this.nomeCaritas.set(nomeCaritas);
 	}
 
 	public String getRapportoDenaro() {
@@ -120,11 +120,11 @@ public class EventTab {
 	}
 
 	public int getIdCaritas() {
-		return this.CodiceCaritas.get();
+		return this.codiceCaritas.get();
 	}
 
 	public void setIdCaritas(int idCaritas) {
-		this.CodiceCaritas.set(idCaritas);
+		this.codiceCaritas.set(idCaritas);
 	
 	}
 
@@ -137,27 +137,27 @@ public class EventTab {
 	}
 
 	public int getCodiceNegozio() {
-		return this.CodiceNegozio.get();
+		return this.codiceNegozio.get();
 	}
 
 	public void setCodiceNegozio(int codiceNegozio) {
-		this.CodiceNegozio.set(codiceNegozio);
+		this.codiceNegozio.set(codiceNegozio);
 	}
 
 	public String getNomeNegozio() {
-		return this.NomeNegozio.get();
+		return this.nomeNegozio.get();
 	}
 
 	public void setNomeNegozio(String nomeNegozio) {
-		this.NomeNegozio.set(nomeNegozio);
+		this.nomeNegozio.set(nomeNegozio);
 	}
 
 	public String getStatoEvento() {
-		return this.StatoEvento.get();
+		return this.statoEvento.get();
 	}
 
 	public void setStatoEvento(String statoEvento) {
-		this.StatoEvento.set(statoEvento);
+		this.statoEvento.set(statoEvento);
 	}
 	
 	public int getId() {

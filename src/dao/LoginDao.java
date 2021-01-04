@@ -9,10 +9,10 @@ import connector.Connector;
 
 public class LoginDao {
 	final Connector connector;
-    public String tableUser;
+    private String tableUser;
 	
 	  public String getTableUser() {
-	        return tableUser;
+	        return this.tableUser;
 	    }
 	  
 	  public void setTableUser(String a) {
@@ -63,11 +63,11 @@ public class LoginDao {
 
 
 	 
-	    public int returnID(String email, int table) {
+	    public int returnID(String email) {
 	    	
 	    	String sql;
 	    	String resID = null;
-	    	int ID;
+	    	int id;
 	    	
 	       	sql = "SELECT id_utente FROM utenti WHERE Email = ?";
 	    
@@ -91,8 +91,8 @@ public class LoginDao {
 	               }
 	           }
 	    	
-	    	ID = Integer.parseInt(resID);
-	    	return ID;
+	    	id = Integer.parseInt(resID);
+	    	return id;
 	    	
 	    }
 

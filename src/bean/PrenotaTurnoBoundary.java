@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.PrenotaTurnoController;
-import dao.PrenotaDao;
 import entity.Orario;
-import entity.Turno;
-import entity.PartecipaTurno;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,14 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class PrenotaTurnoBoundary {
-		private int idCaritas;
-		private int idVolontario;
-		private List<Orario> oraArrayList;
-		private String[] giorni;
+	
+	
 		
 		
 		
-		private PrenotaTurnoController PrenotaC;
+		private PrenotaTurnoController prenotaC;
 	
 	    @FXML
 	    private ResourceBundle resources;
@@ -36,13 +31,13 @@ public class PrenotaTurnoBoundary {
 	    private ChoiceBox<String> Turni;
 
 	    @FXML
-	    private ChoiceBox<String> CBoraInizio;
+	    private ChoiceBox<String> cbOraInizio;
 
 	    @FXML
-	    private ChoiceBox<String> CBoraFine;
+	    private ChoiceBox<String> cbOraFine;
 
 	    @FXML
-	    private TextField CV;
+	    private TextField cv;
 
 	    @FXML
 	    private Button indietro;
@@ -50,20 +45,11 @@ public class PrenotaTurnoBoundary {
 	    @FXML
 	    private Button prenota;
 	    
-	    @FXML
-	    void indietro(ActionEvent event) {
-
-	    }
-	    
-	    
-	    public PrenotaTurnoBoundary() {
-	    	
-	    }
-	    
+	
 	    @FXML
 	    void prenotaTurno(ActionEvent event) { 
 		
-	    	PrenotaC.prenotaTurno(Turni.getValue().toString(), CBoraInizio.getValue().toString(), CBoraFine.getValue().toString(), CV.getText());
+	    	prenotaC.prenotaTurno(Turni.getValue().toString(), cbOraInizio.getValue().toString(), cbOraFine.getValue().toString(), cv.getText());
 	    	Stage st = (Stage) prenota.getScene().getWindow();
 	    	st.close();
 		}
@@ -73,23 +59,23 @@ public class PrenotaTurnoBoundary {
 	    	 
 			//Controlla che non ci siano campi lasciati vuoti
 	    	
-				if (CV.getText().isEmpty()) {
+				if (cv.getText().isEmpty()) {
 					
 					return false;
-				}
+				}else {
 			return true;
-	    	
+			}
 	  }
 	    
 
 	    @FXML
 	    void initialize() {
-	    	PrenotaC = new PrenotaTurnoController();
+	    	prenotaC = new PrenotaTurnoController();
 	    	
-	    	this.giorni = new String[8];
+	    	String[] giorni = new String[8];
 		
 	    	
-	    	giorni = PrenotaC.inizializzaGiorni();
+	    	giorni = prenotaC.inizializzaGiorni();
 	   
 	    	
 	    	for(int i=0; i<8; i++) {
@@ -97,15 +83,14 @@ public class PrenotaTurnoBoundary {
 	    	}
 	    	
 	    	
-	    	oraArrayList =PrenotaC.initializzaOrari();
-	    	//ora = (Orario[]) oraArrayList.toArray();
+	    	List<Orario> oraArrayList =prenotaC.initializzaOrari();
 	    	
 	    	int i = 0;
 	    	while(i<oraArrayList.size()) {
 	    
-		    	CBoraInizio.getItems().add(oraArrayList.get(i).getOraFine());
+		    	cbOraInizio.getItems().add(oraArrayList.get(i).getOraFine());
 		    	
-		    	CBoraFine.getItems().add(oraArrayList.get(i).getOraInizio());
+		    	cbOraFine.getItems().add(oraArrayList.get(i).getOraInizio());
 		    	
 		    	i++;
 		    	
@@ -114,6 +99,6 @@ public class PrenotaTurnoBoundary {
 	    }
 	    
 	    public void setData(int idCar, int idUte) {
-		  	PrenotaC.setDataController(idCar, idUte);
+		  	prenotaC.setDataController(idCar, idUte);
 		  }
 }

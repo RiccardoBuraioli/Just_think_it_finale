@@ -3,11 +3,9 @@ package bean;
 import java.io.IOException;
 import java.util.List;
 
-import controller.BachecaController;
 import controller.BachecaPersonaleController;
 import entity.CaritasUser;
-import entity.EventTab;
-import entity.Necessit‡;
+import entity.Necessita;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,23 +20,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class BachecaPersonaleBoundary {
-	private List<Necessit‡> necessitaList;
+	
 	private int idCar;
 	private BachecaPersonaleController bachecaController;
-	private Necessit‡ nec;
+	
 	private CaritasUser caritas;
 
 	@FXML
-	private TableView<Necessit‡> bacheca;
+	private TableView<Necessita> bacheca;
 
 	@FXML
-	private TableColumn<Necessit‡, String> tipologia;
+	private TableColumn<Necessita, String> tipologia;
 
 	@FXML
-	private TableColumn<Necessit‡, String> descrizione;
+	private TableColumn<Necessita, String> descrizione;
 
 	@FXML
-	private TableColumn<Necessit‡, String> urgenza;
+	private TableColumn<Necessita, String> urgenza;
 
 	@FXML
 	private Button necessita;
@@ -76,7 +74,7 @@ public class BachecaPersonaleBoundary {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Crea_Necessit‡.fxml"));
 			Parent root = loader.load();
-			CreaNecessit‡Boundary creaNec = loader.getController();
+			CreaNecessitaBoundary creaNec = loader.getController();
 			creaNec.setCaritas(idCar);
 			Stage home = (Stage) necessita.getScene().getWindow();
 			home.setScene(new Scene(root, 600, 500));
@@ -89,18 +87,18 @@ public class BachecaPersonaleBoundary {
 
 	@FXML
 	void eliminaNecessita(ActionEvent event) {
-		nec = bacheca.getSelectionModel().getSelectedItem();
-		bachecaController.elimina_annuncio(nec.getId_nece());
+		Necessita nec = bacheca.getSelectionModel().getSelectedItem();
+		bachecaController.eliminaAnnuncio(nec.getIdNece());
 	}
 
 
 
-	public void loadFormBoundary(int id_car) {
-		this.idCar = id_car;
+	public void loadFormBoundary(int idCar) {
+		this.idCar = idCar;
 
 		bachecaController = new BachecaPersonaleController();
-		necessitaList = bachecaController.loadForm(id_car);
-		ObservableList<Necessit‡> data = FXCollections.observableArrayList(necessitaList);
+		List<Necessita> necessitaList = bachecaController.loadForm(idCar);
+		ObservableList<Necessita> data = FXCollections.observableArrayList(necessitaList);
 
 		descrizione.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
 
@@ -113,7 +111,7 @@ public class BachecaPersonaleBoundary {
 	}
 	
 	
-	public void set_currentUser(CaritasUser user) {
+	public void setCurrentUser(CaritasUser user) {
 		this.caritas = user;
 	}
 	

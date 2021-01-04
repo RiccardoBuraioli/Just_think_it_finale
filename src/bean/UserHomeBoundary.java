@@ -2,24 +2,18 @@ package bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.sothawo.mapjfx.Projection;
 
 import controller.CercaCaritas;
-import controller.DonationController;
-import controller.ProfileController;
 import controller.UserHomeController;
 import entity.VolunteerUser;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,7 +37,7 @@ private static UserHomeBoundary instance = null;
 private VolunteerUser currentUser;
 	
 	private UserHomeController userController ;
-	private int idUtente;
+
 	
 	//Images slideshow
 	private Image img1 ;
@@ -132,7 +126,7 @@ private VolunteerUser currentUser;
 
     @FXML
     void helpButtonPressed(ActionEvent event) {
-    	this.userController.helpButtonPressed(this.helpButton.getScene().getWindow());
+    	this.userController.helpButtonPressed();
     }
 
     @FXML
@@ -249,11 +243,6 @@ private VolunteerUser currentUser;
     }
     
     
-
-	public void setIdUtente(int idUtente) {
-		this.idUtente = idUtente;
-		
-	}
 
 }
 

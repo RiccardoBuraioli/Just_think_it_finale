@@ -1,8 +1,6 @@
 package entity;
 
 
-import java.util.Date;
-
 public class VolunteerUser {
 
     private int id;
@@ -14,8 +12,8 @@ public class VolunteerUser {
     private String email;
     private String cartaDiCredito;
     private String nascita;
-    private String città;
-    private final String TableName = "volontari";
+    private String citta;
+    private final String tableName = "volontari";
 
     public VolunteerUser() {
     	 this.nome = "";
@@ -29,7 +27,7 @@ public class VolunteerUser {
     }
     
     
-    public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String cartaDiCredito,String nascita, String città) {
+    public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String cartaDiCredito,String nascita, String citta) {
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
@@ -38,11 +36,11 @@ public class VolunteerUser {
         this.email = email;
         this.cartaDiCredito = cartaDiCredito;
         this.nascita = nascita;
-        this.città = città;
+        this.citta = citta;
     }
 
-    public String getCittà() {
-    	return città;
+    public String getCitta() {
+    	return citta;
     }
     
     public int getID() {
@@ -86,8 +84,8 @@ public class VolunteerUser {
         if (id > 0) this.id = id;
     }
     
-    public void setCittà(String newcity) {
-    	this.città = newcity;
+    public void setCitta(String newcity) {
+    	this.citta = newcity;
     }
 
     public void setNascita(String nascita) {
@@ -126,7 +124,7 @@ public class VolunteerUser {
  
 
     public String getTableName() {
-        return TableName;
+        return tableName;
     }
 
     @Override

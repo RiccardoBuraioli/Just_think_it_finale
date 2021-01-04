@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class VolunteerRepository {
                 String email = rs.getString("email");
                 String cartaDiCredito = rs.getString("cartaDiCredito");
                 String nascita = rs.getString("DataNascita");
-                String città = rs.getString("città");
-                VolunteerUser vUser = new VolunteerUser( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, città);
+                String citta = rs.getString("città");
+                VolunteerUser vUser = new VolunteerUser( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, citta);
                 vUser.setID(rs.getInt("ID"));
                 vUsers.add(vUser);
             }
@@ -87,38 +86,6 @@ public class VolunteerRepository {
         } return vUser;
     }
     
-//    public boolean login(String actEmail, String actPassword){
-//        String sql = "SELECT Email AND Password FROM volontari WHERE Email = ? AND Password = ?";
-//        ResultSet res = null;
-//
-//
-//        try (Connection conn = connector.getConnection();
-//             PreparedStatement stmt = conn.prepareStatement(sql)) {
-//
-//            stmt.setString(1, actEmail);
-//            stmt.setString(2, actPassword);
-//            res = stmt.executeQuery();
-//            
-//            //Modificato il 22/01
-//            //res.first() ritorna true se c'è una riga nel risultato, false altrimenti
-//            
-//            if (res.first()){
-//                return true;
-//            }else return false;
-//
-//
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//         finally {
-//            try {
-//                if (res != null) res.close();
-//            } catch (SQLException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        }return false;
-//    }
-
 
 
 
@@ -139,7 +106,7 @@ public class VolunteerRepository {
         	pstmt.setString(6, volunteerUser.getRecapitoTel());
         	pstmt.setString(7, volunteerUser.getIndirizzo());
         	pstmt.setString(8, volunteerUser.getCartaDiCredito());
-        	pstmt.setString(9,volunteerUser.getCittà());
+        	pstmt.setString(9,volunteerUser.getCitta());
         	pstmt.setString(10, volunteerUser.getNome());
           
           
@@ -164,74 +131,7 @@ public class VolunteerRepository {
         return volunteerID;
     }
 
-/*    private String getPassword(VolunteerUser vUser){
-        String sql = "SELECT Password FROM volontari WHERE ID = ?";
-        ResultSet res = null;
-        String password = "";
 
-        try(Connection conn = connector.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setInt(1, vUser.getID());
-            res = pstmt.executeQuery();
-
-            while (res.next()){
-                password = res.getString("Password");
-                System.out.println("QUESTA E' LA PASSWORD: " + password);
-            }
-        } catch (SQLException ex){
-            System.out.println(ex.getMessage());
-        }finally {
-            try {
-                if (res != null) res.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        if(password.equals("")) {
-            System.out.println("FALLISCE QUI? " + FAILED);
-            return "";
-        }
-        else{
-            System.out.println("LA GETPASSWORD FUNZIONA");
-            return password;
-        }
-
-    }
-
-
-    public void updatePassword(VolunteerUser vUser, String newPass, String oldPassword){
-        String actPassword = getPassword(vUser);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAA " + actPassword);
-        String sql = "UPDATE volontari SET Password = ? WHERE ID = ?";
-        int rowAffected;
-
-        if(actPassword.equals(oldPassword)) {
-            try (Connection conn = connector.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-                pstmt.setString(1, newPass);
-                pstmt.setInt(2, vUser.getID());
-                rowAffected = pstmt.executeUpdate();
-
-                if (rowAffected == 1) {
-                    System.out.println(SUCCESS);
-                } else System.out.println(FAILED);
-
-
-            } catch (SQLException ex) {
-                System.out.println((ex.getMessage()));
-            }
-        }else System.out.println(FAILED);
-
-    }
-
-//    hai dimenticato la password?
-//    public void resetPassword(VolunteerUser vUser){
-//    API google per mandare email automatizzate?. . .
-//    }
-
-*/
     public void updateFirstName(int id, String firstName) {
         String sql = "UPDATE volontari SET Nome = ? WHERE ID= ?";
         int rowAffected;

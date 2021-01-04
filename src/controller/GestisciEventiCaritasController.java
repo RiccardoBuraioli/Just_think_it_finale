@@ -3,17 +3,17 @@ package controller;
 import java.util.List;
 
 import dao.EventoDao;
-import entity.EventTab;
+import entity.eventTab;
 
 public class GestisciEventiCaritasController {
-	private List<EventTab> listaEv;
+
 	private EventoDao eventDao;
 	
 	
 	
-public List<EventTab> caricaEventi(int idCaritas){
+public List<eventTab> caricaEventi(int idCaritas){
 		
-		this.listaEv = this.eventDao.cercaEventiCaritas(idCaritas);
+	List<eventTab> listaEv = this.eventDao.cercaEventiCaritas(idCaritas);
 		
 		
 		return listaEv;

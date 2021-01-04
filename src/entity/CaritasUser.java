@@ -9,29 +9,29 @@ public class CaritasUser {
     private String tipologia;
     private String recapitoTelefonico;
     private String email;
-    private String città;
-    private final String TABLE_NAME = "caritas";
+    private String citta;
+    private static final String tableName = "caritas";
 
 
     public CaritasUser() {
     }
 
-    public CaritasUser(String nomeCaritas, String passwordCaritas, String indirizzoCaritas, String tipologia, String recapitoTelefonico, String email, String città) {
+    public CaritasUser(String nomeCaritas, String passwordCaritas, String indirizzoCaritas, String tipologia, String recapitoTelefonico, String email, String citta) {
         this.nomeCaritas = nomeCaritas;
         this.password = passwordCaritas;
         this.indirizzoCaritas = indirizzoCaritas;
         this.tipologia = tipologia;
         this.recapitoTelefonico = recapitoTelefonico;
         this.email = email;
-        this.città = città;
+        this.citta = citta;
     }
     
-    public String getCittà() {
-    	return città;
+    public String getCitta() {
+    	return citta;
     }
     
-    public void setCittà( String newcity) {
-    	this.città = newcity;
+    public void setCitta( String newcity) {
+    	this.citta = newcity;
     }
 
     public int getID() {
@@ -91,8 +91,8 @@ public class CaritasUser {
         this.email = email;
     }
 
-    public String getTABLE_NAME() {
-        return TABLE_NAME;
+    public String getTableName() {
+        return tableName;
     }
 
     @Override

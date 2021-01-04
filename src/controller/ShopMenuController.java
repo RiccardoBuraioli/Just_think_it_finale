@@ -1,31 +1,22 @@
 package controller;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
-
-
-
-
 
 public class ShopMenuController {
 	Stage primary;
 	
 
-   public void CercaCaritas(ActionEvent event) {
+   public void cercaCaritas() {
     	RicercaCaritasNegozioController Rcnc = new RicercaCaritasNegozioController();
     	Rcnc.showStage();
     }
 
  
-    public void GestEventi(ActionEvent event) {
+    public void gestEventi() {
     	
     	try {
     		 FXMLLoader loader = new FXMLLoader(getClass().getResource("../boundary/Gestisci_eventi.fxml"));
@@ -46,12 +37,13 @@ public class ShopMenuController {
     }
 
   
-   public void Indietro(ActionEvent event) {
-
+   public void indietro() {
+	   //altro back
+	   
     }
 
    
-   public void ModInfo(ActionEvent event) {
+   public void modInfo() {
 
     }
 

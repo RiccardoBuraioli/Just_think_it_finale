@@ -25,6 +25,6 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="Cancella" layoutX="654.0" layoutY="336.0" mnemonicParsing="false" onAction="#CancellaDonazione" prefHeight="39.0" prefWidth="128.0" text="Cancella Donazione" />
+      <Button fx:id="cancella" layoutX="654.0" layoutY="336.0" mnemonicParsing="false" onAction="#cancellaDonazione" prefHeight="39.0" prefWidth="128.0" text="Cancella Donazione" />
    </children>
 </AnchorPane>

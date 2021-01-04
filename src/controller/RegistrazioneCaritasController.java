@@ -2,13 +2,10 @@ package controller;
 
 import entity.CaritasUser;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import bean.CaritasHomeBoundary;
 import dao.CaritasRepository;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,12 +13,12 @@ import javafx.stage.Window;
 
 public class RegistrazioneCaritasController  {
 
-	private CaritasHomeBoundary CaritasHomeBoundary;
-	private CaritasUser newUser;
+	private CaritasHomeBoundary caritasHomeBoundary;
+	
 	int tipo;
 
 	public RegistrazioneCaritasController() {
-		CaritasHomeBoundary = new CaritasHomeBoundary();
+		caritasHomeBoundary = new CaritasHomeBoundary();
 	}
 
 	public void backButtonPressed(Window event) {
@@ -41,9 +38,9 @@ public class RegistrazioneCaritasController  {
 
 	public void completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,
 		
-		String telefono, String email, String cittàdiResidenza) throws SQLException {
+		String telefono, String email, String cittadiResidenza) throws SQLException {
 	
-			newUser = new CaritasUser(nomeCaritas, passwordCaritas, via, tipo, telefono, email, cittàdiResidenza);
+		CaritasUser newUser = new CaritasUser(nomeCaritas, passwordCaritas, via, tipo, telefono, email, cittadiResidenza);
 	
 			CaritasRepository crep = new CaritasRepository();
 			int id = crep.insertCaritas(newUser);

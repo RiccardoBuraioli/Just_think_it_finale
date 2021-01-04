@@ -1,10 +1,6 @@
 package bean;
 
 import java.io.IOException;
-import java.io.Serializable;
-
-import controller.ProfileController;
-import entity.ShopUser;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +50,7 @@ public class ProfileBoundary{
 	 try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
-			UserHomeBoundary userHomeBoundary  = UserHomeBoundary.getInstance();
+			UserHomeBoundary userHomeBoundary;
 			userHomeBoundary = loader.getController();
 			userHomeBoundary.initData(getCurrentUser());
 			Stage home = (Stage) this.backHomeButton.getScene().getWindow();
@@ -70,7 +66,7 @@ public class ProfileBoundary{
 
  @FXML
  void editButtonPressed(ActionEvent event) {
-
+	 //perche si
  }
 
  public VolunteerUser getCurrentUser() {

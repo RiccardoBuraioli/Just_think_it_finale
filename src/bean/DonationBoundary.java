@@ -15,7 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class DonationBoundary implements Initializable {
+public class DonationBoundary{
 
 	@FXML
 	private RadioButton vestiti;
@@ -44,19 +44,13 @@ public class DonationBoundary implements Initializable {
 	}
 	
 	
-	
-	@FXML
-	void Back(MouseEvent event) {
-
-	}
-
 	@FXML
 	public void creaDonazione(ActionEvent event) {
 
 		checker();		
 		controller.setIndirizzo(this.indirizzo.getText());
 		controller.setDescrizione(this.descrizione.getText());
-		int error = controller.creaDonazione();
+		controller.creaDonazione();
 		Stage st = (Stage) donazione.getScene().getWindow();
 		st.close();
 		
@@ -65,7 +59,7 @@ public class DonationBoundary implements Initializable {
 	}
 	
 
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(ResourceBundle resources) {
 		textFields = new TextField[] { indirizzo };
 		
 	}
@@ -79,15 +73,12 @@ public int checker() {
 				
 				return -1;
 			}
-		//	else if (type.isSelected() || type2.isSelected()) {
 			else if(cibo.isSelected()) {
 				controller.setTipologia(2);
 	    		//Almeno uno dei tipi deve essere selezionato
 			}else if(vestiti.isSelected()) {
 				controller.setTipologia(1);
 				//Almeno uno dei tipi deve essere selezionato
-			}else {
-		
 			}
 		}
 		return 0;
@@ -97,6 +88,7 @@ public int checker() {
 	public void initBoundary(int idCar, int idUte) {
 		controller.initController(idCar, idUte);
 	}
+
 
 
 
