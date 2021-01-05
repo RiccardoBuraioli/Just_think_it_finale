@@ -19,11 +19,8 @@ public class GestisciEventiController {
 	
 	
 	public List<eventTab> caricaEventi(int idShop){
-		
-		List<eventTab> listaEv = eventDao.cercaEventi(idShop);
-		
-		
-		return listaEv;
+	
+		return eventDao.cercaEventi(idShop);
 		
 	}
 	

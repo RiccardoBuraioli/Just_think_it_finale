@@ -97,8 +97,6 @@ public class RegistraCaritasBoundary implements Initializable {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
-			CaritasHomeBoundary caritasHomeBoundary = loader.getController();
-
 			Stage home = (Stage) completaButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 

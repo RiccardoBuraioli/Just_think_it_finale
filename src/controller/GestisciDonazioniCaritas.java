@@ -28,8 +28,7 @@ public class GestisciDonazioniCaritas {
 	
 	
 	public List<DonazioneTab> visualizzaDonazioni(int idCar){
-		List<DonazioneTab> listDon= donDao.visualizzaDonazioni(idCar);
-		return listDon;
+		return donDao.visualizzaDonazioni(idCar);
 	}
 	
 	

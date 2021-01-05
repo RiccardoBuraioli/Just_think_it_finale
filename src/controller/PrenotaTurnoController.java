@@ -47,19 +47,14 @@ public class PrenotaTurnoController {
 	}
 
 	public String[] inizializzaGiorni() {
-		String[] giorni = new String[8];
-
-		checkTurniPossibili = new PrenotaDao();
-		giorni = checkTurniPossibili.visualizzaGiorni();
-		return giorni;
+		checkTurniPossibili = new PrenotaDao();		
+		return checkTurniPossibili.visualizzaGiorni();
 	}
 
 	
 	public  List<Orario> initializzaOrari() {
 		
-		List<Orario> oraArrayList = checkTurniPossibili.visualizzaOrario();
-		
-		return oraArrayList;
+		return  checkTurniPossibili.visualizzaOrario();
 
 	}
 }

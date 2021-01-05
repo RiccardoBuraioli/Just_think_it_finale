@@ -52,8 +52,7 @@ public class DonationController {
 	}
 
 	public int creaDonazione() {
-		int error = donazioneDao.creaDonazione(donazione);
-		return error;
+		return donazioneDao.creaDonazione(donazione);
 	}
 
 }

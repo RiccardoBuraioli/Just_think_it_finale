@@ -12,11 +12,8 @@ public class GestisciEventiCaritasController {
 	
 	
 public List<eventTab> caricaEventi(int idCaritas){
-		
-	List<eventTab> listaEv = this.eventDao.cercaEventiCaritas(idCaritas);
-		
-		
-		return listaEv;
+	
+		return this.eventDao.cercaEventiCaritas(idCaritas);
 		
 	}
 	

@@ -23,8 +23,7 @@ public class EmailController {
     
     public String[] loadMittenteDestinatario(int idDest, int idMit) {
     	emailDao = new EmailDao();
-    	String[] emailList = emailDao.visualizzaMittenteDestinatario(idDest, idMit);
-    	return emailList;
+    	return emailDao.visualizzaMittenteDestinatario(idDest, idMit);
     	
     }
     

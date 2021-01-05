@@ -35,11 +35,8 @@ public class GestioneTurniCaritas {
 	
 	
 	public List<TurnoTab> caricaTurni(int idCaritas) {
-
-		List<TurnoTab> list = this.turniDao.visualizzaTurni(idCaritas);
-		
-		
-		return list;
+	
+		return this.turniDao.visualizzaTurni(idCaritas);
 	}
 
 }

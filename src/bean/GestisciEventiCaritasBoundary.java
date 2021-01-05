@@ -51,13 +51,13 @@ public class GestisciEventiCaritasBoundary {
 		    private TableColumn<eventTab, String> stato;
 
 		    @FXML
-		    private Button CancellaEvento;
+		    private Button cancellaEvento;
 
 		    @FXML
-		    private Button ModificaEvento;
+		    private Button modificaEvento;
 
 		    @FXML
-		    private Button ContattaNegozio;
+		    private Button contattaNegozio;
 
 		    @FXML
 		    private Button back;

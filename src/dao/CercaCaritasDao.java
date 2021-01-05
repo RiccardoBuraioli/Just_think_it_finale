@@ -15,7 +15,9 @@ import connector.Connector;
 public class CercaCaritasDao {
 	
 	private final Connector connector;
-	 
+	private String lati = "latitudine";
+	private String longi = "longitudine";
+	
 	 public CercaCaritasDao() {
 		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
 		}
@@ -37,8 +39,8 @@ public class CercaCaritasDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				double lati = Double.parseDouble(rs.getString("latitudine"));
-				double longi = Double.parseDouble(rs.getString("longitudine"));
+				double lati = Double.parseDouble(rs.getString(this.lati));
+				double longi = Double.parseDouble(rs.getString(this.longi));
 				Coordinate caritasCoordinate = new Coordinate(lati,longi);
 				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritasCoordinate));
 				markerC.setID(count,  rs.getInt("CodiceCaritas"));
@@ -78,7 +80,7 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
-	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
 	        	 markerEvento[count] = Marker.createProvided(Marker.Provided.BLUE).setPosition(eventoCoordinate);
 	        	
 	        	 count++;
@@ -112,7 +114,7 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
-	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
 	        	 markerDonazione[count] = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazioneCoordinate);
 	        	 
 	        	 count++;

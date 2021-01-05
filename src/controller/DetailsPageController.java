@@ -10,12 +10,7 @@ import javafx.stage.Window;
 
 public class DetailsPageController {
 	
-    
-    public DetailsPageController() {
-    	
-    }
-    
-    
+
     
   
     public void backButtonDettagliPressed(Window window) {

@@ -2,7 +2,6 @@ package bean;
 
 import java.io.IOException;
 
-import controller.RegistrazioneMenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

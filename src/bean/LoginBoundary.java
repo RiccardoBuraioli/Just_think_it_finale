@@ -27,7 +27,7 @@ public class LoginBoundary implements Serializable {
 	private UserHomeBoundary userHomeBoundary;
 	private ShopHomeBoundary shopHomeBoundary;
 	private static LoginBoundary instance = null;
-	private CaritasHomeBoundary CaritasHomeBoundary;
+	private CaritasHomeBoundary caritasHomeBoundary;
 	
 	public static LoginBoundary getInstance() {
 		if(instance == null) {
@@ -73,9 +73,9 @@ public class LoginBoundary implements Serializable {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
-			CaritasHomeBoundary = CaritasHomeBoundary.getInstance();
-			CaritasHomeBoundary = loader.getController();
-			CaritasHomeBoundary.initData((CaritasUser)loggedUser);
+			caritasHomeBoundary = caritasHomeBoundary.getInstance();
+			caritasHomeBoundary = loader.getController();
+			caritasHomeBoundary.initData((CaritasUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			

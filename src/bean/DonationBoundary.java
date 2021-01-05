@@ -1,14 +1,11 @@
 package bean;
 
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.DonationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -59,7 +56,7 @@ public class DonationBoundary{
 	}
 	
 
-	public void initialize(ResourceBundle resources) {
+	public void initialize() {
 		textFields = new TextField[] { indirizzo };
 		
 	}

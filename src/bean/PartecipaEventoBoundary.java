@@ -1,6 +1,5 @@
 package bean;
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.PartecipaEventoController;
@@ -64,7 +63,7 @@ public class PartecipaEventoBoundary {
 	    }
 	    
 	    
-		public void initialize(ResourceBundle resources) {
+		public void initialize() {
 			
 			
 			textFields = new TextField[] {importo, cdc};

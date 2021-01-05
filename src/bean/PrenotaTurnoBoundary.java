@@ -28,7 +28,7 @@ public class PrenotaTurnoBoundary {
 	    private URL location;
 
 	    @FXML
-	    private ChoiceBox<String> Turni;
+	    private ChoiceBox<String> turni;
 
 	    @FXML
 	    private ChoiceBox<String> cbOraInizio;
@@ -49,7 +49,7 @@ public class PrenotaTurnoBoundary {
 	    @FXML
 	    void prenotaTurno(ActionEvent event) { 
 		
-	    	prenotaC.prenotaTurno(Turni.getValue().toString(), cbOraInizio.getValue().toString(), cbOraFine.getValue().toString(), cv.getText());
+	    	prenotaC.prenotaTurno(turni.getValue().toString(), cbOraInizio.getValue().toString(), cbOraFine.getValue().toString(), cv.getText());
 	    	Stage st = (Stage) prenota.getScene().getWindow();
 	    	st.close();
 		}
@@ -60,7 +60,7 @@ public class PrenotaTurnoBoundary {
 			//Controlla che non ci siano campi lasciati vuoti
 	    	
 				if (cv.getText().isEmpty()) {
-					
+					System.out.println("riprova");
 					return false;
 				}else {
 			return true;
@@ -72,14 +72,14 @@ public class PrenotaTurnoBoundary {
 	    void initialize() {
 	    	prenotaC = new PrenotaTurnoController();
 	    	
-	    	String[] giorni = new String[8];
+	    	String[] giorni;
 		
 	    	
 	    	giorni = prenotaC.inizializzaGiorni();
 	   
 	    	
 	    	for(int i=0; i<8; i++) {
-	    		Turni.getItems().add(giorni[i]);
+	    		turni.getItems().add(giorni[i]);
 	    	}
 	    	
 	    	

@@ -70,7 +70,7 @@ public class GestisciTurniBoundary {
 	    
 	    private CaritasHomeBoundary caritasHomeBoundary;
 	    
-	    private boolean check;
+	   
 	    
 	    public GestisciTurniBoundary() {
 	    	this.gestTurn = new GestioneTurniCaritas();
@@ -79,7 +79,7 @@ public class GestisciTurniBoundary {
 	    
 	    @FXML
 	    void cancellaTurno(ActionEvent event) {
-	    	check = gestTurn.cancellaTurno(turn.getId());
+	    	gestTurn.cancellaTurno(turn.getId());
 	    }
 
 	    @FXML

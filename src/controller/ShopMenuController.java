@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,8 +10,8 @@ public class ShopMenuController {
 	
 
    public void cercaCaritas() {
-    	RicercaCaritasNegozioController Rcnc = new RicercaCaritasNegozioController();
-    	Rcnc.showStage();
+    	RicercaCaritasNegozioController rcnc = new RicercaCaritasNegozioController();
+    	rcnc.showStage();
     }
 
  
@@ -44,7 +43,7 @@ public class ShopMenuController {
 
    
    public void modInfo() {
-
+	   //vedremo
     }
 
 	

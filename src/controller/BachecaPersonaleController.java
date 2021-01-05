@@ -10,7 +10,7 @@ public class BachecaPersonaleController {
 	
 	private BachecaDao bacheca;
 
-	private List<Necessita> necessita;
+
 
 	
 	
@@ -32,7 +32,7 @@ public class BachecaPersonaleController {
 		
 		bacheca = new BachecaDao();
 		BachecaEntity bachecaE = new BachecaEntity();
-		necessita = bacheca.visualizzaNecessita(idCar);
+		List<Necessita> necessita = bacheca.visualizzaNecessita(idCar);
 		bachecaE.setNecessita(necessita);
 	
 		return necessita;

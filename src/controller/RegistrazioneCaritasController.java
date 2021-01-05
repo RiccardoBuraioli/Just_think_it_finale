@@ -12,13 +12,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class RegistrazioneCaritasController  {
-
-	private CaritasHomeBoundary caritasHomeBoundary;
 	
 	int tipo;
 
 	public RegistrazioneCaritasController() {
-		caritasHomeBoundary = new CaritasHomeBoundary();
 	}
 
 	public void backButtonPressed(Window event) {

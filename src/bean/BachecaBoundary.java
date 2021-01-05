@@ -32,7 +32,7 @@ public class BachecaBoundary {
 	@FXML
 	private TextArea vestiti;
 	
-	private List<Necessita> necessita;
+	
 	
 	
 	@FXML
@@ -102,7 +102,7 @@ public class BachecaBoundary {
 		this.idCar = idCar;
 		this.idUte = idUte;
 		BachecaController bachecaController = new BachecaController();
-		necessita = bachecaController.loadForm(idCar, idUte);
+		List<Necessita> necessita = bachecaController.loadForm(idCar);
 		
 		
 		for (int i = 0; i < necessita.size(); i++) {
