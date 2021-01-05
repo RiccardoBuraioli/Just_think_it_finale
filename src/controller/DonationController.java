@@ -27,7 +27,7 @@ public class DonationController {
 
 	
 	public void initController(int idCar, int idUt) {
-		this.donazione.setId_caritas(idCar);
+		this.donazione.setIdCaritas(idCar);
 		this.donazione.setId_utente(idUt);
 	}
 

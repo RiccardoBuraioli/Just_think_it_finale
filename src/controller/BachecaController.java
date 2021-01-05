@@ -16,7 +16,7 @@ public class BachecaController  {
 		BachecaEntity bachecaEntity = new BachecaEntity();
 		necessita = bacheca.visualizzaNecessita(idCar);
 		bachecaEntity.setNecessita(necessita);
-		return bachecaEntity.getNecessità();
+		return bachecaEntity.getNecessita();
 			
 		
 		}

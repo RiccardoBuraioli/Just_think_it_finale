@@ -13,7 +13,7 @@ public class VolunteerUser {
     private String cartaDiCredito;
     private String nascita;
     private String citta;
-    private final String tableName = "volontari";
+    private static String tableName = "volontari";
 
     public VolunteerUser() {
     	 this.nome = "";

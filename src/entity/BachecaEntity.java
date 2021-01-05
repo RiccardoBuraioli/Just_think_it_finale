@@ -10,10 +10,10 @@ public class BachecaEntity {
 	public int getIdCaritas() {
 		return idCaritas;
 	}
-	public void setIdCaritas(int id_caritas) {
-		this.idCaritas = id_caritas;
+	public void setIdCaritas(int idCaritas) {
+		this.idCaritas = idCaritas;
 	}
-	public List<Necessita> getNecessità() {
+	public List<Necessita> getNecessita() {
 		return necessita;
 	}
 	public void setNecessita(List<Necessita> necessita) {

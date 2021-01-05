@@ -10,7 +10,7 @@ public class CaritasUser {
     private String recapitoTelefonico;
     private String email;
     private String citta;
-    private static final String tableName = "caritas";
+    private static String tableName = "caritas";
 
 
     public CaritasUser() {

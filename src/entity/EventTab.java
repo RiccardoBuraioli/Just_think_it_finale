@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class eventTab {
+public class EventTab {
 	
 	private SimpleIntegerProperty id;
 	private SimpleStringProperty nomeEvento;
@@ -25,7 +25,7 @@ public class eventTab {
 	
 	
 	
-	public eventTab(int id, String nomeEvento, String noteEvento, float prezzoEvento,
+	public EventTab(int id, String nomeEvento, String noteEvento, float prezzoEvento,
 			String nomeNegozio, float importoRaggiunto, int numPart,  int codiceNeg, String stato) {
 		this.id = new SimpleIntegerProperty(id);
 		this.statoEvento = new SimpleStringProperty(stato);
@@ -44,7 +44,7 @@ public class eventTab {
 		
 	}
 
-	public eventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento,
+	public EventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento,
 			float importoRaggiunto, int numPartecipanti, int idCaritas, String complet) {
 		this.nomeEvento = new SimpleStringProperty(nomeEvento);
 		this.nomeCaritas = new SimpleStringProperty(nomeCaritas);

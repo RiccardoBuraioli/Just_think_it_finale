@@ -18,7 +18,7 @@ public class Evento {
 		
 		this.nomeEvento = new SimpleStringProperty(nomeEvento);
 		this.tipoEvento = tipoEvento;
-		
+		this.noteEvento = noteEvento;
 		this.prezzoEvento = prezzoEvento;
 		this.idNegozio = idNegozio;
 		this.coord = coord;
@@ -65,12 +65,12 @@ public class Evento {
 		 this.coord = coordinate;
 	}
 
-	public int getId_caritas() {
+	public int getIdCaritas() {
 		return idCaritas;
 	}
 
-	public void setId_caritas(int id_caritas) {
-		this.idCaritas = id_caritas;
+	public void setIdCaritas(int idCaritas) {
+		this.idCaritas = idCaritas;
 	}
 	
 	

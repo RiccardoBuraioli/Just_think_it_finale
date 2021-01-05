@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
 
-import entity.markerID;
+import entity.MarkerID;
 import connector.Connector;
 
 
@@ -24,12 +24,12 @@ public class CercaCaritasDao {
 
 	 
 	
-	public markerID assegnaMarker() {
+	public MarkerID assegnaMarker() {
 		
 		String sql = "Call assegna_marker()";
 		ResultSet rs = null;
 		int count = 0;
-		markerID markerC = new markerID();
+		MarkerID markerC = new MarkerID();
 
 		
 		try (Connection conn = connector.getConnection();

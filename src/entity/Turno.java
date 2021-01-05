@@ -15,8 +15,8 @@ public class Turno {
 		this.idTurno = 0;
 	}
 	
-	public Turno(String Giorno, String oraIn, String oraFin) {
-		this.giorno = Giorno;
+	public Turno(String giorno, String oraIn, String oraFin) {
+		this.giorno = giorno;
 		this.oraFine = oraFin;
 		this.oraInizio = oraIn;
 	

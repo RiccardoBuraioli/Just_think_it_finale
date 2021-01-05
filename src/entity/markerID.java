@@ -8,18 +8,18 @@ import com.sothawo.mapjfx.Marker;
 
 
 
-public class markerID{
+public class MarkerID{
 	private Marker[] markerCarita = {null,null,null,null,null,null,null};
-	private int id[] = {0,0,0,0,0,0,0,0};
+	private int[] id = {0,0,0,0,0,0,0,0};
 	
 	
-	public markerID(Marker[] caritas, int idCaritas[]) {
+	public MarkerID(Marker[] caritas, int[] idCaritas) {
 		this.markerCarita = caritas;
 		this.id = idCaritas;
 				
 	}
 
-	public markerID() {
+	public MarkerID() {
 		
 	}
 

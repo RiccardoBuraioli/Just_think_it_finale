@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import dao.EventoDao;
-import entity.eventTab;
+import entity.EventTab;
 
 public class GestisciEventiCaritasController {
 
@@ -11,7 +11,7 @@ public class GestisciEventiCaritasController {
 	
 	
 	
-public List<eventTab> caricaEventi(int idCaritas){
+public List<EventTab> caricaEventi(int idCaritas){
 	
 		return this.eventDao.cercaEventiCaritas(idCaritas);
 		

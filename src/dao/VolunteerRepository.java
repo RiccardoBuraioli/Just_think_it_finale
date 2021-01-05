@@ -18,7 +18,7 @@ public class VolunteerRepository {
 
 
     public VolunteerRepository() {
-    	 this.connector= new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");;
+    	 this.connector= new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
     public List<VolunteerUser> getAllVolunteers() {

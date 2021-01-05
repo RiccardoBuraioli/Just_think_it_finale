@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import connector.Connector;
-import entity.eventTab;
+import entity.EventTab;
 import entity.Evento;
 import entity.PartecipaEvento;
 
@@ -16,7 +16,7 @@ public class EventoDao {
 
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
-    private List<eventTab> listEv;
+    private List<EventTab> listEv;
 
 
     private final Connector connector;
@@ -28,7 +28,7 @@ public class EventoDao {
     }
 	
     
-    public List<eventTab> cercaEventi(int idShop){
+    public List<EventTab> cercaEventi(int idShop){
 
 	   	String sql = "call visualizza_tuoi_eventi(?) ";
 		ResultSet res = null;
@@ -38,7 +38,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new eventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
+	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {
@@ -59,7 +59,7 @@ public class EventoDao {
     }
 	
     
-    public List<eventTab> cercaEventiCaritas(int idCar){
+    public List<EventTab> cercaEventiCaritas(int idCar){
 
 	   	String sql = "call visualizza_eventi_caritas(?) ";
 	 
@@ -70,7 +70,7 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new eventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
+	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
 	        	  
 	           }
 	       } catch (SQLException ex) {

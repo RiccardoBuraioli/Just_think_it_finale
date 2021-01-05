@@ -34,7 +34,7 @@ import bean.PrenotaTurnoBoundary;
 //import connector.Connector;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
-import entity.markerID;
+import entity.MarkerID;
 //import javafx.animation.AnimationTimer;
 //	import javafx.animation.Transition;
 	import javafx.beans.binding.Bindings;
@@ -122,7 +122,7 @@ import java.sql.SQLException;
 
 	    /** the markers. */
 	    
-	    markerID markerC = new markerID();
+	    MarkerID markerC = new MarkerID();
 	    
 	    public Marker[] markerCaritas = {null,null,null,null,null,null,null};
 	    int[] IdCaritaList;

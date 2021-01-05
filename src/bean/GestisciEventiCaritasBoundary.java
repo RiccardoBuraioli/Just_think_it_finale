@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.GestisciEventiCaritasController;
 import entity.CaritasUser;
-import entity.eventTab;
+import entity.EventTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,30 +25,30 @@ public class GestisciEventiCaritasBoundary {
 		private GestisciEventiCaritasController gestEventC;
 		private int idCar;
 		
-		private eventTab event;
+		private EventTab event;
 		private CaritasUser caritas;
 		private CaritasHomeBoundary caritasHomeBoundary;
 	
 		 @FXML
-		    private TableView<eventTab> tab;
+		    private TableView<EventTab> tab;
 
 		    @FXML
-		    private TableColumn<eventTab, String> nomeEvento;
+		    private TableColumn<EventTab, String> nomeEvento;
 
 		    @FXML
-		    private TableColumn<eventTab, String> nomeNegozio;
+		    private TableColumn<EventTab, String> nomeNegozio;
 
 		    @FXML
-		    private TableColumn<eventTab, String> noteEvento;
+		    private TableColumn<EventTab, String> noteEvento;
 
 		    @FXML
-		    private TableColumn<eventTab, Float> importo;
+		    private TableColumn<EventTab, Float> importo;
 
 		    @FXML
-		    private TableColumn<eventTab, Integer> numPartecipanti;
+		    private TableColumn<EventTab, Integer> numPartecipanti;
 		    
 		    @FXML
-		    private TableColumn<eventTab, String> stato;
+		    private TableColumn<EventTab, String> stato;
 
 		    @FXML
 		    private Button cancellaEvento;
@@ -136,9 +136,9 @@ public class GestisciEventiCaritasBoundary {
 		
 		public void loadShop(int idCar) {
 			this.idCar = idCar;
-			 List<eventTab> listEv = gestEventC.caricaEventi(this.idCar);
+			 List<EventTab> listEv = gestEventC.caricaEventi(this.idCar);
 
-			ObservableList<eventTab> data = FXCollections.observableArrayList(listEv);
+			ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);
 			nomeEvento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
 			importo.setCellValueFactory(new PropertyValueFactory<>("rapportoDenaro"));
 			nomeNegozio.setCellValueFactory(new PropertyValueFactory<>("NomeNegozio"));

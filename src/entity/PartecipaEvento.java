@@ -10,7 +10,7 @@ public class PartecipaEvento {
 	
 	
 	public PartecipaEvento(int codicePart,int codiceEvento,int codiceVolontario,float importo) {
-		this.codicePart = codicePart;
+		this.setCodicePart(codicePart);
 		this.codiceEvento = codiceEvento;
 		this.codiceVolontario = codiceVolontario;
 		this.importo = importo;
@@ -54,5 +54,11 @@ public class PartecipaEvento {
 	
 	public void setImport(float importo) {
 		this.importo = importo;
+	}
+	public int getCodicePart() {
+		return this.codicePart;
+	}
+	public void setCodicePart(int codicePart) {
+		this.codicePart = codicePart;
 	}
 }

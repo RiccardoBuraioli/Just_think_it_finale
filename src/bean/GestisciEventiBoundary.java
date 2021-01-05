@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.GestisciEventiController;
-import entity.eventTab;
+import entity.EventTab;
 import entity.ShopUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +27,7 @@ public class GestisciEventiBoundary {
 	private GestisciEventiController gestEventC;
 	private int idShop;
 	
-	private eventTab event;
+	private EventTab event;
 	private ShopUser shop;
 	private ShopHomeBoundary shopHomeBoundary;
 	
@@ -41,20 +41,20 @@ public class GestisciEventiBoundary {
 	private Button caritas;
 
 	@FXML
-	private TableView<eventTab> table;
+	private TableView<EventTab> table;
 
 	@FXML
-	private TableColumn<eventTab, String> nomeEvento;
+	private TableColumn<EventTab, String> nomeEvento;
 
 	@FXML
-	private TableColumn<eventTab, String> nomeCaritas;
+	private TableColumn<EventTab, String> nomeCaritas;
 	 @FXML
-	 private TableColumn<eventTab, Integer> noteEvento;
+	 private TableColumn<EventTab, Integer> noteEvento;
 
 	@FXML
-	private TableColumn<eventTab, Integer> numPartecipanti;
+	private TableColumn<EventTab, Integer> numPartecipanti;
 	@FXML
-	private TableColumn<eventTab, Float> importo;
+	private TableColumn<EventTab, Float> importo;
 	  @FXML
 	    private Button modificaE;
 
@@ -146,9 +146,9 @@ public class GestisciEventiBoundary {
 
 	public void loadShop(int idShop) {
 		this.idShop = idShop;
-		List<eventTab> listEv = gestEventC.caricaEventi(this.idShop);
+		List<EventTab> listEv = gestEventC.caricaEventi(this.idShop);
 
-		ObservableList<eventTab> data = FXCollections.observableArrayList(listEv);
+		ObservableList<EventTab> data = FXCollections.observableArrayList(listEv);
 		nomeEvento.setCellValueFactory(new PropertyValueFactory<>("NomeEvento"));
 		importo.setCellValueFactory(new PropertyValueFactory<>("rapportoDenaro"));
 		nomeCaritas.setCellValueFactory(new PropertyValueFactory<>("NomeCaritas"));

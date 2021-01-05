@@ -10,7 +10,7 @@ public class ShopUser {
     private String recapitoTelefonico;
     private String email;
     private String citta;
-    private static final String tableName = "negozi";
+    private static String tableName = "negozi";
 
    
     public ShopUser(String nomeShop, String password, String indirizzoShop, String tipologia, String recapitoTelefonico, String email, String citta) {
