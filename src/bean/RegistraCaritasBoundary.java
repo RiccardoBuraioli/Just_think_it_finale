@@ -87,7 +87,16 @@ public class RegistraCaritasBoundary implements Initializable {
 
 	@FXML
 	void backButtonPressed(ActionEvent event) {
-		regController.backButtonPressed(backButton.getScene().getWindow());
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
+			Stage signUp = (Stage) backButton.getScene().getWindow();
+			Scene scene = new Scene(root, 600, 400);
+			signUp.setScene(scene);
+			signUp.show();
+			signUp.setResizable(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 

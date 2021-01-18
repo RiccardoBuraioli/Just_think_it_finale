@@ -178,8 +178,8 @@ public class CaritasHomeBoundary {
 
     		
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
 	}
 
 	

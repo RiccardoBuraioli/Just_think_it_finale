@@ -1,5 +1,9 @@
 package application;
 	
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import bean.CaritasHomeBoundary;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -7,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
+	private static Logger logger = LoggerFactory.getLogger(Main.class.getName());
+
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -15,7 +22,7 @@ public class Main extends Application {
 	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("errore nel main");
 		}
 	}
 	

@@ -13,23 +13,6 @@ import javafx.stage.Window;
 public class RegistrazioneVolontarioController {
 
 
-   
-   public void backButtonPressed(Window event) {
-    	
-	    try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) event.getScene().getWindow();
-			Scene scene = new Scene(root,600,400);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-    }
-
-
    public VolunteerUser completaButtonPressed( String nome, String cognome, String passwordVolontario, String via, String telefono, String email, String date2, String cittadiResidenza) {
 
     		

@@ -18,20 +18,6 @@ public class RegistrazioneCaritasController  {
 	public RegistrazioneCaritasController() {
 	}
 
-	public void backButtonPressed(Window event) {
-
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) event.getScene().getWindow();
-			Scene scene = new Scene(root, 600, 400);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public void completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,
 		
