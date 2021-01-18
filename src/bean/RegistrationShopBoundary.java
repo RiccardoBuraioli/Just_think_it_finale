@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 public class RegistrationShopBoundary implements Initializable{
 	private RegistrationShopManagerController regNeg;
 	private static Logger logger = LoggerFactory.getLogger(RegistrationShopBoundary.class.getName());
-
+	private String s = "error IoException";
 	private TextField[] textFields;	
 	private String tipo;
 	
@@ -94,7 +94,7 @@ public class RegistrationShopBoundary implements Initializable{
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 		}
 
     }
@@ -119,7 +119,7 @@ public class RegistrationShopBoundary implements Initializable{
 
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 		}
     }
     

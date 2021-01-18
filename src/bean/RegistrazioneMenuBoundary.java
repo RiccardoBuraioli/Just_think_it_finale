@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class RegistrazioneMenuBoundary {
 	
 	private static Logger logger = LoggerFactory.getLogger(RegistrazioneMenuBoundary.class.getName());
-
+	private String s = "error IoException";
     @FXML
     private Button caritasButton;
 
@@ -49,7 +49,7 @@ public class RegistrazioneMenuBoundary {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 		}
     }
 
@@ -64,7 +64,7 @@ public class RegistrazioneMenuBoundary {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 			}
     	
 	    }
@@ -79,7 +79,7 @@ public class RegistrazioneMenuBoundary {
    			signUp.show();
    			signUp.setResizable(false);
    			} catch (IOException e) {
-   				logger.error("errore IoException");
+   				logger.error(s);
    				}     
     	}
 
@@ -93,7 +93,7 @@ public class RegistrazioneMenuBoundary {
     			signUp.show();
     			signUp.setResizable(false);
     		} catch (IOException e) {
-    			logger.error("errore IoException");
+    			logger.error(s);
     		}
     }
 
@@ -107,7 +107,7 @@ public class RegistrazioneMenuBoundary {
   			signUp.show();
   			signUp.setResizable(false);
   		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
   		}
 
       
@@ -123,7 +123,7 @@ public class RegistrazioneMenuBoundary {
   			signUp.show();
   			signUp.setResizable(false);
   		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
   		}
     }
 
@@ -137,7 +137,7 @@ public class RegistrazioneMenuBoundary {
  			signUp.show();
  			signUp.setResizable(false);
  		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
  		}
     }
 

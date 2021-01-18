@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 
 public class GestisciTurniBoundary {
 	private static Logger logger = LoggerFactory.getLogger(GestisciTurniBoundary.class.getName());
-
+	private String s = "errore IoException";
 		@FXML
 		private TextArea newNote;
   
@@ -101,7 +101,7 @@ public class GestisciTurniBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
 
 	    	
 	    	
@@ -127,7 +127,7 @@ public class GestisciTurniBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
 
 	    	
 	    }

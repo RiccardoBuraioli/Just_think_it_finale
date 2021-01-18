@@ -38,6 +38,7 @@ public class CaritasHomeBoundary {
 	private int currentImage = 0;
 	private  static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
+	private String s = "errore IoException";
 
 	private CaritasUser currentUser;
 	private GestisciTurniBoundary gestTurn;
@@ -130,7 +131,7 @@ public class CaritasHomeBoundary {
     		stage.show();
     		
     				} catch (IOException e) {
-    					logger.error("errore IoException"); }
+    					logger.error(s); }
 	}
 
 	@FXML
@@ -152,7 +153,7 @@ public class CaritasHomeBoundary {
     		stage.show();
     		
     				} catch (IOException e) {
-    					logger.error("errore IoException"); }
+    					logger.error(s); }
 		}
 		
 		
@@ -178,7 +179,7 @@ public class CaritasHomeBoundary {
 
     		
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
 	}
 
@@ -199,7 +200,7 @@ public class CaritasHomeBoundary {
 
     		
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 		}
 	
 	
@@ -235,7 +236,7 @@ public class CaritasHomeBoundary {
     			home.setScene(new Scene(root, 600, 385));
     			home.show();
     		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
     		}
         	
     	}    					

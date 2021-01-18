@@ -14,8 +14,7 @@ import javafx.stage.Stage;
 
 public class CreaNecessitaBoundary {
 
-	private static Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
-
+	
 		private String[] tipo= { "Vestiti", "Cibo" };
 		private String[] urg = {"Alta", "Normale", "Bassa"};
 
@@ -43,6 +42,8 @@ public class CreaNecessitaBoundary {
 
 	    @FXML
 	    void creaAnnuncioPressed(ActionEvent event) {
+	    	Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
+
 	    	CreaNecessitaController creaNec = new CreaNecessitaController();
 	    	creaNec.inizializza(idCaritas);
 	    	int i = creaNec.creaNecessita(tipologia.getValue().toString(), urgenza.getValue().toString(), descrizione.getText());

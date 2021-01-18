@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 
 public class ProfileBoundary{
-	private static Logger logger = LoggerFactory.getLogger(ProfileBoundary.class.getName());
 
 	
 	private VolunteerUser currentUser;
@@ -53,6 +52,8 @@ public class ProfileBoundary{
 
 @FXML  
  void backHomeButtonPressed(ActionEvent event) {
+	Logger logger = LoggerFactory.getLogger(ProfileBoundary.class.getName());
+
 	 try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();

@@ -28,7 +28,7 @@ public class GestisciEventiCaritasBoundary {
 
 		private GestisciEventiCaritasController gestEventC;
 		private int idCar;
-		
+		private String s = "errore IoException";
 		private EventTab event;
 		private CaritasUser caritas;
 		private CaritasHomeBoundary caritasHomeBoundary;
@@ -90,7 +90,7 @@ public class GestisciEventiCaritasBoundary {
 		 			
 		 			home.show();
 		 		} catch (IOException e) {
-					logger.error("errore IoException"); }
+					logger.error(s); }
 
 		    	
 		    }
@@ -117,7 +117,7 @@ public class GestisciEventiCaritasBoundary {
 		    		
 		    		
 	    		} catch (IOException e) {
-					logger.error("errore IoException"); }
+					logger.error(s); }
 
 		    }
 

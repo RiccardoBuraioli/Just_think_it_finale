@@ -23,7 +23,7 @@ public class LoginBoundary {
 
 
 	private static Logger logger = LoggerFactory.getLogger(LoginBoundary.class.getName());
-
+	private String s = "errore IoException";
 	
 	private LoginController loginC = new LoginController();
 
@@ -70,7 +70,7 @@ public class LoginBoundary {
 			
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException"); 
+			logger.error(s); 
 			}
    		
    	}else if(loggedUser.getClass()==CaritasUser.class) {
@@ -85,7 +85,7 @@ public class LoginBoundary {
 			
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException"); 
+			logger.error(s); 
 
 		}
    	}else if(loggedUser.getClass()==ShopUser.class) {
@@ -100,7 +100,7 @@ public class LoginBoundary {
 			
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
    	}
     	
@@ -118,7 +118,7 @@ public class LoginBoundary {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
     	
     }

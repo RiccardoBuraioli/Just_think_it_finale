@@ -13,12 +13,12 @@ import javafx.stage.Window;
 
 public class DetailsPageBoundary {
 	
-	private static Logger logger = LoggerFactory.getLogger(DetailsPageBoundary.class.getName());
 
     
   
     public void backButtonDettagliPressed(Window window) {
-    	
+    	Logger logger = LoggerFactory.getLogger(DetailsPageBoundary.class.getName());
+
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
 			Stage signUp = (Stage) window.getScene().getWindow();

@@ -27,6 +27,7 @@ public class RegistraCaritasBoundary implements Initializable {
 
 	private static Logger logger = LoggerFactory.getLogger(RegistraCaritasBoundary.class.getName());
 
+	private String s = "error IOException";
 	private RegistrazioneCaritasController regController;
 
 	private TextField[] textFields;
@@ -95,7 +96,7 @@ public class RegistraCaritasBoundary implements Initializable {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(s);
 		}
 
 	}
@@ -116,7 +117,7 @@ public class RegistraCaritasBoundary implements Initializable {
 
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 		}
 	}
 

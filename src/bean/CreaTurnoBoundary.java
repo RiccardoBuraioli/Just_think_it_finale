@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 
 public class CreaTurnoBoundary {
 
-	private static Logger logger = LoggerFactory.getLogger(CreaTurnoBoundary.class.getName());
 
 	
 	@FXML
@@ -48,6 +47,9 @@ public class CreaTurnoBoundary {
 
 	@FXML
 	void backPressed(ActionEvent event) {
+		Logger logger = LoggerFactory.getLogger(CreaTurnoBoundary.class.getName());
+
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/gestisci_turni_caritas.fxml"));
 			Parent root = loader.load();

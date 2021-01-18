@@ -35,6 +35,7 @@ public class UserHomeBoundary{
 	 * 
 	 */
 private static Logger logger = LoggerFactory.getLogger(UserHomeBoundary.class.getName());
+private String s = "error IoException";
 
 private static UserHomeBoundary instance = null;
 
@@ -125,7 +126,7 @@ private VolunteerUser currentUser;
 			
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException");
+			logger.error(s);
 		}
     }
 
@@ -164,7 +165,7 @@ private VolunteerUser currentUser;
     			home.setScene(new Scene(root, 600, 385));
     			home.show();
     		} catch (IOException e) {
-    			logger.error("errore IoException");
+    			logger.error(s);
     		}
         	
     	} else {
@@ -211,7 +212,7 @@ private VolunteerUser currentUser;
 	        
 	
 	} catch (IOException e) {
-		logger.error("errore IoException");
+		logger.error(s);
 	}
 	
   

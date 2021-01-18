@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class GestisciDonazioniBoundary {
 		private static Logger logger = LoggerFactory.getLogger(GestisciDonazioniBoundary.class.getName());
 
-	
+		private String s = "errore IOException";
 		@FXML
 	    private TableView<DonazioneTab> table;
 
@@ -86,7 +86,7 @@ public class GestisciDonazioniBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
 
 	    }
 
@@ -112,7 +112,7 @@ public class GestisciDonazioniBoundary {
 	    		
 	    		
     		} catch (IOException e) {
-    			logger.error("errore IoException"); }
+    			logger.error(s); }
 
 	    }
 

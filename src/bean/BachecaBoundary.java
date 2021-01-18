@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class BachecaBoundary {
 	private static Logger logger = LoggerFactory.getLogger(BachecaBoundary.class.getName());
-
+	private String s ="errore IoException";
 	private int idCar;
 	private int idUte;
 	
@@ -62,7 +62,7 @@ public class BachecaBoundary {
     		
     		
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
 
 	}
@@ -95,7 +95,7 @@ public class BachecaBoundary {
     		
     		
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
 		
 		

@@ -30,7 +30,7 @@ public class GestisciEventiBoundary {
 
 	private GestisciEventiController gestEventC;
 	private int idShop;
-	
+	private String s = "error IoException";
 	private EventTab event;
 	private ShopUser shop;
 	private ShopHomeBoundary shopHomeBoundary;
@@ -81,7 +81,7 @@ public class GestisciEventiBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
 	    	
 	    }
 
@@ -107,7 +107,7 @@ public class GestisciEventiBoundary {
 	    		
 	    		
     		} catch (IOException e) {
-				logger.error("errore IoException"); }
+				logger.error(s); }
 
 	    	
 	    }

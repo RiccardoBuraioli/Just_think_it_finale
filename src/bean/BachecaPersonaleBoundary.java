@@ -27,7 +27,7 @@ public class BachecaPersonaleBoundary {
 	private int idCar;
 	private BachecaPersonaleController bachecaController;
 	private static Logger logger = LoggerFactory.getLogger(BachecaPersonaleBoundary.class.getName());
-
+	private String s = "errore IoException";
 	private CaritasUser caritas;
 
 	@FXML
@@ -65,7 +65,7 @@ public class BachecaPersonaleBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
 		
 		
@@ -85,7 +85,7 @@ public class BachecaPersonaleBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			logger.error("errore IoException"); }
+			logger.error(s); }
 
 	}
 

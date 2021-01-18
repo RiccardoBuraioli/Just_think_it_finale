@@ -27,7 +27,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	private TextField[] textFields;
 	private static Logger logger = LoggerFactory.getLogger(RegistrazioneVolontarioBoundary.class.getName());
 
-
+	private String s = "error IoException";
 	    @FXML
 	    private TextField cittaRes;
 
@@ -90,7 +90,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(s);
 		}
 
 	}
@@ -113,7 +113,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
     			
     			home.show();
     		} catch (IOException e) {
-    			logger.error("errore IoException");
+    			logger.error(s);
     		}
     	
 

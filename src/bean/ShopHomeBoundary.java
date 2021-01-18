@@ -30,7 +30,7 @@ public class ShopHomeBoundary {
 	
 
 	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
-
+	private String s = "error IoException";
 	private Image img1;
 	private Image img2;
 	private Image img3;
@@ -179,7 +179,7 @@ public class ShopHomeBoundary {
     		
     		
     				} catch (IOException e) {
-    	    			logger.error("errore IoException");
+    	    			logger.error(s);
 		}
     	
     }
@@ -219,7 +219,7 @@ public class ShopHomeBoundary {
 				home.setScene(new Scene(root, 600, 385));
 				home.show();
 			} catch (IOException e) {
-    			logger.error("errore IoException");
+    			logger.error(s);
 			}
         	
     	} 
