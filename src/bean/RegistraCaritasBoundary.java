@@ -5,6 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.RegistrazioneCaritasController;
 
 import javafx.event.ActionEvent;
@@ -21,6 +24,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RegistraCaritasBoundary implements Initializable {
+
+	private static Logger logger = LoggerFactory.getLogger(RegistraCaritasBoundary.class.getName());
 
 	private RegistrazioneCaritasController regController;
 
@@ -102,7 +107,7 @@ public class RegistraCaritasBoundary implements Initializable {
 
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
 	}
 

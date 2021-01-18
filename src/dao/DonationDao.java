@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.Donazione;
 import entity.DonazioneTab;
@@ -17,7 +21,7 @@ public class DonationDao {
 
     private List<DonazioneTab> listDon;
     private final Connector connector;
-	
+    private static final Logger logger = LoggerFactory.getLogger(DonationDao.class);
 	
     
     
@@ -33,12 +37,12 @@ public class DonationDao {
              rowAffected = pstmt.executeUpdate();
 
              if (rowAffected == 1) {
-                 System.out.println(SUCCESS);
-             } else System.out.println(FAILED);
+                 logger.debug(SUCCESS);
+             } else logger.debug(FAILED);
 
 
          } catch (SQLException ex) {
-             System.out.println((ex.getMessage()));
+             logger.debug((ex.getMessage()));
       
          }
 		return false;
@@ -66,12 +70,12 @@ public class DonationDao {
                   rowAffected = pstmt.executeUpdate();
 
                   if (rowAffected == 1) {
-                      System.out.println(SUCCESS);
-                  } else System.out.println(FAILED);
+                      logger.debug(SUCCESS);
+                  } else logger.debug(FAILED);
 
 
               } catch (SQLException ex) {
-                  System.out.println((ex.getMessage()));
+                  logger.debug((ex.getMessage()));
            
               }
 			return 0;
@@ -94,12 +98,12 @@ public class DonationDao {
 	        	   listDon.add(new DonazioneTab(res.getInt("cod_dona"),res.getInt("cod_volontario"), res.getString("tipo"), res.getString("descrizione"), res.getString("IndirizzoVolontario"), res.getString("consegnato")));
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
     	
@@ -132,12 +136,12 @@ public class DonationDao {
 	             rowAffected = pstmt.executeUpdate();
 
 	             if (rowAffected == 1) {
-	                 System.out.println(SUCCESS);
-	             } else System.out.println(FAILED);
+	                 logger.debug(SUCCESS);
+	             } else logger.debug(FAILED);
 
 
 	         } catch (SQLException ex) {
-	             System.out.println((ex.getMessage()));
+	             logger.debug((ex.getMessage()));
 	      
 	         }
 			return false;

@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 
 import entity.PartecipantiEvento;
@@ -13,7 +16,10 @@ import entity.PartecipantiEvento;
 public class PartecipaEventoDao {
 	 private final Connector connector;
 	 private PartecipantiEvento partecipanti;
-		
+	 private static final Logger logger = LoggerFactory.getLogger(PartecipaEventoDao.class);
+
+	 
+	 
 	public PartecipaEventoDao() {
     	connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     	partecipanti = new PartecipantiEvento();
@@ -36,12 +42,12 @@ public class PartecipaEventoDao {
 	        	   partecipanti.setImportoTotale(res.getFloat("importoTotale"));
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
     	

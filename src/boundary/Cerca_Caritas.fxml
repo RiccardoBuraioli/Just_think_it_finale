@@ -62,7 +62,7 @@
                                 <Button fx:id="buttonTurnoVolontariato" text="Prenota turno volontariato" maxWidth="Infinity"/>
                                 <Button fx:id="buttonEvento" text="Partecipa all'evento" maxWidth="Infinity"/>
                                 <Button fx:id="buttonBacheca" text="Vedi la bacheca" maxWidth="Infinity"/>
-                                 <Button fx:id="buttonAllLocations" text="All" maxWidth="Infinity"/>
+                                <Button fx:id="buttonAllLocations" text="All" maxWidth="Infinity"/>
                             </children>
                         </VBox>
                     </content>

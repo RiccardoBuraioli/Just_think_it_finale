@@ -3,6 +3,10 @@ package bean;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.BachecaController;
 import entity.Necessita;
 import javafx.event.ActionEvent;
@@ -16,6 +20,7 @@ import javafx.stage.Stage;
 
 
 public class BachecaBoundary {
+	private static Logger logger = LoggerFactory.getLogger(BachecaBoundary.class.getName());
 
 	private int idCar;
 	private int idUte;
@@ -57,8 +62,8 @@ public class BachecaBoundary {
     		
     		
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
 
 	}
 
@@ -90,8 +95,8 @@ public class BachecaBoundary {
     		
     		
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
 		
 		
 		

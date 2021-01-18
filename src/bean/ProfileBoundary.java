@@ -1,6 +1,10 @@
 package bean;
 
 import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +18,8 @@ import javafx.stage.Stage;
 
 
 public class ProfileBoundary{
+	private static Logger logger = LoggerFactory.getLogger(ProfileBoundary.class.getName());
+
 	
 	private VolunteerUser currentUser;
 	
@@ -58,7 +64,7 @@ public class ProfileBoundary{
 			
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
 
 

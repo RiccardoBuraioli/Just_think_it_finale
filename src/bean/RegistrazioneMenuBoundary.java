@@ -2,6 +2,9 @@ package bean;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.stage.Stage;
 
 public class RegistrazioneMenuBoundary {
 	
+	private static Logger logger = LoggerFactory.getLogger(RegistrazioneMenuBoundary.class.getName());
 
     @FXML
     private Button caritasButton;
@@ -45,7 +49,7 @@ public class RegistrazioneMenuBoundary {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
     }
 
@@ -60,7 +64,7 @@ public class RegistrazioneMenuBoundary {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 			}
     	
 	    }
@@ -75,7 +79,7 @@ public class RegistrazioneMenuBoundary {
    			signUp.show();
    			signUp.setResizable(false);
    			} catch (IOException e) {
-   				e.printStackTrace();
+   				logger.error("errore IoException");
    				}     
     	}
 
@@ -89,7 +93,7 @@ public class RegistrazioneMenuBoundary {
     			signUp.show();
     			signUp.setResizable(false);
     		} catch (IOException e) {
-    			e.printStackTrace();
+    			logger.error("errore IoException");
     		}
     }
 
@@ -103,7 +107,7 @@ public class RegistrazioneMenuBoundary {
   			signUp.show();
   			signUp.setResizable(false);
   		} catch (IOException e) {
-  			e.printStackTrace();
+			logger.error("errore IoException");
   		}
 
       
@@ -119,7 +123,7 @@ public class RegistrazioneMenuBoundary {
   			signUp.show();
   			signUp.setResizable(false);
   		} catch (IOException e) {
-  			e.printStackTrace();
+			logger.error("errore IoException");
   		}
     }
 
@@ -133,7 +137,7 @@ public class RegistrazioneMenuBoundary {
  			signUp.show();
  			signUp.setResizable(false);
  		} catch (IOException e) {
- 			e.printStackTrace();
+			logger.error("errore IoException");
  		}
     }
 

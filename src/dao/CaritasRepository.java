@@ -2,6 +2,9 @@ package dao;
 
 import java.util.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.CaritasUser;
 import java.sql.*;
@@ -11,6 +14,7 @@ public class CaritasRepository {
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
+    private static final Logger logger = LoggerFactory.getLogger(CaritasRepository.class);
 
     public CaritasRepository() {
         this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
@@ -43,12 +47,12 @@ public class CaritasRepository {
                     caritasID = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         } finally {
             try {
                 if (rs != null) rs.close();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+               logger.debug(e.getMessage());
             }
         }
 
@@ -81,12 +85,12 @@ public class CaritasRepository {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         } finally {
             try {
                 if (rs != null) rs.close();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+               logger.debug(e.getMessage());
             }
         } return carUsr;
     }
@@ -106,12 +110,12 @@ public class CaritasRepository {
                 password = res.getString("Password");
             }
         } catch (SQLException ex){
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }finally {
             try {
                 if (res != null) res.close();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+               logger.debug(e.getMessage());
             }
         }
         if(password.equals("")) return "";
@@ -136,14 +140,14 @@ public class CaritasRepository {
                 rowAffected = pstmt.executeUpdate();
 
                 if (rowAffected == 1) {
-                    System.out.println(SUCCESS);
-                } else System.out.println(FAILED);
+                   logger.debug(SUCCESS);
+                } else logger.debug(FAILED);
 
 
             } catch (SQLException ex) {
-                System.out.println((ex.getMessage()));
+               logger.debug((ex.getMessage()));
             }
-        }else System.out.println(FAILED);
+        }else logger.debug(FAILED);
 
     }
 
@@ -160,12 +164,12 @@ public class CaritasRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+               logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -181,12 +185,12 @@ public class CaritasRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+               logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -201,12 +205,12 @@ public class CaritasRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+               logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -221,12 +225,12 @@ public class CaritasRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+               logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -241,10 +245,10 @@ public class CaritasRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            } else System.out.println(FAILED);
+               logger.debug(SUCCESS);
+            } else logger.debug(FAILED);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -258,12 +262,12 @@ public class CaritasRepository {
             stmt.setInt(1, id);
             deletedRec = stmt.executeUpdate();
 
-            if (deletedRec == 1) System.out.println("Caritas ID " + id + ", rimossa con successo!");
+            if (deletedRec == 1)logger.debug("Caritas ID " + id + ", rimossa con successo!");
 
-            else System.out.println("ID non trovato.");
+            else logger.debug("ID non trovato.");
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -273,11 +277,11 @@ public class CaritasRepository {
         try (Connection conn = connector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             delRecs = stmt.executeUpdate();
-            if (delRecs >= 1) System.out.println("\t ***** Voci Caritas rimosse con successo! *****");
+            if (delRecs >= 1)logger.debug("\t ***** Voci Caritas rimosse con successo! *****");
             resetID();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 
@@ -288,9 +292,9 @@ public class CaritasRepository {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.executeUpdate();
-            System.out.println("\t ***** ID Values resetted successfully! *****");
+           logger.debug("\t ***** ID Values resetted successfully! *****");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           logger.debug(ex.getMessage());
         }
     }
 

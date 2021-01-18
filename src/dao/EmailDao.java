@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.EmailEntity;
 
@@ -16,6 +19,7 @@ public class EmailDao {
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
     private List<EmailEntity> emailList;
+    private static final Logger logger = LoggerFactory.getLogger(EmailDao.class);
 
 	
 	public EmailDao() {
@@ -40,12 +44,12 @@ public class EmailDao {
               rowAffected = pstmt.executeUpdate();
 
               if (rowAffected == 1) {
-                  System.out.println(SUCCESS);
-              } else System.out.println(FAILED);
+                  logger.debug(SUCCESS);
+              } else logger.debug(FAILED);
 
 
           } catch (SQLException ex) {
-              System.out.println((ex.getMessage()));
+              logger.debug((ex.getMessage()));
           }
 		
           
@@ -76,12 +80,12 @@ public class EmailDao {
 	        	   
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
 	
@@ -115,12 +119,12 @@ public class EmailDao {
 	            
 	            
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
 	

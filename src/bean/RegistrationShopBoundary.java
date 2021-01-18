@@ -3,6 +3,10 @@ package bean;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.RegistrationShopManagerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +23,7 @@ import javafx.stage.Stage;
 
 public class RegistrationShopBoundary implements Initializable{
 	private RegistrationShopManagerController regNeg;
+	private static Logger logger = LoggerFactory.getLogger(RegistrationShopBoundary.class.getName());
 
 	private TextField[] textFields;	
 	private String tipo;
@@ -89,7 +94,7 @@ public class RegistrationShopBoundary implements Initializable{
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
 
     }
@@ -114,7 +119,7 @@ public class RegistrationShopBoundary implements Initializable{
 
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
     }
     

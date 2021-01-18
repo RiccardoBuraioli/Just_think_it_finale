@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
+
 
 import entity.MarkerID;
 import connector.Connector;
@@ -23,33 +26,28 @@ public class CercaCaritasDao {
 		}
 
 	 
-	
-	public MarkerID assegnaMarker() {
-		
+	public List<MarkerID> getCaritasMarkers() {
+		List<MarkerID> lista = new ArrayList<>();
 		String sql = "Call assegna_marker()";
 		ResultSet rs = null;
-		int count = 0;
-		MarkerID markerC = new MarkerID();
-
 		
 		try (Connection conn = connector.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-        
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				double lati = Double.parseDouble(rs.getString(this.lati));
 				double longi = Double.parseDouble(rs.getString(this.longi));
+				int codiceCaritas = rs.getInt("CodiceCaritas");
+				
 				Coordinate caritasCoordinate = new Coordinate(lati,longi);
-				markerC.setMarker(count, Marker.createProvided(Marker.Provided.RED).setPosition(caritasCoordinate));
-				markerC.setID(count,  rs.getInt("CodiceCaritas"));
-				count++;
-        	 
-	         } 
+				Marker m = Marker.createProvided(Marker.Provided.RED).setPosition(caritasCoordinate);
+				MarkerID mc = new MarkerID(m, codiceCaritas);
 		
-			
-			
+				lista.add(mc);
+				
+	         } 
 	
 	     } catch (SQLException ex) {
 	         System.out.println(ex.getMessage());
@@ -59,20 +57,18 @@ public class CercaCaritasDao {
 	         } catch (SQLException e) {
 	             System.out.println(e.getMessage());
 	         }
-	     } 
-		
-		return markerC;
+	     }
+		return lista;
 		}
 		
 	
-	public Marker[] assegnaMarkerEvento() {
+	public List<MarkerID> assegnaMarkerEvento() {
 		
-		Marker[] markerEvento = {null,null,null,null,null,null,null};
+		List<MarkerID> markerEvento =new ArrayList<>();
 		
 		 String sql = "Call assegna_marker_evento()";
 	     ResultSet rs = null;
-	     int count = 0;
-
+	 
 	     try (Connection conn = connector.getConnection();
 	          PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -80,10 +76,15 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
+	        	 int codiceEvento = rs.getInt("codiceEv");
+	        	 
 	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
-	        	 markerEvento[count] = Marker.createProvided(Marker.Provided.BLUE).setPosition(eventoCoordinate);
+	        	 Marker m = Marker.createProvided(Marker.Provided.BLUE).setPosition(eventoCoordinate);
+	        	 MarkerID mc = new MarkerID(m, codiceEvento);
+	        		
+	        	 markerEvento.add(mc);
+					
 	        	
-	        	 count++;
 	        	 
 	         } 
 
@@ -99,9 +100,9 @@ public class CercaCaritasDao {
 		}
 	
 	
-	public Marker[] assegnaMarkerDonazione() {
+	public List<MarkerID> assegnaMarkerDonazione() {
 		
-		Marker[] markerDonazione = {null,null,null,null,null,null,null};
+		List<MarkerID> markerDonazione =new ArrayList<>();
 		
 		 String sql = "Call assegna_marker_donazione()";
 	     ResultSet rs = null;
@@ -114,10 +115,11 @@ public class CercaCaritasDao {
 	         rs = pstmt.executeQuery();
 
 	         while (rs.next()) {
+	        	 int codiceDono = rs.getInt("codiceDono");
 	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
-	        	 markerDonazione[count] = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazioneCoordinate);
-	        	 
-	        	 count++;
+	        	 Marker m = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazioneCoordinate);
+	        	 MarkerID mc = new MarkerID(m, codiceDono);	        	 
+	        	 markerDonazione.add(mc);
 	        	 
 	         } 
 

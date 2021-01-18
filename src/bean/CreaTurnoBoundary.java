@@ -2,6 +2,9 @@ package bean;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.CreaTurnoController;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
@@ -17,6 +20,9 @@ import javafx.stage.Stage;
 
 public class CreaTurnoBoundary {
 
+	private static Logger logger = LoggerFactory.getLogger(CreaTurnoBoundary.class.getName());
+
+	
 	@FXML
 	private Button back;
 
@@ -55,7 +61,7 @@ public class CreaTurnoBoundary {
 			home.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException"); 
 		}
 
 	}

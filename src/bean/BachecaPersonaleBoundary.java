@@ -3,6 +3,9 @@ package bean;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.BachecaPersonaleController;
 import entity.CaritasUser;
 import entity.Necessita;
@@ -23,7 +26,8 @@ public class BachecaPersonaleBoundary {
 	
 	private int idCar;
 	private BachecaPersonaleController bachecaController;
-	
+	private static Logger logger = LoggerFactory.getLogger(BachecaPersonaleBoundary.class.getName());
+
 	private CaritasUser caritas;
 
 	@FXML
@@ -61,8 +65,8 @@ public class BachecaPersonaleBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
 		
 		
 	}
@@ -81,8 +85,8 @@ public class BachecaPersonaleBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
 	}
 
 	@FXML

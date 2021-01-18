@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.PartecipaTurno;
 import entity.Orario;
@@ -18,6 +22,7 @@ public class PrenotaDao {
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
+    private static final Logger logger = LoggerFactory.getLogger(PrenotaDao.class);
 
     
 	private String[] resGiorno = {null, null, null, null, null, null, null, null};
@@ -50,12 +55,12 @@ public class PrenotaDao {
 	        	   i++;
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
 		return resGiorno;
@@ -82,12 +87,12 @@ public class PrenotaDao {
 				oraArrayList.add(new Orario(res.getString("ora_inizio"), res.getString("ora_fine")));
 			
 			 } } catch (SQLException ex) {
-		            System.out.println(ex.getMessage());
+		            logger.debug(ex.getMessage());
 		        } finally {
 		            try {
 		                if (res != null) res.close();
 		            } catch (SQLException e) {
-		                System.out.println(e.getMessage());
+		                logger.debug(e.getMessage());
 		            }
 		        }
 		
@@ -113,12 +118,12 @@ public class PrenotaDao {
               rowAffected = pstmt.executeUpdate();
 
               if (rowAffected == 1) {
-                  System.out.println(SUCCESS);
-              } else System.out.println(FAILED);
+                  logger.debug(SUCCESS);
+              } else logger.debug(FAILED);
 
 
           } catch (SQLException ex) {
-              System.out.println((ex.getMessage()));
+              logger.debug((ex.getMessage()));
           }
 		    	
    
@@ -147,12 +152,12 @@ public class PrenotaDao {
 	        	  id = res.getInt("id_turno");
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
 
@@ -180,12 +185,12 @@ public class PrenotaDao {
 	        	 
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
 		return listTurn;
@@ -204,12 +209,12 @@ public class PrenotaDao {
 	            rowAffected = pstmt.executeUpdate();
 
 	            if (rowAffected == 1) {
-	                System.out.println(SUCCESS);
-	            } else { System.out.println(FAILED); return false;}
+	                logger.debug(SUCCESS);
+	            } else { logger.debug(FAILED); return false;}
 
 
 	        } catch (SQLException ex) {
-	            System.out.println((ex.getMessage()));
+	            logger.debug((ex.getMessage()));
 	        }
 			    	
 	        return true;
@@ -236,12 +241,12 @@ public class PrenotaDao {
 	            rowAffected = pstmt.executeUpdate();
 
 	            if (rowAffected == 1) {
-	                System.out.println(SUCCESS);
-	            } else { System.out.println(FAILED); return true;}
+	                logger.debug(SUCCESS);
+	            } else { logger.debug(FAILED); return true;}
 
 
 	        } catch (SQLException ex) {
-	            System.out.println((ex.getMessage()));
+	            logger.debug((ex.getMessage()));
 	        }
 		return false;
 		
@@ -262,12 +267,12 @@ public class PrenotaDao {
 	            rowAffected = pstmt.executeUpdate();
 
 	            if (rowAffected == 1) {
-	                System.out.println(SUCCESS);
-	            } else { System.out.println(FAILED); return false;}
+	                logger.debug(SUCCESS);
+	            } else { logger.debug(FAILED); return false;}
 
 
 	        } catch (SQLException ex) {
-	            System.out.println((ex.getMessage()));
+	            logger.debug((ex.getMessage()));
 	        }
 			    	
 	        return true;

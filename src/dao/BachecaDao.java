@@ -1,6 +1,7 @@
 package dao;
 
 import connector.Connector;
+import controller.CercaCaritas;
 import entity.Necessita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,10 +10,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 
 public class BachecaDao {
 	Connector connector;
 	List<Necessita> necessita;
+    private static final Logger logger = LoggerFactory.getLogger(BachecaDao.class);
+
+	
+	
 	
 	public BachecaDao() {
 		
@@ -35,15 +45,16 @@ public class BachecaDao {
 	
 	           while (res.next()) {
 	        	   necessita.add(new Necessita(res.getInt("id_necessità"), res.getString("tipologia"),res.getString("richiesta"), res.getString("urgenza")));
-	        	  
+		       
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	    	   logger.debug(ex.getMessage());
+	           
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	        	    logger.debug(e.getMessage());
 	           }
 	       }
 		
@@ -75,13 +86,12 @@ public class BachecaDao {
 	                    necID = rs.getInt(1);
 	            }
 	        } catch (SQLException ex) {
-	            System.out.println(ex.getMessage());
-	        } finally {
+	        	  logger.debug(ex.getMessage());	
+	        	  } finally {
 	            try {
 	                if (rs != null) rs.close();
 	            } catch (SQLException e) {
-	                System.out.println(e.getMessage());
-	            }
+	            	  logger.debug(e.getMessage());	            }
 	        }
 	        return necID;
 	}
@@ -107,7 +117,7 @@ public class BachecaDao {
 
 
 	        } catch (SQLException ex) {
-	            System.out.println((ex.getMessage()));
+	        	logger.debug(ex.getMessage());
 	        }
 			    	
 	        return true;

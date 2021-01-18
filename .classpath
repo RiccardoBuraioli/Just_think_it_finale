@@ -11,7 +11,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="mapjfx-1.33.2.jar">
+	<classpathentry kind="lib" path="mapjfx-1.33.2.jar" sourcepath="mapjfx-demo-1.33.2.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

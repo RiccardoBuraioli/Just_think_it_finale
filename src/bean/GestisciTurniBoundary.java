@@ -2,6 +2,10 @@ package bean;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.GestioneTurniCaritas;
 import entity.CaritasUser;
 import entity.TurnoTab;
@@ -22,6 +26,7 @@ import javafx.stage.Stage;
 
 
 public class GestisciTurniBoundary {
+	private static Logger logger = LoggerFactory.getLogger(GestisciTurniBoundary.class.getName());
 
 		@FXML
 		private TextArea newNote;
@@ -96,8 +101,8 @@ public class GestisciTurniBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-	 			e.printStackTrace();
-	 		}
+				logger.error("errore IoException"); }
+
 	    	
 	    	
 	    	
@@ -122,8 +127,8 @@ public class GestisciTurniBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-	 			e.printStackTrace();
-	 		}
+				logger.error("errore IoException"); }
+
 	    	
 	    }
 

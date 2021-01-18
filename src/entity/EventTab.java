@@ -15,10 +15,10 @@ public class EventTab {
 	private SimpleStringProperty nomeCaritas;
 	private SimpleStringProperty rapportoDenaro;
 	private SimpleIntegerProperty codiceCaritas;
-	private SimpleIntegerProperty completamento;
+	private SimpleStringProperty statoEvento;
 	private SimpleIntegerProperty codiceNegozio;
 	private SimpleStringProperty nomeNegozio;
-	private SimpleStringProperty statoEvento;
+	
 
 
     
@@ -26,19 +26,15 @@ public class EventTab {
 	
 	
 	public EventTab(int id, String nomeEvento, String noteEvento, float prezzoEvento,
-			String nomeNegozio, float importoRaggiunto, int numPart,  int codiceNeg, String stato) {
-		this.id = new SimpleIntegerProperty(id);
-		this.statoEvento = new SimpleStringProperty(stato);
-		this.nomeEvento = new SimpleStringProperty(nomeEvento);
-	
+			String nomeNegozio, int numPart,  int codiceNeg) {
+		this.id = new SimpleIntegerProperty(id);	
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);	
 		this.numPartecipanti = new SimpleIntegerProperty(numPart);
 		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
 		this.noteEvento = new SimpleStringProperty(noteEvento);
-		
-		
+
 		this.nomeNegozio = new SimpleStringProperty(nomeNegozio);
-		this.importoRaggiunto = new SimpleFloatProperty(importoRaggiunto);
-		this.rapportoDenaro = new SimpleStringProperty(importoRaggiunto + "/" + prezzoEvento);
+		
 
 		this.codiceNegozio = new SimpleIntegerProperty(codiceNeg);
 		
@@ -115,8 +111,8 @@ public class EventTab {
 		return this.rapportoDenaro.get();
 	}
 
-	public void setRapportoDenaro(String rapportoDenaro) {
-		this.rapportoDenaro.set(rapportoDenaro);
+	public void setRapportoDenaro() {
+		this.rapportoDenaro.set(this.importoRaggiunto + "/" + this.prezzoEvento);
 	}
 
 	public int getIdCaritas() {
@@ -126,14 +122,6 @@ public class EventTab {
 	public void setIdCaritas(int idCaritas) {
 		this.codiceCaritas.set(idCaritas);
 	
-	}
-
-	public int getCompletamento() {
-		return this.completamento.get();
-	}
-
-	public void setCompletamento(int completamento) {
-		this.completamento.set(completamento);
 	}
 
 	public int getCodiceNegozio() {

@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.GestisciEventiController;
 import entity.EventTab;
 import entity.ShopUser;
@@ -23,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GestisciEventiBoundary {
+	private static Logger logger = LoggerFactory.getLogger(GestisciEventiBoundary.class.getName());
 
 	private GestisciEventiController gestEventC;
 	private int idShop;
@@ -77,9 +81,7 @@ public class GestisciEventiBoundary {
 	 			
 	 			home.show();
 	 		} catch (IOException e) {
-	 			e.printStackTrace();
-	 		}
-	    	
+				logger.error("errore IoException"); }
 	    	
 	    }
 
@@ -105,8 +107,8 @@ public class GestisciEventiBoundary {
 	    		
 	    		
     		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
+				logger.error("errore IoException"); }
+
 	    	
 	    }
 

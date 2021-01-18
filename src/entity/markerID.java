@@ -1,45 +1,38 @@
 package entity;
 
 
-
-
 import com.sothawo.mapjfx.Marker;
 
 
-
-
-public class MarkerID{
-	private Marker[] markerCarita = {null,null,null,null,null,null,null};
-	private int[] id = {0,0,0,0,0,0,0,0};
+public class MarkerID {
+	private Marker marker;
+	private int id;
 	
-	
-	public MarkerID(Marker[] caritas, int[] idCaritas) {
-		this.markerCarita = caritas;
-		this.id = idCaritas;
-				
+	public MarkerID(Marker marker, int id) {
+		
+		this.setMarker(marker);
+		this.setId(id);
 	}
 
-	public MarkerID() {
-		
+	public Marker getMarker() {
+		return this.marker;
 	}
 
-	public  int[] idMarker() {
-		
+	public void setMarker(Marker marker) {
+		this.marker = marker;
+	}
+
+	public int getId() {
 		return this.id;
 	}
-	
-	public Marker  getMarker(int i) {
-		return this.markerCarita[i];
-	}
-	
-	
-   public void setMarker(int i, Marker nuovo) {
-		this.markerCarita[i] = nuovo;
-	}
 
-  public  void setID(int i, int nuovoi) {
-	  this.id[i]= nuovoi;
-  }   
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+	
+	
 }
 
 

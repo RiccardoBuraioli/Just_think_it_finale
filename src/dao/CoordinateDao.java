@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sothawo.mapjfx.Coordinate;
 
 import connector.Connector;
@@ -13,7 +16,8 @@ public class CoordinateDao {
 
 	private Connector connector;
 	private int idUtente;
-	
+    private static final Logger logger = LoggerFactory.getLogger(CoordinateDao.class);
+
     
     public CoordinateDao(int idUtente) {
     	
@@ -47,12 +51,12 @@ public class CoordinateDao {
             	   
                }
            } catch (SQLException ex) {
-               System.out.println(ex.getMessage());
+        	   logger.debug(ex.getMessage());
            } finally {
                try {
                    if (res != null) res.close();
                } catch (SQLException e) {
-                   System.out.println(e.getMessage());
+            	   logger.debug(e.getMessage());
                }
            }
     
@@ -67,7 +71,8 @@ public class CoordinateDao {
 			connector.getConnection().close();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+     	   logger.debug(e.getMessage());
+
 		}
     }
 	

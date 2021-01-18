@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.EventTab;
 import entity.Evento;
@@ -17,6 +21,7 @@ public class EventoDao {
 	private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
     private List<EventTab> listEv;
+    private static final Logger logger = LoggerFactory.getLogger(EventoDao.class);
 
 
     private final Connector connector;
@@ -42,12 +47,12 @@ public class EventoDao {
 	        	  
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
     	
@@ -62,7 +67,7 @@ public class EventoDao {
     public List<EventTab> cercaEventiCaritas(int idCar){
 
 	   	String sql = "call visualizza_eventi_caritas(?) ";
-	 
+	   	int i = 0;
 		ResultSet res = null;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -70,16 +75,18 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio"),res.getString("Completato")));
-	        	  
+	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio")));
+	        	  listEv.get(i).setImportoRaggiunto( res.getFloat("Importo"));
+	        	  listEv.get(i).setStatoEvento(res.getString("Completato"));
+	        	  listEv.get(i).setRapportoDenaro();
 	           }
 	       } catch (SQLException ex) {
-	           System.out.println(ex.getMessage());
+	           logger.debug(ex.getMessage());
 	       } finally {
 	           try {
 	               if (res != null) res.close();
 	           } catch (SQLException e) {
-	               System.out.println(e.getMessage());
+	               logger.debug(e.getMessage());
 	           }
 	       }
     	
@@ -111,12 +118,12 @@ public class EventoDao {
               rowAffected = pstmt.executeUpdate();
 
               if (rowAffected == 1) {
-                  System.out.println(SUCCESS);
-              } else System.out.println(FAILED);
+                  logger.debug(SUCCESS);
+              } else logger.debug(FAILED);
 
 
           } catch (SQLException ex) {
-              System.out.println((ex.getMessage()));
+              logger.debug((ex.getMessage()));
           }
 		    	
     	
@@ -124,7 +131,7 @@ public class EventoDao {
     	
     }
     
-   public PartecipaEvento creaPartecipazione(PartecipaEvento partepaEvento) {
+   public boolean creaPartecipazione(PartecipaEvento partepaEvento) {
 	   int rowAffected;
   	
  	    String sql = "call partecipa_evento(?,?,?)";
@@ -134,23 +141,21 @@ public class EventoDao {
 	       	  pstmt.setInt(1, partepaEvento.getcodice());
 	       	  pstmt.setInt(2, partepaEvento.getVolo());
 	       	  pstmt.setFloat(3,partepaEvento.getImporto());
-	       
-	         	
-          
-         
+     
              rowAffected = pstmt.executeUpdate();
 
              if (rowAffected == 1) {
-                 System.out.println(SUCCESS);
-             } else System.out.println(FAILED);
+                 logger.debug(SUCCESS);
+                 return true;
+             } else logger.debug(FAILED);
 
 
          } catch (SQLException ex) {
-             System.out.println((ex.getMessage()));
+             logger.debug((ex.getMessage()));
          }
 		    	
    	
-   	return partepaEvento;
+   	return false;
 	   
    }
     
@@ -168,12 +173,12 @@ public class EventoDao {
             rowAffected = pstmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            } else { System.out.println(FAILED); return false;}
+                logger.debug(SUCCESS);
+            } else { logger.debug(FAILED); return false;}
 
 
         } catch (SQLException ex) {
-            System.out.println((ex.getMessage()));
+            logger.debug((ex.getMessage()));
         }
 		    	
         return true;
@@ -195,12 +200,12 @@ public class EventoDao {
             rowAffected = pstmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            } else { System.out.println(FAILED); return false;}
+                logger.debug(SUCCESS);
+            } else { logger.debug(FAILED); return false;}
 
 
         } catch (SQLException ex) {
-            System.out.println((ex.getMessage()));
+            logger.debug((ex.getMessage()));
         }
 		    	
         return true;

@@ -13,6 +13,10 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import controller.CercaCaritas;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +37,7 @@ public class CaritasHomeBoundary {
 	private Image[] images = { img1, img2, img3 };
 	private int currentImage = 0;
 	private  static CaritasHomeBoundary instance = null;
+	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
 
 	private CaritasUser currentUser;
 	private GestisciTurniBoundary gestTurn;
@@ -125,8 +130,7 @@ public class CaritasHomeBoundary {
     		stage.show();
     		
     				} catch (IOException e) {
-			e.printStackTrace();
-		}
+    					logger.error("errore IoException"); }
 	}
 
 	@FXML
@@ -148,12 +152,12 @@ public class CaritasHomeBoundary {
     		stage.show();
     		
     				} catch (IOException e) {
-			e.printStackTrace();
+    					logger.error("errore IoException"); }
 		}
 		
 		
 		
-	}
+	
 
 	@FXML
 	void gestisciTurni(ActionEvent event) {
@@ -195,9 +199,9 @@ public class CaritasHomeBoundary {
 
     		
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException"); }
 		}
-	}
+	
 	
 
 	@FXML
@@ -231,13 +235,12 @@ public class CaritasHomeBoundary {
     			home.setScene(new Scene(root, 600, 385));
     			home.show();
     		} catch (IOException e) {
-    			e.printStackTrace();
+				logger.error("errore IoException"); }
     		}
         	
-    	} else {
-    	    //nothing
-    	}
-	}
+    	}    					
+
+	
 
 	@FXML
 	void profileButtonPressed(ActionEvent event) {

@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +29,7 @@ import javafx.stage.Stage;
 public class ShopHomeBoundary {
 	
 
+	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
 
 	private Image img1;
 	private Image img2;
@@ -147,7 +151,7 @@ public class ShopHomeBoundary {
     	alert.setContentText("Sei sicuro di voler cancellare il tuo account?");
     	Optional<ButtonType> result = alert.showAndWait();
     	if (result.get() == ButtonType.OK){
-    		System.out.println("sei morto");
+    		logger.trace("sei morto");
     	}
     }
 
@@ -175,7 +179,7 @@ public class ShopHomeBoundary {
     		
     		
     				} catch (IOException e) {
-			e.printStackTrace();
+    	    			logger.error("errore IoException");
 		}
     	
     }
@@ -215,7 +219,7 @@ public class ShopHomeBoundary {
 				home.setScene(new Scene(root, 600, 385));
 				home.show();
 			} catch (IOException e) {
-				e.printStackTrace();
+    			logger.error("errore IoException");
 			}
         	
     	} 

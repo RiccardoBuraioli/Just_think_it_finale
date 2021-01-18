@@ -5,12 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 
 public class LoginDao {
 	final Connector connector;
     private String tableUser;
-	
+    private static final Logger logger = LoggerFactory.getLogger(LoginDao.class);
+
+    
+    
 	  public String getTableUser() {
 	        return this.tableUser;
 	    }
@@ -47,12 +53,12 @@ public class LoginDao {
 	              
 	            }
 	        } catch (SQLException ex) {
-	            System.out.println(ex.getMessage());
+	            logger.debug(ex.getMessage());
 	        } finally {
 	            try {
 	                if (res != null) res.close();
 	            } catch (SQLException e) {
-	                System.out.println(e.getMessage());
+	                logger.debug(e.getMessage());
 	            }
 	        }			
        	 if( returnePriv != null) {
@@ -82,12 +88,12 @@ public class LoginDao {
 	            	   resID = res.getString("id_utente");
 	               }
 	           } catch (SQLException ex) {
-	               System.out.println(ex.getMessage());
+	               logger.debug(ex.getMessage());
 	           } finally {
 	               try {
 	                   if (res != null) res.close();
 	               } catch (SQLException e) {
-	                   System.out.println(e.getMessage());
+	                   logger.debug(e.getMessage());
 	               }
 	           }
 	    	

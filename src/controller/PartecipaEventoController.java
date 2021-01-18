@@ -6,45 +6,30 @@ import bean.PartecipaEventoBoundary;
 import dao.EventoDao;
 import javafx.event.ActionEvent;
 
-
 public class PartecipaEventoController {
-	
+
 	private PartecipaEvento partecipaz;
 
+	public void indietro(ActionEvent event) {
+		// forse si forse no
+	}
 
-   
-    public void indietro(ActionEvent event) {
-    	//forse si forse no
-    }
-    
+	public boolean partecipaEvento(float importo) {
 
-    public int partecipaEvento(float importo) {
-    	
-    	int error = 0;
+		int error = 0;
 
-    	partecipaz.setImport(importo);
-    	
-    	EventoDao partecipazione = new EventoDao();
-    	partecipazione.creaPartecipazione(partecipaz);
-    	
-    	
-    	return error;
+		partecipaz.setImport(importo);
 
-    }
-    
-    
-    public void setDataController() {
-    	PartecipaEventoBoundary parteBoundary = new PartecipaEventoBoundary();
-    	partecipaz =  new PartecipaEvento(parteBoundary.getIdEvento(),parteBoundary.getIdUtente());
+		EventoDao partecipazione = new EventoDao();
 
-    	
+		return partecipazione.creaPartecipazione(partecipaz);
 
-   }
+	}
 
-    
-   
-    
-    
-    
-    
+	public void setDataController() {
+		PartecipaEventoBoundary parteBoundary = new PartecipaEventoBoundary();
+		partecipaz = new PartecipaEvento(parteBoundary.getIdEvento(), parteBoundary.getIdUtente());
+
+	}
+
 }

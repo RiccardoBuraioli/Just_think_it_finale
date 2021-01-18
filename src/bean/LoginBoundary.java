@@ -3,6 +3,9 @@ package bean;
 import java.io.IOException;
 import java.io.Serializable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.LoginController;
 import entity.CaritasUser;
 import entity.ShopUser;
@@ -16,12 +19,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginBoundary implements Serializable {
+public class LoginBoundary {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+	private static Logger logger = LoggerFactory.getLogger(LoginBoundary.class.getName());
+
+	
 	private LoginController loginC = new LoginController();
 
 	private UserHomeBoundary userHomeBoundary;
@@ -67,8 +70,9 @@ public class LoginBoundary implements Serializable {
 			
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); 
+			}
+   		
    	}else if(loggedUser.getClass()==CaritasUser.class) {
    		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
@@ -81,7 +85,8 @@ public class LoginBoundary implements Serializable {
 			
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException"); 
+
 		}
    	}else if(loggedUser.getClass()==ShopUser.class) {
    		try {
@@ -95,8 +100,8 @@ public class LoginBoundary implements Serializable {
 			
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
    	}
     	
     	
@@ -113,8 +118,8 @@ public class LoginBoundary implements Serializable {
 			signUp.show();
 			signUp.setResizable(false);
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			logger.error("errore IoException"); }
+
     	
     }
 	

@@ -2,6 +2,9 @@ package bean;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.GestisciEventiCaritasController;
 import entity.CaritasUser;
 import entity.EventTab;
@@ -21,6 +24,7 @@ import javafx.stage.Stage;
 
 public class GestisciEventiCaritasBoundary {
 
+	private static Logger logger = LoggerFactory.getLogger(GestisciEventiCaritasBoundary.class.getName());
 
 		private GestisciEventiCaritasController gestEventC;
 		private int idCar;
@@ -86,8 +90,8 @@ public class GestisciEventiCaritasBoundary {
 		 			
 		 			home.show();
 		 		} catch (IOException e) {
-		 			e.printStackTrace();
-		 		}
+					logger.error("errore IoException"); }
+
 		    	
 		    }
 
@@ -113,8 +117,8 @@ public class GestisciEventiCaritasBoundary {
 		    		
 		    		
 	    		} catch (IOException e) {
-	    			e.printStackTrace();
-	    		}
+					logger.error("errore IoException"); }
+
 		    }
 
 		    @FXML

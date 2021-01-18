@@ -1,6 +1,9 @@
 package bean;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.CreaNecessitaController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +14,8 @@ import javafx.stage.Stage;
 
 public class CreaNecessitaBoundary {
 
-	
+	private static Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
+
 		private String[] tipo= { "Vestiti", "Cibo" };
 		private String[] urg = {"Alta", "Normale", "Bassa"};
 
@@ -46,7 +50,7 @@ public class CreaNecessitaBoundary {
 	    		Stage st = (Stage) creaAnnuncio.getScene().getWindow();
 	    		st.close();
 	    	}
-	    	else System.out.println("errore nella creazione dell'annuncio");
+	    	else logger.trace("errore nella creazione dell'annuncio");
 	    }
 
 	    

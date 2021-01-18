@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.RegistrazioneVolontarioController;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
@@ -21,7 +24,8 @@ import javafx.stage.Stage;
 public class RegistrazioneVolontarioBoundary implements Initializable {
 	private RegistrazioneVolontarioController regC;
 
-	TextField[] textFields;
+	private TextField[] textFields;
+	private static Logger logger = LoggerFactory.getLogger(RegistrazioneVolontarioBoundary.class.getName());
 
 
 	    @FXML
@@ -100,7 +104,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
     			
     			home.show();
     		} catch (IOException e) {
-    			e.printStackTrace();
+    			logger.error("errore IoException");
     		}
     	
 

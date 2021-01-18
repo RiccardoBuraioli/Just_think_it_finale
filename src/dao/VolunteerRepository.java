@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import connector.Connector;
 import entity.VolunteerUser;
 
@@ -14,6 +17,7 @@ public class VolunteerRepository {
     private final Connector connector;
     private static final String SUCCESS = "Voce modificata con successo!";
     private static final String FAILED = "Operazione non riuscita.";
+    private static final Logger logger = LoggerFactory.getLogger(VolunteerRepository.class);
 
 
 
@@ -47,7 +51,7 @@ public class VolunteerRepository {
             }
             return vUsers;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
             throw new IllegalStateException("error fetching users", ex);
         }
     }
@@ -76,12 +80,12 @@ public class VolunteerRepository {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         } finally {
             try {
                 if (rs != null) rs.close();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                logger.debug(e.getMessage());
             }
         } return vUser;
     }
@@ -119,12 +123,12 @@ public class VolunteerRepository {
                     volunteerID = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         } finally {
             try {
                 if (rs != null) rs.close();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                logger.debug(e.getMessage());
             }
         }
 
@@ -143,12 +147,12 @@ public class VolunteerRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+                logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -164,12 +168,12 @@ public class VolunteerRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+                logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -184,12 +188,12 @@ public class VolunteerRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+                logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -204,12 +208,12 @@ public class VolunteerRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            }else System.out.println(FAILED);
+                logger.debug(SUCCESS);
+            }else logger.debug(FAILED);
 
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -224,10 +228,10 @@ public class VolunteerRepository {
             rowAffected = stmt.executeUpdate();
 
             if (rowAffected == 1) {
-                System.out.println(SUCCESS);
-            } else System.out.println(FAILED);
+                logger.debug(SUCCESS);
+            } else logger.debug(FAILED);
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -242,12 +246,12 @@ public class VolunteerRepository {
             stmt.setInt(1, id);
             deletedRec = stmt.executeUpdate();
 
-            if (deletedRec == 1) System.out.println("Volontario ID " + id + ", rimosso con successo!");
+            if (deletedRec == 1) logger.debug("Volontario ID " + id + ", rimosso con successo!");
 
-            else System.out.println("ID non trovato.");
+            else logger.debug("ID non trovato.");
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -257,11 +261,11 @@ public class VolunteerRepository {
         try (Connection conn = connector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             delRecs = stmt.executeUpdate();
-            if (delRecs >= 1) System.out.println("\t ***** Volontari rimossi con successo! *****");
+            if (delRecs >= 1) logger.debug("\t ***** Volontari rimossi con successo! *****");
             resetID();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 
@@ -272,9 +276,9 @@ public class VolunteerRepository {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.executeUpdate();
-            System.out.println("\t ***** ID Values resetted successfully! *****");
+            logger.debug("\t ***** ID Values resetted successfully! *****");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.debug(ex.getMessage());
         }
     }
 

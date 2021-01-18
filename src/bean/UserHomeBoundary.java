@@ -6,6 +6,9 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sothawo.mapjfx.Projection;
 
 import controller.CercaCaritas;
@@ -27,10 +30,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 @SuppressWarnings("serial")
-public class UserHomeBoundary implements Serializable{
+public class UserHomeBoundary{
 /**
 	 * 
 	 */
+private static Logger logger = LoggerFactory.getLogger(UserHomeBoundary.class.getName());
 
 private static UserHomeBoundary instance = null;
 
@@ -101,6 +105,7 @@ private VolunteerUser currentUser;
     @FXML
     private Button rightArrowButton;
 
+    
     @FXML
     void deleteAccountButtonPressed(ActionEvent event) {
     		//lo faremo presto
@@ -120,7 +125,7 @@ private VolunteerUser currentUser;
 			
 			home.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("errore IoException");
 		}
     }
 
@@ -159,7 +164,7 @@ private VolunteerUser currentUser;
     			home.setScene(new Scene(root, 600, 385));
     			home.show();
     		} catch (IOException e) {
-    			e.printStackTrace();
+    			logger.error("errore IoException");
     		}
         	
     	} else {
@@ -199,19 +204,14 @@ private VolunteerUser currentUser;
 
 	        Scene scene = new Scene(rootNode);
 	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
-
 	        primaryStage.setTitle("sothawo mapjfx demo application");
 	        primaryStage.setScene(scene);
 	      
 	        primaryStage.show();
 	        
-	        
-	        
-
-	     
-		
+	
 	} catch (IOException e) {
-		e.printStackTrace();
+		logger.error("errore IoException");
 	}
 	
   
