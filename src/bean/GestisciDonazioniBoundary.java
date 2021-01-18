@@ -80,7 +80,7 @@ public class GestisciDonazioniBoundary {
 	 			Parent root = loader.load();
 	 			caritasHomeBoundary = caritasHomeBoundary.getInstance();
 	 			caritasHomeBoundary = loader.getController();
-	 			caritasHomeBoundary.initData(caritas);
+	 			caritasHomeBoundary.initDataCaritas(caritas);
 	 			Stage home = (Stage) back.getScene().getWindow();
 	 			home.setScene(new Scene(root, 800, 600));
 	 			

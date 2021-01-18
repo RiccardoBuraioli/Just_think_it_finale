@@ -79,7 +79,7 @@ public class LoginBoundary {
 			Parent root = loader.load();
 			caritasHomeBoundary = caritasHomeBoundary.getInstance();
 			caritasHomeBoundary = loader.getController();
-			caritasHomeBoundary.initData((CaritasUser)loggedUser);
+			caritasHomeBoundary.initDataCaritas((CaritasUser)loggedUser);
 			Stage home = (Stage) loginButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			

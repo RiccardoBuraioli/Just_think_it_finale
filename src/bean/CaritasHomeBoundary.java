@@ -221,7 +221,7 @@ public class CaritasHomeBoundary {
 	}
 
 	@FXML
-	void logoutButtonPressed(ActionEvent event) {
+	void logoutButtonPressedCaritas(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Logout");
     	alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
@@ -249,10 +249,16 @@ public class CaritasHomeBoundary {
 	}
 
 	@FXML
-	void rightArrowPressed(ActionEvent event) {
+	void rightArrowPressedCaritas(ActionEvent event) {
 		// handle the event here
 	}
 
+	@FXML
+	void leftArrowPressedCaritas(ActionEvent event) {
+		// handle the event here
+	}
+
+	
 	public CaritasUser getCurrentUser() {
 		return currentUser;
 	}
@@ -261,7 +267,7 @@ public class CaritasHomeBoundary {
 		this.currentUser = currentUser;
 	}
 
-	public void initData(CaritasUser user) {
+	public void initDataCaritas(CaritasUser user) {
 		setCurrentUser(user);
 		nomeCognome.setText(user.getNomeCaritas());
 		final Circle clip = new Circle();
