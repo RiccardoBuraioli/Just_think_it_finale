@@ -80,7 +80,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	}
 
 	@FXML
-	void backButtonPressed(ActionEvent event) {
+	void backButtonPres(ActionEvent event) {
     	
 	    try {
 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
