@@ -20,8 +20,6 @@ import javafx.stage.Stage;
 
 public class CreaTurnoBoundary {
 
-
-	
 	@FXML
 	private Button back;
 
@@ -49,7 +47,6 @@ public class CreaTurnoBoundary {
 	void backPressed(ActionEvent event) {
 		Logger logger = LoggerFactory.getLogger(CreaTurnoBoundary.class.getName());
 
-		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/gestisci_turni_caritas.fxml"));
 			Parent root = loader.load();
@@ -63,7 +60,7 @@ public class CreaTurnoBoundary {
 			home.show();
 
 		} catch (IOException e) {
-			logger.error("errore IoException"); 
+			logger.error("errore IoException");
 		}
 
 	}
@@ -71,10 +68,9 @@ public class CreaTurnoBoundary {
 	@FXML
 	void creaTurnoPressed(ActionEvent event) {
 		CreaTurnoController creaTurn = new CreaTurnoController();
-		creaTurn.creaEvento(caritas.getID(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),Integer.parseInt(numParte.getText()), note.getText());
-		
-		
-		
+		creaTurn.creaEvento(caritas.getID(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),
+				Integer.parseInt(numParte.getText()), note.getText());
+
 	}
 
 	public void setCaritas(CaritasUser caritas) {

@@ -75,10 +75,14 @@ public class EventoDao {
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio")));
-	        	  listEv.get(i).setImportoRaggiunto( res.getFloat("Importo"));
-	        	  listEv.get(i).setStatoEvento(res.getString("Completato"));
-	        	  listEv.get(i).setRapportoDenaro();
+	        	   this.listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio")));
+	        	   EventTab temp = this.listEv.get(i);
+	        	   System.out.println(temp.getNoteEvento());
+	        	   temp.setStatoEvento(res.getString("Completato"));
+	        	   temp.setImportoRaggiunto(res.getFloat("Importo"));
+	        	 
+	        	   temp.setRapportoDenaro();
+	        	  i++;
 	           }
 	       } catch (SQLException ex) {
 	           logger.debug(ex.getMessage());

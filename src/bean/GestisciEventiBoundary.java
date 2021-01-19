@@ -34,7 +34,7 @@ public class GestisciEventiBoundary {
 	private EventTab event;
 	private ShopUser shop;
 	private ShopHomeBoundary shopHomeBoundary;
-	
+
 	@FXML
 	private ResourceBundle resources;
 
@@ -52,83 +52,79 @@ public class GestisciEventiBoundary {
 
 	@FXML
 	private TableColumn<EventTab, String> nomeCaritas;
-	 @FXML
-	 private TableColumn<EventTab, Integer> noteEvento;
+	@FXML
+	private TableColumn<EventTab, Integer> noteEvento;
 
 	@FXML
 	private TableColumn<EventTab, Integer> numPartecipanti;
 	@FXML
 	private TableColumn<EventTab, Float> importo;
-	  @FXML
-	    private Button modificaE;
+	@FXML
+	private Button modificaE;
 
-	    @FXML
-	    private Button eliminaE;
+	@FXML
+	private Button eliminaE;
 
-	    @FXML
-	    private Button back;
+	@FXML
+	private Button back;
 
-	    @FXML
-	    void backButtonPressed(ActionEvent event) {
-	    	 try {
-	 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
-	 			Parent root = loader.load();
-	 			shopHomeBoundary = shopHomeBoundary.getInstance();
-	 			shopHomeBoundary = loader.getController();
-	 			shopHomeBoundary.initData(shop);
-	 			Stage home = (Stage) back.getScene().getWindow();
-	 			home.setScene(new Scene(root, 800, 600));
-	 			
-	 			home.show();
-	 		} catch (IOException e) {
-				logger.error(s); }
-	    	
-	    }
+	@FXML
+	void backButtonPressed(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
+			Parent root = loader.load();
+			shopHomeBoundary = shopHomeBoundary.getInstance();
+			shopHomeBoundary = loader.getController();
+			shopHomeBoundary.initData(shop);
+			Stage home = (Stage) back.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
 
-	    @FXML
-	    void contattaCaritas(ActionEvent event) {
-	    	try {
+			home.show();
+		} catch (IOException e) {
+			logger.error(s);
+		}
 
-    	        FXMLLoader fxmlLoader = new FXMLLoader();
-    	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
-    	       
-    	        EmailBoundary email;
-    	        email = fxmlLoader.getController();
-    	        email.loadEmail(this.idShop, this.event.getIdCaritas());
-    	        Stage stage = new Stage();
-	    		stage.setTitle("Email");
-	    		
-	    		
-	    		stage.setScene(new Scene(rootNode, 800, 500));
-	    		stage.setResizable(false);
-	    		stage.show();
-	    		
-	    		
-	    		
-	    		
-    		} catch (IOException e) {
-				logger.error(s); }
+	}
 
-	    	
-	    }
+	@FXML
+	void contattaCaritas(ActionEvent event) {
+		try {
 
-	    @FXML
-	    boolean eliminaEvento(ActionEvent event) {
-	    	return gestEventC.eliminaEvento(this.event.getNomeEvento());
-	    }
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
 
-	    @FXML
-	    void modificaEvento(ActionEvent event) {
-	    	//non si sa se è da fare o no
-	    	
-	    }
+			EmailBoundary email;
+			email = fxmlLoader.getController();
+			email.loadEmail(this.idShop, this.event.getIdCaritas());
+			Stage stage = new Stage();
+			stage.setTitle("Email");
 
-	    @FXML
-	    void prendiEvento(MouseEvent e) {
-	    	this.event = table.getSelectionModel().getSelectedItem();
-	    	
-	    }
+			stage.setScene(new Scene(rootNode, 800, 500));
+			stage.setResizable(false);
+			stage.show();
 
+		} catch (IOException e) {
+			logger.error(s);
+		}
+
+	}
+
+	@FXML
+	boolean eliminaEvento(ActionEvent event) {
+		return gestEventC.eliminaEvento(this.event.getNomeEvento());
+	}
+
+	@FXML
+	void modificaEvento(ActionEvent event) {
+		// non si sa se è da fare o no
+
+	}
+
+	@FXML
+	void prendiEvento(MouseEvent e) {
+		this.event = table.getSelectionModel().getSelectedItem();
+
+	}
 
 	public GestisciEventiBoundary() {
 
@@ -142,9 +138,6 @@ public class GestisciEventiBoundary {
 		this.idShop = i;
 
 	}
-	
-	
-	
 
 	public void loadShop(int idShop) {
 		this.idShop = idShop;
@@ -156,11 +149,8 @@ public class GestisciEventiBoundary {
 		nomeCaritas.setCellValueFactory(new PropertyValueFactory<>("NomeCaritas"));
 		noteEvento.setCellValueFactory(new PropertyValueFactory<>("NoteEvento"));
 		numPartecipanti.setCellValueFactory(new PropertyValueFactory<>("NumPartecipanti"));
-	
-		
-		
+
 		table.setItems(data);
-	
 
 	}
 

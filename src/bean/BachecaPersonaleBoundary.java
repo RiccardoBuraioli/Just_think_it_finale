@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class BachecaPersonaleBoundary {
-	
+
 	private int idCar;
 	private BachecaPersonaleController bachecaController;
 	private static Logger logger = LoggerFactory.getLogger(BachecaPersonaleBoundary.class.getName());
@@ -45,7 +45,6 @@ public class BachecaPersonaleBoundary {
 	@FXML
 	private Button necessita;
 
-
 	@FXML
 	private Button elimina;
 
@@ -59,20 +58,17 @@ public class BachecaPersonaleBoundary {
 			Parent root = loader.load();
 			CaritasHomeBoundary homeC = loader.getController();
 			homeC.setCurrentUser(caritas);
-			
+
 			Stage home = (Stage) back.getScene().getWindow();
-			home.setScene(new Scene(root,  800, 600));
+			home.setScene(new Scene(root, 800, 600));
 
 			home.show();
 		} catch (IOException e) {
-			logger.error(s); }
+			logger.error(s);
+		}
 
-		
-		
 	}
 
-	
-	
 	@FXML
 	void creaNecessita(ActionEvent event) {
 		try {
@@ -85,7 +81,8 @@ public class BachecaPersonaleBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			logger.error(s); }
+			logger.error(s);
+		}
 
 	}
 
@@ -94,8 +91,6 @@ public class BachecaPersonaleBoundary {
 		Necessita nec = bacheca.getSelectionModel().getSelectedItem();
 		bachecaController.eliminaAnnuncio(nec.getIdNece());
 	}
-
-
 
 	public void loadFormBoundary(int idCar) {
 		this.idCar = idCar;
@@ -113,15 +108,13 @@ public class BachecaPersonaleBoundary {
 		bacheca.setItems(data);
 
 	}
-	
-	
+
 	public void setCurrentUser(CaritasUser user) {
 		this.caritas = user;
 	}
-	
+
 	public CaritasUser getcaritas() {
 		return this.caritas;
 	}
-	
 
 }

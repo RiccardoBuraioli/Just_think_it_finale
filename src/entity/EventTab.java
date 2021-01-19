@@ -32,12 +32,11 @@ public class EventTab {
 		this.numPartecipanti = new SimpleIntegerProperty(numPart);
 		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
 		this.noteEvento = new SimpleStringProperty(noteEvento);
-
 		this.nomeNegozio = new SimpleStringProperty(nomeNegozio);
-		
-
 		this.codiceNegozio = new SimpleIntegerProperty(codiceNeg);
-		
+		this.statoEvento = new SimpleStringProperty("");
+		this.importoRaggiunto = new SimpleFloatProperty(0); 
+		this.rapportoDenaro = new SimpleStringProperty("");
 	}
 
 	public EventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento,

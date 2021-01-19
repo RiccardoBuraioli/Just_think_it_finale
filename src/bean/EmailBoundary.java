@@ -9,53 +9,52 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EmailBoundary {
-	
 
-	
 	private EmailController emailC;
 
 	@FXML
 	private Stage stage;
-	
+
 	@FXML
-    private TextArea messaggio;
+	private TextArea messaggio;
 
-    @FXML
-    private TextField oggetto;
+	@FXML
+	private TextField oggetto;
 
-    @FXML
-    private TextField destinatario;
+	@FXML
+	private TextField destinatario;
 
-    @FXML
-    private TextField mittente;
+	@FXML
+	private TextField mittente;
 
-    @FXML
-    private Button invia;
+	@FXML
+	private Button invia;
 
-    @FXML
-    public int sendMessage(ActionEvent event) {
-    	int i = 0;
-    	
-   	i =emailC.sendMessageController(mittente.getText(), destinatario.getText(), messaggio.getText(), oggetto.getText());
+	@FXML
+	public int sendMessage(ActionEvent event) {
+		int i = 0;
 
-    Stage st = (Stage) invia.getScene().getWindow();
-    st.close();
-  	return i;
-    	
-    }
-    
+		i = emailC.sendMessageController(mittente.getText(), destinatario.getText(), messaggio.getText(),
+				oggetto.getText());
+
+		Stage st = (Stage) invia.getScene().getWindow();
+		st.close();
+		return i;
+
+	}
+
 	@FXML
 	void initialize() {
-	
+
 		emailC = new EmailController();
-		
+
 	}
-	
+
 	public void loadEmail(int idDestinatario, int idMittente) {
 		String[] mitDest = emailC.loadMittenteDestinatario(idDestinatario, idMittente);
 		this.mittente.setText(mitDest[0]);
 		this.destinatario.setText(mitDest[1]);
-		
+
 	}
-	
+
 }

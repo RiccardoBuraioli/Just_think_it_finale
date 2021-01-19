@@ -36,7 +36,7 @@ public class CaritasHomeBoundary {
 	private Image img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
 	private Image[] images = { img1, img2, img3 };
 	private int currentImage = 0;
-	private  static CaritasHomeBoundary instance = null;
+	private static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
 	private String s = "errore IoException";
 
@@ -46,66 +46,62 @@ public class CaritasHomeBoundary {
 
 	private BachecaPersonaleBoundary bacheca;
 	@FXML
-    private Button profileButton;
+	private Button profileButton;
 
-    @FXML
-    private Button helpButton;
+	@FXML
+	private Button helpButton;
 
-    @FXML
-    private Button deleteAccountButton;
+	@FXML
+	private Button deleteAccountButton;
 
-    @FXML
-    private ImageView imagePresentation;
+	@FXML
+	private ImageView imagePresentation;
 
-    @FXML
-    private Button vBacheca;
+	@FXML
+	private Button vBacheca;
 
-    @FXML
-    private Font x1;
+	@FXML
+	private Font x1;
 
-    @FXML
-    private Button eventiC;
+	@FXML
+	private Button eventiC;
 
-    @FXML
-    private Button turni;
+	@FXML
+	private Button turni;
 
-    @FXML
-    private Text textOverImages;
+	@FXML
+	private Text textOverImages;
 
-    @FXML
-    private Button logoutButton;
+	@FXML
+	private Button logoutButton;
 
-    @FXML
-    private ImageView arrowRight;
+	@FXML
+	private ImageView arrowRight;
 
-    @FXML
-    private ImageView arrowLeft;
+	@FXML
+	private ImageView arrowLeft;
 
-    @FXML
-    private Text nomeCognome;
+	@FXML
+	private Text nomeCognome;
 
-    @FXML
-    private Button leftArrowButton;
+	@FXML
+	private Button leftArrowButton;
 
-    @FXML
-    private Button rightArrowButton;
+	@FXML
+	private Button rightArrowButton;
 
-    @FXML
-    private ImageView profileImage;
+	@FXML
+	private ImageView profileImage;
 
-    @FXML
-    private Button gestisciDona;
+	@FXML
+	private Button gestisciDona;
 
-	
-	
 	public static CaritasHomeBoundary getInstance() {
 		if (instance == null) {
 			instance = new CaritasHomeBoundary();
-			}
+		}
 		return instance;
 	}
-	
-	
 
 	public CaritasHomeBoundary() {
 		bacheca = new BachecaPersonaleBoundary();
@@ -118,92 +114,85 @@ public class CaritasHomeBoundary {
 
 		try {
 
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_Donazioni.fxml"));
+			gestDon = fxmlLoader.getController();
+			Stage stage = (Stage) eventiC.getScene().getWindow();
+			stage.setTitle("Gestisci Eventi");
+			gestDon.setCaritas(this.currentUser);
+			gestDon.loadFormBoundary();
+			stage.setScene(new Scene(rootNode, 800, 500));
+			stage.setResizable(false);
+			stage.show();
 
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_Donazioni.fxml"));       
-	        gestDon = fxmlLoader.getController();
-	        Stage stage = (Stage) eventiC.getScene().getWindow();
-    		stage.setTitle("Gestisci Eventi");	
-    		gestDon.setCaritas(this.currentUser);
-    		gestDon.loadFormBoundary();  		
-    		stage.setScene(new Scene(rootNode, 800, 500));
-    		stage.setResizable(false);
-    		stage.show();
-    		
-    				} catch (IOException e) {
-    					logger.error(s); }
+		} catch (IOException e) {
+			logger.error(s);
+		}
 	}
 
 	@FXML
 	void gestisciEventi(ActionEvent event) {
 		// handle the event here
-		
+
 		try {
 
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			Parent rootNode = fxmlLoader
+					.load(getClass().getResourceAsStream("../boundary/Gestisci_eventi_caritas.fxml"));
+			GestisciEventiCaritasBoundary gestisciB = fxmlLoader.getController();
+			Stage stage = (Stage) eventiC.getScene().getWindow();
+			stage.setTitle("Gestisci Eventi");
+			gestisciB.setCaritas(currentUser);
+			gestisciB.loadShop(currentUser.getID());
+			stage.setScene(new Scene(rootNode, 800, 500));
+			stage.setResizable(false);
+			stage.show();
 
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("../boundary/Gestisci_eventi_caritas.fxml"));       
-	        GestisciEventiCaritasBoundary gestisciB = fxmlLoader.getController();
-	        Stage stage = (Stage) eventiC.getScene().getWindow();
-    		stage.setTitle("Gestisci Eventi");	
-    		gestisciB.setCaritas(currentUser);
-    		gestisciB.loadShop(currentUser.getID());    		
-    		stage.setScene(new Scene(rootNode, 800, 500));
-    		stage.setResizable(false);
-    		stage.show();
-    		
-    				} catch (IOException e) {
-    					logger.error(s); }
+		} catch (IOException e) {
+			logger.error(s);
 		}
-		
-		
-		
-	
+	}
 
 	@FXML
 	void gestisciTurni(ActionEvent event) {
-		try {     
+		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/gestisci_turni_caritas.fxml"));
 			Parent root = loader.load();
 
 			Stage home = (Stage) turni.getScene().getWindow();
-		
-			 gestTurn = loader.getController();
-    		 gestTurn.setCurrentUser(this.currentUser);
-    		 gestTurn.loadFormBoundary(currentUser.getID());
-    		 
-			home.setScene(new Scene(root,883, 550));
-			home.show();
-    		
-    
 
-    		
+			gestTurn = loader.getController();
+			gestTurn.setCurrentUser(this.currentUser);
+			gestTurn.loadFormBoundary(currentUser.getID());
+
+			home.setScene(new Scene(root, 883, 550));
+			home.show();
+
 		} catch (IOException e) {
-			logger.error(s); }
+			logger.error(s);
+		}
 
 	}
 
-	
-	@FXML  // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
+	@FXML // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di
+			// chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
 	void visualizzaBacheca(ActionEvent event) {
-		try {     
+		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
 			Parent root = loader.load();
 
 			Stage home = (Stage) vBacheca.getScene().getWindow();
-			home.setScene(new Scene(root,775, 500));
+			home.setScene(new Scene(root, 775, 500));
 			home.show();
-    		
-    		 bacheca = loader.getController();
-    		 bacheca.setCurrentUser(this.currentUser);
-    		 bacheca.loadFormBoundary(currentUser.getID());
 
-    		
+			bacheca = loader.getController();
+			bacheca.setCurrentUser(this.currentUser);
+			bacheca.loadFormBoundary(currentUser.getID());
+
 		} catch (IOException e) {
-			logger.error(s); }
+			logger.error(s);
 		}
-	
-	
+	}
 
 	@FXML
 	void deleteAccountButtonPressed(ActionEvent event) {
@@ -223,25 +212,24 @@ public class CaritasHomeBoundary {
 	@FXML
 	void logoutButtonPressedCaritas(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setTitle("Logout");
-    	alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
-    	alert.setContentText("Sei sicuro di voler eseguire il logout?");
+		alert.setTitle("Logout");
+		alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
+		alert.setContentText("Sei sicuro di voler eseguire il logout?");
 
-    	Optional<ButtonType> result = alert.showAndWait();
-    	if (result.get() == ButtonType.OK){
-    		try {
-    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
-    			Parent root = loader.load();
-    			Stage home = (Stage) logoutButton.getScene().getWindow();
-    			home.setScene(new Scene(root, 600, 385));
-    			home.show();
-    		} catch (IOException e) {
-				logger.error(s); }
-    		}
-        	
-    	}    					
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
+				Parent root = loader.load();
+				Stage home = (Stage) logoutButton.getScene().getWindow();
+				home.setScene(new Scene(root, 600, 385));
+				home.show();
+			} catch (IOException e) {
+				logger.error(s);
+			}
+		}
 
-	
+	}
 
 	@FXML
 	void profileButtonPressed(ActionEvent event) {
@@ -258,7 +246,6 @@ public class CaritasHomeBoundary {
 		// handle the event here
 	}
 
-	
 	public CaritasUser getCurrentUser() {
 		return currentUser;
 	}

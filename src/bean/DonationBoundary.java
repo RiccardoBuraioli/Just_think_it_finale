@@ -1,6 +1,5 @@
 package bean;
 
-
 import java.util.ResourceBundle;
 
 import controller.DonationController;
@@ -12,7 +11,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class DonationBoundary{
+public class DonationBoundary {
 
 	@FXML
 	private RadioButton vestiti;
@@ -39,55 +38,45 @@ public class DonationBoundary{
 	public DonationBoundary() {
 		controller = DonationController.getInstance();
 	}
-	
-	
+
 	@FXML
 	public void creaDonazione(ActionEvent event) {
 
-		checker();		
+		checker();
 		controller.setIndirizzo(this.indirizzo.getText());
 		controller.setDescrizione(this.descrizione.getText());
 		controller.creaDonazione();
 		Stage st = (Stage) donazione.getScene().getWindow();
 		st.close();
-		
-		
 
 	}
-	
 
 	public void initialize() {
 		textFields = new TextField[] { indirizzo };
-		
+
 	}
-	
-	
-public int checker() {
-    	
-    	//Controlla che non ci siano campi lasciati vuoti
-    	for (int i = 0; i < textFields.length; i++) {
+
+	public int checker() {
+
+		// Controlla che non ci siano campi lasciati vuoti
+		for (int i = 0; i < textFields.length; i++) {
 			if (textFields[i].getText().isEmpty()) {
-				
+
 				return -1;
-			}
-			else if(cibo.isSelected()) {
+			} else if (cibo.isSelected()) {
 				controller.setTipologia(2);
-	    		//Almeno uno dei tipi deve essere selezionato
-			}else if(vestiti.isSelected()) {
+				// Almeno uno dei tipi deve essere selezionato
+			} else if (vestiti.isSelected()) {
 				controller.setTipologia(1);
-				//Almeno uno dei tipi deve essere selezionato
+				// Almeno uno dei tipi deve essere selezionato
 			}
 		}
 		return 0;
-    	
-  }
+
+	}
 
 	public void initBoundary(int idCar, int idUte) {
 		controller.initController(idCar, idUte);
 	}
-
-
-
-
 
 }
