@@ -1,7 +1,7 @@
 package bean;
 
 import java.io.IOException;
-import java.io.Serializable;
+
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;

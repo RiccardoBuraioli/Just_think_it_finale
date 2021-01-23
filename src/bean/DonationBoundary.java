@@ -1,6 +1,5 @@
 package bean;
 
-import java.util.ResourceBundle;
 
 import controller.DonationController;
 import javafx.event.ActionEvent;

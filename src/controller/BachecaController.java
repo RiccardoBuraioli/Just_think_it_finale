@@ -9,12 +9,11 @@ import entity.Necessita;
 
 public class BachecaController  {
 
-	private List<Necessita> necessita;
 
 	public List<Necessita> loadForm(int idCar) {
 		BachecaDao bacheca = new BachecaDao();
 		BachecaEntity bachecaEntity = new BachecaEntity();
-		necessita = bacheca.visualizzaNecessita(idCar);
+		List<Necessita>	necessita = bacheca.visualizzaNecessita(idCar);
 		bachecaEntity.setNecessita(necessita);
 		return bachecaEntity.getNecessita();
 			

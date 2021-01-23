@@ -1,7 +1,6 @@
 package dao;
 
 import connector.Connector;
-import controller.CercaCaritas;
 import entity.Necessita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

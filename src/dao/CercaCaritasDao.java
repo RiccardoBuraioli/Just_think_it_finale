@@ -106,7 +106,7 @@ public class CercaCaritasDao {
 		
 		 String sql = "Call assegna_marker_donazione()";
 	     ResultSet rs = null;
-	     int count = 0;
+	   
 
 	     try (Connection conn = connector.getConnection();
 	          PreparedStatement pstmt = conn.prepareStatement(sql)) {

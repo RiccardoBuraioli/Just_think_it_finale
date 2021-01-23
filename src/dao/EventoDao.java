@@ -37,14 +37,19 @@ public class EventoDao {
 
 	   	String sql = "call visualizza_tuoi_eventi(?) ";
 		ResultSet res = null;
+		int i = 0;
 		try (Connection conn = connector.getConnection();
 	            PreparedStatement stmt = conn.prepareStatement(sql)) {
 				stmt.setInt(1, idShop );
 	            res = stmt.executeQuery();
 	
 	           while (res.next()) {
-	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getFloat("Importo"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas"), res.getString("Completato")));
-	        	  
+	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas")));
+	        	   EventTab temp = this.listEv.get(i);
+	        	   temp.setStatoEvento(res.getString("Completato"));
+	        	   temp.setImportoRaggiunto(res.getFloat("Importo"));	        	 
+	        	   temp.setRapportoDenaro();
+	        	   i++;
 	           }
 	       } catch (SQLException ex) {
 	           logger.debug(ex.getMessage());

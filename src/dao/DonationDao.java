@@ -54,7 +54,7 @@ public class DonationDao {
    public int creaDonazione(Donazione dono ) {
    
 	   		int rowAffected;
-	   		ResultSet rs = null;
+	   	
 
       	    String sql = "call crea_donazione(?,?,?,?,?)";
 

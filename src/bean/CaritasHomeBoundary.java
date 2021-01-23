@@ -16,7 +16,7 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.CercaCaritas;
+
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

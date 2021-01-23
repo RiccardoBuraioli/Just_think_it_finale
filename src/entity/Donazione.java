@@ -56,7 +56,7 @@ public class Donazione {
 		return idUtente;
 	}
 
-	public void setId_utente(int idUtente) {
+	public void setIdUtente(int idUtente) {
 		this.idUtente = idUtente;
 	}
 

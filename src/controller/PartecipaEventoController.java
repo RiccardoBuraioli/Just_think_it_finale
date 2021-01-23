@@ -16,8 +16,6 @@ public class PartecipaEventoController {
 
 	public boolean partecipaEvento(float importo) {
 
-		int error = 0;
-
 		partecipaz.setImport(importo);
 
 		EventoDao partecipazione = new EventoDao();

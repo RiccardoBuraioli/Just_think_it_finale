@@ -61,7 +61,7 @@ public class CoordinateDao {
            }
     
     		Coordinate coordinate = new Coordinate(Double.parseDouble(lat), Double.parseDouble(lon));
-    		System.out.print( " COORDINATE VOLONTARIO " + coordinate.getLatitude() + " " +coordinate.getLongitude() );
+    		logger.debug( " COORDINATE VOLONTARIO " + coordinate.getLatitude() + " " +coordinate.getLongitude() );
     		return coordinate;
     	
     }

@@ -73,7 +73,7 @@ public class PrenotaDao {
 	
 
 	public List<Orario> visualizzaOrario() {
-		List<Orario> oraArrayList = new ArrayList<Orario>();
+		List<Orario> oraArrayList = new ArrayList<>();
 		ResultSet res = null;
 		String sql = "Select ora_inizio, ora_fine from orari ";
 		

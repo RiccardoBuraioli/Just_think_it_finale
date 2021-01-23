@@ -1,11 +1,8 @@
 package controller;
 
-import java.io.IOException;
+
 import entity.ShopUser;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import javafx.stage.Window;
 
 public class ShopHomeController {

@@ -1,15 +1,9 @@
 package controller;
 
 import entity.CaritasUser;
-import java.io.IOException;
 import java.sql.SQLException;
-import bean.CaritasHomeBoundary;
 import dao.CaritasRepository;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+
 
 public class RegistrazioneCaritasController  {
 	
