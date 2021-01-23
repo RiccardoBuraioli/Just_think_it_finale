@@ -75,7 +75,7 @@ public class BachecaPersonaleBoundary {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Crea_Necessità.fxml"));
 			Parent root = loader.load();
 			CreaNecessitaBoundary creaNec = loader.getController();
-			creaNec.setCaritas(idCar);
+			creaNec.setCaritas(caritas);
 			Stage home = (Stage) necessita.getScene().getWindow();
 			home.setScene(new Scene(root, 600, 500));
 

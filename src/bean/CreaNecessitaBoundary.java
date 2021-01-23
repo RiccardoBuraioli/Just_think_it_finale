@@ -1,18 +1,25 @@
 package bean;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.CreaNecessitaController;
+import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class CreaNecessitaBoundary {
-
+	private CaritasUser caritas;
+	private Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
 	private String[] tipo = { "Vestiti", "Cibo" };
 	private String[] urg = { "Alta", "Normale", "Bassa" };
 
@@ -35,20 +42,46 @@ public class CreaNecessitaBoundary {
 
 	@FXML
 	void backPressed(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
+			Parent root = loader.load();
 
+			Stage home = (Stage) back.getScene().getWindow();
+			home.setScene(new Scene(root, 775, 500));
+			home.show();
+
+			BachecaPersonaleBoundary bacheca = loader.getController();
+			bacheca.setCurrentUser(this.caritas);
+			bacheca.loadFormBoundary(caritas.getID());
+
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
 	}
 
 	@FXML
 	void creaAnnuncioPressed(ActionEvent event) {
-		Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
 
 		CreaNecessitaController creaNec = new CreaNecessitaController();
 		creaNec.inizializza(idCaritas);
 		int i = creaNec.creaNecessita(tipologia.getValue().toString(), urgenza.getValue().toString(),
 				descrizione.getText());
 		if (i == 0) {
-			Stage st = (Stage) creaAnnuncio.getScene().getWindow();
-			st.close();
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
+				Parent root = loader.load();
+
+				Stage home = (Stage) back.getScene().getWindow();
+				home.setScene(new Scene(root, 775, 500));
+				home.show();
+
+				BachecaPersonaleBoundary bacheca = loader.getController();
+				bacheca.setCurrentUser(this.caritas);
+				bacheca.loadFormBoundary(caritas.getID());
+
+			} catch (IOException e) {
+				logger.error(e.getMessage());
+			}
 		} else
 			logger.trace("errore nella creazione dell'annuncio");
 	}
@@ -60,8 +93,10 @@ public class CreaNecessitaBoundary {
 
 	}
 
-	public void setCaritas(int idCar) {
-		this.idCaritas = idCar;
+	public void setCaritas(CaritasUser idCar) {
+		this.idCaritas = idCar.getID();
+		this.caritas = idCar;
+		
 	}
 
 }
