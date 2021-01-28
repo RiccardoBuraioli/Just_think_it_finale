@@ -16,8 +16,8 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -143,7 +143,7 @@ public class CaritasHomeBoundary {
 			Stage stage = (Stage) eventiC.getScene().getWindow();
 			stage.setTitle("Gestisci Eventi");
 			gestisciB.setCaritas(currentUser);
-			gestisciB.loadShop(currentUser.getID());
+			gestisciB.loadShop(currentUser.getId());
 			stage.setScene(new Scene(rootNode, 800, 500));
 			stage.setResizable(false);
 			stage.show();
@@ -163,7 +163,7 @@ public class CaritasHomeBoundary {
 
 			gestTurn = loader.getController();
 			gestTurn.setCurrentUser(this.currentUser);
-			gestTurn.loadFormBoundary(currentUser.getID());
+			gestTurn.loadFormBoundary(currentUser.getId());
 
 			home.setScene(new Scene(root, 883, 550));
 			home.show();
@@ -187,7 +187,7 @@ public class CaritasHomeBoundary {
 
 			bacheca = loader.getController();
 			bacheca.setCurrentUser(this.currentUser);
-			bacheca.loadFormBoundary(currentUser.getID());
+			bacheca.loadFormBoundary(currentUser.getId());
 
 		} catch (IOException e) {
 			logger.error(s);
@@ -250,13 +250,13 @@ public class CaritasHomeBoundary {
 		return currentUser;
 	}
 
-	public void setCurrentUser(CaritasUser currentUser) {
-		this.currentUser = currentUser;
+	public void setCurrentUser(CaritasUser loggedUser) {
+		this.currentUser = loggedUser;
 	}
 
-	public void initDataCaritas(CaritasUser user) {
-		setCurrentUser(user);
-		nomeCognome.setText(user.getNomeCaritas());
+	public void initDataCaritas(CaritasUser loggedUser) {
+		setCurrentUser(loggedUser);
+		nomeCognome.setText(loggedUser.getNome());
 		final Circle clip = new Circle();
 		clip.setCenterX(25);
 		clip.setCenterY(58);

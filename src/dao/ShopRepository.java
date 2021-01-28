@@ -7,8 +7,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sothawo.mapjfx.Coordinate;
+
 import connector.Connector;
 import entity.ShopUser;
+import entity.ShopUser2;
 
 public class ShopRepository {
 
@@ -25,7 +28,7 @@ public class ShopRepository {
 
 
 
-    public int insertShop(ShopUser shopUser) {
+    public int insertShop(ShopUser2 shopUser) {
 
         ResultSet rs = null;
         int shopID = 0;
@@ -66,8 +69,8 @@ public class ShopRepository {
     }
 
   
-    public List<ShopUser> getAllShops() {
-        List<ShopUser> shopUsers = new ArrayList<>();
+    public List<ShopUser2> getAllShops() {
+        List<ShopUser2> shopUsers = new ArrayList<>();
 
         String sql = "SELECT * FROM negozi";
 
@@ -85,7 +88,7 @@ public class ShopRepository {
                 String email = rs.getString("Email");
                 String citta = rs.getString("città");
 
-                ShopUser shopUser = new ShopUser(nomeShop, password, indirizzoNegozio, tipologia, recapitoTel, email, citta);
+                ShopUser2 shopUser = new ShopUser2(nomeShop, password, indirizzoNegozio, tipologia, recapitoTel, email, citta);
                 shopUser.setId(rs.getInt("ID"));
                 shopUsers.add(shopUser);
             }
@@ -99,7 +102,7 @@ public class ShopRepository {
 
     public ShopUser getShopByID(int id) {
 
-        String sql = "SELECT NomeNegozio, IndirizzoNeg, Tipologia, RecapitoTel FROM negozi WHERE ID=?";
+        String sql = "call trova_negozio(?)";
         ResultSet rs = null;
         ShopUser shopUser = new ShopUser();
 
@@ -109,14 +112,14 @@ public class ShopRepository {
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next()) { 
+            	Coordinate coord = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
             	shopUser.setId(id);
-                shopUser.setNomeShop(rs.getString("NomeNegozio"));
-              
-                shopUser.setIndirizzoShop(rs.getString("IndirizzoNeg"));
+                shopUser.setNome(rs.getString("NomeNegozio"));
+                shopUser.setCoord(coord);
+                shopUser.setIndirizzo(rs.getString("IndirizzoNeg"));
                 shopUser.setTipologia(rs.getString("Tipologia"));
-                shopUser.setRecapitoTelefonico(rs.getString("RecapitoTel"));
-            
+                shopUser.setRecapitoTel(rs.getString("RecapitoTel"));
             }
 
         } catch (SQLException ex) {

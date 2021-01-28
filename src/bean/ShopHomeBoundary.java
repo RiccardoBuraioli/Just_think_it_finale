@@ -10,7 +10,11 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sothawo.mapjfx.Projection;
+
+import controller.CercaCaritas;
 import entity.ShopUser;
+import entity.ShopUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,8 +48,8 @@ public class ShopHomeBoundary {
 			return currentUser;
 		}
 
-		public void setCurrentUser(ShopUser currentUser) {
-			this.currentUser = currentUser;
+		public void setCurrentUser(ShopUser user) {
+			this.currentUser = user;
 		}
 		
 		
@@ -116,13 +120,39 @@ public class ShopHomeBoundary {
 
     @FXML
     void cercaCaritas(ActionEvent event) {
-    	//mo lo faremo, giuro
+    	try {
+
+	        //FXMLLoader fxmlLoader = new FXMLLoader();
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CercaCaritas.fxml"));
+	      //  Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Cerca_Caritas.fxml"));
+	        Parent rootNode = loader.load();
+	        CercaCaritas controller = loader.getController();
+	        controller.setUser(currentUser);
+	      
+	      
+	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
+	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
+	      
+	        controller.initMapAndControls(projection);
+	       
+
+	        Scene scene = new Scene(rootNode);
+	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
+	        primaryStage.setTitle("sothawo mapjfx demo application");
+	        primaryStage.setScene(scene);
+	      
+	        primaryStage.show();
+	        
+	
+	} catch (IOException e) {
+		logger.error(e.getMessage());
+	}
     }
 
   
     public void initData(ShopUser user) {
     	setCurrentUser(user);
-    	nomeCognome.setText(user.getNomeShop());
+    	nomeCognome.setText(user.getNome());
     	final Circle clip = new Circle();
     	clip.setCenterX(25);
     	clip.setCenterY(58);
@@ -171,7 +201,7 @@ public class ShopHomeBoundary {
     		
     		
     		gestisciBoundary.setShop(currentUser);
-    		gestisciBoundary.loadShop(currentUser.getID());
+    		gestisciBoundary.loadShop(currentUser.getId());
     		
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import connector.Connector;
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import java.sql.*;
 
 public class CaritasRepository {
@@ -20,7 +21,7 @@ public class CaritasRepository {
         this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
-    public int insertCaritas(CaritasUser caritasUser) {
+    public int insertCaritas(CaritasUser2 caritasUser) {
 
         ResultSet rs = null;
         int caritasID = 0;
@@ -75,12 +76,12 @@ public class CaritasRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-
-                carUsr.setNomeCaritas(rs.getString("NomeCaritas"));
+            	
+                carUsr.setNome(rs.getString("NomeCaritas"));
                 carUsr.setId(id);
-                carUsr.setIndirizzoCaritas(rs.getString("IndirizzoCaritas"));
+                carUsr.setIndirizzo(rs.getString("IndirizzoCaritas"));
                 carUsr.setTipologia(rs.getString("Tipologia"));
-                carUsr.setRecapitoTelefonico(rs.getString("RecapitoTel"));
+                carUsr.setRecapitoTel(rs.getString("RecapitoTel"));
                
             }
 

@@ -19,17 +19,17 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField layoutX="213.0" layoutY="177.0" promptText="importo €" />
+      <TextField fx:id="importo" layoutX="213.0" layoutY="177.0" promptText="importo €" />
       <Text layoutX="36.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text layoutX="36.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Carta Di Credito">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField layoutX="213.0" layoutY="237.0" promptText="5040 2303 3230 2302" />
+      <TextField fx:id="cdc" layoutX="213.0" layoutY="237.0" promptText="5040 2303 3230 2302" />
       <ImageView fitHeight="236.0" fitWidth="295.0" layoutX="407.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
       <Text layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Donare è facoltativo, si può partecipare comunque aspettanto che altri volontari contribuiscano all'evento" />
-      <Button layoutX="589.0" layoutY="357.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="93.0" text="Partecipa" />
+      <Button fx:id="partecipa" layoutX="589.0" layoutY="357.0" mnemonicParsing="false" onAction="#partecipaEvento" prefHeight="38.0" prefWidth="93.0" text="Partecipa" />
       <Text layoutX="278.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just Think It">
          <font>
             <Font size="32.0" />

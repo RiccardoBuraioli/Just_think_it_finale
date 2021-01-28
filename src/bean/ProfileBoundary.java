@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import entity.User;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class ProfileBoundary{
 			Parent root = loader.load();
 			UserHomeBoundary userHomeBoundary;
 			userHomeBoundary = loader.getController();
-			userHomeBoundary.initData(getCurrentUser());
+			userHomeBoundary.initData(currentUser);
 			Stage home = (Stage) this.backHomeButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
@@ -76,12 +77,12 @@ public class ProfileBoundary{
 	 //perche si
  }
 
- public VolunteerUser getCurrentUser() {
+ public User getCurrentUser() {
 		return this.currentUser;
 	}
 
-	public void setCurrentUser(VolunteerUser currentUser) {
-		this.currentUser = currentUser;
+	public void setCurrentUser(VolunteerUser user) {
+		this.currentUser = user;
 	}
  
  public void initData(VolunteerUser user) {

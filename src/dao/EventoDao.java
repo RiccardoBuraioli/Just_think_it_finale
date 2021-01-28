@@ -45,10 +45,11 @@ public class EventoDao {
 	
 	           while (res.next()) {
 	        	   listEv.add(new EventTab(res.getString("NomeEvento"),res.getString("NomeCaritas"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"), res.getInt("numPartecipanti"), res.getInt("CodiceCaritas")));
-	        	   EventTab temp = this.listEv.get(i);
-	        	   temp.setStatoEvento(res.getString("Completato"));
-	        	   temp.setImportoRaggiunto(res.getFloat("Importo"));	        	 
-	        	   temp.setRapportoDenaro();
+	        	  
+	        	   this.listEv.get(i).setStatoEvento(res.getString("Completato"));
+	        	   this.listEv.get(i).setImportoRaggiunto(res.getFloat("Importo"));	        	 
+	        	   this.listEv.get(i).setRapportoDenaro();
+	        	  
 	        	   i++;
 	           }
 	       } catch (SQLException ex) {
@@ -108,20 +109,20 @@ public class EventoDao {
     
     
     
-    public Evento creaEvento(Evento event) {
+    public EventTab creaEvento(EventTab event) {
 		   	
     	int rowAffected;
   	    String sql = "call crea_evento(?,?,?,?,?,?)";
 
           try (Connection conn = connector.getConnection();
               PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        	  pstmt.setInt(1, event.getNeg());
+        	  pstmt.setInt(1, event.getCodiceNegozio());
         	  pstmt.setString(2, event.getNomeEvento());
-        	  pstmt.setString(2, event.getNote());
-        	  pstmt.setString(4, event.getTipo());
-        	  pstmt.setFloat(5,event.getPrezzo());
-        	  pstmt.setString(6, event.getCoord());
-          	
+        	  pstmt.setString(3, event.getNoteEvento());
+        	  pstmt.setString(4, event.getTipoEvento());
+        	  pstmt.setFloat(5,event.getPrezzoEvento());
+        	  
+          	  pstmt.setInt(6, event.getIdCaritas());
            
           
               rowAffected = pstmt.executeUpdate();

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.GestisciDonazioniCaritas;
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import entity.DonazioneTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,7 +100,7 @@ public class GestisciDonazioniBoundary {
 
 			EmailBoundary email;
 			email = fxmlLoader.getController();
-			email.loadEmail(this.idVolontario, this.caritas.getID());
+			email.loadEmail(this.idVolontario, this.caritas.getId());
 			Stage stage = new Stage();
 			stage.setTitle("Email");
 
@@ -126,7 +127,7 @@ public class GestisciDonazioniBoundary {
 	}
 
 	public void loadFormBoundary() {
-		this.listDon = gestDon.visualizzaDonazioni(this.caritas.getID());
+		this.listDon = gestDon.visualizzaDonazioni(this.caritas.getId());
 		ObservableList<DonazioneTab> data = FXCollections.observableArrayList(this.listDon);
 		this.tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		this.descrizione.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
@@ -145,8 +146,8 @@ public class GestisciDonazioniBoundary {
 		return this.caritas;
 	}
 
-	public void setCaritas(CaritasUser caritas) {
-		this.caritas = caritas;
+	public void setCaritas(CaritasUser currentUser) {
+		this.caritas = currentUser;
 	}
 
 }

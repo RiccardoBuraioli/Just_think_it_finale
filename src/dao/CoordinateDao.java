@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class CoordinateDao {
     private static final Logger logger = LoggerFactory.getLogger(CoordinateDao.class);
 
     
-    public CoordinateDao(int idUtente) {
+    public CoordinateDao() {
     	
     	 // a couple of markers using the provided ones
     	this.connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
@@ -28,6 +29,39 @@ public class CoordinateDao {
     }
 	
  
+    
+    public void setCoordinate(int idUtente,String lat, String lon) {
+    	   ResultSet rs = null;
+           int shopID = 0;
+
+           String sql = "call aggiungi_coordinate(?,?,?)";
+
+           try (Connection conn = connector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        	   pstmt.setInt(1, idUtente);
+        	   pstmt.setString(2, lat);
+        	   pstmt.setString(3, lon);
+
+               int rowAffected = pstmt.executeUpdate();
+               if (rowAffected == 1) {
+
+                   rs = pstmt.getGeneratedKeys();
+                   if (rs.next())
+                       shopID = rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               logger.debug(ex.getMessage());
+           } finally {
+               try {
+                   if (rs != null) rs.close();
+               } catch (SQLException e) {
+                   logger.debug(e.getMessage());
+               }
+           }
+  
+    	
+    }
+    
     
     public Coordinate getCoordinate() {
 

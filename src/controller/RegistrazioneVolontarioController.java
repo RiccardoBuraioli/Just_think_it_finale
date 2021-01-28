@@ -3,6 +3,7 @@ package controller;
 
 import dao.VolunteerRepository;
 import entity.VolunteerUser;
+import entity.VolunteerUser2;
 
 
 public class RegistrazioneVolontarioController {
@@ -14,7 +15,7 @@ public class RegistrazioneVolontarioController {
         	VolunteerUser newUser = new VolunteerUser(nome, cognome, passwordVolontario, via, telefono, email, null,date2,cittadiResidenza );
         	VolunteerRepository vrep = new VolunteerRepository();
         	int id = vrep.insertVolunteer(newUser);
-        	newUser.setID(id);
+        	newUser.setId(id);
         	
         	return newUser;
         	//Manda alla home dopo la registrazione

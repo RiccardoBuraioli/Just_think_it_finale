@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import connector.Connector;
 import entity.VolunteerUser;
+import entity.VolunteerUser2;
 
 //CRUD create read update delete
 
@@ -25,8 +26,8 @@ public class VolunteerRepository {
     	 this.connector= new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
-    public List<VolunteerUser> getAllVolunteers() {
-        List<VolunteerUser> vUsers = new ArrayList<>();
+    public List<VolunteerUser2> getAllVolunteers() {
+        List<VolunteerUser2> vUsers = new ArrayList<>();
 
         String sql = "SELECT * FROM volontari";
 
@@ -45,7 +46,7 @@ public class VolunteerRepository {
                 String cartaDiCredito = rs.getString("cartaDiCredito");
                 String nascita = rs.getString("DataNascita");
                 String citta = rs.getString("città");
-                VolunteerUser vUser = new VolunteerUser( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, citta);
+                VolunteerUser2 vUser = new VolunteerUser2( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, citta);
                 vUser.setID(rs.getInt("ID"));
                 vUsers.add(vUser);
             }
@@ -71,6 +72,7 @@ public class VolunteerRepository {
 
             while (rs.next()) {
 
+            	vUser.setId(id);
                 vUser.setNome(rs.getString("Nome"));
                 vUser.setCognome(rs.getString("Cognome"));
                 vUser.setIndirizzo(rs.getString("Indirizzo"));

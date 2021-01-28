@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.GestisciEventiCaritasController;
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import entity.EventTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -129,8 +130,8 @@ public class GestisciEventiCaritasBoundary {
 		return caritas;
 	}
 
-	public void setCaritas(CaritasUser caritas) {
-		this.caritas = caritas;
+	public void setCaritas(CaritasUser currentUser) {
+		this.caritas = currentUser;
 	}
 
 	public void loadShop(int idCar) {

@@ -38,6 +38,7 @@ public class PartecipaEventoBoundary {
 	@FXML
 	void partecipaEvento(ActionEvent event) {
 		PartecipaEventoController parteCon = new PartecipaEventoController();
+		parteCon.setDataController(idEvento, idUtente);
 		parteCon.partecipaEvento(Float.parseFloat(importo.getText()));
 		Stage st = (Stage) partecipa.getScene().getWindow();
 		st.close();

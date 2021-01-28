@@ -1,20 +1,20 @@
 package controller;
 
-import entity.VolunteerUser;
+import entity.User;
 
 
 public  class UserHomeController{
 	
 
-	private VolunteerUser currentUser;
+	private User currentUser;
 	
 
 	
-	public VolunteerUser getCurrentUser() {
+	public User getCurrentUser() {
 		return this.currentUser;
 	}
 
-	public void setCurrentUser(VolunteerUser currentUser) {
+	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
 

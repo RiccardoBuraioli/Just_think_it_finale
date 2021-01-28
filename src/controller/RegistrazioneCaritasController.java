@@ -1,6 +1,6 @@
 package controller;
 
-import entity.CaritasUser;
+import entity.CaritasUser2;
 import java.sql.SQLException;
 import dao.CaritasRepository;
 
@@ -17,7 +17,7 @@ public class RegistrazioneCaritasController  {
 		
 		String telefono, String email, String cittadiResidenza) throws SQLException {
 	
-		CaritasUser newUser = new CaritasUser(nomeCaritas, passwordCaritas, via, tipo, telefono, email, cittadiResidenza);
+		CaritasUser2 newUser = new CaritasUser2(nomeCaritas, passwordCaritas, via, tipo, telefono, email, cittadiResidenza);
 	
 			CaritasRepository crep = new CaritasRepository();
 			int id = crep.insertCaritas(newUser);

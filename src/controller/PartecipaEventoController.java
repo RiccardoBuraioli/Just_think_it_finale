@@ -10,12 +10,9 @@ public class PartecipaEventoController {
 
 	private PartecipaEvento partecipaz;
 
-	public void indietro(ActionEvent event) {
-		// forse si forse no
-	}
 
 	public boolean partecipaEvento(float importo) {
-
+	
 		partecipaz.setImport(importo);
 
 		EventoDao partecipazione = new EventoDao();
@@ -24,9 +21,9 @@ public class PartecipaEventoController {
 
 	}
 
-	public void setDataController() {
-		PartecipaEventoBoundary parteBoundary = new PartecipaEventoBoundary();
-		partecipaz = new PartecipaEvento(parteBoundary.getIdEvento(), parteBoundary.getIdUtente());
+	public void setDataController(int idEv, int idVol) {
+		
+		partecipaz = new PartecipaEvento(idEv, idVol);
 
 	}
 

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import controller.GestisciEventiController;
 import entity.EventTab;
 import entity.ShopUser;
+import entity.ShopUser2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -158,8 +159,8 @@ public class GestisciEventiBoundary {
 		return shop;
 	}
 
-	public void setShop(ShopUser shop) {
-		this.shop = shop;
+	public void setShop(ShopUser currentUser) {
+		this.shop = currentUser;
 	}
 
 }

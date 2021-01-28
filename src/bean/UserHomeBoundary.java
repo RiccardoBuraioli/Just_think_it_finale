@@ -1,7 +1,7 @@
 package bean;
 
 import java.io.IOException;
-
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +13,9 @@ import com.sothawo.mapjfx.Projection;
 
 import controller.CercaCaritas;
 import controller.UserHomeController;
+import entity.User;
 import entity.VolunteerUser;
+import entity.VolunteerUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,12 +53,12 @@ private VolunteerUser currentUser;
 	private Image[] images = {img1, img2, img3};
 	private int currentImage;
 	
-	public VolunteerUser getCurrentUser() {
-		return this.currentUser;
+	public User getCurrentUser() {
+		return  this.currentUser;
 	}
 
-	public void setCurrentUser(VolunteerUser currentUser) {
-		this.currentUser = currentUser;
+	public void setCurrentUser(VolunteerUser id) {
+		this.currentUser = id;
 	}
 	
 	public static UserHomeBoundary getInstance() {
@@ -119,7 +121,7 @@ private VolunteerUser currentUser;
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
 			Parent root = loader.load();
 			profileController = loader.getController();
-			profileController.initData(getCurrentUser());
+			profileController.initData(currentUser);
 			
 			Stage home = (Stage) this.profileButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
@@ -188,20 +190,22 @@ private VolunteerUser currentUser;
     }
 
     @FXML
-    void searchCaritasButtonPressed(ActionEvent event) {
+    void searchCaritasButtonPressed(ActionEvent event) throws NumberFormatException, SQLException {
     	try {
 
-    		
-	        String fxmlFile = "/boundary/Cerca_caritas.fxml";
+	        //FXMLLoader fxmlLoader = new FXMLLoader();
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CercaCaritas.fxml"));
+	      //  Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Cerca_Caritas.fxml"));
+	        Parent rootNode = loader.load();
+	        CercaCaritas controller = loader.getController();
+	        controller.setUser(currentUser);
 	      
-	        FXMLLoader fxmlLoader = new FXMLLoader();
-	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-	       
-	        final CercaCaritas controller = fxmlLoader.getController();
+	      
 	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
 	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
+	      
 	        controller.initMapAndControls(projection);
-	        controller.setIdUtente(currentUser.getID());
+	       
 
 	        Scene scene = new Scene(rootNode);
 	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
@@ -212,7 +216,7 @@ private VolunteerUser currentUser;
 	        
 	
 	} catch (IOException e) {
-		logger.error(s);
+		logger.error(e.getMessage());
 	}
 	
   

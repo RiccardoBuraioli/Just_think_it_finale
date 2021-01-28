@@ -1,7 +1,7 @@
 package controller;
 
 
-import entity.ShopUser;
+import entity.ShopUser2;
 
 import javafx.stage.Window;
 
@@ -9,13 +9,13 @@ public class ShopHomeController {
 
 	
 
-	private ShopUser currentUser;
+	private ShopUser2 currentUser;
 
-	public ShopUser getCurrentUser() {
+	public ShopUser2 getCurrentUser() {
 		return currentUser;
 	}
 	
-	public void setCurrentUser(ShopUser currentUser) {
+	public void setCurrentUser(ShopUser2 currentUser) {
 		this.currentUser = currentUser;
 	}
 

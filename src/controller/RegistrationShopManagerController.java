@@ -2,7 +2,7 @@ package controller;
 
 
 import dao.ShopRepository;
-import entity.ShopUser;
+import entity.ShopUser2;
 import javafx.stage.Window;
 
 public  class RegistrationShopManagerController {
@@ -22,7 +22,7 @@ public  class RegistrationShopManagerController {
 
 	public int registraNegozioPressed( String tipo, String nome, String pass, String via, String tel,String mail, String citta) {
 
-		ShopUser shop = new ShopUser(nome, pass, via, tipo, tel, mail, citta);
+		ShopUser2 shop = new ShopUser2(nome, pass, via, tipo, tel, mail, citta);
 		ShopRepository crep = new ShopRepository();
 		int id = crep.insertShop(shop);
 		shop.setId(id);

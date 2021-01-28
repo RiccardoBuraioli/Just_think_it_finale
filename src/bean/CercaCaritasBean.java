@@ -463,8 +463,8 @@ public class CercaCaritasBean {
 			buttonEvento.setOnAction(event -> partecipaEvento(idEvento, idUtente));
 
 			buttonAllLocations.setOnAction(event -> {
-				CoordinateDao c = new CoordinateDao(idUtente);
-				logger.trace(c.getCoordinate().toString());
+		//		CoordinateDao c = new CoordinateDao(idUtente);
+				//logger.trace(c.getCoordinate().toString());
 			});
 			logger.trace("location buttons done");
 

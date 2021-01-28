@@ -9,6 +9,13 @@ public class EventTab {
 	private SimpleIntegerProperty id;
 	private SimpleStringProperty nomeEvento;
 	private SimpleStringProperty noteEvento;
+	private SimpleStringProperty tipoEvento;
+	private SimpleStringProperty latitudine;
+	private SimpleStringProperty longitudine;
+	
+
+
+
 	private SimpleFloatProperty prezzoEvento;
 	private SimpleIntegerProperty numPartecipanti;
 	private SimpleFloatProperty importoRaggiunto;
@@ -39,21 +46,45 @@ public class EventTab {
 		this.rapportoDenaro = new SimpleStringProperty("");
 	}
 
-	public EventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento,
-		int numPartecipanti, int idCaritas) {
+	public EventTab(int idCaritas, String tipo ,int codiceNeg, String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento, String lati, String lon) {
+		
 		this.noteEvento = new SimpleStringProperty(noteEvento);
-
+		this.codiceNegozio = new SimpleIntegerProperty(codiceNeg);
+		this.tipoEvento = new SimpleStringProperty(tipo);
 		this.nomeEvento = new SimpleStringProperty(nomeEvento);
 		this.nomeCaritas = new SimpleStringProperty(nomeCaritas);
 		this.statoEvento = new SimpleStringProperty("");
-		this.numPartecipanti = new SimpleIntegerProperty(numPartecipanti);
+		this.numPartecipanti = new SimpleIntegerProperty(0);
 		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
 		this.importoRaggiunto = new SimpleFloatProperty(0);
 		this.rapportoDenaro = new SimpleStringProperty("");
 		this.codiceCaritas = new SimpleIntegerProperty(idCaritas);
-		
+		this.latitudine = new SimpleStringProperty(lati);
+		this.longitudine = new SimpleStringProperty(lon);
 	}
 
+	public EventTab(String nomeEvento, String nomeCaritas, String noteEvento, float prezzoEvento, int numPartecipanti, int codiceCaritas) {
+		this.nomeEvento = new SimpleStringProperty(nomeEvento);
+		this.nomeCaritas = new SimpleStringProperty(nomeCaritas);
+		this.numPartecipanti = new SimpleIntegerProperty(numPartecipanti);
+		this.codiceCaritas = new SimpleIntegerProperty(codiceCaritas);
+		this.prezzoEvento = new SimpleFloatProperty(prezzoEvento);
+		this.noteEvento = new SimpleStringProperty(noteEvento);
+		this.statoEvento = new SimpleStringProperty("");
+		this.importoRaggiunto = new SimpleFloatProperty(0);
+		this.rapportoDenaro = new SimpleStringProperty("");
+
+	}
+
+	public String getLatitudine() {
+		return latitudine.get();
+	}
+
+	public void setLatitudine(String coordinate) {
+		this.latitudine.set(coordinate);
+	}
+
+	
 	public String getNomeEvento() {
 		return this.nomeEvento.get();
 	}
@@ -151,5 +182,20 @@ public class EventTab {
 	public void setId(int id) {
 		this.id.set(id);
 	}
+	
+	public String getTipoEvento() {
+		return tipoEvento.get();
+	}
 
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento.set(tipoEvento);
+	}
+
+	public String getLongitudine() {
+		return longitudine.get();
+	}
+
+	public void setLongitudine(String longitudine) {
+		this.longitudine.set(longitudine);
+	}
 }

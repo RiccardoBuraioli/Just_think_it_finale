@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.CreaTurnoController;
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +56,7 @@ public class CreaTurnoBoundary {
 			GestisciTurniBoundary gestTurn;
 			gestTurn = loader.getController();
 			gestTurn.setCurrentUser(this.caritas);
-			gestTurn.loadFormBoundary(this.caritas.getID());
+			gestTurn.loadFormBoundary(this.caritas.getId());
 			home.setScene(new Scene(root, 883, 550));
 			home.show();
 
@@ -68,7 +69,7 @@ public class CreaTurnoBoundary {
 	@FXML
 	void creaTurnoPressed(ActionEvent event) {
 		CreaTurnoController creaTurn = new CreaTurnoController();
-		creaTurn.creaEvento(caritas.getID(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),
+		creaTurn.creaEvento(caritas.getId(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),
 				Integer.parseInt(numParte.getText()), note.getText());
 
 	}

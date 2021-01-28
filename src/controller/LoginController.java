@@ -1,83 +1,63 @@
 package controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.CaritasRepository;
 import dao.ShopRepository;
 import dao.VolunteerRepository;
 import dao.LoginDao;
-import entity.CaritasUser;
+import entity.CaritasUser2;
 import entity.ShopUser;
-import entity.VolunteerUser;
+import entity.ShopUser2;
+import entity.User;
+import entity.VolunteerUser2;
 
 public class LoginController {
 	private LoginDao login;
 	private VolunteerRepository vrep;
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private User loggedUser;
 
 	public LoginController() {
 		this.login = new LoginDao();
 		this.vrep = new VolunteerRepository();
+		
 	}
 
-	public Object loginAccess(String user, String pass) {
+	public User loginAccess(String user, String pass) {
 
 		String loginResult = login.checkLogin(user, pass);
+		
 		if (loginResult != null) {
+			int userID = login.returnID(user);
+			if (userID == -1) {
+				logger.debug("Errore nel ritornare l'ID");
+			}
 
 			// Volontario
 			if (login.getTableUser().equals("Volontario")) {
-
-				int userID = login.returnID(user);
-				if (userID == -1) {
-					System.out.println("Errore nel ritornare l'ID");
-				}
-
-				VolunteerUser loggedUser = vrep.getVolunteerByID(userID);
-				loggedUser.setID(userID);
-
-				return loggedUser;
-
-				// Manda alla home user
-
+				loggedUser = vrep.getVolunteerByID(userID);				
+				
 			}
-
 			// Caritas
 			else if (login.getTableUser().equals("Negozio")) {
 
 				ShopRepository srep = new ShopRepository();
-
-				int userID = login.returnID(user);
-				if (userID == -1) {
-					System.out.println("Errore nel ritornare l'ID");
-				}
-
-				ShopUser loggedShop = srep.getShopByID(userID);
-				loggedShop.setId(userID);
-
-				return loggedShop;
-
+				loggedUser = srep.getShopByID(userID);
 			}
-
 			// Negozio
 			else if (login.getTableUser().equals("Caritas")) {
 				CaritasRepository srep = new CaritasRepository();
-
-				int userID = login.returnID(user);
-				if (userID == -1) {
-					System.out.println("Errore nel ritornare l'ID");
-				}
-
-				CaritasUser loggedCaritas = srep.getCaritasByID(userID);
-				loggedCaritas.setId(userID);
-
-				return loggedCaritas;
-
+				loggedUser = srep.getCaritasByID(userID);
 			}
-
 			else {
-				System.out.println("Login Error");
+				logger.debug("Login Error");
 			}
+			
 
 		}
-		return loginResult;
+		return loggedUser;
 	}
 
 }

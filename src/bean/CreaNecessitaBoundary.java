@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.CreaNecessitaController;
 import entity.CaritasUser;
+import entity.CaritasUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +53,7 @@ public class CreaNecessitaBoundary {
 
 			BachecaPersonaleBoundary bacheca = loader.getController();
 			bacheca.setCurrentUser(this.caritas);
-			bacheca.loadFormBoundary(caritas.getID());
+			bacheca.loadFormBoundary(caritas.getId());
 
 		} catch (IOException e) {
 			logger.error(e.getMessage());
@@ -77,7 +78,7 @@ public class CreaNecessitaBoundary {
 
 				BachecaPersonaleBoundary bacheca = loader.getController();
 				bacheca.setCurrentUser(this.caritas);
-				bacheca.loadFormBoundary(caritas.getID());
+				bacheca.loadFormBoundary(caritas.getId());
 
 			} catch (IOException e) {
 				logger.error(e.getMessage());
@@ -93,9 +94,9 @@ public class CreaNecessitaBoundary {
 
 	}
 
-	public void setCaritas(CaritasUser idCar) {
-		this.idCaritas = idCar.getID();
-		this.caritas = idCar;
+	public void setCaritas(CaritasUser caritas2) {
+		this.idCaritas = caritas2.getId();
+		this.caritas = caritas2;
 		
 	}
 

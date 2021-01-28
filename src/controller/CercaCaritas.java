@@ -7,16 +7,27 @@ import com.sothawo.mapjfx.event.MarkerEvent;
 import com.sothawo.mapjfx.offline.OfflineCache;
 
 import bean.BachecaBoundary;
+import bean.CaritasHomeBoundary;
 import bean.DonationBoundary;
 import bean.PartecipaEventoBoundary;
 import bean.PrenotaTurnoBoundary;
+import bean.PromuoviEventoBoundary;
+import bean.ShopHomeBoundary;
+import bean.UserHomeBoundary;
 //import connector.Connector;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
+import entity.CaritasUser;
 import entity.MarkerID;
+import entity.ShopUser;
+import entity.User;
+import entity.VolunteerUser;
+import javafx.animation.Transition;
 //import javafx.animation.AnimationTimer;
 //	import javafx.animation.Transition;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 //	import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +48,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +60,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,10 +68,15 @@ import java.util.stream.Stream;
 
 public class CercaCaritas {
 
+	public enum MarkerType {
+		CARITAS, EVENTO, DONAZIONE, MAP
+	};
+
 	private int idUtente;
 	private int idCaritas;
 	private int idEvento;
 
+	private User loggedUser;
 	// private int countCaritas;
 	// private int countEvent;
 	// private int countDonation;
@@ -106,15 +124,14 @@ public class CercaCaritas {
 	private Marker markerClick;
 
 	/** the labels. */
-	private  MapLabel labelCaritas;
+	private MapLabel labelCaritas;
 	@SuppressWarnings("unused")
-	private  MapLabel labelEvento;
+	private MapLabel labelEvento;
 	@SuppressWarnings("unused")
-	private  MapLabel labelDonazione;
-	private  MapLabel labelClick;
+	private MapLabel labelDonazione;
+	private MapLabel labelClick;
 
 	// a circle around the castle
-	private final MapCircle circleCastle;
 
 	@FXML
 	/** button to set the map's zoom. */
@@ -163,6 +180,12 @@ public class CercaCaritas {
 	@FXML
 	private Button buttonAllLocations;
 
+	@FXML
+	private Button buttonBack;
+	
+	@FXML
+	private Button buttonPromuoviEvento;
+
 	/** for editing the animation duration */
 	@FXML
 	private TextField animationDuration;
@@ -187,34 +210,7 @@ public class CercaCaritas {
 	@FXML
 	private RadioButton radioMsOSM;
 
-	/** RadioButton for MapStyle Stamen Watercolor */
-	@FXML
-	private RadioButton radioMsSTW;
-
-	/** RadioButton for MapStyle Bing Roads */
-	@FXML
-	private RadioButton radioMsBR;
-
-	/** RadioButton for MapStyle Bing Roads - dark */
-	@FXML
-	private RadioButton radioMsCd;
-
-	/** RadioButton for MapStyle Bing Roads - grayscale */
-	@FXML
-	private RadioButton radioMsCg;
-
-	/** RadioButton for MapStyle Bing Roads - light */
-	@FXML
-	private RadioButton radioMsCl;
-
-	/** RadioButton for MapStyle Bing Aerial */
-	@FXML
-	private RadioButton radioMsBA;
-
-	/** RadioButton for MapStyle Bing Aerial with Label */
-	@FXML
-	private RadioButton radioMsBAwL;
-
+	
 	/** RadioButton for MapStyle WMS. */
 	@FXML
 	private RadioButton radioMsWMS;
@@ -239,9 +235,7 @@ public class CercaCaritas {
 	@FXML
 	private CheckBox checkDonazioneMarker;
 
-	/** Check button for soccer marker */
-	@FXML
-	private CheckBox checkKaSoccerMarker;
+	
 
 	/** Check button for click marker */
 	@FXML
@@ -259,11 +253,80 @@ public class CercaCaritas {
 			.withAttributions(
 					"'Tiles &copy; <a href=\"https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer\">ArcGIS</a>'");
 
+	private ObservableList<Node> listaBottoni;
+	private ObservableList<Node> listaBottoniOld;
+	
+	
+
+	private void Indietro(User loggedUser) {
+	if (loggedUser.getClass() == VolunteerUser.class) {
+		 try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
+				Parent root = loader.load();
+				UserHomeBoundary userHomeBoundary;
+				userHomeBoundary = loader.getController();
+				userHomeBoundary.initData((VolunteerUser)loggedUser);
+				Stage home = (Stage) buttonBack.getScene().getWindow();
+				home.setScene(new Scene(root, 800, 600));
+				
+				home.show();
+			} catch (IOException e) {
+				logger.error("errore IoException");
+			}
+
+	
+		
+	}
+	
+	else if(loggedUser.getClass() == ShopUser.class) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
+			Parent root = loader.load();
+			ShopHomeBoundary ShopHomeBoundary;
+			ShopHomeBoundary = loader.getController();
+			ShopHomeBoundary.setCurrentUser((ShopUser) loggedUser);
+			Stage home = (Stage) buttonBack.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+			
+			home.show();
+			
+		} catch (IOException e) {
+			logger.error("errore IoException");
+		}
+	}
+
+	}
+
 	
 	
 	
-	private void vediNecessità(int idCar, int idUt) {
-	
+	private void PromuoviEvento(int idCar, int idShop) {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+
+			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/PromuoviEvento.fxml"));
+
+			Stage stage = new Stage();
+			stage.setTitle("Promuovi Evento");
+
+			stage.setScene(new Scene(rootNode, 700, 450));
+			stage.setResizable(false);
+
+			PromuoviEventoBoundary promEvento = fxmlLoader.getController();
+
+			promEvento.loadFormBoundary(idCar, idShop);
+
+			stage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+	private void vediNecessita(int idCar, int idUt) {
+
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -356,16 +419,12 @@ public class CercaCaritas {
 
 	public CercaCaritas() throws NumberFormatException, SQLException {
 
-		
-        
-
-		
 		CercaCaritasDao cercaCaritasDao = new CercaCaritasDao();
 
 		initMarkers(cercaCaritasDao);
-		initLabels();
 
-		circleCastle = new MapCircle(coordKarlsruheStation, 1_000).setVisible(true);
+		// circleCastle = new MapCircle(coordKarlsruheStation, 1_000).setVisible(true);
+
 	}
 
 	public void initLabels() {
@@ -379,7 +438,7 @@ public class CercaCaritas {
 
 		// markerDonazione.attachLabel(labelDonazione);
 		// markerCaritas.attachLabel(labelCaritas);
-		markerClick.attachLabel(labelClick);
+		// markerClick.attachLabel(labelClick);
 	}
 
 	public void initMarkers(CercaCaritasDao cercaCaritasDao) {
@@ -393,16 +452,14 @@ public class CercaCaritas {
 			markerD.getMarker().setVisible(false);
 		}
 
-		markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(false);
+		markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(true);
 
 		markerCaritas = cercaCaritasDao.getCaritasMarkers();
-		int i = 0;
 
 		for (MarkerID markerC : markerCaritas) {
 			markerC.getMarker().setVisible(true);
 		}
 	}
-	
 
 	/**
 	 * called after the fxml is loaded and all objects are created. This is not
@@ -413,57 +470,35 @@ public class CercaCaritas {
 	 * @author Riccardo
 	 */
 	public void initMapAndControls(Projection projection) {
-		
-		VBox obj = ((VBox)optionsLocations.getContent());
-		;
-		double y = 0;
-		for(Node n: obj.getChildren()) {
-			System.out.println(n);
-			 y = n.getLayoutY();
-			System.out.println(y);
 
-		}
-		
-		Button btn = new Button();
-		btn.setText("Altro bottone");
-		btn.setLayoutY(y + 30);
-		obj.getChildren().add(btn);
-		
-		//Object obj = this.buttonZoom.getScene().lookup("#optionsLocations");
+	
 		logger.trace("begin initialize");
 
-//	        final OfflineCache offlineCache = mapView.getOfflineCache();
-//	        final String cacheDir = System.getProperty("java.io.tmpdir") + "/mapjfx-cache";
-//	        logger.info("using dir for cache: " + cacheDir);
-//	        try {
-//	            Files.createDirectories(Paths.get(cacheDir));
-//	            offlineCache.setCacheDirectory(cacheDir);
-//	            offlineCache.setActive(true);
-//	        } catch (IOException e) {
-//	            logger.warn("could not activate offline cache", e);
-//	        }
-
-		// set the custom css file for the MapView
+//	     
 		mapView.setCustomMapviewCssURL(getClass().getResource("/custom_mapview.css"));
 
 		leftControls.setExpandedPane(optionsLocations);
 
-		// set the controls to disabled, this will be changed when the MapView is
-		// intialized
-		setControlsDisable(true);
-		
 	
-		
+		setControlsDisable(false);
+
+		VBox obj = ((VBox) optionsLocations.getContent());
+		listaBottoni = obj.getChildren();
+		listaBottoniOld = FXCollections.observableArrayList();
 
 		// wire up the location buttons
-		buttonDonazione.setOnAction(event -> apriDonazione(idCaritas, idUtente));
-		buttonTurnoVolontariato.setOnAction(event -> prenotaTurno(idCaritas, idUtente));
-		buttonBacheca.setOnAction(event -> vediNecessità(idCaritas, idUtente));
-		buttonEvento.setOnAction(event -> partecipaEvento(idEvento, idUtente));
-
+		buttonBack.setOnAction(event -> Indietro(loggedUser));
+		buttonBacheca.setOnAction(event -> vediNecessita(idCaritas, loggedUser.getId()));
+		buttonPromuoviEvento.setOnAction(event -> PromuoviEvento(idCaritas, loggedUser.getId()));
+		buttonTurnoVolontariato.setOnAction(event -> prenotaTurno(idCaritas, loggedUser.getId()));
+		buttonEvento.setOnAction(event -> partecipaEvento(idEvento, loggedUser.getId()));
+		buttonDonazione.setOnAction(event -> apriDonazione(idCaritas, loggedUser.getId()));
 		buttonAllLocations.setOnAction(event -> {
-			CoordinateDao c = new CoordinateDao(idUtente);
-			logger.trace(c.getCoordinate().toString());
+			CoordinateDao c = new CoordinateDao();
+			// logger.trace(c.getCoordinate().toString());
+			c.setCoordinate(loggedUser.getId(), markerClick.getPosition().getLatitude().toString(),
+					markerClick.getPosition().getLongitude().toString());
+
 		});
 		logger.trace("location buttons done");
 
@@ -472,22 +507,11 @@ public class CercaCaritas {
 		buttonBacheca.setVisible(false);
 		buttonEvento.setVisible(false);
 		buttonAllLocations.setVisible(false);
+		buttonPromuoviEvento.setVisible(false);
 		// wire the zoom button and connect the slider to the map's zoom
 		buttonZoom.setOnAction(event -> mapView.setZoom(ZOOMDEFAULT));
 		sliderZoom.valueProperty().bindBidirectional(mapView.zoomProperty());
 
-		// add a listener to the animationDuration field and make sure we only accept
-		// int values
-		/*
-		 * animationDuration.textProperty().addListener((observable, oldValue, newValue)
-		 * -> { if (newValue.isEmpty()) { mapView.setAnimationDuration(0); } else { try
-		 * { mapView.setAnimationDuration(Integer.parseInt(newValue)); } catch
-		 * (NumberFormatException e) { animationDuration.setText(oldValue); } } });
-		 * animationDuration.setText("500");
-		 */
-
-		// bind the map's center and zoom properties to the corresponding labels and
-		// format them
 		labelCenter.textProperty().bind(Bindings.format("center: %s", mapView.centerProperty()));
 		labelZoom.textProperty().bind(Bindings.format("zoom: %.0f", mapView.zoomProperty()));
 		logger.trace("options and labels done");
@@ -505,18 +529,7 @@ public class CercaCaritas {
 			MapType mapType = MapType.OSM;
 			if (newValue == radioMsOSM) {
 				mapType = MapType.OSM;
-			} else if (newValue == radioMsBR) {
-				mapType = MapType.BINGMAPS_ROAD;
-			} else if (newValue == radioMsCd) {
-				mapType = MapType.BINGMAPS_CANVAS_DARK;
-			} else if (newValue == radioMsCg) {
-				mapType = MapType.BINGMAPS_CANVAS_GRAY;
-			} else if (newValue == radioMsCl) {
-				mapType = MapType.BINGMAPS_CANVAS_LIGHT;
-			} else if (newValue == radioMsBA) {
-				mapType = MapType.BINGMAPS_AERIAL;
-			} else if (newValue == radioMsBAwL) {
-				mapType = MapType.BINGMAPS_AERIAL_WITH_LABELS;
+		
 			} else if (newValue == radioMsWMS) {
 				mapView.setWMSParam(wmsParam);
 				mapType = MapType.WMS;
@@ -531,62 +544,72 @@ public class CercaCaritas {
 
 		setupEventHandlers();
 
-		// add the graphics to the checkboxes
-		for (MarkerID markerEvento: markerEventi) {
-			checkEventoMarker.setGraphic(new ImageView(new Image(markerEvento.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
-			checkEventoMarker.selectedProperty().bindBidirectional(markerEvento.getMarker().visibleProperty());
-		}
-		
-		for (MarkerID markerCaritas: markerCaritas) {
-			checkCaritasMarker.setGraphic(new ImageView(new Image(markerCaritas.getMarker().getImageURL().toExternalForm(),16.0, 16.0, true, true)));
-			checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
-		}
-		for (MarkerID markerDonazione: markerDonazioni) {
-			checkDonazioneMarker.setGraphic(new ImageView(new Image(markerDonazione.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
-			checkDonazioneMarker.selectedProperty().bindBidirectional(markerDonazione.getMarker().visibleProperty());
-		
-		}
-			
-		checkClickMarker.setGraphic(new ImageView(new Image(markerClick.getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+		if (loggedUser.getClass() == VolunteerUser.class) {
+			for (MarkerID markerEvento : markerEventi) {
+				checkEventoMarker.setGraphic(new ImageView(
+						new Image(markerEvento.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkEventoMarker.selectedProperty().bindBidirectional(markerEvento.getMarker().visibleProperty());
+			}
 
-		checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
+			for (MarkerID markerCaritas : markerCaritas) {
+				checkCaritasMarker.setGraphic(new ImageView(
+						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+			}
+			for (MarkerID markerDonazione : markerDonazioni) {
+				checkDonazioneMarker.setGraphic(new ImageView(
+						new Image(markerDonazione.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkDonazioneMarker.selectedProperty()
+						.bindBidirectional(markerDonazione.getMarker().visibleProperty());
+
+			}
+
+			checkClickMarker.setGraphic(
+					new ImageView(new Image(markerClick.getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+			checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
+
+		}
+		if (loggedUser.getClass() == ShopUser.class) {
+			// add the graphics to the checkboxes
+			for (MarkerID markerCaritas : markerCaritas) {
+				checkCaritasMarker.setGraphic(new ImageView(
+						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+			}
+
+			checkClickMarker.setGraphic(
+					new ImageView(new Image(markerClick.getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+			checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
+		} else {
+
+			for (MarkerID markerEvento : markerEventi) {
+				checkEventoMarker.setGraphic(new ImageView(
+						new Image(markerEvento.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkEventoMarker.selectedProperty().bindBidirectional(markerEvento.getMarker().visibleProperty());
+			}
+
+			for (MarkerID markerCaritas : markerCaritas) {
+				checkCaritasMarker.setGraphic(new ImageView(
+						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+			}
+			for (MarkerID markerDonazione : markerDonazioni) {
+				checkDonazioneMarker.setGraphic(new ImageView(
+						new Image(markerDonazione.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkDonazioneMarker.selectedProperty()
+						.bindBidirectional(markerDonazione.getMarker().visibleProperty());
+
+			}
+
+			checkClickMarker.setGraphic(
+					new ImageView(new Image(markerClick.getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+			checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
+
+		}
+
 		logger.trace("marker checks done");
 
-		// load two coordinate lines
-		/*
-		 * trackMagenta =
-		 * loadCoordinateLine(getClass().getResource("/M1.csv")).orElse(new
-		 * CoordinateLine ()).setColor(Color.MAGENTA); trackCyan =
-		 * loadCoordinateLine(getClass().getResource("/M2.csv")).orElse(new
-		 * CoordinateLine ()).setColor(Color.CYAN).setWidth(7);
-		 * logger.trace("tracks loaded");
-		 * checkTrackMagenta.selectedProperty().bindBidirectional(trackMagenta.
-		 * visibleProperty());
-		 * checkTrackCyan.selectedProperty().bindBidirectional(trackCyan.visibleProperty
-		 * ()); logger.trace("tracks checks done"); // get the extent of both tracks
-		 * Extent tracksExtent = Extent.forCoordinates(
-		 * Stream.concat(trackMagenta.getCoordinateStream(),
-		 * trackCyan.getCoordinateStream()) .collect(Collectors.toList()));
-		 * ChangeListener<Boolean> trackVisibleListener = (observable, oldValue,
-		 * newValue) -> mapView.setExtent(tracksExtent);
-		 * trackMagenta.visibleProperty().addListener(trackVisibleListener);
-		 * trackCyan.visibleProperty().addListener(trackVisibleListener);
-		 */
-		// add the polygon check handler
-		/*
-		 * ChangeListener<Boolean> polygonListener = (observable, oldValue, newValue) ->
-		 * { if (!newValue && polygonLine != null) {
-		 * mapView.removeCoordinateLine(polygonLine); polygonLine = null; } }; //
-		 * checkDrawPolygon.selectedProperty().addListener(polygonListener);
-		 * 
-		 */
-		// add the constrain listener
-		/*
-		 * checkConstrainGermany.selectedProperty().addListener(((observable, oldValue,
-		 * newValue) -> { if (newValue) { mapView.constrainExtent(extentGermany); } else
-		 * { mapView.clearConstrainExtent(); } }));
-		 */
-
+		
 		// finally initialize the map view
 		logger.trace("start map initialization");
 		mapView.initialize(Configuration.builder().projection(projection).showZoomControls(false).build());
@@ -606,29 +629,33 @@ public class CercaCaritas {
 		 */
 	}
 
+
+
 	/**
 	 * initializes the event handlers.
 	 */
 	private void setupEventHandlers() {
-		// add an event handler for singleclicks, set the click marker to the new
-		// position when it's visible
+
+		markerClick.setPosition(coordGermanyEast);
+
 		mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
 			event.consume();
 			final Coordinate newPosition = event.getCoordinate().normalize();
 			labelEvent.setText("Event: map clicked at: " + newPosition);
-			/*
-			 * if (checkDrawPolygon.isSelected()) { handlePolygonClick(event); }
-			 */
+
 			if (markerClick.getVisible()) {
 				final Coordinate oldPosition = markerClick.getPosition();
-				if (oldPosition != null) {
-					// animateClickMarker(oldPosition, newPosition);
 
-					markerClick.setPosition(newPosition);
-					// adding can only be done after coordinate is set
-					mapView.addMarker(markerClick);
+				animateClickMarker(oldPosition, newPosition);
 
-				}
+				markerClick.setPosition(newPosition);
+				// adding can only be done after coordinate is set
+				mapView.addMarker(markerClick);
+
+			}
+			for (Node node : listaBottoni) {
+				node.setVisible(false);
+				buttonBack.setVisible(true);
 			}
 
 		});
@@ -646,20 +673,10 @@ public class CercaCaritas {
 			labelExtent.setText(event.getExtent().toString());
 		});
 
-		mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
-			event.consume();
-			labelEvent.setText("Event: map right clicked at: " + event.getCoordinate());
-			buttonDonazione.setVisible(false);
-			buttonTurnoVolontariato.setVisible(false);
-			buttonBacheca.setVisible(false);
-			buttonEvento.setVisible(false);
-			buttonAllLocations.setVisible(false);
-
-		});
-		
 		
 
 		mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
+
 			event.consume();
 			Marker marker = event.getMarker();
 			posMarker = marker.getPosition();
@@ -667,27 +684,21 @@ public class CercaCaritas {
 			for (MarkerID markerC : markerCaritas) {
 				if (marker.getId().equals(markerC.getMarker().getId())) {
 					logger.debug("HAi cliccato sul castello.");
-					buttonDonazione.setVisible(true);
-					buttonTurnoVolontariato.setVisible(true);
-					buttonBacheca.setVisible(true);
-					buttonAllLocations.setVisible(true);
-					buttonEvento.setVisible(false);
-
+					updateButtonsBox(MarkerType.CARITAS);
 					idCaritas = markerC.getId();
-
 				}
-
 			}
 
 			for (MarkerID markerE : markerEventi) {
 				if (marker.getId().equals(markerE.getMarker().getId())) {
 					logger.debug("hai cliccato un evento");
-					buttonEvento.setVisible(true);
-					buttonDonazione.setVisible(false);
-					buttonTurnoVolontariato.setVisible(false);
-					buttonBacheca.setVisible(false);
-					buttonAllLocations.setVisible(false);
+					updateButtonsBox(MarkerType.EVENTO);
+					idEvento = markerE.getId();
 				}
+			}
+
+			if (marker.equals(markerClick)) {
+				updateButtonsBox(MarkerType.MAP);
 			}
 			labelEvent.setText("Event: marker clicked: " + marker.getId());
 		});
@@ -712,23 +723,137 @@ public class CercaCaritas {
 		logger.trace("map handlers initialized");
 	}
 
-	/*
-	 * private void animateClickMarker(Coordinate oldPosition, Coordinate
-	 * newPosition) { // animate the marker to the new position final Transition
-	 * transition = new Transition() { private final Double oldPositionLongitude =
-	 * oldPosition.getLongitude(); private final Double oldPositionLatitude =
-	 * oldPosition.getLatitude(); private final double deltaLatitude =
-	 * newPosition.getLatitude() - oldPositionLatitude; private final double
-	 * deltaLongitude = newPosition.getLongitude() - oldPositionLongitude;
-	 * 
-	 * { setCycleDuration(Duration.seconds(1.0)); setOnFinished(evt ->
-	 * markerClick.setPosition(newPosition)); }
-	 * 
-	 * @Override protected void interpolate(double v) { final double latitude =
-	 * oldPosition.getLatitude() + v * deltaLatitude; final double longitude =
-	 * oldPosition.getLongitude() + v * deltaLongitude; markerClick.setPosition(new
-	 * Coordinate(latitude, longitude)); } }; transition.play(); }
-	 */
+	public void updateButtonsBox(MarkerType markerType) {
+		for (Node n : listaBottoniOld) {
+			if (!listaBottoni.contains(n)) {
+				listaBottoni.add(n);
+			}
+		}
+
+		ObservableList<Node> lista = listaBottoni;/* FXCollections.observableArrayList(listaBottoni); */
+		List<Node> listaBottoniDaRimuovere = new ArrayList<>();
+		searchButtonsToRemoveByUser(loggedUser, markerType, lista, listaBottoniDaRimuovere);
+		removeButtons(lista, listaBottoniDaRimuovere);
+		showButtons(lista, listaBottoniDaRimuovere);
+		listaBottoniOld.addAll(listaBottoniDaRimuovere);
+	}
+
+	public void showButtons(ObservableList<Node> lista, List<Node> listaBottoniDaRimuovere) {
+		// Mostra tutti i bottoni in ordine
+		for (Node node : lista) {
+			Button btn = (Button) node;
+			if (!listaBottoniDaRimuovere.contains(btn))
+				btn.setVisible(true);
+		}
+	}
+
+	public void removeButtons(ObservableList<Node> lista, List<Node> listaBottoniDaRimuovere) {
+		for (Node node : listaBottoniDaRimuovere) {
+			lista.remove(node);
+		}
+	}
+
+	public void searchButtonsToRemoveByUser(User user, MarkerType type, ObservableList<Node> lista,
+			List<Node> listaBottoniDaRimuovere) {
+		if (type.equals(MarkerType.CARITAS)) {
+			for (Node node : lista) {
+				Button btn = (Button) node;
+				if (user.getClass() == VolunteerUser.class) {
+					switch (btn.getId()) {
+					case "buttonEvento":
+					case "buttonPromuoviEvento":
+					case "buttonAllLocations":
+
+						listaBottoniDaRimuovere.add(btn);
+					}
+				}
+
+				if (user.getClass() == CaritasUser.class) {
+					switch (btn.getId()) {
+					case "buttonEvento":
+					case "buttonPromuoviEvento":
+					case "buttonTurnoVolontariato":
+					case "buttonAllLocations":
+
+						listaBottoniDaRimuovere.add(btn);
+					}
+				}
+
+				if (user.getClass() == ShopUser.class) {
+					switch (btn.getId()) {
+					case "buttonEvento":
+					case "buttonTurnoVolontariato":
+					case "buttonAllLocations":
+
+						listaBottoniDaRimuovere.add(btn);
+					}
+				}
+			}
+		}
+		if (type.equals(MarkerType.EVENTO)) {
+			for (Node node : lista) {
+				Button btn = (Button) node;
+				if (user.getClass() == VolunteerUser.class) {
+					switch (btn.getId()) {
+					case "buttonPromuoviEvento":
+					case "buttonBacheca":
+					case "buttonTurnoVolontariato":
+					case "buttonAllLocations":
+					case "buttonDonazione":
+						listaBottoniDaRimuovere.add(btn);
+					}
+				} else {
+					switch (btn.getId()) {
+					case "buttonEvento":
+					case "buttonPromuoviEvento":
+					case "buttonTurnoVolontariato":
+					case "buttonAllLocations":
+					case "buttonBacheca":
+					case "buttonDonazione":
+						listaBottoniDaRimuovere.add(btn);
+					}
+
+				}
+			}
+		}
+		if (type.equals(MarkerType.MAP)) {
+			for (Node node : lista) {
+				Button btn = (Button) node;
+				switch (btn.getId()) {
+				case "buttonPromuoviEvento":
+				case "buttonBacheca":
+				case "buttonTurnoVolontariato":
+				case "buttonEvento":
+				case "buttonDonazione":
+					listaBottoniDaRimuovere.add(btn);
+				}
+			}
+		}
+
+	}
+
+	private void animateClickMarker(Coordinate oldPosition, Coordinate newPosition) { // animate the marker to the new
+																						// position final Transition
+		Transition transition = new Transition() {
+			private final Double oldPositionLongitude = oldPosition.getLongitude();
+			private final Double oldPositionLatitude = oldPosition.getLatitude();
+			private final double deltaLatitude = newPosition.getLatitude() - oldPositionLatitude;
+			private final double deltaLongitude = newPosition.getLongitude() - oldPositionLongitude;
+
+			{
+				setCycleDuration(Duration.seconds(1.0));
+				setOnFinished(evt -> markerClick.setPosition(newPosition));
+			}
+
+			@Override
+			protected void interpolate(double v) {
+				final double latitude = oldPosition.getLatitude() + v * deltaLatitude;
+				final double longitude = oldPosition.getLongitude() + v * deltaLongitude;
+				markerClick.setPosition(new Coordinate(latitude, longitude));
+			}
+		};
+		transition.play();
+	}
 
 	/**
 	 * shows a new polygon with the coordinate from the added.
@@ -771,14 +896,14 @@ public class CercaCaritas {
 		// be added to the map
 
 		// add the fix label, the other's are attached to markers.
-		mapView.addLabel(labelCaritas);
+		// mapView.addLabel(labelCaritas);
 
 		// add the tracks
 		// mapView.addCoordinateLine(trackMagenta);
 		// mapView.addCoordinateLine(trackCyan);
 
 		// add the circle
-		mapView.addMapCircle(circleCastle);
+		// mapView.addMapCircle(circleCastle);
 
 		// now enable the controls
 		setControlsDisable(false);
@@ -803,8 +928,8 @@ public class CercaCaritas {
 		return Optional.empty();
 	}
 
-	public void setIdUtente(int idUtente) {
-		this.idUtente = idUtente;
+	public void setUser(User User) {
+		this.loggedUser = User;
 
 	}
 }
