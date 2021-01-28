@@ -14,7 +14,6 @@ import com.sothawo.mapjfx.Projection;
 
 import controller.CercaCaritas;
 import entity.ShopUser;
-import entity.ShopUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

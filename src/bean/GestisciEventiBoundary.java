@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import controller.GestisciEventiController;
 import entity.EventTab;
 import entity.ShopUser;
-import entity.ShopUser2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

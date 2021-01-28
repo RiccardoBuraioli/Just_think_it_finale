@@ -3,7 +3,6 @@ package controller;
 
 import dao.VolunteerRepository;
 import entity.VolunteerUser;
-import entity.VolunteerUser2;
 
 
 public class RegistrazioneVolontarioController {

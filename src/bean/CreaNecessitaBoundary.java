@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import controller.CreaNecessitaController;
 import entity.CaritasUser;
-import entity.CaritasUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

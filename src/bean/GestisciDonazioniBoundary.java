@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import controller.GestisciDonazioniCaritas;
 import entity.CaritasUser;
-import entity.CaritasUser2;
 import entity.DonazioneTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

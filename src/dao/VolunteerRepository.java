@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import connector.Connector;
 import entity.VolunteerUser;
-import entity.VolunteerUser2;
 
 //CRUD create read update delete
 
@@ -26,36 +25,7 @@ public class VolunteerRepository {
     	 this.connector= new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     }
 
-    public List<VolunteerUser2> getAllVolunteers() {
-        List<VolunteerUser2> vUsers = new ArrayList<>();
-
-        String sql = "SELECT * FROM volontari";
-
-        try (Connection conn = connector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-
-                String nome = rs.getString("nome");
-                String cognome = rs.getString("cognome");
-                String password = rs.getString("password");
-                String indirizzo = rs.getString("indirizzo");
-                String recapitoTel = rs.getString("recapitoTel");
-                String email = rs.getString("email");
-                String cartaDiCredito = rs.getString("cartaDiCredito");
-                String nascita = rs.getString("DataNascita");
-                String citta = rs.getString("città");
-                VolunteerUser2 vUser = new VolunteerUser2( nome, cognome,  password, indirizzo, recapitoTel, email, cartaDiCredito, nascita, citta);
-                vUser.setID(rs.getInt("ID"));
-                vUsers.add(vUser);
-            }
-            return vUsers;
-        } catch (SQLException ex) {
-            logger.debug(ex.getMessage());
-            throw new IllegalStateException("error fetching users", ex);
-        }
-    }
+   
 
 
     public VolunteerUser getVolunteerByID(int id) {
@@ -78,7 +48,7 @@ public class VolunteerRepository {
                 vUser.setIndirizzo(rs.getString("Indirizzo"));
              
                 vUser.setRecapitoTel(rs.getString("RecapitoTel"));
-                vUser.setCartaDiCredito(rs.getString("CartaDiCredito"));
+                vUser.setCc(rs.getString("CartaDiCredito"));
             }
 
         } catch (SQLException ex) {
@@ -111,7 +81,7 @@ public class VolunteerRepository {
         	pstmt.setString(5, volunteerUser.getCognome());
         	pstmt.setString(6, volunteerUser.getRecapitoTel());
         	pstmt.setString(7, volunteerUser.getIndirizzo());
-        	pstmt.setString(8, volunteerUser.getCartaDiCredito());
+        	pstmt.setString(8, volunteerUser.getCc());
         	pstmt.setString(9,volunteerUser.getCitta());
         	pstmt.setString(10, volunteerUser.getNome());
           

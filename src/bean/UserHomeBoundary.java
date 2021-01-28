@@ -15,7 +15,6 @@ import controller.CercaCaritas;
 import controller.UserHomeController;
 import entity.User;
 import entity.VolunteerUser;
-import entity.VolunteerUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

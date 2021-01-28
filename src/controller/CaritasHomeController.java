@@ -1,7 +1,7 @@
 package controller;
 
 
-import entity.CaritasUser2;
+import entity.CaritasUser;
 
 /**
  * Sample Skeleton for "CaritasHomePage.fxml" Controller Class You can copy and
@@ -10,14 +10,14 @@ import entity.CaritasUser2;
 
 public class CaritasHomeController {
 
-	private CaritasUser2 currentUser;
+	private CaritasUser currentUser;
 
 
-	public CaritasUser2 getCurrentUser() {
+	public CaritasUser getCurrentUser() {
 		return this.currentUser;
 	}
 
-	public void setCurrentUser(CaritasUser2 currentUser) {
+	public void setCurrentUser(CaritasUser currentUser) {
 		this.currentUser = currentUser;
 	}
 

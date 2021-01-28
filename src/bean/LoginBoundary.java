@@ -7,11 +7,8 @@ import org.slf4j.LoggerFactory;
 
 import controller.LoginController;
 import entity.CaritasUser;
-import entity.CaritasUser2;
 import entity.ShopUser;
-import entity.ShopUser2;
 import entity.VolunteerUser;
-import entity.VolunteerUser2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

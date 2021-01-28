@@ -11,7 +11,7 @@ import com.sothawo.mapjfx.Coordinate;
 
 import connector.Connector;
 import entity.ShopUser;
-import entity.ShopUser2;
+
 
 public class ShopRepository {
 
@@ -28,7 +28,7 @@ public class ShopRepository {
 
 
 
-    public int insertShop(ShopUser2 shopUser) {
+    public int insertShop(ShopUser shopUser) {
 
         ResultSet rs = null;
         int shopID = 0;
@@ -40,12 +40,12 @@ public class ShopRepository {
            
         	pstmt.setString(1,shopUser.getEmail());
         	pstmt.setString(2, shopUser.getPassword());        	
-        	pstmt.setString(3, shopUser.getNomeShop());
-        	pstmt.setString(4, shopUser.getIndirizzoShop());
-        	pstmt.setString(5, shopUser.getcitta());
+        	pstmt.setString(3, shopUser.getNome());
+        	pstmt.setString(4, shopUser.getIndirizzo());
+        	pstmt.setString(5, shopUser.getCitta());
             pstmt.setString(6,shopUser.getTipologia());
             pstmt.setString(7,"Negozio");
-            pstmt.setString(8,shopUser.getRecapitoTelefonico());
+            pstmt.setString(8,shopUser.getRecapitoTel());
        
 
 
@@ -69,35 +69,7 @@ public class ShopRepository {
     }
 
   
-    public List<ShopUser2> getAllShops() {
-        List<ShopUser2> shopUsers = new ArrayList<>();
-
-        String sql = "SELECT * FROM negozi";
-
-        try (Connection conn = connector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-
-                String nomeShop = rs.getString("NomeNegozio");
-                String password = rs.getString(this.p);
-                String indirizzoNegozio = rs.getString("IndirizzoNegozio");
-                String tipologia = rs.getString("Tipologia");
-                String recapitoTel = rs.getString("RecapitoTel");
-                String email = rs.getString("Email");
-                String citta = rs.getString("città");
-
-                ShopUser2 shopUser = new ShopUser2(nomeShop, password, indirizzoNegozio, tipologia, recapitoTel, email, citta);
-                shopUser.setId(rs.getInt("ID"));
-                shopUsers.add(shopUser);
-            }
-            return shopUsers;
-        } catch (SQLException ex) {
-            logger.debug(ex.getMessage());
-            throw new IllegalStateException("error fetching users", ex);
-        }
-    }
+   
 
 
     public ShopUser getShopByID(int id) {

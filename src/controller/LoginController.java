@@ -7,11 +7,8 @@ import dao.CaritasRepository;
 import dao.ShopRepository;
 import dao.VolunteerRepository;
 import dao.LoginDao;
-import entity.CaritasUser2;
 import entity.ShopUser;
-import entity.ShopUser2;
 import entity.User;
-import entity.VolunteerUser2;
 
 public class LoginController {
 	private LoginDao login;

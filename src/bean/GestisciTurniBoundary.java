@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import controller.GestioneTurniCaritas;
 import entity.CaritasUser;
-import entity.CaritasUser2;
 import entity.TurnoTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
