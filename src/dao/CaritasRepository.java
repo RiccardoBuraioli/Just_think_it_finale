@@ -96,22 +96,8 @@ public class CaritasRepository {
    
 
     public void deleteCaritas(int id) {
-        String sql = "DELETE FROM caritas where ID=?";
-        int deletedRec;
-
-        try (Connection conn = connector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            deletedRec = stmt.executeUpdate();
-
-            if (deletedRec == 1)logger.debug("Caritas ID " + id + ", rimossa con successo!");
-
-            else logger.debug("ID non trovato.");
-
-        } catch (SQLException ex) {
-           logger.debug(ex.getMessage());
-        }
+    	UserDao userd= new UserDao();
+    	userd.deleteVolunteer(id);
     }
 
 

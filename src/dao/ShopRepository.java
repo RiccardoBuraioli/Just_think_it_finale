@@ -104,22 +104,10 @@ public class ShopRepository {
 
    
     public void deleteNegozio(int id) {
-        String sql = "DELETE FROM negozi where ID=?";
-        int deletedRec;
-
-        try (Connection conn = connector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            deletedRec = stmt.executeUpdate();
-
-            if (deletedRec == 1) logger.debug("Negozio ID " + id + ", rimosso con successo!");
-
-            else logger.debug("ID non trovato.");
-
-        } catch (SQLException ex) {
-            logger.debug(ex.getMessage());
-        }
+     
+    	UserDao userd= new UserDao();
+    	userd.deleteVolunteer(id);
+      
     }
 
  

@@ -112,6 +112,7 @@ private VolunteerUser currentUser;
     @FXML
     void deleteAccountButtonPressed(ActionEvent event) {
     		//lo faremo presto
+    	this.userController.deleteAccount(currentUser.getId());
     }
 
     @FXML

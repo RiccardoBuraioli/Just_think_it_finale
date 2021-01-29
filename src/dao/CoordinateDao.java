@@ -45,9 +45,7 @@ public class CoordinateDao {
                if (rowAffected == 1) {
 
                    rs = pstmt.getGeneratedKeys();
-                   int shopID;
-				if (rs.next())
-                       shopID = rs.getInt(1);
+             
                }
            } catch (SQLException ex) {
                logger.debug(ex.getMessage());

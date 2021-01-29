@@ -30,25 +30,31 @@ public class DonationDao {
 	   int rowAffected;
  	    String sql = "call modifica_donazione(?)";
 
-         try (Connection conn = connector.getConnection();
-              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-        	 pstmt.setInt(1, idDon);
-   
-             rowAffected = pstmt.executeUpdate();
-
-             if (rowAffected == 1) {
-                 logger.debug(SUCCESS);
-             } else logger.debug(FAILED);
-
-
-         } catch (SQLException ex) {
-             logger.debug((ex.getMessage()));
-      
-         }
+         eseguiQuery(idDon, sql);
 		return false;
         
 	   
    }
+
+
+public void eseguiQuery(int idDon, String sql) {
+	int rowAffected;
+	try (Connection conn = connector.getConnection();
+	      PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+		 pstmt.setInt(1, idDon);
+   
+	     rowAffected = pstmt.executeUpdate();
+
+	     if (rowAffected == 1) {
+	         logger.debug(SUCCESS);
+	     } else logger.debug(FAILED);
+
+
+	 } catch (SQLException ex) {
+	     logger.debug((ex.getMessage()));
+     
+	 }
+}
     
     
    public int creaDonazione(Donazione dono ) {
@@ -129,21 +135,7 @@ public class DonationDao {
 
 	 	    String sql = "call cancella_donazione(?)";
 
-	         try (Connection conn = connector.getConnection();
-	              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-	        	 pstmt.setInt(1, idDon);
-	   
-	             rowAffected = pstmt.executeUpdate();
-
-	             if (rowAffected == 1) {
-	                 logger.debug(SUCCESS);
-	             } else logger.debug(FAILED);
-
-
-	         } catch (SQLException ex) {
-	             logger.debug((ex.getMessage()));
-	      
-	         }
+	         eseguiQuery(idDon, sql);
 			return false;
 	        
 	
