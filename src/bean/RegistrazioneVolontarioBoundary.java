@@ -20,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class RegistrazioneVolontarioBoundary implements Initializable {
 	private RegistrazioneVolontarioController regC;
@@ -81,17 +82,11 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 
 	@FXML
 	void backButtonPres(ActionEvent event) {
-    	
-	    try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage)  backButton.getScene().getWindow();
-			Scene scene = new Scene(root,600,400);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			logger.error(s);
-		}
+		TransizionePagine pageswitch = new TransizionePagine();
+		String pagina= "/boundary/RegistrazioneMenu.fxml";
+		Window stage = backButton.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage);
+	  
 
 	}
 

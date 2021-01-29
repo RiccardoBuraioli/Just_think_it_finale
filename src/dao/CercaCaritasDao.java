@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
 
@@ -18,9 +21,10 @@ import connector.Connector;
 public class CercaCaritasDao {
 	
 	private final Connector connector;
-	private String lati = "latitudine";
-	private String longi = "longitudine";
-	
+	private String latit = "latitudine";
+	private String longit = "longitudine";
+    private static final Logger logger = LoggerFactory.getLogger(CercaCaritasDao.class);
+
 	 public CercaCaritasDao() {
 		    this.connector =  new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
 		}
@@ -37,8 +41,8 @@ public class CercaCaritasDao {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				double lati = Double.parseDouble(rs.getString(this.lati));
-				double longi = Double.parseDouble(rs.getString(this.longi));
+				double lati = Double.parseDouble(rs.getString(this.latit));
+				double longi = Double.parseDouble(rs.getString(this.longit));
 				int codiceCaritas = rs.getInt("CodiceCaritas");
 				
 				Coordinate caritasCoordinate = new Coordinate(lati,longi);
@@ -50,12 +54,12 @@ public class CercaCaritasDao {
 	         } 
 	
 	     } catch (SQLException ex) {
-	         System.out.println(ex.getMessage());
+	         logger.debug(ex.getMessage());
 	     } finally {
 	         try {
 	             if (rs != null) rs.close();
 	         } catch (SQLException e) {
-	             System.out.println(e.getMessage());
+	        	 logger.debug(e.getMessage());
 	         }
 	     }
 		return lista;
@@ -78,7 +82,7 @@ public class CercaCaritasDao {
 	         while (rs.next()) {
 	        	 int codiceEvento = rs.getInt("codiceEv");
 	        	 
-	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
+	        	 Coordinate eventoCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.latit)),Double.parseDouble(rs.getString(this.longit)));
 	        	 Marker m = Marker.createProvided(Marker.Provided.BLUE).setPosition(eventoCoordinate);
 	        	 MarkerID mc = new MarkerID(m, codiceEvento);
 	        		
@@ -89,12 +93,12 @@ public class CercaCaritasDao {
 	         } 
 
 	     } catch (SQLException ex) {
-	         System.out.println(ex.getMessage());
+	    	 logger.debug(ex.getMessage());
 	     } finally {
 	         try {
 	             if (rs != null) rs.close();
 	         } catch (SQLException e) {
-	             System.out.println(e.getMessage());
+	        	 logger.debug(e.getMessage());
 	         }
 	     } return markerEvento;
 		}
@@ -116,7 +120,7 @@ public class CercaCaritasDao {
 
 	         while (rs.next()) {
 	        	 int codiceDono = rs.getInt("codiceDono");
-	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.lati)),Double.parseDouble(rs.getString(this.longi)));
+	        	 Coordinate donazioneCoordinate = new Coordinate(Double.parseDouble(rs.getString(this.latit)),Double.parseDouble(rs.getString(this.longit)));
 	        	 Marker m = Marker.createProvided(Marker.Provided.GREEN).setPosition(donazioneCoordinate);
 	        	 MarkerID mc = new MarkerID(m, codiceDono);	        	 
 	        	 markerDonazione.add(mc);
@@ -124,12 +128,12 @@ public class CercaCaritasDao {
 	         } 
 
 	     } catch (SQLException ex) {
-	         System.out.println(ex.getMessage());
+	    	 logger.debug(ex.getMessage());
 	     } finally {
 	         try {
 	             if (rs != null) rs.close();
 	         } catch (SQLException e) {
-	             System.out.println(e.getMessage());
+	        	 logger.debug(e.getMessage());
 	         }
 	     } return markerDonazione;
 		}

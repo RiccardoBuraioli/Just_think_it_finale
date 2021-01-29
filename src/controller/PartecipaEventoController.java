@@ -2,9 +2,7 @@ package controller;
 
 import entity.PartecipaEvento;
 
-import bean.PartecipaEventoBoundary;
 import dao.EventoDao;
-import javafx.event.ActionEvent;
 
 public class PartecipaEventoController {
 

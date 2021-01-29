@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 
 public class BachecaPersonaleBoundary {
 
-	private int idCar;
+	
 	private BachecaPersonaleController bachecaController;
 	private static Logger logger = LoggerFactory.getLogger(BachecaPersonaleBoundary.class.getName());
 	private String s = "errore IoException";
@@ -93,7 +93,7 @@ public class BachecaPersonaleBoundary {
 	}
 
 	public void loadFormBoundary(int idCar) {
-		this.idCar = idCar;
+	
 
 		bachecaController = new BachecaPersonaleController();
 		List<Necessita> necessitaList = bachecaController.loadForm(idCar);

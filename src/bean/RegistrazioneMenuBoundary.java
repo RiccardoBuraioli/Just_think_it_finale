@@ -12,11 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class RegistrazioneMenuBoundary {
 	
 	private static Logger logger = LoggerFactory.getLogger(RegistrazioneMenuBoundary.class.getName());
-	private String s = "error IoException";
+	private String pagina;
+	private Window stage;
     @FXML
     private Button caritasButton;
 
@@ -41,104 +43,70 @@ public class RegistrazioneMenuBoundary {
     @FXML
     void backButtonPressed(ActionEvent event) {
     	
-	    try {
-			Parent root = FXMLLoader.load(getClass().getResource("../boundary/Login_boundary.fxml"));
-			Stage signUp = (Stage) backButton.getScene().getWindow();
-			Scene scene = new Scene(root,600,380);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			logger.error(s);
-		}
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina= "../boundary/Login_boundary.fxml";
+		this.stage = backButton.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage);  
+    	
     }
 
     @FXML
     void caritasButtonPressed(ActionEvent event) {
-    	
-	    try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneCaritas.fxml"));
-			Stage signUp = (Stage) caritasButton.getScene().getWindow();
-			Scene scene = new Scene(root,600,450);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			logger.error(s);
-			}
-    	
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina= "/boundary/RegistrazioneCaritas.fxml";
+		this.stage = caritasButton.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage);  
+  	
 	    }
 
     @FXML
     void dettagliCaritasPressed(ActionEvent event) {
-    	   try {
-   			Parent root = FXMLLoader.load(getClass().getResource("/buondary/Details.fxml"));
-   			Stage signUp = (Stage) caritasButton.getScene().getWindow();
-   			Scene scene = new Scene(root,600,400);
-   			signUp.setScene(scene);
-   			signUp.show();
-   			signUp.setResizable(false);
-   			} catch (IOException e) {
-   				logger.error(s);
-   				}     
+    	   
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina= "/boundary/RegistrazioneCaritas.fxml";
+		this.stage = dettagliCaritas.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage);  
+    	
     	}
 
     @FXML
     void dettagliNegozioPressed(ActionEvent event) {
-        try {
-    			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
-    			Stage signUp = (Stage) dettagliNegozio.getScene().getWindow();
-    			Scene scene = new Scene(root,600,400);
-    			signUp.setScene(scene);
-    			signUp.show();
-    			signUp.setResizable(false);
-    		} catch (IOException e) {
-    			logger.error(s);
-    		}
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina="/boundary/Details.fxml";
+		this.stage = dettagliNegozio.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage); 
+    	
+     
     }
 
     @FXML
     void dettagliVolontarioPressed(ActionEvent event) {
-    	  try {
-  			Parent root = FXMLLoader.load(getClass().getResource("/boundary/Details.fxml"));
-  			Stage signUp = (Stage) dettagliVolontario.getScene().getWindow();
-  			Scene scene = new Scene(root,600,400);
-  			signUp.setScene(scene);
-  			signUp.show();
-  			signUp.setResizable(false);
-  		} catch (IOException e) {
-			logger.error(s);
-  		}
-
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina="/boundary/Details.fxml";
+		this.stage = dettagliVolontario.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage); 
+    	
       
     }
 
     @FXML
     void negozioButtonPressed(ActionEvent event) {
-    	  try {
-  			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneShopManager.fxml"));
-  			Stage signUp = (Stage) negozioButton.getScene().getWindow();
-  			Scene scene = new Scene(root,600,450);
-  			signUp.setScene(scene);
-  			signUp.show();
-  			signUp.setResizable(false);
-  		} catch (IOException e) {
-			logger.error(s);
-  		}
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina="/boundary/RegistrazioneShopManager.fxml";
+		this.stage = negozioButton.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage); 
+    	
+ 
     }
 
     @FXML
     void volontarioButtonPressed(ActionEvent event) {
-    	 try {
- 			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneVolontario.fxml"));
- 			Stage signUp = (Stage) volontarioButton.getScene().getWindow();
- 			Scene scene = new Scene(root,600,450);
- 			signUp.setScene(scene);
- 			signUp.show();
- 			signUp.setResizable(false);
- 		} catch (IOException e) {
-			logger.error(s);
- 		}
+    	TransizionePagine pageswitch = new TransizionePagine();
+		this.pagina="/boundary/RegistrazioneVolontario.fxml";
+		this.stage = volontarioButton.getScene().getWindow();
+		pageswitch.visualizzaPagina(pagina, stage); 
+    	
+    	
     }
 
 

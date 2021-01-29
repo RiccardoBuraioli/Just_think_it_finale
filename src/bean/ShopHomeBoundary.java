@@ -121,16 +121,13 @@ public class ShopHomeBoundary {
     void cercaCaritas(ActionEvent event) {
     	try {
 
-	        //FXMLLoader fxmlLoader = new FXMLLoader();
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CercaCaritas.fxml"));
-	      //  Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Cerca_Caritas.fxml"));
 	        Parent rootNode = loader.load();
 	        CercaCaritas controller = loader.getController();
 	        controller.setUser(currentUser);
 	      
 	      
-	        final Projection projection = /*getParameters().getUnnamed().contains("wgs84")
-	            ? Projection.WGS_84 : */Projection.WEB_MERCATOR;
+	        final Projection projection = Projection.WEB_MERCATOR;
 	      
 	        controller.initMapAndControls(projection);
 	       

@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import connector.Connector;
 import entity.EventTab;
-import entity.Evento;
 import entity.PartecipaEvento;
 
 public class EventoDao {

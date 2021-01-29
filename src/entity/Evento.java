@@ -25,7 +25,7 @@ public class Evento {
 		this.idCaritas = idCaritas;
 	}
 	
-	public Evento(String nomeEvento,String tipoEvento,String noteEvento,float prezzoEvento,int idNegozio, int idCaritas) {
+	public Evento(String nomeEvento,String tipoEvento,float prezzoEvento,int idNegozio, int idCaritas) {
 		this.nomeEvento = new SimpleStringProperty(nomeEvento);
 		this.tipoEvento = tipoEvento;
 	

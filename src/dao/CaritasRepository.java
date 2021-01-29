@@ -12,8 +12,6 @@ import java.sql.*;
 public class CaritasRepository {
 
     private final Connector connector;
-    private static final String SUCCESS = "Voce modificata con successo!";
-    private static final String FAILED = "Operazione non riuscita.";
     private static final Logger logger = LoggerFactory.getLogger(CaritasRepository.class);
 
     public CaritasRepository() {

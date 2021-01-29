@@ -25,15 +25,14 @@ public class CoordinateDao {
     	 // a couple of markers using the provided ones
     	this.connector = new Connector("jdbc:mysql://127.0.0.1:3306/Justthinkit", "root", "password");
     	
-    	this.idUtente = idUtente;
+    
     }
 	
  
     
     public void setCoordinate(int idUtente,String lat, String lon) {
     	   ResultSet rs = null;
-           int shopID = 0;
-
+         
            String sql = "call aggiungi_coordinate(?,?,?)";
 
            try (Connection conn = connector.getConnection();
@@ -46,7 +45,8 @@ public class CoordinateDao {
                if (rowAffected == 1) {
 
                    rs = pstmt.getGeneratedKeys();
-                   if (rs.next())
+                   int shopID;
+				if (rs.next())
                        shopID = rs.getInt(1);
                }
            } catch (SQLException ex) {

@@ -111,8 +111,8 @@ public class BachecaDao {
 	            rowAffected = pstmt.executeUpdate();
 
 	            if (rowAffected == 1) {
-	                System.out.println("SUCCESS!");
-	            } else { System.out.println("FAIlED"); return false;}
+	            	logger.debug("SUCCESS!");
+	            } else { logger.debug("FAIlED"); return false;}
 
 
 	        } catch (SQLException ex) {

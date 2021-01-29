@@ -1,9 +1,6 @@
 package dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +12,6 @@ import entity.VolunteerUser;
 public class VolunteerRepository {
 
     private final Connector connector;
-    private static final String SUCCESS = "Voce modificata con successo!";
-    private static final String FAILED = "Operazione non riuscita.";
     private static final Logger logger = LoggerFactory.getLogger(VolunteerRepository.class);
 
 

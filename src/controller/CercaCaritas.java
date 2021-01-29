@@ -4,17 +4,14 @@ import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapLabelEvent;
 import com.sothawo.mapjfx.event.MapViewEvent;
 import com.sothawo.mapjfx.event.MarkerEvent;
-import com.sothawo.mapjfx.offline.OfflineCache;
 
 import bean.BachecaBoundary;
-import bean.CaritasHomeBoundary;
 import bean.DonationBoundary;
 import bean.PartecipaEventoBoundary;
 import bean.PrenotaTurnoBoundary;
 import bean.PromuoviEventoBoundary;
 import bean.ShopHomeBoundary;
 import bean.UserHomeBoundary;
-//import connector.Connector;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
 import entity.CaritasUser;
@@ -23,12 +20,11 @@ import entity.ShopUser;
 import entity.User;
 import entity.VolunteerUser;
 import javafx.animation.Transition;
-//import javafx.animation.AnimationTimer;
-//	import javafx.animation.Transition;
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//	import javafx.beans.value.ChangeListener;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -72,15 +68,11 @@ public class CercaCaritas {
 		CARITAS, EVENTO, DONAZIONE, MAP
 	};
 
-	private int idUtente;
 	private int idCaritas;
 	private int idEvento;
 
 	private User loggedUser;
-	// private int countCaritas;
-	// private int countEvent;
-	// private int countDonation;
-
+	
 	/** logger for the class. */
 	private static final Logger logger = LoggerFactory.getLogger(CercaCaritas.class);
 
@@ -90,8 +82,6 @@ public class CercaCaritas {
 	private static final Coordinate coordKarlsruheStation = new Coordinate(48.993284, 8.402186);
 	private static final Coordinate coordKarlsruheSoccer = new Coordinate(49.020035, 8.412975);
 	private static final Coordinate coordKarlsruheUniversity = new Coordinate(49.011809, 8.413639);
-
-	// List<Coordinate> list = CoordinateDao.getCaritas();
 
 	private static final Extent extentAllLocations = Extent.forCoordinates(coordKarlsruheCastle, RomaCentro,
 			coordKarlsruheStation, coordKarlsruheSoccer);
@@ -110,7 +100,6 @@ public class CercaCaritas {
 
 	/** the markers. */
 
-	// public Marker[] markerCaritas = {null,null,null,null,null,null,null};
 
 	private List<MarkerID> markerCaritas;
 	private List<MarkerID> markerEventi;
@@ -118,8 +107,7 @@ public class CercaCaritas {
 
 	int[] IdCaritaList;
 
-	// public Marker[] markerEvento={null,null,null,null,null,null,null};
-	// private Marker[] markerDonazione = {null,null,null,null,null,null,null};
+
 
 	private Marker markerClick;
 
@@ -241,8 +229,7 @@ public class CercaCaritas {
 	@FXML
 	private CheckBox checkClickMarker;
 
-	// registrare le proprie coordinate
-	private Marker markerSelected;
+
 
 	/** params for the WMS server. */
 	private WMSParam wmsParam = new WMSParam().setUrl("http://ows.terrestris.de/osm/service?").addParam("layers",
@@ -258,7 +245,7 @@ public class CercaCaritas {
 	
 	
 
-	private void Indietro(User loggedUser) {
+	private void indietro(User loggedUser) {
 	if (loggedUser.getClass() == VolunteerUser.class) {
 		 try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
@@ -282,9 +269,9 @@ public class CercaCaritas {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
-			ShopHomeBoundary ShopHomeBoundary;
-			ShopHomeBoundary = loader.getController();
-			ShopHomeBoundary.setCurrentUser((ShopUser) loggedUser);
+			ShopHomeBoundary shopHomeBoundary;
+			shopHomeBoundary = loader.getController();
+			shopHomeBoundary.setCurrentUser((ShopUser) loggedUser);
 			Stage home = (Stage) buttonBack.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
@@ -300,7 +287,7 @@ public class CercaCaritas {
 	
 	
 	
-	private void PromuoviEvento(int idCar, int idShop) {
+	private void promuoviEvento(int idCar, int idShop) {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 
@@ -356,7 +343,6 @@ public class CercaCaritas {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Donation.fxml"));
 
-			// donationController = fxmlLoader.getController();
 			DonationBoundary donationBoundary = fxmlLoader.getController();
 
 			Stage stage = new Stage();
@@ -423,7 +409,6 @@ public class CercaCaritas {
 
 		initMarkers(cercaCaritasDao);
 
-		// circleCastle = new MapCircle(coordKarlsruheStation, 1_000).setVisible(true);
 
 	}
 
@@ -436,9 +421,7 @@ public class CercaCaritas {
 		labelEvento = new MapLabel("station", 10, -10).setVisible(false).setCssClass("red-label");
 		labelClick = new MapLabel("click!", 10, -10).setVisible(false).setCssClass("orange-label");
 
-		// markerDonazione.attachLabel(labelDonazione);
-		// markerCaritas.attachLabel(labelCaritas);
-		// markerClick.attachLabel(labelClick);
+	
 	}
 
 	public void initMarkers(CercaCaritasDao cercaCaritasDao) {
@@ -487,9 +470,9 @@ public class CercaCaritas {
 		listaBottoniOld = FXCollections.observableArrayList();
 
 		// wire up the location buttons
-		buttonBack.setOnAction(event -> Indietro(loggedUser));
+		buttonBack.setOnAction(event -> indietro(loggedUser));
 		buttonBacheca.setOnAction(event -> vediNecessita(idCaritas, loggedUser.getId()));
-		buttonPromuoviEvento.setOnAction(event -> PromuoviEvento(idCaritas, loggedUser.getId()));
+		buttonPromuoviEvento.setOnAction(event -> promuoviEvento(idCaritas, loggedUser.getId()));
 		buttonTurnoVolontariato.setOnAction(event -> prenotaTurno(idCaritas, loggedUser.getId()));
 		buttonEvento.setOnAction(event -> partecipaEvento(idEvento, loggedUser.getId()));
 		buttonDonazione.setOnAction(event -> apriDonazione(idCaritas, loggedUser.getId()));
@@ -765,6 +748,7 @@ public class CercaCaritas {
 					case "buttonAllLocations":
 
 						listaBottoniDaRimuovere.add(btn);
+					default:
 					}
 				}
 
@@ -776,6 +760,7 @@ public class CercaCaritas {
 					case "buttonAllLocations":
 
 						listaBottoniDaRimuovere.add(btn);
+					default:
 					}
 				}
 
@@ -786,6 +771,7 @@ public class CercaCaritas {
 					case "buttonAllLocations":
 
 						listaBottoniDaRimuovere.add(btn);
+					default:
 					}
 				}
 			}
@@ -801,6 +787,7 @@ public class CercaCaritas {
 					case "buttonAllLocations":
 					case "buttonDonazione":
 						listaBottoniDaRimuovere.add(btn);
+					default:
 					}
 				} else {
 					switch (btn.getId()) {
@@ -811,7 +798,9 @@ public class CercaCaritas {
 					case "buttonBacheca":
 					case "buttonDonazione":
 						listaBottoniDaRimuovere.add(btn);
+					default:
 					}
+					
 
 				}
 			}
@@ -826,6 +815,7 @@ public class CercaCaritas {
 				case "buttonEvento":
 				case "buttonDonazione":
 					listaBottoniDaRimuovere.add(btn);
+					default:
 				}
 			}
 		}
@@ -892,44 +882,14 @@ public class CercaCaritas {
 		for (int i = 0; i < markerDonazioni.size(); i++) {
 			mapView.addMarker(markerDonazioni.get(i).getMarker());
 		}
-		// can't add the markerClick at this moment, it has no position, so it would not
-		// be added to the map
 
-		// add the fix label, the other's are attached to markers.
-		// mapView.addLabel(labelCaritas);
-
-		// add the tracks
-		// mapView.addCoordinateLine(trackMagenta);
-		// mapView.addCoordinateLine(trackCyan);
-
-		// add the circle
-		// mapView.addMapCircle(circleCastle);
-
-		// now enable the controls
 		setControlsDisable(false);
 	}
 
-	/**
-	 * load a coordinateLine from the given uri in lat;lon csv format
-	 *
-	 * @param url url where to load from
-	 * @return optional CoordinateLine object
-	 * @throws java.lang.NullPointerException if uri is null
-	 */
-	private Optional<CoordinateLine> loadCoordinateLine(URL url) {
-		try (Stream<String> lines = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))
-				.lines()) {
-			return Optional.of(new CoordinateLine(lines.map(line -> line.split(";")).filter(array -> array.length == 2)
-					.map(values -> new Coordinate(Double.valueOf(values[0]), Double.valueOf(values[1])))
-					.collect(Collectors.toList())));
-		} catch (IOException | NumberFormatException e) {
-			logger.error("load {}", url, e);
-		}
-		return Optional.empty();
-	}
 
-	public void setUser(User User) {
-		this.loggedUser = User;
+
+	public void setUser(User user) {
+		this.loggedUser = user;
 
 	}
 }

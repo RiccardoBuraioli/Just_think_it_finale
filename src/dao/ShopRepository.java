@@ -1,8 +1,7 @@
 package dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +15,6 @@ import entity.ShopUser;
 public class ShopRepository {
 
     private final Connector connector;
-    private static final String SUCCESS = "Voce modificata con successo!";
-    private static final String FAILED = "Operazione non riuscita.";
-    private String p = "Password";
     private static final Logger logger = LoggerFactory.getLogger(ShopRepository.class);
 
     
