@@ -22,7 +22,6 @@
         </Label>
         <Separator layoutY="42.0" orientation="VERTICAL" prefHeight="554.0" prefWidth="3.0" AnchorPane.leftAnchor="197.0" />
         <Separator layoutY="241.0" prefWidth="200.0" />
-        <Button fx:id="profileButton" layoutY="255.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="26.0" prefWidth="170.0" text="Profilo" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="613.0" />
         <Button fx:id="helpButton" layoutX="15.0" layoutY="292.0" mnemonicParsing="false" onAction="#helpButtonPressed" prefHeight="26.0" prefWidth="170.0" text="Help" />
         <Button fx:id="deleteAccountButton" layoutX="15.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteAccountButtonPressed" prefHeight="26.0" prefWidth="170.0" text="Cancella account" />
         <ImageView fx:id="imagePresentation" fitHeight="315.0" fitWidth="599.0" layoutX="201.0" layoutY="42.0" opacity="0.53" pickOnBounds="true">
@@ -64,9 +63,7 @@
             <Font name="System Bold" size="16.0" />
           </font>
         </Text>
-        <Button fx:id="leftArrowButton" layoutX="204.0" layoutY="187.0" mnemonicParsing="false" onAction="#leftArrowPressedCaritas" opacity="0.0" prefHeight="26.0" prefWidth="25.0" />
-        <Button fx:id="rightArrowButton" layoutX="762.0" layoutY="187.0" mnemonicParsing="false" onAction="#rightArrowPressedCaritas" opacity="0.0" prefHeight="26.0" prefWidth="25.0" />
-        <ImageView fx:id="profileImage" fitHeight="129.0" fitWidth="172.0" layoutX="14.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fx:id="profileImage" fitHeight="129.0" fitWidth="172.0" layoutX="14.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="file:/C:/Users/Admin/Desktop/JUST-THINK-IT.git/trunk/resources/images/defalutUserProfile.png" />
           </image>

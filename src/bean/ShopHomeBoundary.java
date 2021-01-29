@@ -35,9 +35,6 @@ public class ShopHomeBoundary {
 	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
 	private String s = "error IoException";
 	private Image img1;
-	private Image img2;
-	private Image img3;
-	private Image[] images = {img1, img2, img3};
 	private int currentImage;
 	private static ShopHomeBoundary instance = null;
 	
@@ -61,8 +58,7 @@ public class ShopHomeBoundary {
 
 	public ShopHomeBoundary() {
 		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
-		img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
-		img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
+		
 		this.currentImage = 0;
 	}
 		
@@ -101,9 +97,7 @@ public class ShopHomeBoundary {
     @FXML
     private Text nomeCognome;
 
-    @FXML
-    private Button profileButton;
-
+   
     @FXML
     private ImageView profileImage;
 
@@ -133,17 +127,7 @@ public class ShopHomeBoundary {
     	clip.setCenterY(58);
     	clip.setRadius(200);
         profileImage.setClip(clip);
-    	long delay = 3000; //update once per 3 seconds.
-    	new Timer().schedule(new TimerTask() {
-
-    	    @Override
-    	    public void run() {
-    	        imagePresentation.setImage(images[currentImage++]);
-    	        if (currentImage >= images.length) {
-    	            currentImage = 0;
-    	        }
-    	    }
-    	}, 0, delay);
+    
     }
     
 
@@ -194,18 +178,7 @@ public class ShopHomeBoundary {
     	//lo faremo sicuro sicuro
     }
 
-    @FXML
-   void leftArrowPressed(ActionEvent event) {
-    	
-    	//Se è la prima riparti dall'ultima
-    	if (currentImage == 0) {
-    		currentImage = 2;
-    		imagePresentation.setImage(images[currentImage]);
-    	} else {
-    		currentImage--;
-    		imagePresentation.setImage(images[currentImage]);
-    	}
-    }
+  
 
     @FXML
  void logoutButtonPressed(ActionEvent event) {
@@ -217,24 +190,6 @@ public class ShopHomeBoundary {
     	
 	}
 
-
-    @FXML
-    void profileButtonPressed(ActionEvent event) {
- 	 //questo forse no
-    }
-
-    @FXML
-    void rightArrowPressed(ActionEvent event) {
-    	
-    	//Se è l'ultima riparti dalla prima
-    	if (currentImage == 2) {
-    		currentImage = 0;
-    		imagePresentation.setImage(images[currentImage]);
-    	} else {
-    		currentImage++;
-    		imagePresentation.setImage(images[currentImage]);
-    	}
-    }
 
 
 

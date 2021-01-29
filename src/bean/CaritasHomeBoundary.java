@@ -31,10 +31,8 @@ import javafx.stage.Stage;
 public class CaritasHomeBoundary {
 
 	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
-	private Image img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
-	private Image img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
-	private Image[] images = { img1, img2, img3 };
-	private int currentImage = 0;
+	
+	
 	private static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
 	private String s = "errore IoException";
@@ -44,8 +42,7 @@ public class CaritasHomeBoundary {
 	private GestisciDonazioniBoundary gestDon;
 
 	private BachecaPersonaleBoundary bacheca;
-	@FXML
-	private Button profileButton;
+
 
 	@FXML
 	private Button helpButton;
@@ -83,11 +80,6 @@ public class CaritasHomeBoundary {
 	@FXML
 	private Text nomeCognome;
 
-	@FXML
-	private Button leftArrowButton;
-
-	@FXML
-	private Button rightArrowButton;
 
 	@FXML
 	private ImageView profileImage;
@@ -203,10 +195,6 @@ public class CaritasHomeBoundary {
 		// handle the event here
 	}
 
-	@FXML
-	void leftArrowPressed(ActionEvent event) {
-		// handle the event here
-	}
 
 	@FXML
 	void logoutButtonPressedCaritas(ActionEvent event) {
@@ -217,20 +205,6 @@ public class CaritasHomeBoundary {
 
 	}
 
-	@FXML
-	void profileButtonPressed(ActionEvent event) {
-		// handle the event here
-	}
-
-	@FXML
-	void rightArrowPressedCaritas(ActionEvent event) {
-		// handle the event here
-	}
-
-	@FXML
-	void leftArrowPressedCaritas(ActionEvent event) {
-		// handle the event here
-	}
 
 	public CaritasUser getCurrentUser() {
 		return currentUser;
@@ -248,17 +222,7 @@ public class CaritasHomeBoundary {
 		clip.setCenterY(58);
 		clip.setRadius(200);
 		profileImage.setClip(clip);
-		long delay = 3000; // update once per 3 seconds.
-		new Timer().schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				imagePresentation.setImage(images[currentImage++]);
-				if (currentImage >= images.length) {
-					currentImage = 0;
-				}
-			}
-		}, 0, delay);
+		
 
 	}
 

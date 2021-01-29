@@ -2,16 +2,8 @@ package bean;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.sothawo.mapjfx.Projection;
-
-import controller.CercaCaritas;
 import controller.UserHomeController;
 import dao.VolunteerRepository;
 import entity.User;
@@ -21,10 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
@@ -71,8 +60,7 @@ private VolunteerUser currentUser;
 	
 	public UserHomeBoundary() {
 		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
-		 img2 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/PelleDrago.PNG");
-		 img3 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestaIniz.PNG");
+		
 		 currentImage = 0;
 		 userController = new UserHomeController();
 	
@@ -102,11 +90,6 @@ private VolunteerUser currentUser;
     @FXML
     private Button logoutButton;
     
-    @FXML
-    private Button leftArrowButton;
-
-    @FXML
-    private Button rightArrowButton;
 
     
     @FXML
@@ -138,18 +121,7 @@ private VolunteerUser currentUser;
     	this.userController.helpButtonPressed();
     }
 
-    @FXML
-    void leftArrowPressed(ActionEvent event) {
-    	
-    	//Se è la prima riparti dall'ultima
-    	if (currentImage == 0) {
-    		currentImage = 2;
-    		imagePresentation.setImage(images[currentImage]);
-    	} else {
-    		currentImage--;
-    		imagePresentation.setImage(images[currentImage]);
-    	}
-    }
+ 
 
     @FXML
     void logoutButtonPressed(ActionEvent event) {
@@ -160,18 +132,7 @@ private VolunteerUser currentUser;
     	
 	}
 
-    @FXML
-    void rightArrowPressed(ActionEvent event) {
-    	
-    	//Se è l'ultima riparti dalla prima
-    	if (currentImage == 2) {
-    		currentImage = 0;
-    		imagePresentation.setImage(images[currentImage]);
-    	} else {
-    		currentImage++;
-    		imagePresentation.setImage(images[currentImage]);
-    	}
-    }
+  
 
     @FXML
     void searchCaritasButtonPressed(ActionEvent event) throws NumberFormatException, SQLException {
@@ -194,17 +155,7 @@ private VolunteerUser currentUser;
     	clip.setCenterY(58);
     	clip.setRadius(200);
         this.profileImage.setClip(clip);
-    	long delay = 3000; //update once per 3 seconds.
-    	new Timer().schedule(new TimerTask() {
-
-    	    @Override
-    	    public void run() {
-    	        UserHomeBoundary.this.imagePresentation.setImage(images[UserHomeBoundary.this.currentImage++]);
-    	        if (UserHomeBoundary.this.currentImage >= UserHomeBoundary.this.images.length) {
-    	            UserHomeBoundary.this.currentImage = 0;
-    	        }
-    	    }
-    	}, 0, delay);
+    	
     	
     	this.userController.setCurrentUser(user);
     }
