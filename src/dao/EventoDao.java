@@ -53,13 +53,7 @@ public class EventoDao {
 	           }
 	       } catch (SQLException ex) {
 	           logger.debug(ex.getMessage());
-	       } finally {
-	           try {
-	               if (res != null) res.close();
-	           } catch (SQLException e) {
-	               logger.debug(e.getMessage());
-	           }
-	       }
+	       } 
     	
     	
     	
@@ -82,7 +76,7 @@ public class EventoDao {
 	           while (res.next()) {
 	        	   this.listEv.add(new EventTab( res.getInt("id") ,res.getString("NomeEvento"), res.getString("NoteEvento"), res.getFloat("PrezzoEvento"),res.getString("NomeNegozio"), res.getInt("numPartecipanti"), res.getInt("CodiceNegozio")));
 	        	   EventTab temp = this.listEv.get(i);
-	        	   System.out.println(temp.getNoteEvento());
+	        	   logger.debug(temp.getNoteEvento());
 	        	   temp.setStatoEvento(res.getString("Completato"));
 	        	   temp.setImportoRaggiunto(res.getFloat("Importo"));
 	        	 
