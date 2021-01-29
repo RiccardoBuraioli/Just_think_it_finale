@@ -25,7 +25,7 @@ import javafx.stage.Window;
 public class RegistrazioneVolontarioBoundary implements Initializable {
 	private RegistrazioneVolontarioController regC;
 
-	private TextField[] textFields;
+	private TextField[] text;
 	private static Logger logger = LoggerFactory.getLogger(RegistrazioneVolontarioBoundary.class.getName());
 
 	private String s = "error IoException";
@@ -94,7 +94,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	void registraVolontarioPressed(ActionEvent event) {
 
 		if (checker() == 0) {
-		VolunteerUser id =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
+		VolunteerUser vol =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
 					password.getText(), via.getText(), tel.getText(), mail.getText(), date.getText(),
 					cittaRes.getText());
 		
@@ -102,13 +102,13 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
     			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
     			Parent root = loader.load();
     			UserHomeBoundary userHomeBoundary = loader.getController();
-    			userHomeBoundary.initData(id);
+    			userHomeBoundary.initData(vol);
     			Stage home = (Stage) completaReg.getScene().getWindow();
     			home.setScene(new Scene(root, 800, 600));
     			
     			home.show();
     		} catch (IOException e) {
-    			logger.error(s);
+    			logger.error(e.getMessage());
     		}
     	
 
@@ -119,8 +119,8 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	public int checker() {
 
 		// Controlla che non ci siano campi lasciati vuoti
-		for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
+		for (int i = 0; i < text.length; i++) {
+			if (text[i].getText().isEmpty()) {
 				passwordMatch.setText("Alcuni campi sono vuoti");
 				passwordMatch.setVisible(true);
 				return -1;
@@ -143,7 +143,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		passwordMatch.setVisible(false);
-		textFields = new TextField[] { nome, mail, cittaRes, cognome, civico, via, tel };
+		text = new TextField[] { nome, mail, cittaRes, cognome, civico, via, tel };
 		// Per rendere opzionale un campo basta rimuoverlo da questa lista
 	}
 

@@ -1,22 +1,18 @@
 package bean;
 
-import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+
 import javafx.stage.Window;
 
 public class RegistrazioneMenuBoundary {
 	
-	private static Logger logger = LoggerFactory.getLogger(RegistrazioneMenuBoundary.class.getName());
 	private String pagina;
 	private Window stage;
     @FXML

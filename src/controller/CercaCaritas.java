@@ -45,28 +45,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class CercaCaritas {
 
 	public enum MarkerType {
 		CARITAS, EVENTO, DONAZIONE, MAP
-	};
+	}
 
 	private int idCaritas;
 	private int idEvento;
@@ -83,15 +74,12 @@ public class CercaCaritas {
 	private static final Coordinate coordKarlsruheSoccer = new Coordinate(49.020035, 8.412975);
 	private static final Coordinate coordKarlsruheUniversity = new Coordinate(49.011809, 8.413639);
 
-	private static final Extent extentAllLocations = Extent.forCoordinates(coordKarlsruheCastle, RomaCentro,
-			coordKarlsruheStation, coordKarlsruheSoccer);
 
 	private static final Coordinate coordGermanyNorth = new Coordinate(41.987167, 12.477502);
 	private static final Coordinate coordGermanySouth = new Coordinate(41.794755, 12.511766);
 	private static final Coordinate coordGermanyWest = new Coordinate(41.886165, 12.371194);
 	private static final Coordinate coordGermanyEast = new Coordinate(41.905271, 12.617460);
-	private static final Extent extentGermany = Extent.forCoordinates(coordGermanyNorth, coordGermanySouth,
-			coordGermanyWest, coordGermanyEast);
+
 
 	private static Coordinate posMarker = null;
 
@@ -105,19 +93,15 @@ public class CercaCaritas {
 	private List<MarkerID> markerEventi;
 	private List<MarkerID> markerDonazioni;
 
-	int[] IdCaritaList;
+	private int[] idCaritaList;
 
 
 
 	private Marker markerClick;
 
 	/** the labels. */
-	private MapLabel labelCaritas;
-	@SuppressWarnings("unused")
-	private MapLabel labelEvento;
-	@SuppressWarnings("unused")
-	private MapLabel labelDonazione;
-	private MapLabel labelClick;
+
+	
 
 	// a circle around the castle
 
@@ -414,12 +398,12 @@ public class CercaCaritas {
 
 	public void initLabels() {
 		// camvbiare cooordinate di tutte le label
-
-		labelDonazione = new MapLabel("university").setPosition(coordKarlsruheUniversity).setVisible(true);
+		
+		MapLabel labelDonazione = new MapLabel("university").setPosition(coordKarlsruheUniversity).setVisible(true);
 		// the attached labels, custom style
-		labelCaritas = new MapLabel("castle", 10, -10).setVisible(false).setCssClass("green-label");
-		labelEvento = new MapLabel("station", 10, -10).setVisible(false).setCssClass("red-label");
-		labelClick = new MapLabel("click!", 10, -10).setVisible(false).setCssClass("orange-label");
+		MapLabel labelCaritas = new MapLabel("castle", 10, -10).setVisible(false).setCssClass("green-label");
+		MapLabel labelEvento = new MapLabel("station", 10, -10).setVisible(false).setCssClass("red-label");
+		MapLabel labelClick = new MapLabel("click!", 10, -10).setVisible(false).setCssClass("orange-label");
 
 	
 	}
@@ -571,10 +555,10 @@ public class CercaCaritas {
 				checkEventoMarker.selectedProperty().bindBidirectional(markerEvento.getMarker().visibleProperty());
 			}
 
-			for (MarkerID markerCaritas : markerCaritas) {
+			for (MarkerID markerCaritastemp : markerCaritas) {
 				checkCaritasMarker.setGraphic(new ImageView(
-						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
-				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+						new Image(markerCaritastemp.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritastemp.getMarker().visibleProperty());
 			}
 			for (MarkerID markerDonazione : markerDonazioni) {
 				checkDonazioneMarker.setGraphic(new ImageView(

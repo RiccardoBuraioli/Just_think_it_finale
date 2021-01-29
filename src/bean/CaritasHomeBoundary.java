@@ -210,23 +210,10 @@ public class CaritasHomeBoundary {
 
 	@FXML
 	void logoutButtonPressedCaritas(ActionEvent event) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Logout");
-		alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
-		alert.setContentText("Sei sicuro di voler eseguire il logout?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
-				Parent root = loader.load();
-				Stage home = (Stage) logoutButton.getScene().getWindow();
-				home.setScene(new Scene(root, 600, 385));
-				home.show();
-			} catch (IOException e) {
-				logger.error(s);
-			}
-		}
+	 	
+    	TransizionePagine pageSwitch = new TransizionePagine();
+    	pageSwitch.logout(logoutButton.getScene().getWindow());
+    	
 
 	}
 

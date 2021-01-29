@@ -119,30 +119,9 @@ public class ShopHomeBoundary {
 
     @FXML
     void cercaCaritas(ActionEvent event) {
-    	try {
+    	TransizionePagine switchPage = new TransizionePagine();
+    	switchPage.apriMappa(this.currentUser, searchCaritasButton.getScene().getWindow());
 
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CercaCaritas.fxml"));
-	        Parent rootNode = loader.load();
-	        CercaCaritas controller = loader.getController();
-	        controller.setUser(currentUser);
-	      
-	      
-	        final Projection projection = Projection.WEB_MERCATOR;
-	      
-	        controller.initMapAndControls(projection);
-	       
-
-	        Scene scene = new Scene(rootNode);
-	        Stage primaryStage = (Stage) searchCaritasButton.getScene().getWindow();
-	        primaryStage.setTitle("sothawo mapjfx demo application");
-	        primaryStage.setScene(scene);
-	      
-	        primaryStage.show();
-	        
-	
-	} catch (IOException e) {
-		logger.error(e.getMessage());
-	}
     }
 
   
@@ -231,24 +210,10 @@ public class ShopHomeBoundary {
     @FXML
  void logoutButtonPressed(ActionEvent event) {
     	
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setTitle("Logout");
-    	alert.setHeaderText("Dovrai accedere di nuovo se vuoi tornare alla home");
-    	alert.setContentText("Sei sicuro di voler eseguire il logout?");
-
-    	Optional<ButtonType> result = alert.showAndWait();
-    	if (result.get() == ButtonType.OK){
-    		try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Login_boundary.fxml"));
-				Parent root = loader.load();
-				Stage home = (Stage) logoutButton.getScene().getWindow();
-				home.setScene(new Scene(root, 600, 385));
-				home.show();
-			} catch (IOException e) {
-    			logger.error(s);
-			}
-        	
-    	} 
+     	
+    	TransizionePagine pageSwitch = new TransizionePagine();
+    	pageSwitch.logout(logoutButton.getScene().getWindow());
+    	
     	
 	}
 

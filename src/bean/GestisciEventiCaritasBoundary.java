@@ -80,19 +80,9 @@ public class GestisciEventiCaritasBoundary {
 
 	@FXML
 	void backtomenu(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
-			Parent root = loader.load();
-			caritasHomeBoundary = caritasHomeBoundary.getInstance();
-			caritasHomeBoundary = loader.getController();
-			caritasHomeBoundary.initDataCaritas(caritas);
-			Stage home = (Stage) back.getScene().getWindow();
-			home.setScene(new Scene(root, 800, 600));
-
-			home.show();
-		} catch (IOException e) {
-			logger.error(s);
-		}
+		TransizionePagine pageSwitch = new TransizionePagine();
+		pageSwitch.backToMenuCaritas(caritas, back.getScene().getWindow());
+	
 
 	}
 

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.RegistrazioneCaritasController;
-
+import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class RegistraCaritasBoundary implements Initializable {
 	private RegistrazioneCaritasController regController;
 
 	private TextField[] textFields;
-
+	TransizionePagine pageSwitch;
 	private String tipo;
 
 	@FXML
@@ -88,16 +88,10 @@ public class RegistraCaritasBoundary implements Initializable {
 
 	@FXML
 	void backButtonPressed(ActionEvent event) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) backButton.getScene().getWindow();
-			Scene scene = new Scene(root, 600, 400);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			logger.error(s);
-		}
+		
+		pageSwitch = new TransizionePagine();
+    	pageSwitch.visualizzaPagina("/boundary/RegistrazioneMenu.fxml", backButton.getScene().getWindow());
+    	
 
 	}
 
@@ -105,32 +99,35 @@ public class RegistraCaritasBoundary implements Initializable {
 	public void completaButtonPressed(ActionEvent event) throws SQLException {
 		int resCheck = checker();
 		if (resCheck == 0) {
-			regController.completaButtonPressed( nomeCaritas.getText(),
+			CaritasUser caritas = regController.completaButtonPressed( nomeCaritas.getText(),
 					passwordCaritas.getText(), via.getText(), tipo, telefono.getText(), email.getText(),
 					cittadiResidenza.getText());
-		}
+			
+		
+			
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
 			Stage home = (Stage) completaButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
-
+			CaritasHomeBoundary caritasHome = loader.getController();
+			caritasHome.initDataCaritas(caritas);
 			home.show();
 		} catch (IOException e) {
 			logger.error(s);
+			}
 		}
 	}
 
 	public int checker() {
-
+		pageSwitch = new TransizionePagine();
 		// Controlla che non ci siano campi lasciati vuoti
-		for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
-				passwordMatch.setText("Alcuni campi sono vuoti");
-				passwordMatch.setVisible(true);
-				return -1;
-			}
-			else if (type.isSelected()) {
+		if(!pageSwitch.checkerText(textFields)) {
+			passwordMatch.setText("Alcuni campi sono vuoti");
+			passwordMatch.setVisible(true);
+		}
+			if (type.isSelected()) {
 				tipo = "Vestiti";
 				return 0; // Almeno uno dei tipi deve essere selezionato
 
@@ -140,7 +137,7 @@ public class RegistraCaritasBoundary implements Initializable {
 				passwordMatch.setVisible(true);
 				return 0; // Almeno uno dei tipi deve essere selezionato
 			}
-		}
+		
 
 		// Valida che i campi password e conferma password siano uguali
 

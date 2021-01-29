@@ -15,7 +15,7 @@ public class ShopUser extends User{
 	}
 
 	public void setTipologia(String tipologia) {
-		tipologia = tipologia;
+		this.tipologia = tipologia;
 	}
 	
 	

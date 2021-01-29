@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.RegistrationShopManagerController;
+import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +26,9 @@ public class RegistrationShopBoundary implements Initializable{
 	private RegistrationShopManagerController regNeg;
 	private static Logger logger = LoggerFactory.getLogger(RegistrationShopBoundary.class.getName());
 	private String s = "error IoException";
-	private TextField[] textFields;	
+	private TextField[] textField;	
 	private String tipo;
+	private TransizionePagine pageSwitch;
 	
     @FXML
     private TextField cittaResNeg;
@@ -86,16 +88,10 @@ public class RegistrationShopBoundary implements Initializable{
     @FXML
     void backButtonNegPressed(ActionEvent event) {
     	
-    	try {
-			Parent root = FXMLLoader.load(getClass().getResource("/boundary/RegistrazioneMenu.fxml"));
-			Stage signUp = (Stage) backButtonNeg.getScene().getWindow();
-			Scene scene = new Scene(root, 600, 400);
-			signUp.setScene(scene);
-			signUp.show();
-			signUp.setResizable(false);
-		} catch (IOException e) {
-			logger.error(s);
-		}
+    	pageSwitch = new TransizionePagine();
+    	pageSwitch.visualizzaPagina("/boundary/RegistrazioneMenu.fxml", backButtonNeg.getScene().getWindow());
+    	
+    	
 
     }
 
@@ -105,16 +101,18 @@ public class RegistrationShopBoundary implements Initializable{
     	
  
     	if ( i == -1) {
-    		System.out.println("errore fratello");
+    		logger.debug("errore fratello");
     	}
     
-    	regNeg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
+    	ShopUser shop = regNeg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
  
     	try {
     		
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
 			Stage home = (Stage) registraNegozio.getScene().getWindow();
+			ShopHomeBoundary shopHome = new ShopHomeBoundary();
+			shopHome.initData(shop);
 			home.setScene(new Scene(root, 800, 600));
 
 			home.show();
@@ -125,38 +123,32 @@ public class RegistrationShopBoundary implements Initializable{
     
     
    public int checker() {
-	   
-	   
-    	
-    	//Controlla che non ci siano campi lasciati vuoti
-    	for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
-				passwordMatch.setText("Alcuni campi sono vuoti");
-				passwordMatch.setVisible(true);
-				return -1;
-			}
-			else if(typeCiboNeg.isSelected()) {
-				 tipo = "Vestiti";
-	    		 //Almeno uno dei tipi deve essere selezionato
-	    		
-	    		
-			}else if(typeVestNeg.isSelected()) {
-				tipo = "Cibo";
-				
-				 //Almeno uno dei tipi deve essere selezionato
-			}else {
-				passwordMatch.setText("Alcuni campi sono vuoti 2");
-				passwordMatch.setVisible(true);
-				return -1;
-			}
-  
+	   pageSwitch = new TransizionePagine();
+		if(!pageSwitch.checkerText(textField)) {
+			passwordMatch.setText("Alcuni campi sono vuoti");
+			passwordMatch.setVisible(true);
+		}
+
+		// Controlla che non ci siano campi lasciati vuoti
+		if (typeCiboNeg.isSelected()) {
+			tipo = "Vestiti";
+			// Almeno uno dei tipi deve essere selezionato
+
+		} else if (typeVestNeg.isSelected()) {
+			tipo = "Cibo";
+
+			// Almeno uno dei tipi deve essere selezionato
+		} else {
+			passwordMatch.setText("Alcuni campi sono vuoti 2");
+			passwordMatch.setVisible(true);
+			return -1;
 		}
     	
     	
     	//Valida che i campi password e conferma password siano uguali
     	
     	if (passwordNeg.getText().equalsIgnoreCase(confermaPassNeg.getText())) {
-    		System.out.println("Password confirmed");
+    		logger.debug("Password confirmed");
     		return 0;
     	}
     	else {
@@ -170,7 +162,7 @@ public class RegistrationShopBoundary implements Initializable{
    public void initialize(URL location, ResourceBundle resources) {
 		
 		passwordMatch.setVisible(false);
-		textFields = new TextField[] {cittaResNeg,viaNeg,civicoNeg,telNeg,nomeNegzio,mailNeg,nomeNeg,cognomeNeg};
+		textField = new TextField[] {cittaResNeg,viaNeg,civicoNeg,telNeg,nomeNegzio,mailNeg,nomeNeg,cognomeNeg};
 		
 
 	}

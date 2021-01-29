@@ -40,7 +40,7 @@ public class PromuoviEventoBoundary {
 	    }
 	    float costoEvento = Float.parseFloat(prezzo.getText());
 	    
-	    PromuoviEventoController promuoviEvento = new PromuoviEventoController();;
+	    PromuoviEventoController promuoviEvento = new PromuoviEventoController();
 	    promuoviEvento.loadForm(idCar, idShop);
 	    
 	    promuoviEvento.creaEventoController(nome.getText(),tipo, note.getText(), costoEvento );	

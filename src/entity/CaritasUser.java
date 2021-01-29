@@ -16,7 +16,7 @@ public class CaritasUser extends User {
 	}
 
 	public void setTipologia(String tipologia) {
-		tipologia = tipologia;
+		this.tipologia = tipologia;
 	}
 	
 	

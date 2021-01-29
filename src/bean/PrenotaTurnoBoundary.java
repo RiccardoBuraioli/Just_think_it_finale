@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import controller.PrenotaTurnoController;
 import entity.Orario;
 import javafx.event.ActionEvent;
@@ -51,11 +54,12 @@ public class PrenotaTurnoBoundary {
 	}
 
 	public boolean checker() {
-
+		Logger logger = LoggerFactory.getLogger(PrenotaTurnoBoundary.class.getName());
+		
 		// Controlla che non ci siano campi lasciati vuoti
 
 		if (cv.getText().isEmpty()) {
-			System.out.println("riprova");
+			logger.debug("riprova");
 			return false;
 		} else {
 			return true;

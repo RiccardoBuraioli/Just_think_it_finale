@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class CreaNecessitaBoundary {
 	private CaritasUser caritas;
@@ -42,21 +43,8 @@ public class CreaNecessitaBoundary {
 
 	@FXML
 	void backPressed(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
-			Parent root = loader.load();
-
-			Stage home = (Stage) back.getScene().getWindow();
-			home.setScene(new Scene(root, 775, 500));
-			home.show();
-
-			BachecaPersonaleBoundary bacheca = loader.getController();
-			bacheca.setCurrentUser(this.caritas);
-			bacheca.loadFormBoundary(caritas.getId());
-
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
+		this.switchPage(back.getScene().getWindow());
+	
 	}
 
 	@FXML
@@ -67,21 +55,8 @@ public class CreaNecessitaBoundary {
 		int i = creaNec.creaNecessita(tipologia.getValue().toString(), urgenza.getValue().toString(),
 				descrizione.getText());
 		if (i == 0) {
-			try {
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
-				Parent root = loader.load();
-
-				Stage home = (Stage) back.getScene().getWindow();
-				home.setScene(new Scene(root, 775, 500));
-				home.show();
-
-				BachecaPersonaleBoundary bacheca = loader.getController();
-				bacheca.setCurrentUser(this.caritas);
-				bacheca.loadFormBoundary(caritas.getId());
-
-			} catch (IOException e) {
-				logger.error(e.getMessage());
-			}
+			this.switchPage(creaAnnuncio.getScene().getWindow());
+			
 		} else
 			logger.trace("errore nella creazione dell'annuncio");
 	}
@@ -99,4 +74,23 @@ public class CreaNecessitaBoundary {
 		
 	}
 
+	
+	public void switchPage(Window stage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/Bacheca_Personale.fxml"));
+			Parent root = loader.load();
+
+			Stage home = (Stage) stage;
+			home.setScene(new Scene(root, 775, 500));
+			home.show();
+
+			BachecaPersonaleBoundary bacheca = loader.getController();
+			bacheca.setCurrentUser(this.caritas);
+			bacheca.loadFormBoundary(caritas.getId());
+
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
 }
