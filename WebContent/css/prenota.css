@@ -1,0 +1,90 @@
+@charset "ISO-8859-1";
+h2{
+  position:absolute;
+  font-size: 35px;
+  left: 40%;
+  color:rgb(0, 0, 0);
+  text-align:center;
+  top:0%;
+}
+h4{
+	position: absolute;
+	left:7%;
+	top:3%;
+	font-size:40px;
+	text-align:center;
+}
+h6{
+	position: absolute;
+	left:27%;
+	top:20%;
+	font-size: 18px;
+}
+
+.dono input[type="text"]{
+	position: absolute;
+	height:40px;
+	width:250px;
+	left: 55%;
+	top:45%;
+}
+
+.dono p{
+	position: absolute;
+	left:22%;
+	top:40%;
+	font-size:30px;
+}
+
+.carta input[type="text"]{
+	position: absolute;
+	height:40px;
+	width:250px;
+	left: 55%;
+	top:60%;
+}
+
+.carta p{
+	position: absolute;
+	font-size:30px;
+	left:22%;
+	top:55%;
+}
+
+
+
+.partecipa button[type="submit"]
+{
+	position:absolute;
+	border: none;
+	outline:none;
+	height: 40px;
+	width:160px;
+	background: #fb2525;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+	top:85%;
+	left: 80%;
+	
+}
+.partecipa button[type="submit"]:hover
+{
+	cursor: pointer;
+	background: #ffc107;
+	color: #000;
+}
+
+a{
+	position:absolute;
+	font-size:18px;
+	text-decoration:none;
+	line-height:20px;
+	color: rgb(0,0,128);
+	top:85%;
+	left:5%;
+}
+
+a:hover{
+	color:#ffc107;
+}
