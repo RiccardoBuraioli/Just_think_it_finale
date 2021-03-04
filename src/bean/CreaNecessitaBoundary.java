@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class CreaNecessitaBoundary {
-	private CaritasUser caritas;
+	private int caritas;
 	private Logger logger = LoggerFactory.getLogger(CreaNecessitaBoundary.class.getName());
 	private String[] tipo = { "Vestiti", "Cibo" };
 	private String[] urg = { "Alta", "Normale", "Bassa" };
@@ -68,9 +68,9 @@ public class CreaNecessitaBoundary {
 
 	}
 
-	public void setCaritas(CaritasUser caritas2) {
-		this.idCaritas = caritas2.getId();
-		this.caritas = caritas2;
+	public void setCaritas(int caritas2) {
+		this.idCaritas = caritas2;
+		
 		
 	}
 
@@ -85,8 +85,7 @@ public class CreaNecessitaBoundary {
 			home.show();
 
 			BachecaPersonaleBoundary bacheca = loader.getController();
-			bacheca.setCurrentUser(this.caritas);
-			bacheca.loadFormBoundary(caritas.getId());
+			bacheca.loadFormBoundary(caritas);
 
 		} catch (IOException e) {
 			logger.error(e.getMessage());

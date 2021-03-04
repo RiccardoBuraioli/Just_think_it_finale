@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.CaritasHomeController;
 import controller.RegistrazioneCaritasController;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
@@ -99,7 +100,7 @@ public class RegistraCaritasBoundary implements Initializable {
 	public void completaButtonPressed(ActionEvent event) throws SQLException {
 		int resCheck = checker();
 		if (resCheck == 0) {
-			CaritasUser caritas = regController.completaButtonPressed( nomeCaritas.getText(),
+			int caritas = regController.completaButtonPressed( nomeCaritas.getText(),
 					passwordCaritas.getText(), via.getText(), tipo, telefono.getText(), email.getText(),
 					cittadiResidenza.getText());
 			
@@ -112,7 +113,9 @@ public class RegistraCaritasBoundary implements Initializable {
 			Stage home = (Stage) completaButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			CaritasHomeBoundary caritasHome = loader.getController();
-			caritasHome.initDataCaritas(caritas);
+			CaritasHomeController caritasHomeC = new CaritasHomeController();
+			caritasHomeC.initDataCaritas(caritas, caritasHome);
+		
 			home.show();
 		} catch (IOException e) {
 			logger.error(s);

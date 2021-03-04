@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.UserHomeController;
 import entity.User;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 public class ProfileBoundary{
 
 	
-	private VolunteerUser currentUser;
+	private int idUser;
 	
 	@FXML
     private ImageView profileImageEdit;
@@ -59,8 +60,9 @@ public class ProfileBoundary{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 			Parent root = loader.load();
 			UserHomeBoundary userHomeBoundary;
+			UserHomeController userHomeC = new UserHomeController();
 			userHomeBoundary = loader.getController();
-			userHomeBoundary.initData(currentUser);
+			userHomeC.initDataCont(idUser, userHomeBoundary);
 			Stage home = (Stage) this.backHomeButton.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 			
@@ -77,20 +79,14 @@ public class ProfileBoundary{
 	 //perche si
  }
 
- public User getCurrentUser() {
-		return this.currentUser;
-	}
 
-	public void setCurrentUser(VolunteerUser user) {
-		this.currentUser = user;
-	}
- 
- public void initData(VolunteerUser user) {
- 	setCurrentUser(user);
- 	this.cittaEdit.setText(user.getIndirizzo());
- 	this.telefonoEdit.setText(user.getRecapitoTel());
- 	this.nomeCognomeEdit.setText(user.getNome() + " " + user.getCognome());
- }
+public void initData(String indirizzo, String cognome, String nome, String recapitoTel, int id) {
+	this.cittaEdit.setText(indirizzo);
+ 	this.telefonoEdit.setText(recapitoTel);
+ 	this.nomeCognomeEdit.setText(nome + " " + cognome);
+ 	this.idUser = id;
+	
+}
 
 
 

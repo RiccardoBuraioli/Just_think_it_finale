@@ -31,7 +31,7 @@ public class GestisciEventiCaritasBoundary {
 	private int idCar;
 	private String s = "errore IoException";
 	private EventTab event;
-	private CaritasUser caritas;
+	
 	private CaritasHomeBoundary caritasHomeBoundary;
 
 	@FXML
@@ -81,7 +81,7 @@ public class GestisciEventiCaritasBoundary {
 	@FXML
 	void backtomenu(ActionEvent event) {
 		TransizionePagine pageSwitch = new TransizionePagine();
-		pageSwitch.backToMenuCaritas(caritas, back.getScene().getWindow());
+		pageSwitch.backToMenuCaritas(idCar, back.getScene().getWindow());
 	
 
 	}
@@ -115,14 +115,7 @@ public class GestisciEventiCaritasBoundary {
 
 	}
 
-	public CaritasUser getCaritas() {
-		return caritas;
-	}
-
-	public void setCaritas(CaritasUser currentUser) {
-		this.caritas = currentUser;
-	}
-
+	
 	public void loadShop(int idCar) {
 		this.idCar = idCar;
 		List<EventTab> listEv = gestEventC.caricaEventi(this.idCar);

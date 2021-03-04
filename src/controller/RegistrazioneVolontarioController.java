@@ -8,7 +8,7 @@ import entity.VolunteerUser;
 public class RegistrazioneVolontarioController {
 
 
-   public VolunteerUser completaButtonPressed( String nome, String cognome, String passwordVolontario, String via, String telefono, String email, String date2, String cittadiResidenza) {
+   public int completaButtonPressed( String nome, String cognome, String passwordVolontario, String via, String telefono, String email, String date2, String cittadiResidenza) {
 
     		
         	VolunteerUser newUser = new VolunteerUser(nome, cognome, passwordVolontario, via, telefono, email, null,date2,cittadiResidenza );
@@ -16,7 +16,7 @@ public class RegistrazioneVolontarioController {
         	int id = vrep.insertVolunteer(newUser);
         	newUser.setId(id);
         	
-        	return newUser;
+        	return id;
         	//Manda alla home dopo la registrazione
         	
     	

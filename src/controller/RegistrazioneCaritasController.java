@@ -13,7 +13,7 @@ public class RegistrazioneCaritasController  {
 	}
 
 
-	public CaritasUser completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,
+	public int completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,
 		
 		String telefono, String email, String cittadiResidenza) throws SQLException {
 	
@@ -23,7 +23,7 @@ public class RegistrazioneCaritasController  {
 			int id = crep.insertCaritas(newUser);
 			newUser.setId(id);
             
-			return newUser;
+			return id;
 			// Manda alla home Caritas
 		
 

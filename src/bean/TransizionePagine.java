@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import com.sothawo.mapjfx.Projection;
 
-import controller.CercaCaritas;
+import controller.CaritasHomeController;
+import controller.CercaCaritasController;
 import entity.CaritasUser;
 import entity.User;
 import javafx.fxml.FXMLLoader;
@@ -48,18 +49,19 @@ public class TransizionePagine {
 	}
 	
 	
-	public void apriMappa(User currentUser, Window stage) {
+	public void apriMappa(int idUser, Window stage) {
 		try {
 
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CercaCaritas.fxml"));
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/CercaCaritas.fxml"));
 	        Parent rootNode = loader.load();
-	        CercaCaritas controller = loader.getController();
-	        controller.setUser(currentUser);
+	        CercaCaritas cercaCaritasBean = loader.getController();
+	        CercaCaritasController controller = new CercaCaritasController(); 
+	        controller.initUser(idUser, cercaCaritasBean);
 	      
 	      
 	        final Projection projection = Projection.WEB_MERCATOR;
 	      
-	        controller.initMapAndControls(projection);
+	        cercaCaritasBean.initMapAndControls(projection);
 	       
 
 	        Scene scene = new Scene(rootNode);
@@ -77,14 +79,16 @@ public class TransizionePagine {
 	}
 	
 	
-	public void backToMenuCaritas(CaritasUser car, Window stage) {
+	public void backToMenuCaritas(int idUser,Window stage) {
 		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
 			CaritasHomeBoundary caritasHomeBoundary;
 			caritasHomeBoundary = loader.getController();
-			caritasHomeBoundary.initDataCaritas(car);
+			CaritasHomeController caritasHomeC = new CaritasHomeController();
+			caritasHomeC.initDataCaritas(idUser, caritasHomeBoundary);
+		
 			Stage home = (Stage) stage;
 			home.setScene(new Scene(root, 800, 600));
 

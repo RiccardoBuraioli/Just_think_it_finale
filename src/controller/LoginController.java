@@ -21,39 +21,17 @@ public class LoginController {
 		
 	}
 
-	public User loginAccess(String user, String pass) {
+	public String loginAccess(String user, String pass) {
 
 		String loginResult = login.checkLogin(user, pass);
 		
-		if (loginResult != null) {
-			int userID = login.returnID(user);
-			if (userID == -1) {
-				logger.debug("Errore nel ritornare l'ID");
-			}
+	
+		return loginResult;
+	}
 
-			// Volontario
-			if (login.getTableUser().equals("Volontario")) {
-				loggedUser = vrep.getVolunteerByID(userID);				
-				
-			}
-			// Caritas
-			else if (login.getTableUser().equals("Negozio")) {
-
-				ShopRepository srep = new ShopRepository();
-				loggedUser = srep.getShopByID(userID);
-			}
-			// Negozio
-			else if (login.getTableUser().equals("Caritas")) {
-				CaritasRepository srep = new CaritasRepository();
-				loggedUser = srep.getCaritasByID(userID);
-			}
-			else {
-				logger.debug("Login Error");
-			}
-			
-
-		}
-		return loggedUser;
+	public int trovaID(String user) {
+		int userID = login.returnID(user);
+		return userID;
 	}
 
 }

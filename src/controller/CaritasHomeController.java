@@ -1,6 +1,8 @@
 package controller;
 
 
+import bean.CaritasHomeBoundary;
+import dao.CaritasRepository;
 import entity.CaritasUser;
 
 /**
@@ -19,6 +21,13 @@ public class CaritasHomeController {
 
 	public void setCurrentUser(CaritasUser currentUser) {
 		this.currentUser = currentUser;
+	}
+
+	public void initDataCaritas(int idUser, CaritasHomeBoundary caritasHomeBoundary) {
+		CaritasRepository c = new CaritasRepository();
+		currentUser = c.getCaritasByID(idUser);
+		caritasHomeBoundary.initDataC(currentUser.getId(), currentUser.getNome());
+		
 	}
 
 }

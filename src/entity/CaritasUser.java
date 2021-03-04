@@ -6,7 +6,7 @@ public class CaritasUser extends User {
 	public CaritasUser() {}
 	
 	public CaritasUser(String nome, String tipo, String password, String indirizzo, String recapitoTel, String email, String citta) {	
-		super(nome, password, indirizzo, recapitoTel, email,  citta);
+		super(nome, password, indirizzo, recapitoTel, email,  citta, "Caritas");
 		this.tipologia = tipo;
 		
 	}

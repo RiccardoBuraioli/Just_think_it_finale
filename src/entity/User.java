@@ -11,22 +11,32 @@ public class User {
 	protected String email;
 	protected String citta;
 	protected Coordinate coord;
+	protected String ruolo;
 	
 
 
 	public User() {}
 	
-	public User( String nome,  String password, String indirizzo, String recapitoTel, String email,  String citta) {
+	public User( String nome,  String password, String indirizzo, String recapitoTel, String email,  String citta, String ruolo) {
 		this.nome = nome;		
 		this.password = password;
 		this.indirizzo = indirizzo;
 		this.recapitoTel = recapitoTel;
 		this.email = email;		
 		this.citta = citta;
+		this.ruolo = ruolo;
 		this.coord = null;
 	 }
 	
 	
+	public String getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
+
 	public int getId() {
 		return id;
 	}

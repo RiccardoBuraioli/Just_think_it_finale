@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import com.sothawo.mapjfx.Projection;
 
-import controller.CercaCaritas;
 import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +35,7 @@ public class ShopHomeBoundary {
 	private String s = "error IoException";
 	private Image img1;
 	private int currentImage;
+	private int idShop;
 	private static ShopHomeBoundary instance = null;
 	
 	private ShopUser currentUser;
@@ -114,7 +114,7 @@ public class ShopHomeBoundary {
     @FXML
     void cercaCaritas(ActionEvent event) {
     	TransizionePagine switchPage = new TransizionePagine();
-    	switchPage.apriMappa(this.currentUser, searchCaritasButton.getScene().getWindow());
+    	switchPage.apriMappa(this.idShop, searchCaritasButton.getScene().getWindow());
 
     }
 
@@ -188,6 +188,16 @@ public class ShopHomeBoundary {
     	pageSwitch.logout(logoutButton.getScene().getWindow());
     	
     	
+	}
+
+	public void initData(int id, String nome) {
+		this.idShop = id;
+    	nomeCognome.setText(nome);
+    	final Circle clip = new Circle();
+    	clip.setCenterX(25);
+    	clip.setCenterY(58);
+    	clip.setRadius(200);
+        profileImage.setClip(clip);
 	}
 
 

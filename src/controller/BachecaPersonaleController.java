@@ -11,13 +11,6 @@ public class BachecaPersonaleController {
 	private BachecaDao bacheca;
 
 
-
-	
-	
-	
-	
-	
-	
 	
 	public boolean eliminaAnnuncio(int nece) {
 	

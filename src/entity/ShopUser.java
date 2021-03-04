@@ -6,7 +6,7 @@ public class ShopUser extends User{
 	public ShopUser() {}
 	
 	public ShopUser( String nome, String tipo, String password, String indirizzo, String recapitoTel, String email, String citta) {	
-		super(nome, password, indirizzo, recapitoTel, email,  citta);
+		super(nome, password, indirizzo, recapitoTel, email,  citta, "Negozio");
 		this.tipologia = tipo;
 	}
 

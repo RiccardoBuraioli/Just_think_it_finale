@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.RegistrazioneVolontarioController;
+import controller.UserHomeController;
 import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,7 +95,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	void registraVolontarioPressed(ActionEvent event) {
 
 		if (checker() == 0) {
-		VolunteerUser vol =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
+		int idVol =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
 					password.getText(), via.getText(), tel.getText(), mail.getText(), date.getText(),
 					cittaRes.getText());
 		
@@ -102,7 +103,8 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
     			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
     			Parent root = loader.load();
     			UserHomeBoundary userHomeBoundary = loader.getController();
-    			userHomeBoundary.initData(vol);
+    			UserHomeController userHomeC = new UserHomeController();
+    			userHomeC.initDataCont(idVol, userHomeBoundary);
     			Stage home = (Stage) completaReg.getScene().getWindow();
     			home.setScene(new Scene(root, 800, 600));
     			

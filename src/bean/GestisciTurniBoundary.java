@@ -62,7 +62,7 @@ public class GestisciTurniBoundary {
 
 	private TurnoTab turn;
 
-	private CaritasUser caritas;
+	private int caritas;
 
 	private GestioneTurniCaritas gestTurn;
 
@@ -118,13 +118,9 @@ public class GestisciTurniBoundary {
 
 	}
 
-	public void setCurrentUser(CaritasUser currentUser) {
-		this.caritas = currentUser;
-
-	}
 
 	public void loadFormBoundary(int id) {
-
+		this.caritas = id;
 		List<TurnoTab> listT = gestTurn.caricaTurni(id);
 
 		ObservableList<TurnoTab> data = FXCollections.observableArrayList(listT);

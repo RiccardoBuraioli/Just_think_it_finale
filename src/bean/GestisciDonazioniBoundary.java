@@ -57,7 +57,7 @@ public class GestisciDonazioniBoundary {
 
 	private List<DonazioneTab> listDon;
 
-	private CaritasUser caritas;
+	private int caritas;
 
 	private int idVolontario;
 	private int idDono;
@@ -90,7 +90,7 @@ public class GestisciDonazioniBoundary {
 
 			EmailBoundary email;
 			email = fxmlLoader.getController();
-			email.loadEmail(this.idVolontario, this.caritas.getId());
+			email.loadEmail(this.idVolontario,caritas);
 			Stage stage = new Stage();
 			stage.setTitle("Email");
 
@@ -116,8 +116,9 @@ public class GestisciDonazioniBoundary {
 		this.idDono = table.getSelectionModel().getSelectedItem().getIdDon();
 	}
 
-	public void loadFormBoundary() {
-		this.listDon = gestDon.visualizzaDonazioni(this.caritas.getId());
+	public void loadFormBoundary(int idCar) {
+		this.caritas = idCar;
+		this.listDon = gestDon.visualizzaDonazioni(caritas);
 		ObservableList<DonazioneTab> data = FXCollections.observableArrayList(this.listDon);
 		this.tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		this.descrizione.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
@@ -132,12 +133,5 @@ public class GestisciDonazioniBoundary {
 		listDon = new ArrayList<>();
 	}
 
-	public CaritasUser getCaritas() {
-		return this.caritas;
-	}
-
-	public void setCaritas(CaritasUser currentUser) {
-		this.caritas = currentUser;
-	}
 
 }

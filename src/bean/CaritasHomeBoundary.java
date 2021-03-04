@@ -16,6 +16,7 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.CaritasHomeController;
 import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -31,13 +32,13 @@ import javafx.stage.Stage;
 public class CaritasHomeBoundary {
 
 	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
-	
+	private int idCar;
 	
 	private static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
 	private String s = "errore IoException";
 
-	private CaritasUser currentUser;
+	private CaritasHomeController caritasHomeC;
 	private GestisciTurniBoundary gestTurn;
 	private GestisciDonazioniBoundary gestDon;
 
@@ -110,8 +111,8 @@ public class CaritasHomeBoundary {
 			gestDon = fxmlLoader.getController();
 			Stage stage = (Stage) eventiC.getScene().getWindow();
 			stage.setTitle("Gestisci Eventi");
-			gestDon.setCaritas(this.currentUser);
-			gestDon.loadFormBoundary();
+		
+			gestDon.loadFormBoundary(idCar);
 			stage.setScene(new Scene(rootNode, 800, 500));
 			stage.setResizable(false);
 			stage.show();
@@ -133,8 +134,8 @@ public class CaritasHomeBoundary {
 			GestisciEventiCaritasBoundary gestisciB = fxmlLoader.getController();
 			Stage stage = (Stage) eventiC.getScene().getWindow();
 			stage.setTitle("Gestisci Eventi");
-			gestisciB.setCaritas(currentUser);
-			gestisciB.loadShop(currentUser.getId());
+			
+			gestisciB.loadShop(idCar);
 			stage.setScene(new Scene(rootNode, 800, 500));
 			stage.setResizable(false);
 			stage.show();
@@ -153,8 +154,8 @@ public class CaritasHomeBoundary {
 			Stage home = (Stage) turni.getScene().getWindow();
 
 			gestTurn = loader.getController();
-			gestTurn.setCurrentUser(this.currentUser);
-			gestTurn.loadFormBoundary(currentUser.getId());
+
+			gestTurn.loadFormBoundary(idCar);
 
 			home.setScene(new Scene(root, 883, 550));
 			home.show();
@@ -177,8 +178,8 @@ public class CaritasHomeBoundary {
 			home.show();
 
 			bacheca = loader.getController();
-			bacheca.setCurrentUser(this.currentUser);
-			bacheca.loadFormBoundary(currentUser.getId());
+		
+			bacheca.loadFormBoundary(idCar);
 
 		} catch (IOException e) {
 			logger.error(s);
@@ -205,18 +206,9 @@ public class CaritasHomeBoundary {
 
 	}
 
-
-	public CaritasUser getCurrentUser() {
-		return currentUser;
-	}
-
-	public void setCurrentUser(CaritasUser loggedUser) {
-		this.currentUser = loggedUser;
-	}
-
-	public void initDataCaritas(CaritasUser loggedUser) {
-		setCurrentUser(loggedUser);
-		nomeCognome.setText(loggedUser.getNome());
+	public void initDataC(int id, String nome) {
+		this.idCar = id;
+		nomeCognome.setText(nome);
 		final Circle clip = new Circle();
 		clip.setCenterX(25);
 		clip.setCenterY(58);

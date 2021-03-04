@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.BachecaPersonaleController;
+import controller.CaritasHomeController;
 import entity.CaritasUser;
 import entity.Necessita;
 import javafx.collections.FXCollections;
@@ -23,12 +24,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class BachecaPersonaleBoundary {
-
 	
 	private BachecaPersonaleController bachecaController;
 	private static Logger logger = LoggerFactory.getLogger(BachecaPersonaleBoundary.class.getName());
 	private String s = "errore IoException";
-	private CaritasUser caritas;
+	private int caritas;
 
 	@FXML
 	private TableView<Necessita> bacheca;
@@ -57,7 +57,9 @@ public class BachecaPersonaleBoundary {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
 			CaritasHomeBoundary homeC = loader.getController();
-			homeC.setCurrentUser(caritas);
+		
+			CaritasHomeController caritasHomeC = new CaritasHomeController();
+			caritasHomeC.initDataCaritas(caritas, homeC);
 
 			Stage home = (Stage) back.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
@@ -93,7 +95,7 @@ public class BachecaPersonaleBoundary {
 	}
 
 	public void loadFormBoundary(int idCar) {
-	
+		this.caritas = idCar;
 
 		bachecaController = new BachecaPersonaleController();
 		List<Necessita> necessitaList = bachecaController.loadForm(idCar);
@@ -109,12 +111,6 @@ public class BachecaPersonaleBoundary {
 
 	}
 
-	public void setCurrentUser(CaritasUser user) {
-		this.caritas = user;
-	}
 
-	public CaritasUser getcaritas() {
-		return this.caritas;
-	}
 
 }

@@ -41,7 +41,7 @@ public class CreaTurnoBoundary {
 	@FXML
 	private TextField numParte;
 
-	private CaritasUser caritas;
+	private int caritas;
 
 	@FXML
 	void backPressed(ActionEvent event) {
@@ -54,8 +54,8 @@ public class CreaTurnoBoundary {
 			Stage home = (Stage) back.getScene().getWindow();
 			GestisciTurniBoundary gestTurn;
 			gestTurn = loader.getController();
-			gestTurn.setCurrentUser(this.caritas);
-			gestTurn.loadFormBoundary(this.caritas.getId());
+			
+			gestTurn.loadFormBoundary(caritas);
 			home.setScene(new Scene(root, 883, 550));
 			home.show();
 
@@ -68,12 +68,12 @@ public class CreaTurnoBoundary {
 	@FXML
 	void creaTurnoPressed(ActionEvent event) {
 		CreaTurnoController creaTurn = new CreaTurnoController();
-		creaTurn.creaEvento(caritas.getId(), giorni.getValue().toString(), orain.getText(), oraFin.getText(),
+		creaTurn.creaEvento(caritas, giorni.getValue().toString(), orain.getText(), oraFin.getText(),
 				Integer.parseInt(numParte.getText()), note.getText());
 
 	}
 
-	public void setCaritas(CaritasUser caritas) {
+	public void setCaritas(int caritas) {
 		this.caritas = caritas;
 	}
 
