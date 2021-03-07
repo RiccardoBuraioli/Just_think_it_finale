@@ -30,7 +30,6 @@ public class LoginBoundary {
 	private LoginController loginC = new LoginController();
 
 	private UserHomeBoundary userHomeBoundary;
-	private UserHomeController userHomeController;
 	private ShopHomeBoundary shopHomeBoundary;
 	private static LoginBoundary instance = null;
 	private CaritasHomeBoundary caritasHomeBoundary;
@@ -68,7 +67,7 @@ public class LoginBoundary {
 				userHomeBoundary = userHomeBoundary.getInstance();
 				userHomeBoundary = loader.getController();
 				
-				userHomeController = new UserHomeController();
+				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				
 				/*

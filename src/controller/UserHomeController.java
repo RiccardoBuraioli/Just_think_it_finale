@@ -11,24 +11,13 @@ import entity.VolunteerUser;
 public  class UserHomeController{
 	
 
-	private User currentUser;
-	private UserDao userd;
-
+	
+	
 	public UserHomeController() {
 		//default
 	}
-	public UserHomeController(User user) {
-		this.currentUser = user;
-	}
 	
-	public User getCurrentUser() {
-		return this.currentUser;
-	}
-
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
-	}
-
+	
 	public void helpButtonPressed() {
 		//  da fare
 		
@@ -36,6 +25,7 @@ public  class UserHomeController{
 	}
 
 	public void deleteAccount(int id) {
+		UserDao userd = new UserDao();
 		userd.deleteVolunteer(id);
 		
 	}

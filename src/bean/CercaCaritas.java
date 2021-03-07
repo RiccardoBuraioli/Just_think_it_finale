@@ -8,13 +8,10 @@ import com.sothawo.mapjfx.event.MarkerEvent;
 import controller.CercaCaritasController;
 import controller.ShopHomeController;
 import controller.UserHomeController;
-import dao.CercaCaritasDao;
-import dao.CoordinateDao;
-import entity.CaritasUser;
+
 import entity.MarkerID;
-import entity.ShopUser;
-import entity.User;
-import entity.VolunteerUser;
+
+
 import javafx.animation.Transition;
 
 import javafx.beans.binding.Bindings;

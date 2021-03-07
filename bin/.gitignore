@@ -1,7 +1,4 @@
-/application/
-/bean/
-/connector/
-/controller/
-/dao/
 /entity/
 /pattern/
+/bean/
+/controller/
