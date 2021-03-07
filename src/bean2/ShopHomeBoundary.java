@@ -1,26 +1,15 @@
 package bean2;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.sothawo.mapjfx.Projection;
+
+
+
 
 import entity.ShopUser;
 
 
 public class ShopHomeBoundary {
-	
-
-	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
-	private String s = "error IoException";
-	private int idShop;
 	private GestisciEventiBoundary gestisciBoundary;
 	
 	private static ShopHomeBoundary instance = null;
@@ -90,8 +79,6 @@ public class ShopHomeBoundary {
 	*/
 
 	public void initData(int id, String nome) {
-		this.idShop = id;
-    	//nomeCognome.setText(nome);
 	}
 
 

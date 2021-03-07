@@ -27,8 +27,7 @@ public class DonationDao {
     
     
    public boolean modificaDonazione(int idDon) {
-	   int rowAffected;
- 	    String sql = "call modifica_donazione(?)";
+	   String sql = "call modifica_donazione(?)";
 
          eseguiQuery(idDon, sql);
 		return false;
@@ -131,9 +130,7 @@ public void eseguiQuery(int idDon, String sql) {
 
 
 	public boolean cancellaDonazione(int idDon) {
-		   int rowAffected;
-
-	 	    String sql = "call cancella_donazione(?)";
+		   String sql = "call cancella_donazione(?)";
 
 	         eseguiQuery(idDon, sql);
 			return false;

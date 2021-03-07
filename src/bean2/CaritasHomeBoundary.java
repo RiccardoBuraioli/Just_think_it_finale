@@ -1,24 +1,13 @@
 package bean2;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import controller.CaritasHomeController;
-import entity.CaritasUser;
-
-
-
 public class CaritasHomeBoundary {
 
 	
 	private int idCar;
 	
 	private static CaritasHomeBoundary instance = null;
-	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
-	private String s = "errore IoException";
 
-	private CaritasHomeController caritasHomeC;
 	private GestisciTurniBoundary gestTurn;
 	private GestisciDonazioniBoundary gestDon;
 	private GestisciEventiCaritasBoundary gestisciB;

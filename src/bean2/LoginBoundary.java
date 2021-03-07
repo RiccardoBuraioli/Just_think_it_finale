@@ -1,6 +1,6 @@
 package bean2;
 
-import java.io.IOException;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,23 +9,11 @@ import controller.CaritasHomeController;
 import controller.LoginController;
 import controller.ShopHomeController;
 import controller.UserHomeController;
-import entity.CaritasUser;
-import entity.ShopUser;
-import entity.VolunteerUser;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 public class LoginBoundary {
 
-	private static Logger logger = LoggerFactory.getLogger(LoginBoundary.class.getName());
-	//può essere tolta la stringa
-	private String s = "errore IoException";
+
 
 	private LoginController loginC = new LoginController();
 
@@ -35,13 +23,13 @@ public class LoginBoundary {
 	private static LoginBoundary instance = null;
 	private bean2.CaritasHomeBoundary caritasHomeBoundary;
 
-	/*public static LoginBoundary getInstance() {
+	public static LoginBoundary getInstance() {
 		if (instance == null) {
 			instance = new LoginBoundary();
 
 		}
 		return instance;
-	}*/
+	}
 	
 	private String username;
 	private String password;

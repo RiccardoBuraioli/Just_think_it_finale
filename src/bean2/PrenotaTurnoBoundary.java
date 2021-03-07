@@ -1,20 +1,10 @@
 package bean2;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import controller.PrenotaTurnoController;
 import entity.Orario;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+
 
 public class PrenotaTurnoBoundary {
 
@@ -27,7 +17,6 @@ public class PrenotaTurnoBoundary {
 	}
 
 	public boolean checker() {
-		Logger logger = LoggerFactory.getLogger(PrenotaTurnoBoundary.class.getName());
 		return false;
 		
 		// Controlla che non ci siano campi lasciati vuoti
@@ -40,7 +29,7 @@ public class PrenotaTurnoBoundary {
 		}*/
 	}
 
-	@FXML
+/*	@FXML
 	void initialize() {
 		prenotaC = new PrenotaTurnoController();
 
@@ -65,7 +54,7 @@ public class PrenotaTurnoBoundary {
 
 		}
 
-	}
+	}*/
 
 	public void setData(int idCar, int idUte) {
 		prenotaC.setDataController(idCar, idUte);

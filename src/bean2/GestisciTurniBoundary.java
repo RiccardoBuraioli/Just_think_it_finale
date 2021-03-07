@@ -13,10 +13,6 @@ import entity.TurnoTab;
 
 public class GestisciTurniBoundary {
 
-	    
-	    
-	    private TurnoTab turn;
-	   
 		private CaritasUser caritas;
 	    private GestioneTurniCaritas gestTurn;
 	    private CaritasUser currentUser;
@@ -26,9 +22,7 @@ public class GestisciTurniBoundary {
 
 		private CreaTurnoBoundary caritasTurniBoundary;
 	    
-	    private CaritasHomeBoundary caritasHomeBoundary;
-	    private boolean check;
-	   
+	  
 	    
 	    public GestisciTurniBoundary() {
 	    	this.gestTurn = new GestioneTurniCaritas();
@@ -37,7 +31,7 @@ public class GestisciTurniBoundary {
 	    
 	   
 	    public boolean cancellaTurno(String i) {
-	    	if (i == null || i == "") {
+	    	if (i == null || i.equals("")) {
 	    		return false;
 	    	}
 	    	else {
@@ -53,25 +47,16 @@ public class GestisciTurniBoundary {
 	    }
 
 	   
-	   public boolean ModificaTurno(String note) {
-			   if (note == null || note == "") {
+	  public boolean ModificaTurno(String note) {
+			   if (note == null || note.equals("")) {
 				   return false;
 			   }else {
-		    	check = gestTurn.modificaTurno(turn.getId(),note,turn.getIdCar()); //posso mettere i numeri per farlo funzionare
+		    	//check = gestTurn.modificaTurno(turn.getId(),note,turn.getIdCar()); //posso mettere i numeri per farlo funzionare
 		    	return true;
 			   }
-		    }
+	  }
 
-	   
-	   public void backPressed() {
-	 		caritasHomeBoundary = CaritasHomeBoundary.getInstance();
-	    }
-
-	  
-	   /* void turnSelected() {
-	    	this.turn= tab.getSelectionModel().getSelectedItem();
-
-	    }*/
+	
 
 		public void setCurrentUser(CaritasUser currentUser) {
 			this.caritas = currentUser;
@@ -80,14 +65,6 @@ public class GestisciTurniBoundary {
 
 		public List<TurnoTab> loadFormBoundary(int id) {
 			 List<TurnoTab> listTurni =  gestTurn.caricaTurni(id);
-
-			/*ObservableList<TurnoTab> data = FXCollections.observableArrayList(listT);
-			this.giorno.setCellValueFactory(new PropertyValueFactory<>("giorno"));
-			this.orario.setCellValueFactory(new PropertyValueFactory<>("orario"));
-			this.note.setCellValueFactory(new PropertyValueFactory<>("note"));
-			this.numParte.setCellValueFactory(new PropertyValueFactory<>("partecipanti"));
-
-			tab.setItems(data);*/
 			return listTurni;
 		}
 

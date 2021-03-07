@@ -16,14 +16,8 @@ public class GestisciEventiBoundary {
 	
 	private EventTab event;
 	private ShopUser shop;
-	private ShopHomeBoundary shopHomeBoundary;
-	
-
 
 	
-	    public void backButtonPressed() {
-	    	shopHomeBoundary = shopHomeBoundary.getInstance();
-	    }
 
 	   
 	   public void contattaCaritas() {

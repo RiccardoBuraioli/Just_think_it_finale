@@ -11,7 +11,6 @@ public class GestisciEventiCaritasBoundary {
 		private int idCar;
 		
 		private EventTab event;
-		private CaritasHomeBoundary caritasHomeBoundary;
 	
 		
 		
@@ -25,11 +24,7 @@ public class GestisciEventiCaritasBoundary {
 		    		gestEventC.modificaEvento(this.event.getId());
 		    }
 
-		    
-		    public void backtomenu() {
-		 			caritasHomeBoundary = caritasHomeBoundary.getInstance();
-		    }
-
+		  
 		   
 		    public void contattaShop() {	  
 	    	        EmailBoundary email = new EmailBoundary();

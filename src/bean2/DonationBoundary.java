@@ -1,15 +1,7 @@
 package bean2;
 
 
-import java.util.ResourceBundle;
-
 import controller.DonationController;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class DonationBoundary{
