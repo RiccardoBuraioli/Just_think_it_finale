@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.GestisciEventiController;
+import controller.ShopHomeController;
 import entity.EventTab;
 import entity.ShopUser;
 import javafx.collections.FXCollections;
@@ -74,8 +75,9 @@ public class GestisciEventiBoundary {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
 			shopHomeBoundary = shopHomeBoundary.getInstance();
-			shopHomeBoundary = loader.getController();
-			shopHomeBoundary.initData(shop);
+			ShopHomeBoundary  shopC= loader.getController();
+			ShopHomeController shopHomeC = new ShopHomeController();
+			shopHomeC.initDataShop(idShop, shopC);
 			Stage home = (Stage) back.getScene().getWindow();
 			home.setScene(new Scene(root, 800, 600));
 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import controller.ProfileController;
 import controller.UserHomeController;
 import dao.VolunteerRepository;
 import entity.User;
@@ -30,19 +32,24 @@ private String s = "error IoException";
 
 private static UserHomeBoundary instance = null;
 
-private VolunteerUser currentUser;
+private int userId;
 	
 	private UserHomeController userController ;
 
 	
-
+	//Images slideshow
+	private Image img1 ;
+	private Image img2;
+	private Image img3;
+	private Image[] images = {img1, img2, img3};
+	private int currentImage;
 	
-	public User getCurrentUser() {
-		return  this.currentUser;
+	public int getCurrentUser() {
+		return  this.userId;
 	}
 
-	public void setCurrentUser(VolunteerUser id) {
-		this.currentUser = id;
+	public void setCurrentUser(int id) {
+		this.userId = id;
 	}
 	
 	public static UserHomeBoundary getInstance() {
@@ -54,31 +61,50 @@ private VolunteerUser currentUser;
 	
 	
 	public UserHomeBoundary() {
-		//img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
-		
-		// currentImage = 0;
 		 userController = new UserHomeController();
 	
 	}
-	
-    
+   
 
-   public  void deleteAccountButtonPressed() {
+    
+ 
+    public void deleteAccountButtonPressed() {
     		//lo faremo presto
-    	this.userController.deleteAccount(currentUser.getId());
+    	this.userController.deleteAccount(userId);
     }
 
-  
-    
+   
+ /*  public  void profileButtonPressed() {
+    	ProfileBoundary profileBean;
+    	ProfileController profileController = new ProfileController();
+    	try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
+			Parent root = loader.load();
+			profileBean = loader.getController();
+			profileController.initData(userId, profileBean);
+			
+			Stage home = (Stage) this.profileButton.getScene().getWindow();
+			home.setScene(new Scene(root, 800, 600));
+			
+			home.show();
+		} catch (IOException e) {
+			logger.error(s);
+		}
+    }*/
 
- 
-    public void helpButtonPressed() {
+    
+    void helpButtonPressed() {
     	this.userController.helpButtonPressed();
     }
 
  
 
    
+   /*public void logoutButtonPressed() {    	
+    	TransizionePagine pageSwitch = new TransizionePagine();
+    	pageSwitch.logout(logoutButton.getScene().getWindow());
+
+	}*/
 
   
 
@@ -86,23 +112,23 @@ private VolunteerUser currentUser;
     void searchCaritasButtonPressed(ActionEvent event) throws NumberFormatException, SQLException {
     	
     	TransizionePagine switchPage = new TransizionePagine();
-    	switchPage.apriMappa(this.currentUser, searchCaritasButton.getScene().getWindow());
+    	switchPage.apriMappa(this.userId, searchCaritasButton.getScene().getWindow());
+
+   
     }*/
  
 
-	public void initData(User user) {
-    	VolunteerUser vol;
-    	VolunteerRepository volunteer = new VolunteerRepository();
-    	vol =volunteer.getVolunteerByID(user.getId());
-    	this.setCurrentUser(vol);
+	public void initData(String nome, String cognome, int id) {
+    	//this.nomeCognome.setText(nome + " "+ cognome);
+        this.userId = id;
   
-    	
-    	
-    	this.userController.setCurrentUser(user);
     }
     
     
 
 }
+
+
+
 
 

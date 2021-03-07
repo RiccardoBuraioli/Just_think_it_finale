@@ -133,7 +133,7 @@ public class RegistrationShopBoundary{
 
 
 	public boolean registraNegozioPressed(String Tipologia, String NomeNegozio,String Password, String IndirizzoNeg, String RecapitoTel, String Email, String Città) throws SQLException {
-    	if (NomeNegozio == null || NomeNegozio ==  "" || Password == null || Password == "" ||IndirizzoNeg == null || IndirizzoNeg == "" || RecapitoTel == null || RecapitoTel == "" || Email == "" || Email == null  || Città == null || Città == "") {
+    	if (NomeNegozio == null || NomeNegozio.equals("") || Password == null || Password.equals("") ||IndirizzoNeg == null || IndirizzoNeg.equals("") || RecapitoTel == null || RecapitoTel.equals("")|| Email.equals("") || Email == null  || Città == null || Città.equals("")) {
     		return false;    		
     	}
     	else {

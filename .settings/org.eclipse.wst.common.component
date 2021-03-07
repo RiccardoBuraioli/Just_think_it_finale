@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="_justThinkIt.__">
+    <wb-module deploy-name="justFinal">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="_justThinkIt.__"/>
-        <property name="java-output-path" value="/_justThinkIt.__/build/classes"/>
+        <property name="context-root" value="justFinal"/>
+        <property name="java-output-path" value="/justFinal/build/classes"/>
     </wb-module>
 </project-modules>

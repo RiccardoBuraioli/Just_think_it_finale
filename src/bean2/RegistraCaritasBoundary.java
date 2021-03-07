@@ -92,7 +92,7 @@ public class RegistraCaritasBoundary  {
 	
 
 	public boolean completaButtonPressed(String NomeCaritas, String Password, String IndirizzoCaritas, String Tipologia, String RecapitoTel, String Email, String Città ) throws SQLException{
-		 if (NomeCaritas == null || NomeCaritas ==  "" || Password == null || Password == "" || IndirizzoCaritas == null || IndirizzoCaritas == "" || RecapitoTel == null || RecapitoTel == "" || Email == "" || Email == null || Città == null || Città == "") {
+		 if (NomeCaritas == null || NomeCaritas.equals("") || Password == null || Password.equals("") || IndirizzoCaritas == null || IndirizzoCaritas.equals("")|| RecapitoTel == null || RecapitoTel.equals("") || Email.equals("") || Email == null || Città == null || Città.equals("")) {
 			 return false;
 		}
 		 else{

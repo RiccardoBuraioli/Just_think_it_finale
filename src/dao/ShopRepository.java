@@ -81,10 +81,10 @@ public class ShopRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) { 
-            	Coordinate coord = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+            	//Coordinate coord = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
             	shopUser.setId(id);
                 shopUser.setNome(rs.getString("NomeNegozio"));
-                shopUser.setCoord(coord);
+                //shopUser.setCoord(coord);
                 shopUser.setIndirizzo(rs.getString("IndirizzoNeg"));
                 shopUser.setTipologia(rs.getString("Tipologia"));
                 shopUser.setRecapitoTel(rs.getString("RecapitoTel"));

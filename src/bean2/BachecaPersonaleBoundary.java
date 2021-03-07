@@ -105,7 +105,7 @@ public class BachecaPersonaleBoundary {
 	
 	public boolean eliminaNecessita(String i){
 		bachecaController = new BachecaPersonaleController();
-		if (i == null || i == "") {
+		if (i == null || i.equals("")) {
 			return false;
 		}
 		else {

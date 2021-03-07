@@ -118,17 +118,6 @@ public class ShopHomeBoundary {
 
     }
 
-  
-    public void initData(ShopUser user) {
-    	setCurrentUser(user);
-    	nomeCognome.setText(user.getNome());
-    	final Circle clip = new Circle();
-    	clip.setCenterX(25);
-    	clip.setCenterY(58);
-    	clip.setRadius(200);
-        profileImage.setClip(clip);
-    
-    }
     
 
     @FXML

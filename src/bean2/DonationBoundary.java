@@ -20,12 +20,14 @@ public class DonationBoundary{
 
 	private DonationController controller;
 
+	private Object indirizzo;
+
 	public DonationBoundary() {
 		controller = DonationController.getInstance();
 	}
 	
 	
-	@FXML
+	/*@FXML
 	public void creaDonazione(ActionEvent event) {
 
 		checker();		
@@ -37,10 +39,10 @@ public class DonationBoundary{
 		
 		
 
-	}
+	}*/
 	
 
-	public void initialize() {
+/*	public void initialize() {
 		textFields = new TextField[] { indirizzo };
 		
 	}
@@ -70,7 +72,7 @@ public int checker() {
 		controller.initController(idCar, idUte);
 	}
 
-
+*/
 
 
 

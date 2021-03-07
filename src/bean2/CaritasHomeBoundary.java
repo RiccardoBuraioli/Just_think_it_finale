@@ -1,149 +1,87 @@
 package bean2;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+import controller.CaritasHomeController;
 import entity.CaritasUser;
+
 
 
 public class CaritasHomeBoundary {
 
-
-	private  static CaritasHomeBoundary instance = null;
+	
+	private int idCar;
+	
+	private static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
-	private CaritasUser currentUser;
+	private String s = "errore IoException";
+
+	private CaritasHomeController caritasHomeC;
 	private GestisciTurniBoundary gestTurn;
 	private GestisciDonazioniBoundary gestDon;
-	private GestisciEventiBoundary gestisciB;
+	private GestisciEventiCaritasBoundary gestisciB;
+	
 	private BachecaPersonaleBoundary bacheca;
-
-
-	
-	
-	public GestisciTurniBoundary getGestTurn() {
-		return gestTurn;
-	}
-
-
-
-	public void setGestTurn(GestisciTurniBoundary gestTurn) {
-		this.gestTurn = gestTurn;
-	}
-
-
-
-	public GestisciDonazioniBoundary getGestDon() {
-		return gestDon;
-	}
-
-
-
-	public void setGestDon(GestisciDonazioniBoundary gestDon) {
-		this.gestDon = gestDon;
-	}
-
-
-
-	public GestisciEventiBoundary getGestisciB() {
-		return gestisciB;
-	}
-
-
-
-	public void setGestisciB(GestisciEventiBoundary gestisciB) {
-		this.gestisciB = gestisciB;
-	}
-
-
-
-	public BachecaPersonaleBoundary getBacheca() {
-		return bacheca;
-	}
-
-
-
-	public void setBacheca(BachecaPersonaleBoundary bacheca) {
-		this.bacheca = bacheca;
-	}
 
 
 
 	public static CaritasHomeBoundary getInstance() {
 		if (instance == null) {
 			instance = new CaritasHomeBoundary();
-			}
+		}
 		return instance;
 	}
-	
-	
-	 public void gestisciDonazioni() {
-		 	gestDon = new GestisciDonazioniBoundary();
-    		gestDon.setCaritas(this.currentUser);
-    		gestDon.loadFormBoundary(currentUser.getId());  		
-	 	}
 
+	public CaritasHomeBoundary() {
+		bacheca = new BachecaPersonaleBoundary();
+		gestTurn = new GestisciTurniBoundary();
+		gestDon = new GestisciDonazioniBoundary();
+		gestisciB = new GestisciEventiCaritasBoundary();
+	}
 
-	 public void gestisciEventi() {
-		// handle the event here
-		 	gestisciB = new GestisciEventiBoundary();
-    		gestisciB.setCaritas(currentUser);
-    		gestisciB.loadShop(currentUser.getId());    			
+	public void gestisciDonazioni() {		
+		gestDon.loadFormBoundary(idCar);
+	}
+
+	
+	public void gestisciEventi() {			
+			gestisciB.loadShop(idCar);
 	}
 
 	
 	public void gestisciTurni() {
-			 gestTurn = new GestisciTurniBoundary();
-    		 gestTurn.setCurrentUser(this.currentUser);
-    		 gestTurn.loadFormBoundary(currentUser.getId());
+			gestTurn.loadFormBoundary(idCar);
 	}
+
+	// dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di
+			// chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
+	public void visualizzaBacheca() {		
+			bacheca.loadFormBoundary(idCar);
+	}
+
+	void deleteAccountButtonPressed() {
+		// handle the event here
+	}
+
+	void helpButtonPressed() {
+		// handle the event here
+	}
+
 
 	
-	 // dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
-	public void visualizzaBacheca() {
-		     bacheca= new BachecaPersonaleBoundary();
-    		 bacheca.setCurrentUser(this.currentUser);
-    		 bacheca.loadFormBoundary(currentUser.getId());
-	}
-	
+	/*void logoutButtonPressedCaritas() {
+	 	
+    	TransizionePagine pageSwitch = new TransizionePagine();
+    	pageSwitch.logout(logoutButton.getScene().getWindow());
+    	
 
-	/*@FXML
-	void deleteAccountButtonPressed(ActionEvent event) {
-		 handle the event here
-	}
-
-	@FXML
-	void helpButtonPressed(ActionEvent event) {
-		// handle the event here
-	}
-
-	@FXML
-	void leftArrowPressed(ActionEvent event) {
-		// handle the event here
-	}
-
-	
-	@FXML
-	void profileButtonPressed(ActionEvent event) {
-		// handle the event here
-	}
-
-	@FXML
-	void rightArrowPressed(ActionEvent event) {
-		// handle the event here
 	}*/
 
-	public CaritasUser getCurrentUser() {
-		return currentUser;
+	public void initDataC(int id, String nome) {
+		this.idCar = id;
+		//nomeCognome.setText(nome);
 	}
-
-	public void setCurrentUser(CaritasUser currentUser) {
-		this.currentUser = currentUser;
-	}
-
-	public void initData(CaritasUser user) {
-		setCurrentUser(user);
-		//nomeCognome.setText(user.getNomeCaritas());
-		}
 
 }

@@ -61,11 +61,11 @@ private int userId;
 	
 	
 	public UserHomeBoundary() {
-		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
+		/*img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
 		
 		 currentImage = 0;
 		 userController = new UserHomeController();
-	
+	*/
 	}
 	
 	@FXML
@@ -148,11 +148,11 @@ private int userId;
 
 	public void initData(String nome, String cognome, int id) {
     	this.nomeCognome.setText(nome + " "+ cognome);
-    	final Circle clip = new Circle();
+    /*	final Circle clip = new Circle();
     	clip.setCenterX(25);
     	clip.setCenterY(58);
     	clip.setRadius(200);
-        this.profileImage.setClip(clip);
+        this.profileImage.setClip(clip);*/
         this.userId = id;
   
     }

@@ -68,10 +68,8 @@ public class CreaNecessitaBoundary {
 
 	}
 
-	public void setCaritas(int caritas2) {
+	public void setCaritas2(int caritas2) {
 		this.idCaritas = caritas2;
-		
-		
 	}
 
 	

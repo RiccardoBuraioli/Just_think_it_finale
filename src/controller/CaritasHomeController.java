@@ -23,11 +23,15 @@ public class CaritasHomeController {
 		this.currentUser = currentUser;
 	}
 
-	public void initDataCaritas(int idUser, CaritasHomeBoundary caritasHomeBoundary) {
+	public void initDataCaritas(int idUser, Object caritasHomeBoundary) {
 		CaritasRepository c = new CaritasRepository();
 		currentUser = c.getCaritasByID(idUser);
-		caritasHomeBoundary.initDataC(currentUser.getId(), currentUser.getNome());
-		
+		if(caritasHomeBoundary.getClass() == bean.CaritasHomeBoundary.class) {
+			((bean.CaritasHomeBoundary) caritasHomeBoundary).initDataC(currentUser.getId(), currentUser.getNome());
+		}
+		else if (caritasHomeBoundary.getClass() == bean2.CaritasHomeBoundary.class) {
+			((bean2.CaritasHomeBoundary) caritasHomeBoundary).initDataC(currentUser.getId(), currentUser.getNome());
+		}
 	}
 
 }

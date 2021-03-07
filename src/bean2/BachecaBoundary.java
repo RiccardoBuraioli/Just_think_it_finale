@@ -35,7 +35,7 @@ public class BachecaBoundary {
 	@FXML
 	private TextArea vestiti;
 
-	@FXML
+/*	@FXML
 	void creaDonazione(ActionEvent event) {
 		try {
 
@@ -58,7 +58,7 @@ public class BachecaBoundary {
 		}
 
 	}
-
+*/
 	@FXML
 	void creaEmail(ActionEvent event) {
 

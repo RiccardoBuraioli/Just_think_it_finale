@@ -26,11 +26,15 @@ public class ShopHomeController {
 		//funzionera
 	}
 
-	public void initDataShop(int id, ShopHomeBoundary shopBean) {
+	public void initDataShop(int id, Object shopBean) {
 		ShopRepository sd = new ShopRepository();
 		currentUser = sd.getShopByID(id);
-		shopBean.initData(currentUser.getId(), currentUser.getNome());
-		
+		if(shopBean.getClass() == bean.ShopHomeBoundary.class) {
+		((bean.ShopHomeBoundary) shopBean).initData(currentUser.getId(), currentUser.getNome());
+		}
+		else if(shopBean.getClass() == bean2.ShopHomeBoundary.class) {
+			((bean2.ShopHomeBoundary) shopBean).initData(currentUser.getId(), currentUser.getNome());
+			}
 	}
 
 

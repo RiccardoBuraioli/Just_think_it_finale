@@ -14,25 +14,15 @@ import entity.DonazioneTab;
 
 
 public class GestisciDonazioniBoundary {
-	private static Logger logger = LoggerFactory.getLogger(GestisciDonazioniBoundary.class.getName());
-
-	private String s = "errore IOException";
-
-
-	private List<DonazioneTab> listDon;
-
-	private CaritasUser caritas;
+	private int caritas;
 
 	private int idVolontario;
 	private int idDono;
 
 	private GestisciDonazioniCaritas gestDon;
-	private CaritasHomeBoundary caritasHomeBoundary;
-
-
 	public boolean cancellaDonazione(String i) {
 		    	gestDon = new  GestisciDonazioniCaritas();
-		    	if (i == null || i == "" ) {
+		    	if (i == null || i.equals("") ) {
 		    		return false;
 		    	}
 		    	else {
@@ -44,41 +34,34 @@ public class GestisciDonazioniBoundary {
 		    
 
 	   public void backPressed() {
-	 		caritasHomeBoundary = CaritasHomeBoundary.getInstance();	 		
+	 		CaritasHomeBoundary.getInstance();	 		
 	    }
 
 
 
 	public void contattaVolontario() {
-			EmailBoundary email = null;
-			//email = fxmlLoader.getController();
-			email.loadEmail(this.idVolontario, this.caritas.getId());
+			EmailBoundary email = new EmailBoundary();
+			email.loadEmail(this.idVolontario, caritas);
 		
 
 	}
 
-	/*@FXML
-	void ritiraDonazione(ActionEvent event) {
+	
+	public void ritiraDonazione() {
 		gestDon.ritiraDon(this.idDono);
+	}
 
-	}*/
 
-
-	public List<DonazioneTab> loadFormBoundary(int id) {
-			return this.listDon = gestDon.visualizzaDonazioni(this.caritas.getId());	
+	public List<DonazioneTab> loadFormBoundary(int idCar) {
+			this.caritas = idCar;
+			return gestDon.visualizzaDonazioni(caritas);	
 	}
 
 	public GestisciDonazioniBoundary() {
 		this.gestDon = new GestisciDonazioniCaritas();
-		listDon = new ArrayList<>();
+		new ArrayList<>();
 	}
 
-	public CaritasUser getCaritas() {
-		return this.caritas;
-	}
 
-	public void setCaritas(CaritasUser currentUser) {
-		this.caritas = currentUser;
-	}
 
 }

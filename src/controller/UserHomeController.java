@@ -31,12 +31,15 @@ public  class UserHomeController{
 	}
 	
 	
-	public void initDataCont(int id, UserHomeBoundary userin) {
+	public void initDataCont(int id, Object userHomeBoundary) {
 		VolunteerRepository userD = new VolunteerRepository();
 		VolunteerUser user = userD.getVolunteerByID(id);
-		userin.initData(user.getNome(), user.getCognome(), user.getId());
-		
-    
+		if(userHomeBoundary.getClass() ==  bean.UserHomeBoundary.class) {
+			((bean.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
+		}
+		else if(userHomeBoundary.getClass() == bean2.UserHomeBoundary.class){
+			((bean2.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
+		}
     }
 
 

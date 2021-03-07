@@ -115,7 +115,7 @@ public class RegistrazioneVolontarioBoundary{
 
 	
 	public boolean registraVolontarioPressed(String Nome, String Cognome, String Password, String confermaPassword, String Via, String RecapitoTel, String Email, String DataNascita, String Città) {	
-			 if (Nome == null || Nome ==  "" || Cognome == null || Cognome == "" || Password == null || Password == "" || Via == null || Via == "" || RecapitoTel == null || RecapitoTel == "" || Email == "" || Email == null || DataNascita == null || DataNascita == "" || Città == null || Città == ""){
+			 if (Nome == null || Nome.equals("") || Cognome == null || Cognome.equals("") || Password == null || Password.equals("") || Via == null || Via.equals("") || RecapitoTel == null || RecapitoTel.equals("") || Email.equals("") || Email == null || DataNascita == null || DataNascita.equals("") || Città == null || Città.equals("")){
 				 return false;
 		 }
 			 else {

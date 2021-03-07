@@ -23,18 +23,17 @@ public class GestisciEventiBoundary {
 	
 	    public void backButtonPressed() {
 	    	shopHomeBoundary = shopHomeBoundary.getInstance();
-	 		//shopHomeBoundary.initData(shop);
 	    }
 
 	   
-	  /* public void contattaCaritas() {
-    	        EmailBoundary email;
+	   public void contattaCaritas() {
+    	        EmailBoundary email = new EmailBoundary();
     	        email.loadEmail(this.idShop, this.event.getIdCaritas());  	
-	    }*/
+	    }
 
 	    
 	   public boolean eliminaEvento(String i) {
-		   if (i == null || i == "") {
+		   if (i == null || i.equals("")) {
 			   return true;
 		   }
 		   else {

@@ -213,7 +213,7 @@ public class CercaCaritas {
 	
 
 	private void indietro() {
-	if (ruolo.equalsIgnoreCase("Volontario")) {
+	if (ruolo.equals("Volontario")) {
 		 try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 				Parent root = loader.load();
@@ -227,11 +227,9 @@ public class CercaCaritas {
 				home.show();
 			} catch (IOException e) {
 				logger.error("errore IoException");
-			}
-
-	
-		
+			}	
 	}
+	
 	
 	else if(ruolo.equalsIgnoreCase("Negozio")) {
 		try {
