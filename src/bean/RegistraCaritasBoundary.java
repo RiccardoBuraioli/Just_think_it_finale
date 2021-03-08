@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import controller.CaritasHomeController;
 import controller.RegistrazioneCaritasController;
-import entity.CaritasUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,9 +25,7 @@ import javafx.stage.Stage;
 
 public class RegistraCaritasBoundary implements Initializable {
 
-	private static Logger logger = LoggerFactory.getLogger(RegistraCaritasBoundary.class.getName());
 
-	private String s = "error IOException";
 	private RegistrazioneCaritasController regController;
 
 	private TextField[] textFields;
@@ -106,7 +103,7 @@ public class RegistraCaritasBoundary implements Initializable {
 			
 		
 			
-		
+			Logger logger = LoggerFactory.getLogger(RegistraCaritasBoundary.class.getName());
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 			Parent root = loader.load();
@@ -118,7 +115,7 @@ public class RegistraCaritasBoundary implements Initializable {
 		
 			home.show();
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 			}
 		}
 	}

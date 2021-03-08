@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import controller.RegistrazioneVolontarioController;
 import controller.UserHomeController;
-import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +26,9 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 	private RegistrazioneVolontarioController regC;
 
 	private TextField[] text;
-	private static Logger logger = LoggerFactory.getLogger(RegistrazioneVolontarioBoundary.class.getName());
+	
 
-	private String s = "error IoException";
+	
 	    @FXML
 	    private TextField cittaRes;
 
@@ -98,6 +97,7 @@ public class RegistrazioneVolontarioBoundary implements Initializable {
 		int idVol =	regC.completaButtonPressed( nome.getText(), cognome.getText(),
 					password.getText(), via.getText(), tel.getText(), mail.getText(), date.getText(),
 					cittaRes.getText());
+		 Logger logger = LoggerFactory.getLogger(RegistrazioneVolontarioBoundary.class.getName());
 		
 			try {
     			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));

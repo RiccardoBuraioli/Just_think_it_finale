@@ -26,7 +26,7 @@ public class ShopHomeBoundary {
 	
 
 	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
-	private String s = "error IoException";
+	
 //	private Image img1;
 //	private int currentImage;
 	private int idShop;
@@ -138,7 +138,7 @@ public class ShopHomeBoundary {
     		
     		
     				} catch (IOException e) {
-    	    			logger.error(s);
+    	    			logger.error(e.getMessage());
 		}
     	
     }

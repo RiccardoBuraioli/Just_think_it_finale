@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.GestioneTurniCaritas;
-import entity.CaritasUser;
 import entity.TurnoTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,8 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GestisciTurniBoundary {
-	private static Logger logger = LoggerFactory.getLogger(GestisciTurniBoundary.class.getName());
-	private String s = "errore IoException";
+
 	@FXML
 	private TextArea newNote;
 
@@ -68,7 +66,6 @@ public class GestisciTurniBoundary {
 
 	private CreaTurnoBoundary caritasTurniBoundary;
 
-	private CaritasHomeBoundary caritasHomeBoundary;
 
 	public GestisciTurniBoundary() {
 		this.gestTurn = new GestioneTurniCaritas();
@@ -82,7 +79,7 @@ public class GestisciTurniBoundary {
 
 	@FXML
 	void creaTurno(ActionEvent event) {
-
+		Logger logger = LoggerFactory.getLogger(GestisciTurniBoundary.class.getName());
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CreaTurno.fxml"));
 			Parent root = loader.load();
@@ -94,7 +91,7 @@ public class GestisciTurniBoundary {
 
 			home.show();
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 		}
 
 	}

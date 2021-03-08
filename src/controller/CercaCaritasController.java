@@ -17,7 +17,6 @@ public class CercaCaritasController {
 	private CercaCaritasDao cercaCaritasD;
 	private CoordinateDao coord;
 	
-	private static final Logger logger = LoggerFactory.getLogger(CercaCaritasController.class);
 	
 	
 	public CercaCaritasController() {
@@ -27,7 +26,7 @@ public class CercaCaritasController {
 	}
 
 	public void initMap2(int id, String lati, String longi) {
-		// logger.trace(c.getCoordinate().toString());
+		
 		coord.setCoordinate(id,lati,longi);
 	}
 	

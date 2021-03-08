@@ -13,18 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-//import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 public class UserHomeBoundary{
-/**
-	 * 
-	 */
-private static Logger logger = LoggerFactory.getLogger(UserHomeBoundary.class.getName());
-private String s = "error IoException";
+
+
 
 private static UserHomeBoundary instance = null;
 
@@ -94,6 +90,8 @@ private int userId;
     void profileButtonPressed(ActionEvent event) {
     	ProfileBoundary profileBean;
     	ProfileController profileController = new ProfileController();
+    	Logger logger = LoggerFactory.getLogger(UserHomeBoundary.class.getName());
+
     	try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
 			Parent root = loader.load();
@@ -105,7 +103,7 @@ private int userId;
 			
 			home.show();
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 		}
     }
 

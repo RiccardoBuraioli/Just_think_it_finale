@@ -4,14 +4,10 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import controller.CaritasHomeController;
 import controller.LoginController;
 import controller.ShopHomeController;
 import controller.UserHomeController;
-import entity.CaritasUser;
-import entity.ShopUser;
-import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,16 +27,9 @@ public class LoginBoundary {
 
 	private UserHomeBoundary userHomeBoundary;
 	private ShopHomeBoundary shopHomeBoundary;
-	private static LoginBoundary instance = null;
 	private CaritasHomeBoundary caritasHomeBoundary;
 
-	/*public static LoginBoundary getInstance() {
-		if (instance == null) {
-			instance = new LoginBoundary();
 
-		}
-		return instance;
-	}*/
 
 	@FXML
 	private TextField usernameField;
@@ -70,12 +59,6 @@ public class LoginBoundary {
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				
-				/*
-				userHomeController.load();
-				String nome = userHomeController.getNome();
-				String cognome = userHomeController.getCognome();
-				*/
-			
 				
 				Stage home = (Stage) loginButton.getScene().getWindow();
 				home.setScene(new Scene(root, 800, 600));

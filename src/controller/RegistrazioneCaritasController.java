@@ -9,8 +9,6 @@ public class RegistrazioneCaritasController  {
 	
 	int tipo;
 
-	public RegistrazioneCaritasController() {
-	}
 
 
 	public int completaButtonPressed( String nomeCaritas, String passwordCaritas, String via, String tipo,

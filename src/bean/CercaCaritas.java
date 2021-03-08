@@ -51,11 +51,19 @@ public class CercaCaritas {
 	public enum MarkerType {
 		CARITAS, EVENTO, DONAZIONE, MAP
 	}
-
+	private static final String e = "buttonEvento";
+	private static final String p = "buttonPromuoviEvento";
+	private static final String a = "buttonAllLocations";
+	private static final String d = "buttonDonazione";
+	private static final String t = "buttonTurnoVolontariato";
+	private static final String b = "buttonBacheca";
 	private int idCaritas;
 	private int idEvento;
 	private String ruolo;
 	private int idUser;
+	private String v = "Volontario";
+	private String c = "Caritas";
+	private String n = "Negozio";
 	
 	/** logger for the class. */
 	private static final Logger logger = LoggerFactory.getLogger(CercaCaritas.class);
@@ -76,7 +84,7 @@ public class CercaCaritas {
 	private List<MarkerID> markerEventi;
 	private List<MarkerID> markerDonazioni;
 
-	private int[] idCaritaList;
+
 
 
 
@@ -213,7 +221,7 @@ public class CercaCaritas {
 	
 
 	private void indietro() {
-	if (ruolo.equals("Volontario")) {
+	if (ruolo.equals(v)) {
 		 try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 				Parent root = loader.load();
@@ -231,7 +239,7 @@ public class CercaCaritas {
 	}
 	
 	
-	else if(ruolo.equalsIgnoreCase("Negozio")) {
+	else if(ruolo.equalsIgnoreCase(n)) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
@@ -429,7 +437,6 @@ public class CercaCaritas {
 		buttonDonazione.setOnAction(event -> apriDonazione(idCaritas, idUser));
 		buttonAllLocations.setOnAction(event -> {
 			CercaCaritasController c = new CercaCaritasController();
-			// logger.trace(c.getCoordinate().toString());
 			c.initMap2(idUser, markerClick.getPosition().getLatitude().toString(), markerClick.getPosition().getLongitude().toString());
 			
 
@@ -471,24 +478,23 @@ public class CercaCaritas {
 				mapView.setXYZParam(xyzParams);
 				mapType = MapType.XYZ;
 			}
-			// mapView.setBingMapsApiKey(bingMapsApiKey.getText());
 			mapView.setMapType(mapType);
 		});
 		mapTypeGroup.selectToggle(radioMsOSM);
 
 		setupEventHandlers();
 
-		if (this.ruolo.equalsIgnoreCase("Volontario")) {
+		if (this.ruolo.equalsIgnoreCase(v)) {
 			for (MarkerID markerEvento : markerEventi) {
 				checkEventoMarker.setGraphic(new ImageView(
 						new Image(markerEvento.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
 				checkEventoMarker.selectedProperty().bindBidirectional(markerEvento.getMarker().visibleProperty());
 			}
 
-			for (MarkerID markerCaritas : markerCaritas) {
+			for (MarkerID markerCaritas2 : markerCaritas) {
 				checkCaritasMarker.setGraphic(new ImageView(
-						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
-				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+						new Image(markerCaritas2.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas2.getMarker().visibleProperty());
 			}
 			for (MarkerID markerDonazione : markerDonazioni) {
 				checkDonazioneMarker.setGraphic(new ImageView(
@@ -503,12 +509,12 @@ public class CercaCaritas {
 			checkClickMarker.selectedProperty().bindBidirectional(markerClick.visibleProperty());
 
 		}
-		if (this.ruolo.equalsIgnoreCase("Negozio")) {
+		if (this.ruolo.equalsIgnoreCase(n)) {
 			// add the graphics to the checkboxes
-			for (MarkerID markerCaritas : markerCaritas) {
+			for (MarkerID markerCaritas2 : markerCaritas) {
 				checkCaritasMarker.setGraphic(new ImageView(
-						new Image(markerCaritas.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
-				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas.getMarker().visibleProperty());
+						new Image(markerCaritas2.getMarker().getImageURL().toExternalForm(), 16.0, 16.0, true, true)));
+				checkCaritasMarker.selectedProperty().bindBidirectional(markerCaritas2.getMarker().visibleProperty());
 			}
 
 			checkClickMarker.setGraphic(
@@ -549,18 +555,6 @@ public class CercaCaritas {
 		mapView.initialize(Configuration.builder().projection(projection).showZoomControls(false).build());
 		logger.debug("initialization finished");
 
-		// long animationStart = System.nanoTime();
-		/*
-		 * new AnimationTimer() {
-		 * 
-		 * @Override public void handle(long nanoSecondsNow) { if
-		 * (markerKaSoccer.getVisible()) { // every 100ms, increase the rotation of the
-		 * markerKaSoccer by 9 degrees, make a turn in 4 seconds long milliSecondsDelta
-		 * = (nanoSecondsNow - animationStart) / 1_000_000;33 long numSteps =
-		 * milliSecondsDelta / 100; int angle = (int) ((numSteps * 9) % 360); if
-		 * (markerKaSoccer.getRotation() != angle) { markerKaSoccer.setRotation(angle);
-		 * } } } }.start();
-		 */
 	}
 
 
@@ -650,9 +644,9 @@ public class CercaCaritas {
 			labelEvent.setText("Event: label right clicked: " + event.getMapLabel().getText());
 		});
 
-		mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> {
-			logger.debug("pointer moved to " + event.getCoordinate());
-		});
+		mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> 
+			logger.debug("pointer moved to " + event.getCoordinate())
+		);
 
 		logger.trace("map handlers initialized");
 	}
@@ -664,7 +658,7 @@ public class CercaCaritas {
 			}
 		}
 
-		ObservableList<Node> lista = listaBottoni;/* FXCollections.observableArrayList(listaBottoni); */
+		ObservableList<Node> lista = listaBottoni;
 		List<Node> listaBottoniDaRimuovere = new ArrayList<>();
 		searchButtonsToRemoveByUser(this.ruolo, markerType, lista, listaBottoniDaRimuovere);
 		removeButtons(lista, listaBottoniDaRimuovere);
@@ -689,37 +683,40 @@ public class CercaCaritas {
 
 	public void searchButtonsToRemoveByUser(String ruolo, MarkerType type, ObservableList<Node> lista,
 			List<Node> listaBottoniDaRimuovere) {
+	
+	
+		
 		if (type.equals(MarkerType.CARITAS)) {
 			for (Node node : lista) {
 				Button btn = (Button) node;
-				if (ruolo.equalsIgnoreCase("Volontario")) {
+				if (ruolo.equalsIgnoreCase(v)) {
 					switch (btn.getId()) {
-					case "buttonEvento":
-					case "buttonPromuoviEvento":
-					case "buttonAllLocations":
+					case e:
+					case p:
+					case a:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
 				}
 
-				if (ruolo.equalsIgnoreCase("Caritas")) {
+				if (ruolo.equalsIgnoreCase(c)) {
 					switch (btn.getId()) {
-					case "buttonEvento":
-					case "buttonPromuoviEvento":
-					case "buttonTurnoVolontariato":
-					case "buttonAllLocations":
+					case e:
+					case p:
+					case t:
+					case a:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
 				}
 
-				if (ruolo.equalsIgnoreCase("Negozio")) {
+				if (ruolo.equalsIgnoreCase(n)) {
 					switch (btn.getId()) {
-					case "buttonEvento":
-					case "buttonTurnoVolontariato":
-					case "buttonAllLocations":
+					case e:
+					case t:
+					case a:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
@@ -730,24 +727,24 @@ public class CercaCaritas {
 		if (type.equals(MarkerType.EVENTO)) {
 			for (Node node : lista) {
 				Button btn = (Button) node;
-				if (ruolo.equalsIgnoreCase("Volontario")) {
+				if (ruolo.equalsIgnoreCase(v)) {
 					switch (btn.getId()) {
-					case "buttonPromuoviEvento":
-					case "buttonBacheca":
-					case "buttonTurnoVolontariato":
-					case "buttonAllLocations":
-					case "buttonDonazione":
+					case p:
+					case b:
+					case t:
+					case a:
+					case d:
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
 				} else {
 					switch (btn.getId()) {
-					case "buttonEvento":
-					case "buttonPromuoviEvento":
-					case "buttonTurnoVolontariato":
-					case "buttonAllLocations":
-					case "buttonBacheca":
-					case "buttonDonazione":
+					case e:
+					case p:
+					case t:
+					case a:
+					case b:
+					case d:
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
@@ -760,11 +757,11 @@ public class CercaCaritas {
 			for (Node node : lista) {
 				Button btn = (Button) node;
 				switch (btn.getId()) {
-				case "buttonPromuoviEvento":
-				case "buttonBacheca":
-				case "buttonTurnoVolontariato":
-				case "buttonEvento":
-				case "buttonDonazione":
+				case p:
+				case b:
+				case t:
+				case e:
+				case d:
 					listaBottoniDaRimuovere.add(btn);
 					default:
 				}

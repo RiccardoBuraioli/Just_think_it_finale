@@ -7,12 +7,9 @@ import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import controller.EmailController;
 import controller.GestisciEventiController;
 import controller.ShopHomeController;
 import entity.EventTab;
-import entity.ShopUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

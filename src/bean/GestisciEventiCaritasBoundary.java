@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.GestisciEventiCaritasController;
-import entity.CaritasUser;
 import entity.EventTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,14 +24,13 @@ import javafx.stage.Stage;
 
 public class GestisciEventiCaritasBoundary {
 
-	private static Logger logger = LoggerFactory.getLogger(GestisciEventiCaritasBoundary.class.getName());
+	
 
 	private GestisciEventiCaritasController gestEventC;
 	private int idCar;
-	private String s = "errore IoException";
+	
 	private EventTab event;
 	
-	private CaritasHomeBoundary caritasHomeBoundary;
 
 	@FXML
 	private TableView<EventTab> tab;
@@ -88,6 +86,7 @@ public class GestisciEventiCaritasBoundary {
 
 	@FXML
 	void contattaShop(ActionEvent event) {
+		Logger logger = LoggerFactory.getLogger(GestisciEventiCaritasBoundary.class.getName());
 		try {
 
 			FXMLLoader fxmlLoader = new FXMLLoader();
@@ -104,7 +103,7 @@ public class GestisciEventiCaritasBoundary {
 			stage.show();
 
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 		}
 
 	}

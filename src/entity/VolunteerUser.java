@@ -7,11 +7,11 @@ public class VolunteerUser extends User {
 
 	public VolunteerUser() {}
 	
-	public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String cartaDiCredito,String nascita, String citta) {	
+	public VolunteerUser( String nome, String cognome, String password, String indirizzo, String recapitoTel, String email, String nascita, String citta) {	
 		super(nome, password, indirizzo, recapitoTel, email,   citta, "Volontario");
 		this.cognome = cognome;
 		this.nascita = nascita;
-		this.cc = cartaDiCredito;
+		this.cc = "";
 	 }
 
 	public String getNascita() {

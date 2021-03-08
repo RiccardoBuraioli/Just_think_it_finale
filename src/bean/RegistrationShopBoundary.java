@@ -26,11 +26,11 @@ import javafx.stage.Stage;
 public class RegistrationShopBoundary implements Initializable{
 	private RegistrationShopManagerController regNeg;
 	private static Logger logger = LoggerFactory.getLogger(RegistrationShopBoundary.class.getName());
-	private String s = "error IoException";
+
 	private TextField[] textField;	
 	private String tipo;
 	private TransizionePagine pageSwitch;
-	private int shopId;
+	
     @FXML
     private TextField cittaResNeg;
 
@@ -119,7 +119,7 @@ public class RegistrationShopBoundary implements Initializable{
 
 			home.show();
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 		}
     }
     

@@ -1,8 +1,5 @@
 package controller;
 
-
-
-import bean.ShopHomeBoundary;
 import dao.ShopRepository;
 import entity.ShopUser;
 import javafx.stage.Window;

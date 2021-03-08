@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.GestisciDonazioniCaritas;
-import entity.CaritasUser;
 import entity.DonazioneTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,9 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class GestisciDonazioniBoundary {
-	private static Logger logger = LoggerFactory.getLogger(GestisciDonazioniBoundary.class.getName());
 
-	private String s = "errore IOException";
+	
 	@FXML
 	private TableView<DonazioneTab> table;
 
@@ -82,6 +80,7 @@ public class GestisciDonazioniBoundary {
 
 	@FXML
 	void contattaVolontario(ActionEvent event) {
+		Logger logger = LoggerFactory.getLogger(GestisciDonazioniBoundary.class.getName());
 		try {
 
 			FXMLLoader fxmlLoader = new FXMLLoader();
@@ -98,7 +97,7 @@ public class GestisciDonazioniBoundary {
 			stage.show();
 
 		} catch (IOException e) {
-			logger.error(s);
+			logger.error(e.getMessage());
 		}
 
 	}

@@ -9,7 +9,6 @@ import dao.LoginDao;
 public class LoginController {
 	private LoginDao login;
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 
 	public LoginController() {
@@ -19,16 +18,11 @@ public class LoginController {
 	}
 
 	public String loginAccess(String user, String pass) {
-
-		String loginResult = login.checkLogin(user, pass);
-		
-	
-		return loginResult;
+		return login.checkLogin(user, pass);
 	}
 
 	public int trovaID(String user) {
-		int userID = login.returnID(user);
-		return userID;
+		return  login.returnID(user);
 	}
 
 }

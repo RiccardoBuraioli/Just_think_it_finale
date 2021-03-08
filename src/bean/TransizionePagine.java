@@ -10,8 +10,7 @@ import com.sothawo.mapjfx.Projection;
 
 import controller.CaritasHomeController;
 import controller.CercaCaritasController;
-import entity.CaritasUser;
-import entity.User;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
