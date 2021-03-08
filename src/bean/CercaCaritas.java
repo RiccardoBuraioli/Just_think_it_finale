@@ -51,12 +51,12 @@ public class CercaCaritas {
 	public enum MarkerType {
 		CARITAS, EVENTO, DONAZIONE, MAP
 	}
-	private static final String e = "buttonEvento";
-	private static final String p = "buttonPromuoviEvento";
-	private static final String a = "buttonAllLocations";
-	private static final String d = "buttonDonazione";
-	private static final String t = "buttonTurnoVolontariato";
-	private static final String b = "buttonBacheca";
+	private static final String eve = "buttonEvento";
+	private static final String pro = "buttonPromuoviEvento";
+	private static final String all = "buttonAllLocations";
+	private static final String don = "buttonDonazione";
+	private static final String tur = "buttonTurnoVolontariato";
+	private static final String bac = "buttonBacheca";
 	private int idCaritas;
 	private int idEvento;
 	private String ruolo;
@@ -691,9 +691,9 @@ public class CercaCaritas {
 				Button btn = (Button) node;
 				if (ruolo.equalsIgnoreCase(v)) {
 					switch (btn.getId()) {
-					case e:
-					case p:
-					case a:
+					case eve:
+					case pro:
+					case all:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
@@ -702,10 +702,10 @@ public class CercaCaritas {
 
 				if (ruolo.equalsIgnoreCase(c)) {
 					switch (btn.getId()) {
-					case e:
-					case p:
-					case t:
-					case a:
+					case eve:
+					case pro:
+					case tur:
+					case all:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
@@ -714,9 +714,9 @@ public class CercaCaritas {
 
 				if (ruolo.equalsIgnoreCase(n)) {
 					switch (btn.getId()) {
-					case e:
-					case t:
-					case a:
+					case eve:
+					case tur:
+					case all:
 
 						listaBottoniDaRimuovere.add(btn);
 					default:
@@ -729,22 +729,22 @@ public class CercaCaritas {
 				Button btn = (Button) node;
 				if (ruolo.equalsIgnoreCase(v)) {
 					switch (btn.getId()) {
-					case p:
-					case b:
-					case t:
-					case a:
-					case d:
+					case pro:
+					case bac:
+					case tur:
+					case all:
+					case don:
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
 				} else {
 					switch (btn.getId()) {
-					case e:
-					case p:
-					case t:
-					case a:
-					case b:
-					case d:
+					case eve:
+					case pro:
+					case tur:
+					case all:
+					case bac:
+					case don:
 						listaBottoniDaRimuovere.add(btn);
 					default:
 					}
@@ -757,11 +757,11 @@ public class CercaCaritas {
 			for (Node node : lista) {
 				Button btn = (Button) node;
 				switch (btn.getId()) {
-				case p:
-				case b:
-				case t:
-				case e:
-				case d:
+				case pro:
+				case bac:
+				case tur:
+				case eve:
+				case don:
 					listaBottoniDaRimuovere.add(btn);
 					default:
 				}
