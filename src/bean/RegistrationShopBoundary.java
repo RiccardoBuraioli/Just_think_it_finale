@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.RegistrationShopManagerController;
+import controller.ShopHomeController;
 import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class RegistrationShopBoundary implements Initializable{
 	private TextField[] textField;	
 	private String tipo;
 	private TransizionePagine pageSwitch;
-	
+	private int shopId;
     @FXML
     private TextField cittaResNeg;
 
@@ -104,15 +105,16 @@ public class RegistrationShopBoundary implements Initializable{
     		logger.debug("errore fratello");
     	}
     
-    	ShopUser shop = regNeg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
+    	int idShop = regNeg.registraNegozioPressed( tipo , nomeNeg.getText(), passwordNeg.getText(), viaNeg.getText() + " "+civicoNeg.getText() , telNeg.getText(), mailNeg.getText(), cittaResNeg.getText());
  
     	try {
     		
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 			Parent root = loader.load();
 			Stage home = (Stage) registraNegozio.getScene().getWindow();
-			ShopHomeBoundary shopHome = new ShopHomeBoundary();
-			shopHome.initData(shop);
+			ShopHomeBoundary shopHomeBoundary = loader.getController();
+			ShopHomeController shopHomeC = new ShopHomeController();
+			shopHomeC.initDataShop(idShop, shopHomeBoundary);
 			home.setScene(new Scene(root, 800, 600));
 
 			home.show();

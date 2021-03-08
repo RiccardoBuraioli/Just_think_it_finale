@@ -14,7 +14,7 @@ public class BachecaBoundary {
 
 	public void creaDonazione() {
 			DonationBoundary donationBoundary = new DonationBoundary();
-			//donationBoundary.initBoundary(idCar, idUte);
+			donationBoundary.initBoundary(idCar, idUte);
 	}
 
 

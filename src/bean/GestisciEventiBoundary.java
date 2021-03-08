@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.EmailController;
 import controller.GestisciEventiController;
 import controller.ShopHomeController;
 import entity.EventTab;
@@ -31,9 +32,9 @@ public class GestisciEventiBoundary {
 
 	private GestisciEventiController gestEventC;
 	private int idShop;
+	private int idCaritas;
 	private String s = "error IoException";
 	private EventTab event;
-	private ShopUser shop;
 	private ShopHomeBoundary shopHomeBoundary;
 
 	@FXML
@@ -95,9 +96,9 @@ public class GestisciEventiBoundary {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
 
-			EmailBoundary email;
-			email = fxmlLoader.getController();
-			email.loadEmail(this.idShop, this.event.getIdCaritas());
+			EmailBoundary email = fxmlLoader.getController();
+			EmailController emailControllerC = new EmailController(); 
+			emailControllerC.loadEmail(this.idShop, this.idCaritas);
 			Stage stage = new Stage();
 			stage.setTitle("Email");
 
@@ -156,12 +157,5 @@ public class GestisciEventiBoundary {
 
 	}
 
-	public ShopUser getShop() {
-		return shop;
-	}
-
-	public void setShop(ShopUser currentUser) {
-		this.shop = currentUser;
-	}
 
 }

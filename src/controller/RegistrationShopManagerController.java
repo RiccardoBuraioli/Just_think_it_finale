@@ -20,7 +20,7 @@ public  class RegistrationShopManagerController {
 	
 	}
 
-	public ShopUser registraNegozioPressed( String tipo, String nome, String pass, String via, String tel,String mail, String citta) {
+	public int  registraNegozioPressed( String tipo, String nome, String pass, String via, String tel,String mail, String citta) {
 
 		ShopUser shop = new ShopUser(nome, pass,tipo, via,  tel, mail, citta);
 		ShopRepository crep = new ShopRepository();
@@ -30,7 +30,7 @@ public  class RegistrationShopManagerController {
 		// Manda alla home Shop
 	
 
-		return shop;
+		return id;
 	}
 
 

@@ -15,6 +15,7 @@ public class GestisciDonazioniBoundary {
 	private int idDono;
 
 	private GestisciDonazioniCaritas gestDon;
+	
 	public boolean cancellaDonazione(String i) {
 		    	gestDon = new  GestisciDonazioniCaritas();
 		    	if (i == null || i.equals("") ) {
@@ -28,17 +29,9 @@ public class GestisciDonazioniBoundary {
 		    }
 		    
 
-	   public void backPressed() {
-	 		CaritasHomeBoundary.getInstance();	 		
-	    }
-
-
-
 	public void contattaVolontario() {
-			EmailBoundary email = new EmailBoundary();
-			email.loadEmail(this.idVolontario, caritas);
-		
-
+		EmailBoundary email = new EmailBoundary();
+		email.loadEmail(this.idVolontario, caritas);
 	}
 
 	

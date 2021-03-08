@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.sothawo.mapjfx.Projection;
 
+import controller.GestisciEventiController;
 import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,15 +39,8 @@ public class ShopHomeBoundary {
 	private int idShop;
 	private static ShopHomeBoundary instance = null;
 	
-	private ShopUser currentUser;
-	 
-		public ShopUser getCurrentUser() {
-			return currentUser;
-		}
-
-		public void setCurrentUser(ShopUser user) {
-			this.currentUser = user;
-		}
+	
+	
 		
 		
 		public static ShopHomeBoundary getInstance() {
@@ -142,14 +136,14 @@ public class ShopHomeBoundary {
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
 	       
 	        GestisciEventiBoundary gestisciBoundary = fxmlLoader.getController();
-	        
+	        GestisciEventiController gestisciEventiC = new GestisciEventiController();
 			Stage stage = (Stage) gestEvent.getScene().getWindow();
 
     		stage.setTitle("Gestisci Eventi");
     		
     		
-    		gestisciBoundary.setShop(currentUser);
-    		gestisciBoundary.loadShop(currentUser.getId());
+    		
+    		gestisciEventiC.loadShop(idShop);
     		
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);

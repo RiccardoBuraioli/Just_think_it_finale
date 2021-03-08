@@ -15,7 +15,7 @@
 				if ((DonationBoundary.creaDonazione(1,request.getParameter("IndirizzoVolontario")))== 0){
 					
 %>
-		<jsp:forward page="Volontario.jsp"/>
+		<jsp:forward page="homeVolontario.jsp"/>
 <%		}}}
 			
 		

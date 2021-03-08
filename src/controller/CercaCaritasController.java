@@ -9,10 +9,8 @@ import bean.CercaCaritas;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
 import dao.UserDao;
-import dao.VolunteerRepository;
 import entity.MarkerID;
-import entity.User;
-import entity.VolunteerUser;
+
 
 public class CercaCaritasController {
 	
