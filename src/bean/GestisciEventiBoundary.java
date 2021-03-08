@@ -96,9 +96,8 @@ public class GestisciEventiBoundary {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Email.fxml"));
 
-			EmailBoundary email = fxmlLoader.getController();
-			EmailController emailControllerC = new EmailController(); 
-			emailControllerC.loadEmail(this.idShop, this.idCaritas);
+			EmailBoundary email = fxmlLoader.getController(); 
+			email.loadEmail(this.idShop, this.idCaritas);
 			Stage stage = new Stage();
 			stage.setTitle("Email");
 

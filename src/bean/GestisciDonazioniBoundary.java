@@ -63,8 +63,7 @@ public class GestisciDonazioniBoundary {
 	private int idDono;
 
 	private GestisciDonazioniCaritas gestDon;
-	private CaritasHomeBoundary caritasHomeBoundary;
-
+	
 	@FXML
 	void cancellaDonazione(ActionEvent event) {
 

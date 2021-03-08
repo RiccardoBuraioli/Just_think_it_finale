@@ -7,18 +7,14 @@ import org.slf4j.LoggerFactory;
 
 import controller.ProfileController;
 import controller.UserHomeController;
-import dao.VolunteerRepository;
-import entity.User;
-import entity.VolunteerUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -38,19 +34,13 @@ private int userId;
 
 	
 	//Images slideshow
-	private Image img1 ;
+/*	private Image img1 ;
 	private Image img2;
 	private Image img3;
 	private Image[] images = {img1, img2, img3};
-	private int currentImage;
+	private int currentImage;*/
 	
-	public int getCurrentUser() {
-		return  this.userId;
-	}
-
-	public void setCurrentUser(int id) {
-		this.userId = id;
-	}
+	
 	
 	public static UserHomeBoundary getInstance() {
 		if (instance == null) {

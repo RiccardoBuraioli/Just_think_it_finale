@@ -26,10 +26,6 @@ public  class RegistrationShopManagerController {
 		ShopRepository crep = new ShopRepository();
 		int id = crep.insertShop(shop);
 		shop.setId(id);
-
-		// Manda alla home Shop
-	
-
 		return id;
 	}
 

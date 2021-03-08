@@ -8,25 +8,23 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import controller.CaritasHomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class CaritasHomeBoundary {
 
-	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
+//	private Image img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
 	private int idCar;
 	
 	private static CaritasHomeBoundary instance = null;
 	private static Logger logger = LoggerFactory.getLogger(CaritasHomeBoundary.class.getName());
 	private String s = "errore IoException";
 
-	private CaritasHomeController caritasHomeC;
 	private GestisciTurniBoundary gestTurn;
 	private GestisciDonazioniBoundary gestDon;
 

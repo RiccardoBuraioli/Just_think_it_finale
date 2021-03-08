@@ -4,16 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.sothawo.mapjfx.Projection;
-
-import controller.GestisciEventiController;
-import entity.ShopUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +27,8 @@ public class ShopHomeBoundary {
 
 	private static Logger logger = LoggerFactory.getLogger(ShopHomeBoundary.class.getName());
 	private String s = "error IoException";
-	private Image img1;
-	private int currentImage;
+//	private Image img1;
+//	private int currentImage;
 	private int idShop;
 	private static ShopHomeBoundary instance = null;
 	
@@ -51,9 +44,9 @@ public class ShopHomeBoundary {
 		}
 
 	public ShopHomeBoundary() {
-		img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
+	/*	img1 = new Image("file:/C:/Users/PRX/Desktop/TZEDAKAH/DragoInizio/DragoForestain.PNG");
 		
-		this.currentImage = 0;
+		this.currentImage = 0;*/
 	}
 		
     @FXML
@@ -136,15 +129,9 @@ public class ShopHomeBoundary {
 	        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream("/boundary/Eventi2.fxml"));
 	       
 	        GestisciEventiBoundary gestisciBoundary = fxmlLoader.getController();
-	        GestisciEventiController gestisciEventiC = new GestisciEventiController();
-			Stage stage = (Stage) gestEvent.getScene().getWindow();
-
+	        Stage stage = (Stage) gestEvent.getScene().getWindow();
     		stage.setTitle("Gestisci Eventi");
-    		
-    		
-    		
-    		gestisciEventiC.loadShop(idShop);
-    		
+    		gestisciBoundary.loadShop(idShop);
     		stage.setScene(new Scene(rootNode, 800, 500));
     		stage.setResizable(false);
     		stage.show();
