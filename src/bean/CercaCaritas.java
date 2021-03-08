@@ -273,7 +273,7 @@ public class CercaCaritas {
 			stage.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -299,7 +299,7 @@ public class CercaCaritas {
 			stage.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -322,7 +322,7 @@ public class CercaCaritas {
 			stage.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -344,7 +344,7 @@ public class CercaCaritas {
 			stage.show();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -363,7 +363,7 @@ public class CercaCaritas {
 			stage.setResizable(false);
 			stage.show();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 	}
