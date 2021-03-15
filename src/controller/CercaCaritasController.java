@@ -2,13 +2,11 @@ package controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import bean.CercaCaritas;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
 import dao.UserDao;
+import entity.CoordinateMap;
 import entity.MarkerID;
 
 
@@ -26,17 +24,14 @@ public class CercaCaritasController {
 	}
 
 	public void initMap2(int id, String lati, String longi) {
-		
 		coord.setCoordinate(id,lati,longi);
 	}
 	
-	
 
-	
 	public List<MarkerID> initMarkersCaritas(){
 		return cercaCaritasD.getCaritasMarkers();
-
 	}
+	
 	public List<MarkerID> initMarkersDonazione(){
 		return cercaCaritasD.assegnaMarkerDonazione();
 
@@ -45,13 +40,20 @@ public class CercaCaritasController {
 		return cercaCaritasD.assegnaMarkerEvento();
 
 	}
-
-	public void initUser(int idUser, CercaCaritas cercaBean) {
+	
+	public List<CoordinateMap> initMarkerCar(){
+		return cercaCaritasD.getCoordinateCaritas();
+	}
+	
+	public void initUser(int idUser, Object cercaBean) {
 		UserDao v = new UserDao();
 		String ruoloUser = v.trovaTipoUtente(idUser);
-		cercaBean.setUser(idUser, ruoloUser);
-		
-		
+		if(cercaBean.getClass() == bean.CercaCaritas.class) {
+			((bean.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
+		}
+		else if (cercaBean.getClass() == bean2.CercaCaritas.class) {
+			((bean2.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
+		}
 	}
 
 }

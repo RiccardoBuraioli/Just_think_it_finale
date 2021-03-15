@@ -5,7 +5,15 @@
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="UserHomeBoundary" property="*"/>
-
+<%
+	if(request.getParameter("CERCA CARITAS") != null){
+		if(UserHomeBoundary.searchCaritasButtonPressed() == 0){
+%>
+	<jsp:forward page="map.jsp"/>
+<%	
+		}
+	}
+%>		
 <!DOCTYPE html>
 <html>
 <head>

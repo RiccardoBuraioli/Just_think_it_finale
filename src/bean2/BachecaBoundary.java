@@ -1,10 +1,6 @@
 package bean2;
 
-
-import java.util.List;
 import controller.BachecaController;
-import entity.Necessita;
-
 
 public class BachecaBoundary {
 	private int idCar;
@@ -23,11 +19,12 @@ public class BachecaBoundary {
 			emailBoundary.loadEmail(idCar, idUte);
 		}
 
-/*	public void loadFormBoundary(int idCar, int idUte) {
+	
+	public void loadFormBoundary(int idCar, int idUte) {
 		this.idCar = idCar;
 		this.idUte = idUte;
 		BachecaController bachecaController = new BachecaController();
-		List<Necessita> necessita = bachecaController.loadForm(idCar);
+	/*	List<Necessita> necessita = bachecaController.loadForm(idCar);
 
 		for (int i = 0; i < necessita.size(); i++) {
 			Necessita tmp = necessita.get(i);
@@ -49,8 +46,7 @@ public class BachecaBoundary {
 
 			}
 
-		}
-
-	}*/
+		}*/
+	}
 
 }

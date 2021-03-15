@@ -7,13 +7,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="lib" path="/JustThinkIt/logback-classic-1.2.3.jar"/>
-	<classpathentry kind="lib" path="/JustThinkIt/logback-core-1.2.3.jar"/>
-	<classpathentry kind="lib" path="/JustThinkIt/mapjfx-1.33.2.jar" sourcepath="/JustThinkIt/mapjfx-demo-1.33.2.jar"/>
-	<classpathentry kind="lib" path="/JustThinkIt/mapjfx-demo-1.33.2.jar"/>
-	<classpathentry kind="lib" path="/JustThinkIt/slf4j-api-1.7.25.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 5.1/mysql-connector-java-5.1.49.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/mapjfx-1.33.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/mapjfx-demo-1.33.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

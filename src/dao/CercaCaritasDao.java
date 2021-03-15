@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 
 import com.sothawo.mapjfx.Coordinate;
 import com.sothawo.mapjfx.Marker;
-
+import entity.CoordinateMap;
 
 import entity.MarkerID;
 import connector.Connector;
@@ -137,6 +137,39 @@ public class CercaCaritasDao {
 	         }
 	     } return markerDonazione;
 		}
+	
+	
+	public List<CoordinateMap> getCoordinateCaritas() {
+		List<CoordinateMap> lista = new ArrayList<>();
+		String sql = "Call assegna_marker()";
+		ResultSet rs = null;
+		
+		try (Connection conn = connector.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				double lati = Double.parseDouble(rs.getString(this.latit));
+				double longi = Double.parseDouble(rs.getString(this.longit));
+				int codiceCaritas = rs.getInt("CodiceCaritas");
+				
+				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas);
+				lista.add(caritasCoordinate);
+	         } 
+	
+	     } catch (SQLException ex) {
+	         logger.debug(ex.getMessage());
+	     } finally {
+	         try {
+	             if (rs != null) rs.close();
+	         } catch (SQLException e) {
+	        	 logger.debug(e.getMessage());
+	         }
+	     }
+		return lista;
+		}
+	
 }
 	
 

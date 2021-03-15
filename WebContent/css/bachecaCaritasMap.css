@@ -1,0 +1,138 @@
+@charset "ISO-8859-1";
+
+body{
+	margin: 0;
+	padding:0;
+	font-family: sans-serif;
+	background: linear-gradinent(#E0EAFC,#CFDEF3);
+	height:100vh;
+}
+.mytabs {
+	position:absolute;
+	top:27%;
+	left:15%;
+        display: flex;
+        flex-wrap: wrap;
+        width: 520px;
+	height:150px;
+        margin: 30px auto;
+  }
+.mytabs input[type="radio"] {
+    display: none;
+}
+
+.mytabs label {
+   padding: 20px;
+    background: #e2e2e2;
+    font-weight: bold;
+ 	
+
+}
+
+.mytabs .tab {
+    width: 100%;
+    padding: 15px;
+    background:#e2e2e2;
+    order: 1;
+    display: none;
+
+}
+
+label {
+	color: white;
+
+}
+
+.mytabs input[type='radio']:checked + label + .tab {
+    display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+    background: red;
+}
+
+.header{
+	height: 60px;
+	background: red;
+	overflow: hidden;
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);	
+}
+
+.header h2{
+	position:absolute;
+	left:580px;
+	text-align:center;
+	color:white;
+}
+
+
+h4{
+	position:absolute;
+	top:7%;
+	font-size:35px;
+	left:400px;
+}
+
+.donazione button[type="submit"]
+{
+	position:absolute;
+	top:60%;
+	left:73%;
+	border-color:white;
+	outline:none;
+	height: 65px;
+	width:250px;
+	background: red;
+	color: #fff;
+	border-radius: 10px;
+	font-weight:bold;
+	font-size:25px;
+	cursor:pointer;	
+}
+
+.donazione button[type="submit"]:hover
+{
+	cursor: pointer;
+	background:yellow;
+	color: #000;
+}
+
+.contatta button[type="submit"]
+{
+	position:absolute;
+	top:45%;
+	left:73%;
+	border-color:white;
+	outline:none;
+	height: 65px;
+	width:250px;
+	background: red;
+	color: #fff;
+	border-radius: 10px;
+	font-weight:bold;
+	font-size:25px;
+	cursor:pointer;	
+}
+
+.contatta button[type="submit"]:hover
+{
+	cursor: pointer;
+	background:yellow;
+	color: #000;
+}
+
+.ind a{
+	position:absolute;
+	font-size:25px;
+	font-weight:bold;
+	top:87%;
+	left:8%;
+	color:blue;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color:rgb(6, 255, 0);
+}

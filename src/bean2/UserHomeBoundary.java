@@ -2,6 +2,8 @@ package bean2;
 
 
 
+import java.sql.SQLException;
+
 import controller.UserHomeController;
 
 
@@ -76,14 +78,12 @@ private int userId;
 
   
 
-  /*  @FXML
-    void searchCaritasButtonPressed(ActionEvent event) throws NumberFormatException, SQLException {
-    	
-    	TransizionePagine switchPage = new TransizionePagine();
-    	switchPage.apriMappa(this.userId, searchCaritasButton.getScene().getWindow());
 
-   
-    }*/
+    public int  searchCaritasButtonPressed() throws NumberFormatException, SQLException {
+    	TransizionePagine switchPage = new TransizionePagine();
+    	switchPage.apriMappa(this.userId);
+    	return 0;
+    }
  
 
 	public void initData(String nome, String cognome, int id) {

@@ -15,6 +15,13 @@
 <%
 }
 %>
+<%
+	if(request.getParameter("cercaCaritas") != null){
+%>
+		<jsp:forward page="map.jsp"/>
+<%	
+	}
+%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +50,7 @@
 	<button type="submit" name= "CANCELLA ACCOUNT" value="CANCELLA ACCOUNT">CANCELLA ACCOUNT</button>
 	</div>
 	<div class = "cercaCaritas">
-	<a href = ""><button type="submit" name= "" value="">CERCA CARITAS</button></a>
+	<button type="submit" name= "cercaCaritas" value="cercaCaritas">CERCA CARITAS</button></a>
 	</div>
 	<div class = "eventi">
 	<button type="submit" name= "GESTISCI EVENTI" value="GESTISCI EVENTI">GESTISCI EVENTI</button>

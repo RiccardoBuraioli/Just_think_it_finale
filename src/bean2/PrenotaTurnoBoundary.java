@@ -3,7 +3,7 @@ package bean2;
 
 
 import controller.PrenotaTurnoController;
-import entity.Orario;
+
 
 
 public class PrenotaTurnoBoundary {

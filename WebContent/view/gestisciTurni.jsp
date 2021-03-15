@@ -81,11 +81,11 @@ Class.forName("com.mysql.jdbc.Driver");
 	while (i < list.size()){
 %>
 <tr>
-<td><% out.println(list.get(i).getId()); %>
+<td style="word-break:break-all;"><% out.println(list.get(i).getId()); %>
 <td><% out.println(list.get(i).getGiorno());%> </td>
 <td><% out.println(list.get(i).getOraIn());%><% out.println(list.get(i).getOraFine()); %> </td>
 <td><% out.println(list.get(i).getPartecipanti()); %> </td>
-<td><% out.println(list.get(i).getNote()); %> </td>
+<td style="word-break:break-all;"><% out.println(list.get(i).getNote()); %> </td>
 </tr>
 
 

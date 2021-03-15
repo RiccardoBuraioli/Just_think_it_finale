@@ -1,10 +1,5 @@
 package bean2;
 
-
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import controller.CaritasHomeController;
 import controller.LoginController;
 import controller.ShopHomeController;
