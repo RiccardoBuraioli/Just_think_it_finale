@@ -149,8 +149,11 @@ public class EventoDao {
 
              if (rowAffected == 1) {
                  logger.debug(SUCCESS);
-                 return true;
-             } else logger.debug(FAILED);
+                 return false;
+             } else {
+            	 logger.debug(FAILED);             
+            	 return true;
+             }
 
 
          } catch (SQLException ex) {

@@ -16,8 +16,6 @@ public class CreaNecessitaController {
 	public int creaNecessita(String tipo, String urg, String desc) {
 		
 		Necessita necessita = new Necessita(tipo, desc, urg);
-		
-		
 		creaBachecaDao.creaNecessita(necessita, idCaritas);
 		return 0;
 		
