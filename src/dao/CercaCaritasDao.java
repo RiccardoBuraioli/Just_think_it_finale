@@ -154,7 +154,7 @@ public class CercaCaritasDao {
 				double longi = Double.parseDouble(rs.getString(this.longit));
 				int codiceCaritas = rs.getInt("CodiceCaritas");
 				
-				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas);
+				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas, 0);
 				lista.add(caritasCoordinate);
 	         } 
 	
@@ -168,6 +168,39 @@ public class CercaCaritasDao {
 	         }
 	     }
 		return lista;
+		}
+	
+public List<CoordinateMap> getCoordinateEvento() {
+		
+		List<CoordinateMap> markerEvento =new ArrayList<>();
+		
+		 String sql = "Call assegna_marker_evento()";
+	     ResultSet rs = null;
+	 
+	     try (Connection conn = connector.getConnection();
+	          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        
+	         rs = pstmt.executeQuery();
+
+	         while (rs.next()) {
+	        	 int codiceEvento = rs.getInt("codiceEv");
+	        	 double lati = Double.parseDouble(rs.getString(this.latit));
+	        	 double longi = Double.parseDouble(rs.getString(this.longit));
+					
+	        	 CoordinateMap eventoCoordinate = new CoordinateMap(lati,longi,0, codiceEvento);
+	        	 markerEvento.add(eventoCoordinate);	 
+	         } 
+
+	     } catch (SQLException ex) {
+	    	 logger.debug(ex.getMessage());
+	     } finally {
+	         try {
+	             if (rs != null) rs.close();
+	         } catch (SQLException e) {
+	        	 logger.debug(e.getMessage());
+	         }
+	     } return markerEvento;
 		}
 	
 }

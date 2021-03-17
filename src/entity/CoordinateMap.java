@@ -3,6 +3,13 @@ package entity;
 public class CoordinateMap {
 	private double  longitudine;
 	private double  latitudine;
+	private int evento;
+	public int getEvento() {
+		return evento;
+	}
+	public void setEvento(int evento) {
+		this.evento = evento;
+	}
 	private int idUtente;
 	
 	public double getLongitudine() {
@@ -18,9 +25,10 @@ public class CoordinateMap {
 		this.latitudine = latitudine;
 	}
 	
-	public CoordinateMap(double longi, double lati, int id){
+	public CoordinateMap(double longi, double lati, int id, int ev){
 		this.longitudine = longi;
 		this.latitudine = lati;		
+		this.setEvento(ev);
 		this.setIdUtente(id);
 	}
 	public int getIdUtente() {

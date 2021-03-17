@@ -114,6 +114,9 @@ public class CercaCaritas {
 		return cercaController.initMarkerCar();
 	}
 
+	public List<CoordinateMap> initMarkersEvento() {
+		return cercaController.initMarkerEvent();
+	}
 
 /*	public void initMapAndControls() {
 		// wire up the location buttons

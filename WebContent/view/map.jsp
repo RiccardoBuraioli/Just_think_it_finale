@@ -71,6 +71,20 @@
 	  }).addTo(map);
 
 </script>	
+<%  List<CoordinateMap> list2 = CercaCaritas.initMarkersEvento();
+int ii = 0;
+double x = 0;
+double y = 0;
+while (ii < list2.size()){
+	x = list2.get(ii).getLatitudine();
+	y = list2.get(ii).getLongitudine();
+	System.out.println(x);
+%>
+<script>	 
+  L.marker([<%=y%>,<%=x%>]).addTo(map);
+</script>
+<%ii++;} %>
+
 <% List<CoordinateMap> list = CercaCaritas.initMarkersCaritas();
 	int i = 0;
 	double myX = 0;
