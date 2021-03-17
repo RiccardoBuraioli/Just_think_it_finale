@@ -8,7 +8,15 @@
 
 
 <%
+
 	Class.forName("com.mysql.jdbc.Driver");
+<<<<<<< .mine
+	
+
+||||||| .r110
+
+=======
+>>>>>>> .r111
  	if(request.getParameter("login")!=null){
  		switch (LoginBoundary.loginPressed(request.getParameter("Username"), request.getParameter("Password"))){
  		case "Volontario":
