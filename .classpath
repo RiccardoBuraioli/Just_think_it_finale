@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 5.1/mysql-connector-java-5.1.49.jar"/>
 	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/mapjfx-1.33.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/HP/Desktop/git/mapjfx-demo-1.33.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
