@@ -4,6 +4,13 @@ public class CoordinateMap {
 	private double  longitudine;
 	private double  latitudine;
 	private int evento;
+	private int donazione;
+	public int getDonazione() {
+		return donazione;
+	}
+	public void setDonazione(int donazione) {
+		this.donazione = donazione;
+	}
 	public int getEvento() {
 		return evento;
 	}
@@ -25,9 +32,10 @@ public class CoordinateMap {
 		this.latitudine = latitudine;
 	}
 	
-	public CoordinateMap(double longi, double lati, int id, int ev){
+	public CoordinateMap(double longi, double lati, int id, int ev, int don){
 		this.longitudine = longi;
 		this.latitudine = lati;		
+		this.setDonazione(don);
 		this.setEvento(ev);
 		this.setIdUtente(id);
 	}

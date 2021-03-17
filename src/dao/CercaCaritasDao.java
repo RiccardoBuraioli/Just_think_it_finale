@@ -154,7 +154,7 @@ public class CercaCaritasDao {
 				double longi = Double.parseDouble(rs.getString(this.longit));
 				int codiceCaritas = rs.getInt("CodiceCaritas");
 				
-				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas, 0);
+				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas, 0,0);
 				lista.add(caritasCoordinate);
 	         } 
 	
@@ -188,7 +188,7 @@ public List<CoordinateMap> getCoordinateEvento() {
 	        	 double lati = Double.parseDouble(rs.getString(this.latit));
 	        	 double longi = Double.parseDouble(rs.getString(this.longit));
 					
-	        	 CoordinateMap eventoCoordinate = new CoordinateMap(lati,longi,0, codiceEvento);
+	        	 CoordinateMap eventoCoordinate = new CoordinateMap(lati,longi,0, codiceEvento,0);
 	        	 markerEvento.add(eventoCoordinate);	 
 	         } 
 
@@ -203,6 +203,40 @@ public List<CoordinateMap> getCoordinateEvento() {
 	     } return markerEvento;
 		}
 	
+
+	public List<CoordinateMap> getCoordinateDonazione() {
+	
+	List<CoordinateMap> markerDonazione =new ArrayList<>();
+	
+	 String sql = "Call assegna_marker_donazione()";
+     ResultSet rs = null;
+   
+
+     try (Connection conn = connector.getConnection();
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        
+         rs = pstmt.executeQuery();
+
+         while (rs.next()) {
+        	 int codiceDono = rs.getInt("codiceDono");
+        	 double lati = Double.parseDouble(rs.getString(this.latit));
+        	 double longi = Double.parseDouble(rs.getString(this.longit));
+        	 CoordinateMap donazioneCoordinate = new CoordinateMap(lati,longi,0,0, codiceDono);     	 
+        	 markerDonazione.add(donazioneCoordinate);
+        	 
+         } 
+
+     } catch (SQLException ex) {
+    	 logger.debug(ex.getMessage());
+     } finally {
+         try {
+             if (rs != null) rs.close();
+         } catch (SQLException e) {
+        	 logger.debug(e.getMessage());
+         }
+     } return markerDonazione;
+	}
 }
 	
 

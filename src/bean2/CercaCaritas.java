@@ -117,7 +117,10 @@ public class CercaCaritas {
 	public List<CoordinateMap> initMarkersEvento() {
 		return cercaController.initMarkerEvent();
 	}
-
+	
+	public List<CoordinateMap> initMarkersDonazione() {
+		return cercaController.initMarkerDonation();
+	}
 /*	public void initMapAndControls() {
 		// wire up the location buttons
 		buttonBack.setOnAction(event -> indietro());

@@ -49,6 +49,10 @@ public class CercaCaritasController {
 		return cercaCaritasD.getCoordinateEvento();
 	}
 	
+	public List<CoordinateMap> initMarkerDonation(){
+		return cercaCaritasD.getCoordinateEvento();
+	}
+	
 	public void initUser(int idUser, Object cercaBean) {
 		UserDao v = new UserDao();
 		String ruoloUser = v.trovaTipoUtente(idUser);

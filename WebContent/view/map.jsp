@@ -64,13 +64,27 @@
   <label for="4">INDICATORE</label>
 </div>
 <script>	
-	var map = L.map('map').setView([42.5, 12.05], 13);
+	var map = L.map('map').setView([41.87, 12.47], 10);
 
 	 	 var baselayer1 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	  }).addTo(map);
 
 </script>	
+<%  List<CoordinateMap> list3 = CercaCaritas.initMarkersDonazione();
+int s = 0;
+double x3 = 0;
+double y3 = 0;
+while (s < list3.size()){
+	x3 = list3.get(s).getLatitudine();
+	y3 = list3.get(s).getLongitudine();
+	System.out.println(s);
+%>
+<script>	 
+  L.marker([<%=y3%>,<%=x3%>]).addTo(map);
+</script>
+<%s++;} %>
+
 <%  List<CoordinateMap> list2 = CercaCaritas.initMarkersEvento();
 int ii = 0;
 double x = 0;
