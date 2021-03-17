@@ -63,25 +63,28 @@
   <input type="checkbox" class="gaucher" id="4" name="gaucher[]" onchange="processCheck(this)">
   <label for="4">INDICATORE</label>
 </div>
-
-<% List<CoordinateMap> list = CercaCaritas.initMarkersCaritas();
-	int i = 0;
-	double x = 0;
-	double y = 0;
-	while (i < list.size()){
-		x  = list.get(i).getLatitudine();
-		y = list.get(i).getLongitudine(); %>
-
-<script>	 
-
-
-		var map = L.map('map').setView([42.5, 12.05], 13);
+<script>	
+	var map = L.map('map').setView([42.5, 12.05], 13);
 
 	 	 var baselayer1 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	  }).addTo(map);
 
-	  L.marker([]).addTo(map);
+</script>	
+<% List<CoordinateMap> list = CercaCaritas.initMarkersCaritas();
+	int i = 0;
+	double myX = 0;
+	double myY = 0;
+	while (i < list.size()){
+		myX  = list.get(i).getLatitudine();
+		myY = list.get(i).getLongitudine(); 
+		System.out.println(myX);
+		
+		%>
+
+<script>	 
+
+	  L.marker([<%=myY%>,<%=myX%>]).addTo(map);
 	
 </script>
 <%i++;} %>

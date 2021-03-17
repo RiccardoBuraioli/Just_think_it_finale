@@ -70,13 +70,9 @@ public class LoginDao {
 
 	 
 	    public int returnID(String email) {
-	    	
-	    	String sql;
-	    	String resID = null;
-	    	int id;
-	    	
-	       	sql = "SELECT id_utente FROM utenti WHERE Email = ?";
-	    
+
+	    	int resID = 0;
+	    	String sql = "SELECT id_utente FROM utenti WHERE Email = ?";
 	    	ResultSet res = null;
 	    	try (Connection conn = connector.getConnection();
 	                PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -85,7 +81,7 @@ public class LoginDao {
 	               res = stmt.executeQuery();
 
 	               while (res.next()) {
-	            	   resID = res.getString("id_utente");
+	            	   resID = res.getInt("id_utente");
 	               }
 	           } catch (SQLException ex) {
 	               logger.debug(ex.getMessage());
@@ -97,8 +93,8 @@ public class LoginDao {
 	               }
 	           }
 	    	
-	    	id = Integer.parseInt(resID);
-	    	return id;
+	   
+	    	return resID;
 	    	
 	    }
 
