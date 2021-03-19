@@ -3,21 +3,8 @@ package entity;
 public class CoordinateMap {
 	private double  longitudine;
 	private double  latitudine;
-	private int evento;
-	private int donazione;
-	public int getDonazione() {
-		return donazione;
-	}
-	public void setDonazione(int donazione) {
-		this.donazione = donazione;
-	}
-	public int getEvento() {
-		return evento;
-	}
-	public void setEvento(int evento) {
-		this.evento = evento;
-	}
-	private int idUtente;
+	private int idMarker;
+
 	
 	public double getLongitudine() {
 		return longitudine;
@@ -32,18 +19,17 @@ public class CoordinateMap {
 		this.latitudine = latitudine;
 	}
 	
-	public CoordinateMap(double longi, double lati, int id, int ev, int don){
+	public CoordinateMap(double longi, double lati, int id){
 		this.longitudine = longi;
 		this.latitudine = lati;		
-		this.setDonazione(don);
-		this.setEvento(ev);
+		
 		this.setIdUtente(id);
 	}
-	public int getIdUtente() {
-		return idUtente;
+	public int getIdMarker() {
+		return idMarker;
 	}
-	public void setIdUtente(int idUtente) {
-		this.idUtente = idUtente;
+	public void setIdUtente(int idMark) {
+		this.idMarker = idMark;
 	}
 	
 }

@@ -154,7 +154,7 @@ public class CercaCaritasDao {
 				double longi = Double.parseDouble(rs.getString(this.longit));
 				int codiceCaritas = rs.getInt("CodiceCaritas");
 				
-				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas, 0,0);
+				CoordinateMap caritasCoordinate = new CoordinateMap(lati,longi, codiceCaritas);
 				lista.add(caritasCoordinate);
 	         } 
 	
@@ -188,7 +188,7 @@ public List<CoordinateMap> getCoordinateEvento() {
 	        	 double lati = Double.parseDouble(rs.getString(this.latit));
 	        	 double longi = Double.parseDouble(rs.getString(this.longit));
 					
-	        	 CoordinateMap eventoCoordinate = new CoordinateMap(lati,longi,0, codiceEvento,0);
+	        	 CoordinateMap eventoCoordinate = new CoordinateMap(lati,longi,codiceEvento);
 	        	 markerEvento.add(eventoCoordinate);	 
 	         } 
 
@@ -222,7 +222,7 @@ public List<CoordinateMap> getCoordinateEvento() {
         	 int codiceDono = rs.getInt("codiceDono");
         	 double lati = Double.parseDouble(rs.getString(this.latit));
         	 double longi = Double.parseDouble(rs.getString(this.longit));
-        	 CoordinateMap donazioneCoordinate = new CoordinateMap(lati,longi,0,0, codiceDono);     	 
+        	 CoordinateMap donazioneCoordinate = new CoordinateMap(lati,longi,codiceDono);     	 
         	 markerDonazione.add(donazioneCoordinate);
         	 
          } 

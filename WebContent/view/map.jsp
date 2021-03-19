@@ -70,6 +70,8 @@
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	  }).addTo(map);
 
+
+
 </script>	
 <%  List<CoordinateMap> list3 = CercaCaritas.initMarkersDonazione();
 int s = 0;
