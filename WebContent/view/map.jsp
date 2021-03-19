@@ -1,124 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import = "entity.CoordinateMap" %>
-
+ 
 <!-- dichiarazione e instanziazione di un loginBean !-->
 <jsp:useBean id="CercaCaritas" scope="application" class="bean2.CercaCaritas"/>
-
+ 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="CercaCaritas" property="*"/>
+ 
+ 
+<%
+    List<CoordinateMap> caritas = CercaCaritas.initMarkersCaritas();
+    List<CoordinateMap> evento = CercaCaritas.initMarkersEvento();
+    List<CoordinateMap> donazione = CercaCaritas.initMarkersDonazione();
+
+%>
 
 <!DOCTYPE html>
 <html>
-  <head>
-  	<link rel="stylesheet" href="../css/maps.css" />
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
-   <style>
-      #map {position: absolute; top: 80px; right: 0; bottom: 0; left: 320px; 	width: 1030px; height: 560px}
-    </style>
-  </head>
-  <body>
-   <form action = "map.jsp" name ="my" method = "POST">   
-       
-	<div class = "header">
-		<h2>JUST THINK IT</h2>
-	</div>
-  	<div class = "ind">
-		<a href= "">INDIETRO</a>
-	</div>
-   
-<div id="map"></div>
+<head>
+<title>Map populating form fields</title>
+<meta charset="utf-8" />
+<link rel="stylesheet"
+	href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<!-- original: http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css -->
+<style>
+html, body, #container, #map {
+	padding: 0;
+	margin: 0;
+}
 
-
-<div id="mostra-menu">
-<li>OPZIONI</li>
-  <ul id="menu-a-tendina">
-    <li>CREA PACCO DONAZIONE</li>
-    <li>PRENOTA TURNO VOLONTARIATO</li>
-    <li>VEDI BACHECA</li>
-  </ul>
-</div>
-
- 
-<div class = "check">
-<div>
-  <input type="checkbox" class="gaucher" id="1" name="gaucher[]" onchange="processCheck(this)">
-  <label for="1">CARITAS</label>
-</div>
-<div>
-  <input type="checkbox" class="gaucher" id="2" name="gaucher[]" onchange="processCheck(this)">
-  <label for="2">EVENTI</label>
-</div>
-
-<div>
-  <input type="checkbox" class="gaucher" id="3" name="gaucher[]" onchange="processCheck(this)">
-  <label for="3">DONAZIONI</label>
-</div>
-<div>
-  <input type="checkbox" class="gaucher" id="4" name="gaucher[]" onchange="processCheck(this)">
-  <label for="4">INDICATORE</label>
-</div>
-<script>	
-	var map = L.map('map').setView([41.87, 12.47], 10);
-
-	 	 var baselayer1 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	  }).addTo(map);
-
-
-
-</script>	
-<%  List<CoordinateMap> list3 = CercaCaritas.initMarkersDonazione();
-int s = 0;
-double x3 = 0;
-double y3 = 0;
-while (s < list3.size()){
-	x3 = list3.get(s).getLatitudine();
-	y3 = list3.get(s).getLongitudine();
-	System.out.println(s);
-%>
-<script>	 
-  L.marker([<%=y3%>,<%=x3%>]).addTo(map);
-</script>
-<%s++;} %>
-
-<%  List<CoordinateMap> list2 = CercaCaritas.initMarkersEvento();
-int ii = 0;
-double x = 0;
-double y = 0;
-while (ii < list2.size()){
-	x = list2.get(ii).getLatitudine();
-	y = list2.get(ii).getLongitudine();
-	System.out.println(x);
-%>
-<script>	 
-  L.marker([<%=y%>,<%=x%>]).addTo(map);
-</script>
-<%ii++;} %>
-
-<% List<CoordinateMap> list = CercaCaritas.initMarkersCaritas();
-	int i = 0;
-	double myX = 0;
-	double myY = 0;
-	while (i < list.size()){
-		myX  = list.get(i).getLatitudine();
-		myY = list.get(i).getLongitudine(); 
-		System.out.println(myX);
-		
-		%>
-
-<script>	 
-
-	  L.marker([<%=myY%>,<%=myX%>]).addTo(map);
-	
-</script>
-<%i++;} %>
-    </div>
+html, body, #map, #container {
+	height: 460px;
+}
+</style>
+</head>
+<body>
+	<form>
+		<label for="latitude">Latitude:</label> <input id="latitude"
+			type="text" /> <label for="longitude">Longitude:</label> <input
+			id="longitude" type="text" /> :: or, enter your own lat-long values
+		and <input type="button" value="Jump there"
+			onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
+		:: <a href="#" onclick="map.zoomOut(3, {animate:true})">zoom out</a>
+		:: :: <a href="#" onclick="map.zoomIn(3, {animate:true})">zoom in</a>
 	</form>
-  </body>
+	<div id="map"></div>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<!-- Orginal: http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js -->
+	<script>
+		var tileLayer = new L.TileLayer(
+				'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+				{
+					attribution : '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Contributors'
+				});
+		//remember last position
+		var rememberLat = document.getElementById('latitude').value;
+		var rememberLong = document.getElementById('longitude').value;
+		if (!rememberLat || !rememberLong) {
+			rememberLat = 41.87;
+			rememberLong = 12.47;
+		}
+		var map = new L.Map('map', {
+			'center' : [ rememberLat, rememberLong ],
+			'zoom' : 12,
+			'layers' : [ tileLayer ]
+		});
+		var marker = L.marker([ rememberLat, rememberLong ], {
+			draggable : true
+		}).addTo(map);
+		marker.on('dragend', function(e) {
+			updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+		});
+		map.on('click', function(e) {
+			marker.setLatLng(e.latlng);
+			updateLatLng(marker.getLatLng().lat, marker.getLatLng().lng);
+		});
+		function updateLatLng(lat, lng, reverse) {
+			if (reverse) {
+				marker.setLatLng([ lat, lng ]);
+				map.panTo([ lat, lng ]);
+			} else {
+				document.getElementById('latitude').value = marker.getLatLng().lat;
+				document.getElementById('longitude').value = marker.getLatLng().lng;
+				map.panTo([ lat, lng ]);
+			}
+		}
+	</script>
+</body>
 </html>

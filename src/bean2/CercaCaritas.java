@@ -121,6 +121,13 @@ public class CercaCaritas {
 	public List<CoordinateMap> initMarkersDonazione() {
 		return cercaController.initMarkerDonation();
 	}
+	
+	
+	public int getIdUte() {
+		return this.idUser;
+	}
+	
+	
 /*	public void initMapAndControls() {
 		// wire up the location buttons
 		buttonBack.setOnAction(event -> indietro());

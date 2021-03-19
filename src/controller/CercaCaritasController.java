@@ -63,5 +63,7 @@ public class CercaCaritasController {
 			((bean2.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
 		}
 	}
+	
+
 
 }
