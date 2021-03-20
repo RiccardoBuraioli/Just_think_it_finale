@@ -71,7 +71,7 @@ a:hover
 
 #mostra-menu{
 	position:absolute;
-	top:80px;
+	top:200px;
 	left:10px;
 }
 
@@ -94,3 +94,14 @@ li {
 #mostra-menu:hover #menu-a-tendina {
   display: block;
 }
+
+
+.hidden
+	{
+	position:absolute;
+ 	left:0px;
+ 	top:-500px;
+ 	width:1px;
+ 	height:1px;
+ 	overflow:hidden;
+ 	}

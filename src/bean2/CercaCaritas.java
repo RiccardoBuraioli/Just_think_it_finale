@@ -74,31 +74,31 @@ public class CercaCaritas {
 		return 2;
 	}
 	}
-	public void promuoviEvento(int idCar, int idShop) {
+	public void promuoviEvento(int idCar) {
 			PromuoviEventoBoundary promEvento = new PromuoviEventoBoundary();
-			promEvento.loadFormBoundary(idCar, idShop);
+			promEvento.loadFormBoundary(idCar, this.idUser);
 		}
 
 
-	public  void vediNecessita(int idCar, int idUt) {
+	public  void vediNecessita(int idCar) {
 			BachecaBoundary bacheca =  new BachecaBoundary();
-			bacheca.loadFormBoundary(idCar, idUt);
+			bacheca.loadFormBoundary(idCar, this.idUser);
 	}
 
-	public void apriDonazione(int idCar, int idUt) {
+	public void creaDonazione(int idCar) {
 			DonationBoundary donationBoundary = new DonationBoundary();
-			donationBoundary.initBoundary(idCar, idUt);
+			donationBoundary.initBoundary(idCar, this.idUser);
 	}
 
-	public void prenotaTurno(int idCar, int idUt) {
+	public void prenotaTurno(int idCar) {
 			PrenotaTurnoBoundary prenotaController = new PrenotaTurnoBoundary() ;
-			prenotaController.setData(idCar, idUt);		
+			prenotaController.setData(idCar, this.idUser);		
 	}
 	
 
-	public void partecipaEvento(int idEvent, int idUt) {
+	public void partecipaEvento(int idEvent) {
 			PartecipaEventoBoundary partecipaEvent = new PartecipaEventoBoundary();
-			partecipaEvent.setData(idEvent, idUt);
+			partecipaEvent.setData(idEvent, this.idUser);
 		}
 
 	// molto da cambiare

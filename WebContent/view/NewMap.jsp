@@ -34,7 +34,7 @@
   </head>
   <body>
   
-  <form action = "map.jsp" name ="my" method = "POST">   
+
 <input type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
  <a href="#" onclick="map.zoomOut(3, {animate:true})">zoom out</a> ::
  <a href="#" onclick="map.zoomIn(3, {animate:true})">zoom in</a>
@@ -60,8 +60,23 @@
   </ul>
 </div>
 
-<button id = "PaccoDonazione"  > Crea Pacco Donazione </button>
- 
+
+
+<div class =  "hidden">
+<label id = "Ciao" >Ciaoooo</label>
+ <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
+</div>
+<div id = "idd">Ciao sono lucia e sono una sirena</div>
+<button id = "marker" name = "marker"> Crea Pacco Donazione </button>
+
+<%
+	if(request.getParameter("marker") != null){
+		//CercaCaritas.creaDonazione();
+		System.out.println(request.getParameter("prova"));
+		
+	}
+%> 
+
 <div id="map"></div>
 <div class = "check">
 <div>
@@ -177,24 +192,26 @@
 		    		}
 		    	}
 		    	
-		
+		    	
 		
 		
       var layers = [layerCaritas, layerEvento, layerDonazioni];
 
       selId = null;
 
-        var obj;
-
+        var  tipo;
+        var id;
+        
       function onClick(e) {
-    	  obj = e.layer.feature.properties.popupContent;
+    	  tipo = e.layer.feature.properties.popupContent;
     	  
-    	  if(obj = "Caritas"){
-    		  
+    	  if(tipo == "Caritas"){
+			id = e.layer.feature.id; 
+			var p = document.getElementById("prova");
+			p.innerHTML = id;
+			
     	  }
-          alert(e.layer.feature.properties.popupContent);
-           obj = e;
-           
+          alert(e.layer.feature.properties.popupContent);           
         }
 
       function processCheck(checkbox) {
@@ -216,6 +233,6 @@
       }
 
     </script>
-    </form>
+   
     </body>
 </html>

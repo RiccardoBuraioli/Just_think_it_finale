@@ -9,7 +9,7 @@
 	if(request.getParameter("CERCA CARITAS") != null){
 		if(UserHomeBoundary.searchCaritasButtonPressed() == 0){
 %>
-	<jsp:forward page="map.jsp"/>
+	<jsp:forward page="NewMap.jsp"/>
 <%	
 		}
 	}
