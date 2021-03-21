@@ -27,6 +27,12 @@
 <%		
 	}}}
 	}
+	
+	String parametro = request.getParameter("prova");
+	System.out.println(parametro);
+	out.print("<b>"+parametro+"</b>");
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -35,12 +41,14 @@
 <meta charset="ISO-8859-1">
 <title>DONAZIONE</title>
 <link rel="stylesheet" href ="../css/creaDonazioneMap.css">
+
 </head>
 <body>
 	<form action = "creaDonazioneMap.jsp" name = "reg" method = "POST">
 	<div  align = "center" class = "header">
 				<h2>JUST THINK IT</h2>
 			</div>
+			<input type="text" id = "prova" name= "prova" placeholder=""/> 
 			<h4>La tua donazione è veramente importante per noi e fa la differenza </h4>
 			<div class = "don">
 		  <h3>Cosa vuoi donare?</h3>
@@ -60,5 +68,6 @@
 			<a href= "">INDIETRO</a>
 			</div>
 </form>
+
  </body>
 </html>

@@ -50,7 +50,7 @@ public class CercaCaritasController {
 	}
 	
 	public List<CoordinateMap> initMarkerDonation(){
-		return cercaCaritasD.getCoordinateEvento();
+		return cercaCaritasD.getCoordinateDonazione();
 	}
 	
 	public void initUser(int idUser, Object cercaBean) {

@@ -33,15 +33,12 @@
     </style>
     <script type="text/javascript">
     	var idMarker = 0;
-    	
-    	function creaPacco(){
-    		location.href="./NewMap.jsp?marker=si&prova="+ idMarker;
-    	}
+    
     </script>
   </head>
   <body>
   
-
+<form action = "NewMap.jsp" name = "reg" method = "POST">
 <input type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
  <a href="#" onclick="map.zoomOut(3, {animate:true})">zoom out</a> ::
  <a href="#" onclick="map.zoomIn(3, {animate:true})">zoom in</a>
@@ -66,26 +63,18 @@
     <li>VEDI BACHECA</li>
   </ul>
 </div>
+ </form>
 
 
-
+   
 <div class =  "hidden"></div>
 <label id = "Ciao" >Ciaoooo</label>
- <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
 
 <div id = "idd">Ciao sono lucia e sono una sirena</div>
 <button id = "marker" name = "marker" onclick="creaPacco()"> Crea Pacco Donazione </button>
 
-<%
-	if(request.getParameter("marker") != null){
-		//CercaCaritas.creaDonazione();
-		String parametro = request.getParameter("prova");
-		System.out.println(parametro);
-		out.print("<b>"+parametro+"</b>");
-		//Preleva dati dal db
-	}
-%> 
 
+ <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
 
 <div id="map"></div>
 <div class = "check">
@@ -107,12 +96,20 @@
   <label for="4">MioMarker</label>
 </div>
 </div>
-    <script>
+
 
 
 
     <% 
 
+	if(request.getParameter("marker") != null){
+		
+	String parametro = request.getParameter("prova");
+	System.out.println(parametro);
+	out.print("<b>"+parametro+"</b>");
+	CercaCaritas.creaDonazione(Integer.parseInt(parametro));
+
+	}
 
         String jsMarker = "";
         for(int i=0; i< caritas.size(); i++){
@@ -155,6 +152,8 @@
         
 
     %>
+   <script>
+    
     var caritasMarker = {"type": "FeatureCollection","features": [ <%= jsMarker %> ]};
 
     var eventoMarker= {"type": "FeatureCollection","features": [ <%= jsMarkerEvento %> ]};
@@ -189,7 +188,7 @@
 		    		});
 		
 		    	
-		    	
+		    
 		    	
 		    	function updateLatLng(lat,lng,reverse) {
 		    		if(reverse) {
@@ -212,15 +211,18 @@
         var  tipo;
         var id;
         
+    	function creaPacco(){
+    		location.href="./creaDonazioneMap.jsp?prova="+ idMarker;
+    	
+    	} 
+        
+        
       function onClick(e) {
     	  tipo = e.layer.feature.properties.popupContent;
     	  
     	  if(tipo == "Caritas"){
-			id = e.layer.feature.id; 
-			//document.getElementById("prova").value = id;
-			idMarker = id;
-			//p.innerHTML = id;
-			
+    		  idMarker= e.layer.feature.id; 
+		
     	  }
           alert(e.layer.feature.properties.popupContent);           
         }
@@ -244,6 +246,6 @@
       }
 
     </script>
-   
+
     </body>
 </html>
