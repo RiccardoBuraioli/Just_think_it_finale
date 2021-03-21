@@ -31,6 +31,13 @@
      <style>
       #map {position: absolute; top: 80px; right: 0; bottom: 0; left: 320px;     width: 1030px; height: 560px}
     </style>
+    <script type="text/javascript">
+    	var idMarker = 0;
+    	
+    	function creaPacco(){
+    		location.href="./NewMap.jsp?marker=si&prova="+ idMarker;
+    	}
+    </script>
   </head>
   <body>
   
@@ -62,20 +69,23 @@
 
 
 
-<div class =  "hidden">
+<div class =  "hidden"></div>
 <label id = "Ciao" >Ciaoooo</label>
  <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
-</div>
+
 <div id = "idd">Ciao sono lucia e sono una sirena</div>
-<button id = "marker" name = "marker"> Crea Pacco Donazione </button>
+<button id = "marker" name = "marker" onclick="creaPacco()"> Crea Pacco Donazione </button>
 
 <%
 	if(request.getParameter("marker") != null){
 		//CercaCaritas.creaDonazione();
-		System.out.println(request.getParameter("prova"));
-		
+		String parametro = request.getParameter("prova");
+		System.out.println(parametro);
+		out.print("<b>"+parametro+"</b>");
+		//Preleva dati dal db
 	}
 %> 
+
 
 <div id="map"></div>
 <div class = "check">
@@ -207,8 +217,9 @@
     	  
     	  if(tipo == "Caritas"){
 			id = e.layer.feature.id; 
-			var p = document.getElementById("prova");
-			p.innerHTML = id;
+			//document.getElementById("prova").value = id;
+			idMarker = id;
+			//p.innerHTML = id;
 			
     	  }
           alert(e.layer.feature.properties.popupContent);           
