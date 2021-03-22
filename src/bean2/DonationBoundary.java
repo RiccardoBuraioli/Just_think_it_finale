@@ -11,17 +11,21 @@ public class DonationBoundary {
 	
 
 	private DonationController controller;
+	private int utente;
+	private int idCar;
 
 	public DonationBoundary() {
 		controller = DonationController.getInstance();
 	}
-
 	
-	public int creaDonazione(int tipo, String indirizzo) {
+	
+	
+	public int creaDonazione(int tipo, String indirizzo,String descrizione, String idCaritas){
+		//int idCar = Integer.parseInt(idCaritas);
 		controller.setTipologia(this.tipo);
 		controller.setIndirizzo(this.indirizzo);
 		controller.setDescrizione(this.descrizione);
-		controller.creaDonazione();
+		controller.creaDonazione2( tipo , indirizzo, descrizione,this.utente,this.idCar);
 		return 0;
 	}
 	
@@ -31,6 +35,8 @@ public class DonationBoundary {
 	
 
 	public void initBoundary(int idCar, int idUte) {
+		this.utente = idUte;
+		this.idCar = idCar;
 		controller.initController(idCar, idUte);
 	}
 

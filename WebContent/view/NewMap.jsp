@@ -4,48 +4,48 @@
 <%@ page import ="java.util.ArrayList"%>
 <%@ page import ="java.util.List"%>
 <%@ page import = "entity.CoordinateMap" %>
- 
+<%Class.forName("com.mysql.jdbc.Driver"); %>
 <!-- dichiarazione e instanziazione di un loginBean !-->
 <jsp:useBean id="CercaCaritas" scope="application" class="bean2.CercaCaritas"/>
  
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="CercaCaritas" property="*"/>
  
- 
+
 <%
+
     List<CoordinateMap> caritas = CercaCaritas.initMarkersCaritas();
     List<CoordinateMap> evento = CercaCaritas.initMarkersEvento();
     List<CoordinateMap> donazione = CercaCaritas.initMarkersDonazione();
 
 %>
- 
+
 <!DOCTYPE html>
 <html>
     <head>
-      <link rel="stylesheet" href="../css/maps.css" />
+      <link rel="stylesheet" href="../css/map.css" />
       <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
       <meta charset="ISO-8859-1">
       <title>MAPPA</title>
      <style>
-      #map {position: absolute; top: 80px; right: 0; bottom: 0; left: 320px;     width: 1030px; height: 560px}
+      #map {position: absolute; top: 110px; right: 0; bottom: 0; left: 320px;     width: 1030px; height: 530px}
     </style>
-    <script type="text/javascript">
-    	var idMarker = 0;
-    
-    </script>
   </head>
+  <script type="text/javascript">
+    	var idMarker = 0;
+    </script>
   <body>
-  
+
 <form action = "NewMap.jsp" name = "reg" method = "POST">
-<input type="button" value="Jump there" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
- <a href="#" onclick="map.zoomOut(3, {animate:true})">zoom out</a> ::
- <a href="#" onclick="map.zoomIn(3, {animate:true})">zoom in</a>
+<div class = "cordinate">
+<input type="button" value="INDICATORE" onClick="updateLatLng(document.getElementById('latitude').value,document.getElementById('longitude').value,1)">
  <label for="latitude">Latitude:</label>
 <input id="latitude" type="text" />
 <label for="longitude">Longitude:</label>
 <input id="longitude" type="text" />
+</div>
     <div class = "header">
         <h2>JUST THINK IT</h2>
     </div>
@@ -56,25 +56,20 @@
 
 
 <div id="mostra-menu">
-<li>OPZIONI</li>
-  <ul id="menu-a-tendina">
-    <li>CREA PACCO DONAZIONE</li>
+<!--</li>
     <li>PRENOTA TURNO VOLONTARIATO</li>
     <li>VEDI BACHECA</li>
-  </ul>
+  </ul>  -->
 </div>
- </form>
 
 
-   
-<div class =  "hidden"></div>
-<label id = "Ciao" >Ciaoooo</label>
 
-<div id = "idd">Ciao sono lucia e sono una sirena</div>
-<button id = "marker" name = "marker" onclick="creaPacco()"> Crea Pacco Donazione </button>
+ <button id = "marker" name = "marker" >Crea Pacco Donazione</button> 
 
-
+<div class =  "hidden">
  <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
+</div>
+</form>
 
 <div id="map"></div>
 <div class = "check">
@@ -101,15 +96,19 @@
 
 
     <% 
-
-	if(request.getParameter("marker") != null){
+  
+    if(request.getParameter("marker") != null){
+     	String parametro = request.getParameter("prova");
+    	System.out.println(parametro);
+    	out.print("<b>"+parametro+"</b>");
+    	CercaCaritas.creaDonazione(Integer.parseInt(parametro));
+%>
 		
-	String parametro = request.getParameter("prova");
-	System.out.println(parametro);
-	out.print("<b>"+parametro+"</b>");
-	CercaCaritas.creaDonazione(Integer.parseInt(parametro));
-
-	}
+ 			<jsp:forward page="creaDonazioneMap.jsp"/>
+<%
+    	}
+   
+	
 
         String jsMarker = "";
         for(int i=0; i< caritas.size(); i++){
@@ -212,7 +211,7 @@
         var id;
         
     	function creaPacco(){
-    		location.href="./creaDonazioneMap.jsp?prova="+ idMarker;
+    	location.href="./creaDonazioneMap.jsp?prova="+ idMarker;
     	
     	} 
         
@@ -222,7 +221,7 @@
     	  
     	  if(tipo == "Caritas"){
     		  idMarker= e.layer.feature.id; 
-		
+    		  document.getElementById("prova").value=idMarker;
     	  }
           alert(e.layer.feature.properties.popupContent);           
         }

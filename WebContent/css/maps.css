@@ -105,3 +105,9 @@ li {
  	height:1px;
  	overflow:hidden;
  	}
+ 	
+.cordinate{
+	position:absolute;
+	left: 800px;
+	top:80px;
+}

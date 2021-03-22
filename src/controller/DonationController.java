@@ -54,5 +54,16 @@ public class DonationController {
 	public int creaDonazione() {
 		return donazioneDao.creaDonazione(donazione);
 	}
-
+	
+	
+	
+	
+	public int creaDonazione2(int tipo, String indirizzo, String descrizione, int idUtente, int idCaritas) {
+		
+		Donazione don = new Donazione(descrizione,  indirizzo, idUtente,idCaritas,tipo);
+		
+		
+		
+		return donazioneDao.creaDonazione(don);
+	}
 }

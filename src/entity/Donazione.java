@@ -7,16 +7,15 @@ public class Donazione {
 	private String indirizzo;
 	private int idUtente;
 	private int idCaritas;
-	private Coordinate coordDonazione;
+	
 	private int tipologia;
 	
 
-	public Donazione( String descrizione, String indirizzo,int idUtente, int idCaritas, Coordinate coordDonazione, int tipologia) {
+	public Donazione( String descrizione, String indirizzo,int idUtente, int idCaritas, int tipologia) {
 		this.descrizione = descrizione;
 		this.indirizzo = indirizzo;
 		this.idCaritas = idCaritas;
 		this.idUtente = idUtente;
-		this.coordDonazione = coordDonazione;
 		this.tipologia = tipologia;
 	}
 
@@ -25,16 +24,13 @@ public class Donazione {
 		this.indirizzo= "";
 		this.idUtente= 0;
 		this.idCaritas= 0;
-		this.coordDonazione= null;
+		
 		this.tipologia= 0;
 		
 	}
 	
 
-	public String getCoord() {
-		
-		return ""+ this.coordDonazione + "";
-	}
+	
 
 	public String getDescrizione() {
 		return descrizione;
@@ -68,13 +64,6 @@ public class Donazione {
 		this.idCaritas = idCaritas;
 	}
 
-	public Coordinate getCoordDonazione() {
-		return coordDonazione;
-	}
-
-	public void setCoordDonazione(Coordinate coordDonazione) {
-		this.coordDonazione = coordDonazione;
-	}
 
 	public int getTipologia() {
 		return tipologia;

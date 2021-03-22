@@ -31,6 +31,7 @@ public class CercaCaritas {
 	private static final String bac = "buttonBacheca";
 	private int idCaritas;
 	private int idEvento;
+
 	private String ruolo;
 	private int idUser;
 	private String v = "Volontario";
@@ -87,6 +88,7 @@ public class CercaCaritas {
 
 	public void creaDonazione(int idCar) {
 			DonationBoundary donationBoundary = new DonationBoundary();
+			System.out.println("Sono io, su cercaCaritas!!" +idCar);
 			donationBoundary.initBoundary(idCar, this.idUser);
 	}
 
@@ -122,6 +124,12 @@ public class CercaCaritas {
 		return cercaController.initMarkerDonation();
 	}
 	
+	public int getIdEvento() {
+		return idEvento;
+	}
+	public void setIdEvento(int idEvento) {
+		this.idEvento = idEvento;
+	}
 	
 	public int getIdUte() {
 		return this.idUser;
@@ -525,5 +533,11 @@ public class CercaCaritas {
 		this.ruolo = ruolo;
 		
 
+	}
+	public int getIdCaritas() {
+		return idCaritas;
+	}
+	public void setIdCaritas(int idCaritas) {
+		this.idCaritas = idCaritas;
 	}
 }
