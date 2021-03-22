@@ -35,6 +35,7 @@
   </head>
   <script type="text/javascript">
     	var idMarker = 0;
+    
     </script>
   <body>
 
@@ -64,10 +65,16 @@
 
 
 
- <button id = "marker" name = "marker" >Crea Pacco Donazione</button> 
+<button id = "donazione" name = "donazione" >CREA DONAZIONE</button> 
+<button id = "evento" name = "evento">CREA EVENTO</button>
+<button id = "turno" name = "turno">PRENOTA TURNO</button>
+<button id = "necessita" name = "necessita">VEDI BACHECA</button>
 
 <div class =  "hidden">
- <input type="text" id = "prova" name= "prova" placeholder="es. Mario"/> 
+ <input type="text" id = "donazioneInput" name= "donazioneInput"> 
+ <input type="text" id = "turnoInput" name= "turnoInput"> 
+ <input type="text" id = "eventoInput" name= "eventoInput"> 
+ <input type="text" id = "necessitaInput" name= "necessitaInput">
 </div>
 </form>
 
@@ -95,21 +102,44 @@
 
 
 
-    <% 
-  
-    if(request.getParameter("marker") != null){
-     	String parametro = request.getParameter("prova");
+<%  
+    if(request.getParameter("donazione") != null){
+     	String parametro = request.getParameter("donazioneInput");
     	System.out.println(parametro);
     	out.print("<b>"+parametro+"</b>");
     	CercaCaritas.creaDonazione(Integer.parseInt(parametro));
 %>
-		
  			<jsp:forward page="creaDonazioneMap.jsp"/>
 <%
-    	}
-   
-	
-
+    }   
+    if(request.getParameter("evento") != null){
+     	String parametroEvento = request.getParameter("eventoInput");
+    	System.out.println(parametroEvento);
+    	out.print("<b>"+parametroEvento+"</b>");
+%>
+		<jsp:forward page="promuoviEventoMap.jsp"/>
+<%
+    }
+    
+    if(request.getParameter("turno") != null){
+     	String parametroTurno = request.getParameter("turnoInput");
+    	System.out.println(parametroTurno);
+    	out.print("<b>"+parametroTurno+"</b>");
+    	CercaCaritas.prenotaTurno(Integer.parseInt(parametroTurno));
+%>
+		<jsp:forward page="prenotaTurnoMap.jsp"/>
+<%
+}
+    if(request.getParameter("necessita") != null){
+     	String parametroNecessita = request.getParameter("necessitaInput");
+    	System.out.println(parametroNecessita);
+    	out.print("<b>"+parametroNecessita+"</b>");
+    	CercaCaritas.prenotaTurno(Integer.parseInt(parametroNecessita));
+%>
+		<jsp:forward page="bachecaCaritasMap.jsp"/>
+<%
+}
+    
         String jsMarker = "";
         for(int i=0; i< caritas.size(); i++){
             double myY = caritas.get(i).getLongitudine();
@@ -209,20 +239,18 @@
 
         var  tipo;
         var id;
-        
-    	function creaPacco(){
-    	location.href="./creaDonazioneMap.jsp?prova="+ idMarker;
-    	
-    	} 
-        
-        
+       
+           
       function onClick(e) {
     	  tipo = e.layer.feature.properties.popupContent;
     	  
     	  if(tipo == "Caritas"){
     		  idMarker= e.layer.feature.id; 
-    		  document.getElementById("prova").value=idMarker;
-    	  }
+    		  document.getElementById("donazioneInput").value=idMarker;
+    		  document.getElementById("turnoInput").value=idMarker;
+    		  document.getElementById("necessitaInput").value=idMarker;
+    		  document.getElementById("eventoInput").value=idMarker;       	  
+    	  }  	  
           alert(e.layer.feature.properties.popupContent);           
         }
 

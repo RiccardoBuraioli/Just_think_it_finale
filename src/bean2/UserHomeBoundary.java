@@ -9,6 +9,9 @@ import controller.UserHomeController;
 
 
 public class UserHomeBoundary{
+
+
+
 /**
 	 * 
 	 */
@@ -91,9 +94,6 @@ private int userId;
         this.userId = id;
   
     }
-    
-    
-
 }
 
 

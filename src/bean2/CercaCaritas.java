@@ -94,12 +94,14 @@ public class CercaCaritas {
 
 	public void prenotaTurno(int idCar) {
 			PrenotaTurnoBoundary prenotaController = new PrenotaTurnoBoundary() ;
+			System.out.println("Sono io caritas turno, su cercaCaritas!!" +idCar);
 			prenotaController.setData(idCar, this.idUser);		
 	}
 	
 
 	public void partecipaEvento(int idEvent) {
 			PartecipaEventoBoundary partecipaEvent = new PartecipaEventoBoundary();
+			System.out.println("Sono io caritas evento, su cercaCaritas!!" + idEvent);
 			partecipaEvent.setData(idEvent, this.idUser);
 		}
 

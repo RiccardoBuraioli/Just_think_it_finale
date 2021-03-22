@@ -62,6 +62,5 @@
 			<a href= "">INDIETRO</a>
 			</div>
 	</form>
-	<input type="text" id = "prova" name= "prova" placeholder=""/> 
  </body>
 </html>
