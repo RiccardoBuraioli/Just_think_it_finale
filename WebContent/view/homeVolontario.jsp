@@ -7,7 +7,7 @@
 <jsp:setProperty name="UserHomeBoundary" property="*"/>
 <%
 	if(request.getParameter("CERCA CARITAS") != null){
-		if(UserHomeBoundary.searchCaritasButtonPressed() == 0){
+		if(UserHomeBoundary.getInstance().searchCaritasButtonPressed() == 0){
 %>
 	<jsp:forward page="NewMap.jsp"/>
 <%	

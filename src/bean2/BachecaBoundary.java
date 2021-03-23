@@ -5,11 +5,11 @@ import controller.BachecaController;
 public class BachecaBoundary {
 	private int idCar;
 	private int idUte;
-
+	private DonationBoundary donationBoundary;
 	
 
 	public void creaDonazione() {
-			DonationBoundary donationBoundary = new DonationBoundary();
+			donationBoundary =donationBoundary.getInstance();
 			donationBoundary.initBoundary(idCar, idUte);
 	}
 

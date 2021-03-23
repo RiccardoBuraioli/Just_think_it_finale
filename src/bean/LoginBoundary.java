@@ -53,9 +53,9 @@ public class LoginBoundary {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 				Parent root = loader.load();
-				userHomeBoundary = userHomeBoundary.getInstance();
-				userHomeBoundary = loader.getController();
 				
+				userHomeBoundary = loader.getController();
+				userHomeBoundary = userHomeBoundary.getInstance();
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				

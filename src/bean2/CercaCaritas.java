@@ -44,7 +44,7 @@ public class CercaCaritas {
 	
 	
 
-
+	private static CercaCaritas instance  = null;
 
 	/** default zoom value. */
 	private static final int ZOOMDEFAULT = 14;
@@ -55,8 +55,18 @@ public class CercaCaritas {
 	private List<CoordinateMap> markerCaritas;
 	private List<CoordinateMap> markerEventi;
 	private List<CoordinateMap> markerDonazioni;
+	private DonationBoundary donationBoundary;
 
-
+	
+	public static CercaCaritas getInstance() throws NumberFormatException, SQLException {
+		if(instance == null) {
+			instance = new CercaCaritas();
+		}
+		return instance;
+		}
+	
+	
+	
 	
 	public int indietro() {
 	if (ruolo.equals(v)) {				
@@ -87,7 +97,7 @@ public class CercaCaritas {
 	}
 
 	public void creaDonazione(int idCar) {
-			DonationBoundary donationBoundary = new DonationBoundary();
+			donationBoundary =  donationBoundary.getInstance();
 			System.out.println("Sono io, su cercaCaritas!!" +idCar);
 			donationBoundary.initBoundary(idCar, this.idUser);
 	}
@@ -109,7 +119,7 @@ public class CercaCaritas {
 
 	public CercaCaritas() throws NumberFormatException, SQLException {
 		cercaController = new CercaCaritasController();
-		initMarkersCaritas();
+	
 	}
 
 	

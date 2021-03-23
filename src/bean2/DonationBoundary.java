@@ -9,18 +9,28 @@ public class DonationBoundary {
 	private String descrizione;
 	private int tipo;
 	
-
+	private static DonationBoundary instance = null;
 	private DonationController controller;
 	private int utente;
 	private int idCar;
 
+	
+	public static DonationBoundary getInstance() {
+		if(instance == null) {
+			instance = new DonationBoundary();
+		}
+		return instance;
+		}
+	
+	
+	
 	public DonationBoundary() {
 		controller = DonationController.getInstance();
 	}
 	
 	
 	
-	public int creaDonazione(int tipo, String indirizzo,String descrizione, String idCaritas){
+	public int creaDonazione(int tipo, String indirizzo,String descrizione){
 		//int idCar = Integer.parseInt(idCaritas);
 		controller.setTipologia(this.tipo);
 		controller.setIndirizzo(this.indirizzo);

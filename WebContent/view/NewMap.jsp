@@ -107,7 +107,7 @@
      	String parametro = request.getParameter("donazioneInput");
     	System.out.println(parametro);
     	out.print("<b>"+parametro+"</b>");
-    	CercaCaritas.creaDonazione(Integer.parseInt(parametro));
+    	CercaCaritas.getInstance().creaDonazione(Integer.parseInt(parametro));
 %>
  			<jsp:forward page="creaDonazioneMap.jsp"/>
 <%

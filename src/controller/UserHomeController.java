@@ -1,5 +1,6 @@
 package controller;
 
+import bean2.UserHomeBoundary;
 import dao.UserDao;
 import dao.VolunteerRepository;
 import entity.VolunteerUser;
@@ -8,7 +9,7 @@ import entity.VolunteerUser;
 
 public  class UserHomeController{
 	
-
+	private UserHomeBoundary userHomeBound; 
 	
 	
 	public UserHomeController() {
@@ -36,7 +37,8 @@ public  class UserHomeController{
 			((bean.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
 		}
 		else if(userHomeBoundary.getClass() == bean2.UserHomeBoundary.class){
-			((bean2.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
+			((bean2.UserHomeBoundary) userHomeBoundary).getInstance().initData(user.getNome(), user.getCognome(), user.getId());
+			//((bean2.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
 		}
     }
 

@@ -7,7 +7,7 @@ import controller.CercaCaritasController;
 
 
 public class TransizionePagine {
-
+	private bean2.CercaCaritas cercaCaritasBean;
 
 	public TransizionePagine() {
 		//default
@@ -15,7 +15,8 @@ public class TransizionePagine {
 				
 	
 	public void apriMappa(int idUser) throws NumberFormatException, SQLException {
-	        CercaCaritas cercaCaritasBean = new CercaCaritas();
+	        
+	        cercaCaritasBean = cercaCaritasBean.getInstance();
 	        CercaCaritasController controller = new CercaCaritasController(); 
 	        controller.initUser(idUser, cercaCaritasBean);
 	        //final Projection projection = Projection.WEB_MERCATOR;	      

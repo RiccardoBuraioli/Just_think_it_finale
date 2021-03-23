@@ -11,7 +11,7 @@
 	if(request.getParameter("CONFERMA")!=null){
 		if("clothes".equals(request.getParameter("tipo"))){
 			if (request.getParameter("tipo") != null && request.getParameter("tipo") != "" && request.getParameter("descrizione") != null && request.getParameter("descrizione") != "" && request.getParameter("IndirizzoVolontario") != null && request.getParameter("IndirizzoVolontario") != ""){
-				if ((DonationBoundary.creaDonazione(1,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione"), "0" )== 0)){
+				if ((DonationBoundary.creaDonazione(1,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione") )== 0)){
 					
 %>
 		<jsp:forward page="NewMap.jsp"/>
@@ -20,7 +20,7 @@
 		
 		if("food".equals(request.getParameter("tipo"))){
 			if (request.getParameter("tipo") != null && request.getParameter("tipo") != "" && request.getParameter("descrizione") != null && request.getParameter("descrizione") != "" && request.getParameter("IndirizzoVolontario") != null && request.getParameter("IndirizzoVolontario") != ""){
-				if ((DonationBoundary.creaDonazione(2,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione"), "0")== 0)){
+				if ((DonationBoundary.getInstance().creaDonazione(2,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione"))== 0)){
 %>
 	<jsp:forward page="NewMap.jsp"/>
 <%		

@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -53,16 +54,17 @@ public class CercaCaritasController {
 		return cercaCaritasD.getCoordinateDonazione();
 	}
 	
-	public void initUser(int idUser, Object cercaBean) {
+	public void initUser(int idUser, Object cercaBean) throws NumberFormatException, SQLException {
 		UserDao v = new UserDao();
 		String ruoloUser = v.trovaTipoUtente(idUser);
 		if(cercaBean.getClass() == bean.CercaCaritas.class) {
 			((bean.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
 		}
 		else if (cercaBean.getClass() == bean2.CercaCaritas.class) {
-			((bean2.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
+			((bean2.CercaCaritas) cercaBean).getInstance().setUser(idUser, ruoloUser);
 		}
 	}
+	
 	
 
 
