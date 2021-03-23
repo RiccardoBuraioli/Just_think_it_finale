@@ -85,9 +85,6 @@ public class CercaCaritas {
 	private List<MarkerID> markerDonazioni;
 
 
-
-
-
 	private Marker markerClick;
 
 	/** the labels. */
@@ -378,9 +375,7 @@ public class CercaCaritas {
 
 	// molto da cambiare
 
-	public CercaCaritas() throws NumberFormatException, SQLException {
-
-		
+	public CercaCaritas() throws NumberFormatException, SQLException {	
 		cercaController = new CercaCaritasController();
 		initMarkers();
 

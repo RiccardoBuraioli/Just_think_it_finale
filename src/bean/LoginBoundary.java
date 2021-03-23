@@ -55,7 +55,7 @@ public class LoginBoundary {
 				Parent root = loader.load();
 				
 				userHomeBoundary = loader.getController();
-				userHomeBoundary = userHomeBoundary.getInstance();
+				//userHomeBoundary = userHomeBoundary.getInstance();
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				

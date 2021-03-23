@@ -125,7 +125,7 @@
      	String parametroTurno = request.getParameter("turnoInput");
     	System.out.println(parametroTurno);
     	out.print("<b>"+parametroTurno+"</b>");
-    	CercaCaritas.prenotaTurno(Integer.parseInt(parametroTurno));
+    	CercaCaritas.getInstance().prenotaTurno(Integer.parseInt(parametroTurno));
 %>
 		<jsp:forward page="prenotaTurnoMap.jsp"/>
 <%
@@ -134,7 +134,7 @@
      	String parametroNecessita = request.getParameter("necessitaInput");
     	System.out.println(parametroNecessita);
     	out.print("<b>"+parametroNecessita+"</b>");
-    	CercaCaritas.prenotaTurno(Integer.parseInt(parametroNecessita));
+    	CercaCaritas.getInstance().prenotaTurno(Integer.parseInt(parametroNecessita));
 %>
 		<jsp:forward page="bachecaCaritasMap.jsp"/>
 <%

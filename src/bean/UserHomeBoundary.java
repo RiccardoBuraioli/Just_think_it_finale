@@ -135,7 +135,7 @@ private int userId;
  
 
 	public void initData(String nome, String cognome, int id) {
-    	this.nomeCognome.setText(nome + " "+ cognome);
+     	this.nomeCognome.setText(nome + " "+ cognome);
     /*	final Circle clip = new Circle();
     	clip.setCenterX(25);
     	clip.setCenterY(58);
