@@ -3,6 +3,7 @@ package bean2;
 
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import controller.GestioneTurniCaritas;
@@ -16,6 +17,11 @@ public class GestisciTurniBoundary {
 		private CaritasUser caritas;
 	    private GestioneTurniCaritas gestTurn;
 	    private CaritasUser currentUser;
+	    
+	    private int id;
+	    
+	    private static GestisciTurniBoundary instance  = null;
+	    
 	    public CaritasUser getCurrentUser() {
 			return currentUser;
 		}
@@ -23,6 +29,12 @@ public class GestisciTurniBoundary {
 		private CreaTurnoBoundary caritasTurniBoundary;
 	    
 	  
+		public static GestisciTurniBoundary getInstance() {
+			if(instance == null) {
+				instance = new GestisciTurniBoundary();
+			}
+			return instance;
+			}
 	    
 	    public GestisciTurniBoundary() {
 	    	this.gestTurn = new GestioneTurniCaritas();
@@ -58,17 +70,14 @@ public class GestisciTurniBoundary {
 
 	
 
-		public void setCurrentUser(CaritasUser currentUser) {
-			this.caritas = currentUser;
+		public List<TurnoTab> loadFormTurni() {
+			 return gestTurn.getInstance().caricaTurni(id);
 			
 		}
 
-		public List<TurnoTab> loadFormBoundary(int id) {
-			 List<TurnoTab> listTurni =  gestTurn.caricaTurni(id);
-			return listTurni;
+		public void loadFormBoundary(int id) {
+			this.id = id;
 		}
-
-
 	}
 
 

@@ -2,6 +2,7 @@ package bean2;
 
 import java.util.ResourceBundle;
 
+import controller.DonationController;
 import controller.PartecipaEventoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,57 +15,33 @@ public class PartecipaEventoBoundary {
 
 	private int idUtente;
 	private int idEvento;
+	private PartecipaEventoController parteCon;
+	private String importo;
 
-	private TextField[] textFields;
+	private static PartecipaEventoBoundary instance = null;
+	 
+	public static PartecipaEventoBoundary getInstance() {
+		if(instance == null) {
+			instance = new PartecipaEventoBoundary();
+		}
+		return instance;
+		}
+	
+	public PartecipaEventoBoundary() {
+		parteCon = PartecipaEventoController.getInstance();
+	}
 
-	@FXML
-	private ResourceBundle resources;
 
-	@FXML
-	private TextField importo;
-
-	@FXML
-	private TextField cdc;
-
-	@FXML
-	private ImageView imgEvento;
-
-	@FXML
-	private Button partecipa;
-
-	@FXML
-	private Button indietro;
-
-	@FXML
-	void partecipaEvento(ActionEvent event) {
+	public int partecipaEvento() {
 		PartecipaEventoController parteCon = new PartecipaEventoController();
 		parteCon.setDataController(idEvento, idUtente);
-		parteCon.partecipaEvento(Float.parseFloat(importo.getText()));
-		Stage st = (Stage) partecipa.getScene().getWindow();
-		st.close();
-
-	}
-
-	public int checker() {
-
-		// Controlla che non ci siano campi lasciati vuoti
-		for (int i = 0; i < textFields.length; i++) {
-			if (textFields[i].getText().isEmpty()) {
-
-				return -1;
-			}
-
-		}
+		parteCon.partecipaEvento(Float.parseFloat(importo));
 		return 0;
-
 	}
 
-	public void initialize() {
+	
 
-		textFields = new TextField[] { importo, cdc };
-
-	}
-
+	
 	public void setData(int idEvento, int idVolontario) {
 		this.idEvento = idEvento;
 		this.idUtente = idVolontario;

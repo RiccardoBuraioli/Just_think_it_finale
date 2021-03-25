@@ -10,12 +10,12 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
 	if(request.getParameter("INVIA")!=null){
-		//if(EmailBoundary.send_message(request.getParameter("codice_mittente"),request.getParameter("codice_destinatario"), request.getParameter("messaggio"), request.getParameter("oggetto")) == 0){
+		if(EmailBoundary.getInstance().sendMessage(request.getParameter("codice_mittente"),request.getParameter("codice_destinatario"), request.getParameter("messaggio"), request.getParameter("oggetto")) == 0){
 			
 %>
 	<jsp:forward page="homeCaritas.jsp"/>
 <%			
-		//}
+		}
 
 	}
 %>
@@ -44,7 +44,7 @@ Class.forName("com.mysql.jdbc.Driver");
 			<input type="text" id = "oggetto" name= "oggetto" placeholder="Oggetto"/>
 			</div>
 			<div class = "pt4">
-			<textarea id = "" name= "" placeholder ="Scrivi qui il tuo messaggio."></textarea>
+			<textarea id = "messaggio" name= "messaggio" placeholder ="Scrivi qui il tuo messaggio."></textarea>
 			</div>
 			<div class = "invia">
 			<button type="submit" name= "INVIA" value="INVIA">INVIA</button>

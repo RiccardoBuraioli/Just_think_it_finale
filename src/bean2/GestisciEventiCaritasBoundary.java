@@ -11,7 +11,14 @@ public class GestisciEventiCaritasBoundary {
 		private int idCar;
 		
 		private EventTab event;
-	
+		private static GestisciEventiCaritasBoundary instance  = null;
+		
+		public static GestisciEventiCaritasBoundary getInstance() {
+			if(instance == null) {
+				instance = new GestisciEventiCaritasBoundary();
+			}
+			return instance;
+			}
 		
 		
 		public boolean cancellaEvent() {
@@ -27,18 +34,21 @@ public class GestisciEventiCaritasBoundary {
 		  
 		   
 		    public void contattaShop() {	  
-	    	        EmailBoundary email = new EmailBoundary();
-	    	        email.loadEmail(this.event.getCodiceNegozio(), idCar);		    	
+	    	        EmailBoundary email = null;
+	    	        email = email.getInstance();
+	    	        email.loadEmail(this.event.getCodiceNegozio(), idCar);
+	    	        	    	
 		    }
 		
 		
-		public List<EventTab> loadShop(int idCar) {
-			this.idCar = idCar;
-			 List<EventTab> listEv = gestEventC.caricaEventi(this.idCar);
-			return listEv;	
+		public List<EventTab> loadFormEvento() {
+			return  gestEventC.getInstance().caricaEventi(idCar);
+				
 		}
 
-		
+		public void loadShop(int idCar) {
+			this.idCar = idCar;
+		}
 		
 		public GestisciEventiCaritasBoundary(){
 			gestEventC = new GestisciEventiCaritasController();

@@ -10,7 +10,7 @@
  
  <%
  	if(request.getParameter("INDIETRO") != null){
- 		 GestisciDonazioniBoundary.backPressed();
+ 		// GestisciDonazioniBoundary.;
  %>
 		 <jsp:forward page="homeCaritas.jsp"/>
  <%
@@ -65,7 +65,7 @@
 
 
 <%
-	List<DonazioneTab> list = GestisciDonazioniBoundary.loadFormBoundary(17);
+	List<DonazioneTab> list = GestisciDonazioniBoundary.getInstance().loadFormDonazione();
 	int i = 0;
 	while (i < list.size()){
 %>

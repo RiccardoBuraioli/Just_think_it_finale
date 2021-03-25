@@ -15,13 +15,13 @@ public class CercaCaritasController {
 	
 	private CercaCaritasDao cercaCaritasD;
 	private CoordinateDao coord;
-	
+	private UserDao v;
 	
 	
 	public CercaCaritasController() {
 		coord = new CoordinateDao();
 		cercaCaritasD = new CercaCaritasDao();
-
+		v = new UserDao();
 	}
 
 	public void initMap2(int id, String lati, String longi) {
@@ -54,8 +54,12 @@ public class CercaCaritasController {
 		return cercaCaritasD.getCoordinateDonazione();
 	}
 	
+	public String trovaRuolo(int idUser) {
+		return v.trovaTipoUtente(idUser);
+	}
+	
 	public void initUser(int idUser, Object cercaBean) {
-		UserDao v = new UserDao();
+	
 		String ruoloUser = v.trovaTipoUtente(idUser);
 		if(cercaBean.getClass() == bean.CercaCaritas.class) {
 			((bean.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);

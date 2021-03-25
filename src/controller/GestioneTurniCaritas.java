@@ -8,13 +8,17 @@ import entity.TurnoTab;
 public class GestioneTurniCaritas {
 	
 	private PrenotaDao turniDao;
-
+	private static GestioneTurniCaritas instance = null;
 	
 	public GestioneTurniCaritas() {
 		this.turniDao = new PrenotaDao();
 	}
 	
-	
+	public static GestioneTurniCaritas getInstance() {
+		if (GestioneTurniCaritas.instance == null)
+			GestioneTurniCaritas.instance = new GestioneTurniCaritas();
+		return instance;
+	}
 	
 	
 	
@@ -35,7 +39,6 @@ public class GestioneTurniCaritas {
 	
 	
 	public List<TurnoTab> caricaTurni(int idCaritas) {
-	
 		return this.turniDao.visualizzaTurni(idCaritas);
 	}
 

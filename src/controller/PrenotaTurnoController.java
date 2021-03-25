@@ -11,11 +11,21 @@ import javafx.event.ActionEvent;
 public class PrenotaTurnoController {
 
 	private int idUtente;
-
+	private int idTurno;
 	private int idCaritas;
-
+	private static PrenotaTurnoController instance = null;
 	private PrenotaDao checkTurniPossibili;
 
+	public PrenotaTurnoController() {
+		 checkTurniPossibili = new PrenotaDao();
+	}
+	
+	
+	public static PrenotaTurnoController getInstance() {
+		if (PrenotaTurnoController.instance == null)
+			PrenotaTurnoController.instance = new PrenotaTurnoController();
+		return instance;
+	}
 	
 	public void indietro(ActionEvent event) {
 		//forse anche questo
@@ -25,8 +35,7 @@ public class PrenotaTurnoController {
 	public boolean prenotaTurno(String giorno, String oraIn, String oraFin, String cv) {
 		boolean error;
 
-		int idTurno = 0;
-
+		
 		Turno turno = new Turno(giorno ,oraIn, oraFin);
 
 		idTurno = checkTurniPossibili.trovaTurno(turno);

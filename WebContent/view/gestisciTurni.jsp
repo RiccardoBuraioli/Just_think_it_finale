@@ -76,7 +76,7 @@ Class.forName("com.mysql.jdbc.Driver");
 
 
 <%
-	List<TurnoTab> list = GestisciTurniBoundary.loadFormBoundary(17);
+	List<TurnoTab> list = GestisciTurniBoundary.getInstance().loadFormTurni();
 	int i = 0;
 	while (i < list.size()){
 %>

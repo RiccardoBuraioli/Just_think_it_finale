@@ -13,6 +13,15 @@ public class BachecaPersonaleBoundary {
 	private Necessita nec;
 	private int i;
 	
+	private static BachecaPersonaleBoundary instance  = null;
+	
+	public static BachecaPersonaleBoundary getInstance() {
+		if(instance == null) {
+			instance = new BachecaPersonaleBoundary();
+		}
+		return instance;
+		} 
+	 
 	public int getI() {
 		return i;
 	}
@@ -76,11 +85,13 @@ public class BachecaPersonaleBoundary {
 		}
 	}
 
+	public List<Necessita> loadFormBacheca(){
+		return bachecaController.getInstance().loadForm(idCar);
+		}
+
 	
-	public List<Necessita> loadFormBoundary(int id) {
-		bachecaController = new BachecaPersonaleController();
-		List<Necessita> necessitaList = bachecaController.loadForm(id);
-		return necessitaList;	
+	public void loadFormBoundary(int idCar) {
+		this.idCar = idCar;
 	}
 	
 

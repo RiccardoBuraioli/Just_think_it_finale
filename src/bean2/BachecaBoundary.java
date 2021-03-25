@@ -1,52 +1,51 @@
 package bean2;
 
+import java.util.List;
+
 import controller.BachecaController;
+import entity.Necessita;
 
 public class BachecaBoundary {
 	private int idCar;
 	private int idUte;
 	private DonationBoundary donationBoundary;
+	private static BachecaBoundary instance = null;
+	private BachecaController bachecaController;
 	
-
-	public void creaDonazione() {
-			donationBoundary =donationBoundary.getInstance();
-			donationBoundary.initBoundary(idCar, idUte);
+	
+	
+	public static BachecaBoundary getInstance() {
+		if(instance == null) {
+			instance = new BachecaBoundary();
+		}
+		return instance;
+		}
+	
+	public BachecaBoundary(){
+		bachecaController = BachecaController.getInstance();
 	}
-
-
+	
+	
 	public void creaEmail() {
-		EmailBoundary emailBoundary = new EmailBoundary();
+		EmailBoundary emailBoundary = null;
+		emailBoundary = emailBoundary.getInstance();
 			emailBoundary.loadEmail(idCar, idUte);
 		}
 
 	
+	public void creaDonazione() {
+		donationBoundary = donationBoundary.getInstance();
+		donationBoundary.initBoundary(this.idCar, this.idUte);
+	}
+	
+ 	
+	public List<Necessita> loadNecessita(){
+		return bachecaController.getInstance().loadForm(this.idCar);
+	}
+	
 	public void loadFormBoundary(int idCar, int idUte) {
-		this.idCar = idCar;
+		this.idCar  = idCar;
 		this.idUte = idUte;
-		BachecaController bachecaController = new BachecaController();
-		/*List<Necessita> necessita = bachecaController.loadForm(idCar);
-
-		for (int i = 0; i < necessita.size(); i++) {
-			Necessita tmp = necessita.get(i);
-
-			switch (tmp.getTipologia()) {
-			case "Vestiti":
-				vestiti.setText(tmp.getDescrizione());
-				break;
-
-			case "Cibo":
-				cibo.setText(tmp.getDescrizione());
-				break;
-			case "Varie":
-				varie.setText(tmp.getDescrizione());
-				break;
-
-			default:
-				break;
-
-			}
-
-		}*/
 	}
 
 }

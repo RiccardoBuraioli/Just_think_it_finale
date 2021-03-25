@@ -54,22 +54,15 @@
         <a href= "">INDIETRO</a>
     </div>
 
-
-
-<div id="mostra-menu">
-<!--</li>
-    <li>PRENOTA TURNO VOLONTARIATO</li>
-    <li>VEDI BACHECA</li>
-  </ul>  -->
-</div>
-
-
+<%if (CercaCaritas.trovaRuoloBean(3) == "Volontario"){ %>
 
 <button id = "donazione" name = "donazione" >CREA DONAZIONE</button> 
 <button id = "evento" name = "evento">CREA EVENTO</button>
-<button id = "turno" name = "turno">PRENOTA TURNO</button>
 <button id = "necessita" name = "necessita">VEDI BACHECA</button>
 
+<%}%>
+
+<!-- <button id = "turno" name = "turno">PRENOTA TURNO</button> -->
 <div class =  "hidden">
  <input type="text" id = "donazioneInput" name= "donazioneInput"> 
  <input type="text" id = "turnoInput" name= "turnoInput"> 
@@ -116,6 +109,7 @@
      	String parametroEvento = request.getParameter("eventoInput");
     	System.out.println(parametroEvento);
     	out.print("<b>"+parametroEvento+"</b>");
+    	CercaCaritas.getInstance().partecipaEvento(Integer.parseInt(parametroEvento));
 %>
 		<jsp:forward page="promuoviEventoMap.jsp"/>
 <%
@@ -134,7 +128,7 @@
      	String parametroNecessita = request.getParameter("necessitaInput");
     	System.out.println(parametroNecessita);
     	out.print("<b>"+parametroNecessita+"</b>");
-    	CercaCaritas.getInstance().prenotaTurno(Integer.parseInt(parametroNecessita));
+    	CercaCaritas.getInstance().vediNecessita(Integer.parseInt(parametroNecessita));
 %>
 		<jsp:forward page="bachecaCaritasMap.jsp"/>
 <%

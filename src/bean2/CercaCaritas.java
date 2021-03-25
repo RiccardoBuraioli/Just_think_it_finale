@@ -23,12 +23,7 @@ public class CercaCaritas {
 	public enum MarkerType {
 		CARITAS, EVENTO, DONAZIONE, MAP
 	}
-	private static final String eve = "buttonEvento";
-	private static final String pro = "buttonPromuoviEvento";
-	private static final String all = "buttonAllLocations";
-	private static final String don = "buttonDonazione";
-	private static final String tur = "buttonTurnoVolontariato";
-	private static final String bac = "buttonBacheca";
+	
 	private int idCaritas;
 	private int idEvento;
 
@@ -56,9 +51,11 @@ public class CercaCaritas {
 	private List<CoordinateMap> markerEventi;
 	private List<CoordinateMap> markerDonazioni;
 	private DonationBoundary donationBoundary;
-
+	private PrenotaTurnoBoundary prenotaTurnoBoundary;
+	private BachecaBoundary bachecaBoundary;
+	private PartecipaEventoBoundary partecipaEventoBoundary;
 	
-	public static CercaCaritas getInstance() throws NumberFormatException, SQLException {
+	public static CercaCaritas getInstance() throws NumberFormatException, SQLException{
 		if(instance == null) {
 			instance = new CercaCaritas();
 		}
@@ -68,23 +65,22 @@ public class CercaCaritas {
 	
 	
 	
-	public int indietro() {
+	public void indietro() {
 	if (ruolo.equals(v)) {				
 				UserHomeBoundary userHomeBoundary = new UserHomeBoundary();
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(this.idUser,userHomeBoundary);
-				return 3;
 	}
 	else if(ruolo.equalsIgnoreCase(n)) {
 			ShopHomeBoundary shopHomeBoundary = new ShopHomeBoundary();
 			ShopHomeController shopHomeC = new ShopHomeController();
 			shopHomeC.initDataShop(this.idUser, shopHomeBoundary);
-			return 9;
-		}
+	}
 	else {
-		return 2;
+		
 	}
 	}
+	
 	public void promuoviEvento(int idCar) {
 			PromuoviEventoBoundary promEvento = new PromuoviEventoBoundary();
 			promEvento.loadFormBoundary(idCar, this.idUser);
@@ -92,8 +88,8 @@ public class CercaCaritas {
 
 
 	public  void vediNecessita(int idCar) {
-			BachecaBoundary bacheca =  new BachecaBoundary();
-			bacheca.loadFormBoundary(idCar, this.idUser);
+			bachecaBoundary = bachecaBoundary.getInstance();
+			bachecaBoundary.loadFormBoundary(idCar, this.idUser);
 	}
 
 	public void creaDonazione(int idCar) {
@@ -103,16 +99,16 @@ public class CercaCaritas {
 	}
 
 	public void prenotaTurno(int idCar) {
-			PrenotaTurnoBoundary prenotaController = new PrenotaTurnoBoundary() ;
+			prenotaTurnoBoundary = prenotaTurnoBoundary.getInstance();
 			System.out.println("Sono io caritas turno, su cercaCaritas!!" +idCar);
-			prenotaController.setData(idCar, this.idUser);		
+			prenotaTurnoBoundary.setData(idCar, this.idUser);		
 	}
 	
 
 	public void partecipaEvento(int idEvent) {
-			PartecipaEventoBoundary partecipaEvent = new PartecipaEventoBoundary();
+			partecipaEventoBoundary = partecipaEventoBoundary.getInstance();  
 			System.out.println("Sono io caritas evento, su cercaCaritas!!" + idEvent);
-			partecipaEvent.setData(idEvent, this.idUser);
+			partecipaEventoBoundary.setData(idEvent, this.idUser);
 		}
 
 	// molto da cambiare
@@ -122,6 +118,9 @@ public class CercaCaritas {
 	
 	}
 
+		public String trovaRuoloBean(int idUtente) {
+			return cercaController.trovaRuolo(idUtente);			
+		}
 	
 
 	public List<CoordinateMap> initMarkersCaritas() {

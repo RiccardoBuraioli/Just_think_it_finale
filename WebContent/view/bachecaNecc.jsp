@@ -58,7 +58,7 @@
   </thead>
   <tbody>
  <%
-	List<Necessita> list = BachecaPersonaleBoundary.loadFormBoundary(17);
+	List<Necessita> list = BachecaPersonaleBoundary.getInstance().loadFormBacheca();
 	int i = 0;
 	while (i < list.size()){
 %>

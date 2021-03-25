@@ -11,9 +11,15 @@ public class EmailBoundary {
     private String oggetto;
     private String destinatario;
     private String mittente;
-   
+    private static EmailBoundary instance = null;
     
-
+    public static EmailBoundary getInstance() {
+		if(instance == null) {
+			instance = new EmailBoundary();
+		}
+		return instance;
+		}
+	
     
     public String getMessaggio() {
 		return messaggio;
@@ -63,7 +69,7 @@ public class EmailBoundary {
 
 
 
-	public int sendMessage() {
+	public int sendMessage(String mittente, String destinatario, String messaggio, String oggetto) {
     	int i = 0;	
     	i =emailC.sendMessageController(mittente, destinatario, messaggio, oggetto);
     	return i;

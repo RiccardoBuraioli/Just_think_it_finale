@@ -9,13 +9,13 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
 	if(request.getParameter("PARTECIPA")!=null){
-		//if (PrenotaTurnoBoundary.prenotaTurno(request.getParameter("nome_giorno"),request.getParameter("ora_inizio"),request.getParameter("ora_fine"),request.getParameter("Curriculum")) == 0){
+		if (PrenotaTurnoBoundary.getInstance().prenotaTurno(request.getParameter("nome_giorno"),request.getParameter("ora_inizio"),request.getParameter("ora_fine"),request.getParameter("Curriculum")) == 0){
 
 
 %>
-	<jsp:forward page="homeCaritas.jsp"/>
+	<jsp:forward page="NewMap.jsp"/>
 <%
-		}
+		}}
 %>
 	
 <!DOCTYPE html>
@@ -34,31 +34,31 @@ Class.forName("com.mysql.jdbc.Driver");
 			<h6>*dopo aver inviato la richiesta verrà inoltrata una notifica se accettata</h6>
 			<div class = "giorni">
 	<h3 class = "turno">Giorni di prenotazione</h3>
-	<select id = "nome_giorno" name="nome_giorno" >
-	<option id = "nome_giorno" value="Lunedì" selected="selected">Lunedì</option>
-	<option id = "nome_giorno" value="Martedì"  selected="selected">Martedì </option>
-	<option id = "nome_giorno"value="Mercoledì"  selected="selected">Mercoledì</option>
-	<option id = "nome_giorno" value="Giovedì" selected="selected">Giovedì</option>
-	<option id = "nome_giorno" value="Venerdì"  selected="selected">Venerdì</option>
-	<option id = "nome_giorno" value="Sabato"  selected="selected">Sabato</option>
-	<option id = "nome_giorno" value="Domenica" selected="selected">Domenica</option>
+	<select id = "nome_giorno" name="nome_giorno">
+	<option  value="Lunedi" >Lunedi</option>
+	<option  value="Martedi" >Martedi </option>
+	<option  value="Mercoledi" >Mercoledi</option>
+	<option  value="Giovedi" >Giovedi</option>
+	<option  value="Venerdi">Venerdi</option>
+	<option  value="Sabato" >Sabato</option>
+	<option  value="Domenica" >Domenica</option>
 	</select>
 	</div>
 	<div  class = "orario">
 	<h3 class = "orari">Orari disponibili</h3>
-	<select id = "ora_inizio" name="scelteOrari" >
-	<option id = "ora_inizio" value="ora_inizio" selected="selected">8:00</option>
-	<option id = "ora_inizio" value="ora_inizio" >11:00</option>
-	<option id = "ora_inizio" value="ora_inizio" >14:00</option>
-	<option id = "ora_inizio" value="ora_inizio"  selected="selected">17:00</option>
-	<option id = "ora_inizio" value="ora_inizio" >20:00</option>
+	<select id = "ora_inizio" name="ora_inizio" >
+	<option  value="08:00" >08:00</option>
+	<option value="11:00" >11:00</option>
+	<option  value="14:00" >14:00</option>
+	<option  value="17:00" >17:00</option>
+	<option  value="20:00" >19:00</option>
 	</select>
-	<select id = "ora_fine" name="fineOrari" >
-	<option id = "ora_fine" value = "ora_fine" selected="selected">8:00</option>
-	<option id = "ora_fine" value = "ora_fine" selected="selected">11:00</option>
-	<option id = "ora_fine" value = "ora_fine" selected="selected">14:00</option>
-	<option id = "ora_fine" value = "ora_fine" selected="selected">17:00</option>
-	<option id = "ora_fine" value = "ora_fine" selected="selected">20:00</option>
+	<select id = "ora_fine" name="ora_fine" >
+	<option value = "11:00" >11:00</option>
+	<option  value = "14:00" >14:00</option>
+	<option  value = "17:00" >17:00</option>
+	<option  value = "18:00" >19:00</option>
+	<option  value = "21:00">21:00</option>
 	</select>
 	</div>
 	

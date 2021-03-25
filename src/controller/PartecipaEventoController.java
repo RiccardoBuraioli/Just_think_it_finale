@@ -1,14 +1,24 @@
 package controller;
 
 import entity.PartecipaEvento;
-
+import bean2.DonationBoundary;
 import dao.EventoDao;
 
 public class PartecipaEventoController {
 
 	private PartecipaEvento partecipaz;
+	private static PartecipaEventoController instance = null;
 
 
+	public static PartecipaEventoController  getInstance() {
+		if(instance == null) {
+			instance = new PartecipaEventoController ();
+		}
+		return instance;
+		}
+	
+	
+	
 	public boolean partecipaEvento(float importo) {
 	
 		partecipaz.setImport(importo);

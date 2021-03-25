@@ -9,7 +9,14 @@ public class GestisciDonazioniCaritas {
 
 	private DonationDao donDao;
 	
+	private static GestisciDonazioniCaritas instance  = null;
 	
+	public static GestisciDonazioniCaritas getInstance() {
+		if(instance == null) {
+			instance = new GestisciDonazioniCaritas();
+		}
+		return instance;
+		}
 	
 	
 	public GestisciDonazioniCaritas() {

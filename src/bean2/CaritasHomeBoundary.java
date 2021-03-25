@@ -11,7 +11,6 @@ public class CaritasHomeBoundary {
 	private GestisciTurniBoundary gestTurn;
 	private GestisciDonazioniBoundary gestDon;
 	private GestisciEventiCaritasBoundary gestisciB;
-	
 	private BachecaPersonaleBoundary bacheca;
 
 
@@ -31,23 +30,21 @@ public class CaritasHomeBoundary {
 	}
 
 	public void gestisciDonazioni() {		
-		gestDon.loadFormBoundary(idCar);
+		gestDon.getInstance().loadFormBoundary(idCar);
 	}
 
 	
 	public void gestisciEventi() {			
-			gestisciB.loadShop(idCar);
+			gestisciB.getInstance().loadShop(idCar);
 	}
 
 	
 	public void gestisciTurni() {
-			gestTurn.loadFormBoundary(idCar);
+			gestTurn.getInstance().loadFormBoundary(idCar);
 	}
 
-	// dobbiamo far fare un controllo alla bacheca_controller nel quale a seconda di
-			// chi entra ( carita o altri ) il tasto indietro porta alla schermata giusta.
 	public void visualizzaBacheca() {		
-			bacheca.loadFormBoundary(idCar);
+			bacheca.getInstance().loadFormBoundary(idCar);
 	}
 
 	void deleteAccountButtonPressed() {

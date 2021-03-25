@@ -16,9 +16,22 @@ public class PrenotaTurnoBoundary {
 	private String cbOraInizio;
 	private String OraFine;
 	private String cv;
+	private static PrenotaTurnoBoundary instance = null;
+	
+	public PrenotaTurnoBoundary() {
+		prenotaC = PrenotaTurnoController.getInstance();
+	}
 
-    public void prenotaTurno() {
+	public static  PrenotaTurnoBoundary getInstance() {
+		if(instance == null) {
+			instance = new  PrenotaTurnoBoundary();
+		}
+		return instance;
+		}
+	
+    public int  prenotaTurno(String turni, String cbOraInizio, String OraFine, String cv) {
     	prenotaC.prenotaTurno(turni, cbOraInizio, OraFine, cv);
+    	return 0;
 	}
 
 	public boolean checker() {
@@ -36,7 +49,7 @@ public class PrenotaTurnoBoundary {
 
 
 	public void initialize() {
-		prenotaC = new PrenotaTurnoController();
+		
 
 		String[] giorni;
 
@@ -58,6 +71,7 @@ public class PrenotaTurnoBoundary {
 	}
 
 	public void setData(int idCar, int idUte) {
+	
 		prenotaC.setDataController(idCar, idUte);
 	}
 }

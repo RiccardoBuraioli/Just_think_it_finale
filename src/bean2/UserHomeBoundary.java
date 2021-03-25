@@ -4,6 +4,8 @@ package bean2;
 
 import java.sql.SQLException;
 
+import bean.ProfileBoundary;
+import controller.ProfileController;
 import controller.UserHomeController;
 
 
@@ -48,23 +50,12 @@ private int userId;
     }
 
    
- /*  public  void profileButtonPressed() {
-    	ProfileBoundary profileBean;
+   public  void profileButtonPressed() {
+    	ProfileBoundary profileBean = null;
     	ProfileController profileController = new ProfileController();
-    	try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserProfilePage.fxml"));
-			Parent root = loader.load();
-			profileBean = loader.getController();
 			profileController.initData(userId, profileBean);
-			
-			Stage home = (Stage) this.profileButton.getScene().getWindow();
-			home.setScene(new Scene(root, 800, 600));
-			
-			home.show();
-		} catch (IOException e) {
-			logger.error(s);
 		}
-    }*/
+   
 
     
     void helpButtonPressed() {

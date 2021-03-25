@@ -18,12 +18,14 @@ public class GestisciEventiBoundary {
 	private ShopUser shop;
 
 	
-
+		
 	   
 	   public void contattaCaritas() {
-    	        EmailBoundary email = new EmailBoundary();
-    	        email.loadEmail(this.idShop, this.event.getIdCaritas());  	
-	    }
+		   EmailBoundary email = null;
+		   email = email.getInstance();
+	        email.loadEmail(this.idShop, this.event.getIdCaritas());  	
+	   }  	
+	    
 
 	    
 	   public boolean eliminaEvento(String i) {

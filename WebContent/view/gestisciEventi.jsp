@@ -12,7 +12,7 @@
 
 <%
 	if (request.getParameter("INDIETRO") != null){
-		GestisciEventiCaritasBoundary.backtomenu();	
+		//GestisciEventiCaritasBoundary;	
 %>
 	<jsp:forward page="homeCaritas.jsp"/>
 <%
@@ -62,7 +62,7 @@
 
 
 <%
-	List<EventTab> list = GestisciEventiCaritasBoundary.loadShop(2);
+	List<EventTab> list = GestisciEventiCaritasBoundary.getInstance().loadFormEvento();
 	int i = 0;
 	while (i < list.size()){
 %>

@@ -46,7 +46,7 @@ public class PromuoviEventoBoundary {
 			this.tipo = tipo;
 		}
 	    
-	   public void confermaPressed() {
+	   public int confermaPressed() {
 	   /* String tipo = "Vestiti";
 	    if(idCibo.isSelected()) {
 	    	tipo = "Cibo";
@@ -55,6 +55,7 @@ public class PromuoviEventoBoundary {
 	    PromuoviEventoController promuoviEvento = new PromuoviEventoController();
 	    promuoviEvento.loadForm(idCar, idShop);
 	    promuoviEvento.creaEventoController(nome,tipo, note, costoEvento );	
+	    return 0;
 	    }
 
 		public void loadFormBoundary(int idCar, int idShop) {

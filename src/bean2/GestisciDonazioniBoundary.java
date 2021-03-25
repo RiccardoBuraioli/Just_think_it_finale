@@ -16,6 +16,15 @@ public class GestisciDonazioniBoundary {
 
 	private GestisciDonazioniCaritas gestDon;
 	
+	 private static  GestisciDonazioniBoundary instance  = null;
+	
+	 public static  GestisciDonazioniBoundary getInstance() {
+			if(instance == null) {
+				instance = new  GestisciDonazioniBoundary();
+			}
+			return instance;
+			}
+	
 	public boolean cancellaDonazione(String i) {
 		    	gestDon = new  GestisciDonazioniCaritas();
 		    	if (i == null || i.equals("") ) {
@@ -40,11 +49,13 @@ public class GestisciDonazioniBoundary {
 	}
 
 
-	public List<DonazioneTab> loadFormBoundary(int idCar) {
-			this.caritas = idCar;
-			return gestDon.visualizzaDonazioni(caritas);	
+	public List<DonazioneTab> loadFormDonazione() {
+			return gestDon.getInstance().visualizzaDonazioni(caritas);	
 	}
 
+	public void loadFormBoundary(int caritas ) {
+		this.caritas = caritas;
+	}
 	public GestisciDonazioniBoundary() {
 		this.gestDon = new GestisciDonazioniCaritas();
 		new ArrayList<>();

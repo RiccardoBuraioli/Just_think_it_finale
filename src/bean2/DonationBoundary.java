@@ -31,10 +31,6 @@ public class DonationBoundary {
 	
 	
 	public int creaDonazione(int tipo, String indirizzo,String descrizione){
-		//int idCar = Integer.parseInt(idCaritas);
-		controller.setTipologia(this.tipo);
-		controller.setIndirizzo(this.indirizzo);
-		controller.setDescrizione(this.descrizione);
 		controller.creaDonazione2( tipo , indirizzo, descrizione,this.utente,this.idCar);
 		return 0;
 	}
