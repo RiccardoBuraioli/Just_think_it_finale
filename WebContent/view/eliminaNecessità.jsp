@@ -9,7 +9,7 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
 		if(request.getParameter("CONFERMA") != null){
-			if (BachecaPersonaleBoundary.eliminaNecessita(request.getParameter("id_necessità")) == true){
+			if (BachecaPersonaleBoundary.getInstance().eliminaNecessita(request.getParameter("id_necessità")) == true){
 %>
 		<jsp:forward page="bachecaNecc.jsp"/>	
 <%

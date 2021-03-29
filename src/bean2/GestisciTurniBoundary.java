@@ -55,7 +55,7 @@ public class GestisciTurniBoundary {
 
 	   
 	   public void creaTurno() {	 		
-	 		this.caritasTurniBoundary.setCaritas(caritas);	    	
+	 		caritasTurniBoundary.setCaritas(caritas);	    	
 	    }
 
 	   
@@ -63,7 +63,7 @@ public class GestisciTurniBoundary {
 			   if (note == null || note.equals("")) {
 				   return false;
 			   }else {
-		    	//check = gestTurn.modificaTurno(turn.getId(),note,turn.getIdCar()); //posso mettere i numeri per farlo funzionare
+				  // gestTurn.modificaTurno(turno,note,getIdCar); //posso mettere i numeri per farlo funzionare
 		    	return true;
 			   }
 	  }

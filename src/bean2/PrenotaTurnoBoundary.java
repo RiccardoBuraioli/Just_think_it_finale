@@ -48,28 +48,6 @@ public class PrenotaTurnoBoundary {
 	}
 
 
-	public void initialize() {
-		
-
-		String[] giorni;
-
-		giorni = prenotaC.inizializzaGiorni();
-		
-
-		List<Orario> oraArrayList = prenotaC.initializzaOrari();
-
-		int i = 0;
-		while (i < oraArrayList.size()) {
-
-			//cbOraInizio.getItems().add(oraArrayList.get(i).getOraFine());
-
-			//cbOraFine.getItems().add(oraArrayList.get(i).getOraInizio());
-
-			i++;
-
-		}
-	}
-
 	public void setData(int idCar, int idUte) {
 	
 		prenotaC.setDataController(idCar, idUte);

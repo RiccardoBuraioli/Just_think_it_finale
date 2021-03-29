@@ -80,7 +80,7 @@ public class BachecaPersonaleBoundary {
 		}
 		else {
 			int x = Integer.parseInt(i);
-			bachecaController.eliminaAnnuncio(x);
+			bachecaController.getInstance().eliminaAnnuncio(x);
 			return true;
 		}
 	}

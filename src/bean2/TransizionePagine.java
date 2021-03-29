@@ -14,13 +14,19 @@ public class TransizionePagine {
 	}
 				
 	
-	public void apriMappa(int idUser) throws NumberFormatException, SQLException {
+	public void apriMappa(int idUser){
 	        
-	        cercaCaritasBean = cercaCaritasBean.getInstance();
+	        try {
+				cercaCaritasBean = cercaCaritasBean.getInstance();
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        CercaCaritasController controller = new CercaCaritasController(); 
 	        controller.initUser(idUser, cercaCaritasBean);
-	        //final Projection projection = Projection.WEB_MERCATOR;	      
-	        //cercaCaritasBean.initMapAndControls(projection);
 	}
 	
 	

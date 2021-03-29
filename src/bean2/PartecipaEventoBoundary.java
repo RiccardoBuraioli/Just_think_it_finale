@@ -1,23 +1,14 @@
 package bean2;
 
-import java.util.ResourceBundle;
-
-import controller.DonationController;
 import controller.PartecipaEventoController;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 public class PartecipaEventoBoundary {
 
 	private int idUtente;
 	private int idEvento;
-	private PartecipaEventoController parteCon;
 	private String importo;
-
+	private String carta;
+	private PartecipaEventoController partecipaC;
 	private static PartecipaEventoBoundary instance = null;
 	 
 	public static PartecipaEventoBoundary getInstance() {
@@ -28,18 +19,14 @@ public class PartecipaEventoBoundary {
 		}
 	
 	public PartecipaEventoBoundary() {
-		parteCon = PartecipaEventoController.getInstance();
+		partecipaC = PartecipaEventoController.getInstance();
 	}
 
 
-	public int partecipaEvento() {
-		PartecipaEventoController parteCon = new PartecipaEventoController();
-		parteCon.setDataController(idEvento, idUtente);
-		parteCon.partecipaEvento(Float.parseFloat(importo));
-		return 0;
+	public void partecipaEvento(String importo, String carta) {
+		partecipaC.setDataController(idEvento, idUtente);
+		partecipaC.partecipaEvento(Float.parseFloat(importo));
 	}
-
-	
 
 	
 	public void setData(int idEvento, int idVolontario) {
@@ -54,5 +41,21 @@ public class PartecipaEventoBoundary {
 	public int getIdEvento() {
 		return idEvento;
 	}
+	public String getImporto() {
+		return importo;
+	}
+
+	public void setImporto(String importo) {
+		this.importo = importo;
+	}
+
+	public String getCarta() {
+		return carta;
+	}
+
+	public void setCarta(String carta) {
+		this.carta = carta;
+	}
+
 
 }

@@ -9,7 +9,7 @@
 
 <%
 	if (request.getParameter("GESTISCI EVENTI") != null){
-		ShopHomeBoundary.getInstance().gestisciEventi();
+		ShopHomeBoundary.gestisciEventi();
 %>
 	<jsp:forward page="gestisciEventiNegozio.jsp"/>
 <%
@@ -17,8 +17,9 @@
 %>
 <%
 	if(request.getParameter("cercaCaritas") != null){
+		ShopHomeBoundary.getInstance().cercaCaritas();
 %>
-		<jsp:forward page="map.jsp"/>
+		<jsp:forward page="NewMap.jsp"/>
 <%	
 	}
 %>	

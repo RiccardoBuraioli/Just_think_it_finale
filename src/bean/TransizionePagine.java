@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -48,7 +49,7 @@ public class TransizionePagine {
 	}
 	
 	
-	public void apriMappa(int idUser, Window stage) {
+	public void apriMappa(int idUser, Window stage){
 		try {
 
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Boundary/CercaCaritas.fxml"));

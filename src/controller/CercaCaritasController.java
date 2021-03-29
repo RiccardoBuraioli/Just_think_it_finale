@@ -3,7 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.util.List;
 
-
+import bean2.CercaCaritas;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
 import dao.UserDao;
@@ -16,6 +16,7 @@ public class CercaCaritasController {
 	private CercaCaritasDao cercaCaritasD;
 	private CoordinateDao coord;
 	private UserDao v;
+
 	
 	
 	public CercaCaritasController() {
@@ -58,18 +59,21 @@ public class CercaCaritasController {
 		return v.trovaTipoUtente(idUser);
 	}
 	
-	public void initUser(int idUser, Object cercaBean) {
+	public void initUser(int idUser, Object cercaBean){
 	
 		String ruoloUser = v.trovaTipoUtente(idUser);
 		if(cercaBean.getClass() == bean.CercaCaritas.class) {
 			((bean.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
 		}
 		else if (cercaBean.getClass() == bean2.CercaCaritas.class) {
-			((bean2.CercaCaritas) cercaBean).setUser(idUser, ruoloUser);
+			try {
+				((bean2.CercaCaritas) cercaBean).getInstance().setUser(idUser, ruoloUser);
+			} catch (NumberFormatException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
-	
-	
 
 
 }

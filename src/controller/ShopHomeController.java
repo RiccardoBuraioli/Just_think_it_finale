@@ -30,7 +30,7 @@ public class ShopHomeController {
 		((bean.ShopHomeBoundary) shopBean).initData(currentUser.getId(), currentUser.getNome());
 		}
 		else if(shopBean.getClass() == bean2.ShopHomeBoundary.class) {
-			((bean2.ShopHomeBoundary) shopBean).initData(currentUser.getId(), currentUser.getNome());
+			((bean2.ShopHomeBoundary) shopBean).getInstance().initData(currentUser.getId(), currentUser.getNome());
 			}
 	}
 

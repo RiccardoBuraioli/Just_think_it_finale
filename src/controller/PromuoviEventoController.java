@@ -20,7 +20,6 @@ public class PromuoviEventoController {
 	
 
 	public void creaEventoController(String nomeEvento, String tipo, String noteEvento, float prezzoEvento) {
-		
 		EventTab evento = new EventTab(caritas.getId(),tipo,shop.getId(),nomeEvento, this.caritas.getNome(), noteEvento, prezzoEvento, shop.getCoord().getLatitude().toString(), shop.getCoord().getLongitude().toString());	
 		eventDao.creaEvento(evento);
 		

@@ -9,7 +9,14 @@ public class GestisciEventiController {
 
 
 	private EventoDao eventDao;
+	private static GestisciEventiController instance  = null;
 	
+	public static GestisciEventiController getInstance() {
+		if(instance == null) {
+			instance = new  GestisciEventiController();
+		}
+		return instance;
+		}
 	
 	
 	public GestisciEventiController() {
@@ -19,7 +26,6 @@ public class GestisciEventiController {
 	
 	
 	public List<EventTab> caricaEventi(int idShop){
-	
 		return eventDao.cercaEventi(idShop);
 		
 	}

@@ -23,7 +23,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <link rel="stylesheet" href="../css/map.css" />
+      <link rel="stylesheet" href="../css/newMap.css" />
       <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js"></script>
@@ -35,7 +35,8 @@
   </head>
   <script type="text/javascript">
     	var idMarker = 0;
-    
+    	var hidden = false;
+    	var tipoUtente = "";
     </script>
   <body>
 
@@ -53,32 +54,49 @@
       <div class = "ind">
         <a href= "">INDIETRO</a>
     </div>
+    
+<% if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Volontario")){%>
 
-<%if (CercaCaritas.trovaRuoloBean(3) == "Volontario"){ %>
+<button  id = "donazione" name = "donazione" style="visibility:hidden" >CREA DONAZIONE</button> 
+<button id = "necessita" name = "necessita" style="visibility:hidden">VEDI BACHECA</button>
+<button id = "turno" name = "turno" style="visibility:hidden">PRENOTA TURNO</button> 
+<button id = "partecipaEvento" name = "partecipaEvento" style="visibility:hidden">PARTECIPA EVENTO</button>
 
-<button id = "donazione" name = "donazione" >CREA DONAZIONE</button> 
-<button id = "evento" name = "evento">CREA EVENTO</button>
-<button id = "necessita" name = "necessita">VEDI BACHECA</button>
+<script> tipoUtente="Volontario";</script>
 
+<%}
+
+else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio")){%>
+	<button  id = "donazione" name = "donazione" style="visibility:hidden" >CREA DONAZIONE</button> 
+	<button id = "promuoviEvento" name = "promuoviEvento" style="visibility:hidden">PROMUOVI EVENTO</button>
+	<button id = "necessita" name = "necessita" style="visibility:hidden">VEDI BACHECA</button>
+	
+<script>tipoUtente = "Negozio";</script>	
 <%}%>
 
-<!-- <button id = "turno" name = "turno">PRENOTA TURNO</button> -->
+
+
+<!-- <button id = "turno" name = "">PROMUOVI EVENTO</button>  -->
+
+
 <div class =  "hidden">
  <input type="text" id = "donazioneInput" name= "donazioneInput"> 
  <input type="text" id = "turnoInput" name= "turnoInput"> 
  <input type="text" id = "eventoInput" name= "eventoInput"> 
  <input type="text" id = "necessitaInput" name= "necessitaInput">
 </div>
+
+
 </form>
 
 <div id="map"></div>
 <div class = "check">
 <div>
-  <input type="checkbox" class="gaucher" id="1" name="gaucher[]" onchange="processCheck(this)">
+  <input type="checkbox" class="gaucher" id="1" name="gaucher[]" onClick="actionCaritas()"  onchange="processCheck(this)">
   <label for="1">Caritas</label>
 </div>
 <div>
-  <input type="checkbox" class="gaucher" id="2" name="gaucher[]" onchange="processCheck(this)">
+  <input type="checkbox" class="gaucher" id="2" name="gaucher[]"   onClick="actionPartecipaEvento()" onchange="processCheck(this)">
   <label for="2">Eventi</label>
 </div>
  
@@ -94,11 +112,9 @@
 
 
 
-
 <%  
     if(request.getParameter("donazione") != null){
      	String parametro = request.getParameter("donazioneInput");
-    	System.out.println(parametro);
     	out.print("<b>"+parametro+"</b>");
     	CercaCaritas.getInstance().creaDonazione(Integer.parseInt(parametro));
 %>
@@ -111,13 +127,12 @@
     	out.print("<b>"+parametroEvento+"</b>");
     	CercaCaritas.getInstance().partecipaEvento(Integer.parseInt(parametroEvento));
 %>
-		<jsp:forward page="promuoviEventoMap.jsp"/>
+		<jsp:forward page="partecipaEventoVolontario.jsp"/>
 <%
     }
     
     if(request.getParameter("turno") != null){
      	String parametroTurno = request.getParameter("turnoInput");
-    	System.out.println(parametroTurno);
     	out.print("<b>"+parametroTurno+"</b>");
     	CercaCaritas.getInstance().prenotaTurno(Integer.parseInt(parametroTurno));
 %>
@@ -126,7 +141,6 @@
 }
     if(request.getParameter("necessita") != null){
      	String parametroNecessita = request.getParameter("necessitaInput");
-    	System.out.println(parametroNecessita);
     	out.print("<b>"+parametroNecessita+"</b>");
     	CercaCaritas.getInstance().vediNecessita(Integer.parseInt(parametroNecessita));
 %>
@@ -242,9 +256,11 @@
     		  idMarker= e.layer.feature.id; 
     		  document.getElementById("donazioneInput").value=idMarker;
     		  document.getElementById("turnoInput").value=idMarker;
-    		  document.getElementById("necessitaInput").value=idMarker;
-    		  document.getElementById("eventoInput").value=idMarker;       	  
-    	  }  	  
+    		  document.getElementById("necessitaInput").value=idMarker;  
+    	  }  	 
+    	  else if (tipo == "Evento"){
+    		  document.getElementById("eventoInput").value=idMarker; 
+    	  }
           alert(e.layer.feature.properties.popupContent);           
         }
 
@@ -266,7 +282,45 @@
         }
       }
 
-    </script>
-
+   
+    function actionCaritas() {
+        hidden = !hidden;
+        if (tipoUtente == "Volontario"){
+        if(hidden) {
+            document.getElementById('donazione').style.visibility = 'visible';
+            document.getElementById('necessita').style.visibility = 'visible';
+            document.getElementById('turno').style.visibility = 'visible';
+           
+         
+        } else {
+            document.getElementById('donazione').style.visibility = 'hidden';
+            document.getElementById('turno').style.visibility = 'hidden';
+            document.getElementById('necessita').style.visibility = 'hidden';
+        	}
+        }
+        else if (tipoUtente = "Negozio"){
+        	if(hidden) {
+        		document.getElementById('donazione').style.visibility = 'visible';
+           	 	document.getElementById('necessita').style.visibility = 'visible';
+           	 	document.getElementById('promuoviEvento').style.visibility = 'visible';
+        }
+        else{
+        	document.getElementById('donazione').style.visibility = 'hidden';
+            document.getElementById('necessita').style.visibility = 'hidden';
+            document.getElementById('promuoviEvento').style.visibility = 'hidden';
+        	}
+        }
+    }
+    
+    function actionPartecipaEvento() {
+        hidden = !hidden;
+        if(hidden) {
+            document.getElementById('partecipaEvento').style.visibility = 'visible';
+        } else {
+            document.getElementById('partecipaEvento').style.visibility = 'hidden';
+        }
+    }
+</script>
+	
     </body>
 </html>

@@ -4,7 +4,6 @@ package bean2;
 import java.util.List;
 
 import controller.GestisciEventiController;
-import entity.CaritasUser;
 import entity.EventTab;
 import entity.ShopUser;
 
@@ -15,7 +14,7 @@ public class GestisciEventiBoundary {
 	private int idShop;
 	
 	private EventTab event;
-	private ShopUser shop;
+
 
 	
 		
@@ -60,27 +59,18 @@ public class GestisciEventiBoundary {
 
 	}
 	
-	
+	public List<EventTab> loadShopBoundary(){
+		return gestEventC.getInstance().caricaEventi(idShop);
+	}
 	
 
-	public List<EventTab> loadShop(int idShop) {
+	public void loadShopBean(int idShop) {
 		this.idShop = idShop;
-		List<EventTab> listEv = gestEventC.caricaEventi(this.idShop);
-		return listEv;
 	}
 	
 
-	public ShopUser getShop() {
-		return shop;
-	}
 
-	public void setShop(ShopUser shop) {
-		this.shop = shop;
-	}
 
-	public void setCaritas(CaritasUser currentUser) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

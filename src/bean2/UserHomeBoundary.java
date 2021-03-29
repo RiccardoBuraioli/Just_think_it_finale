@@ -74,9 +74,14 @@ private int userId;
   
 
 
-    public int  searchCaritasButtonPressed() throws NumberFormatException, SQLException {
+    public int  searchCaritasButtonPressed(){
     	TransizionePagine switchPage = new TransizionePagine();
-    	switchPage.apriMappa(this.userId);
+    	try {
+			switchPage.apriMappa(this.userId);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	return 0;
     }
  

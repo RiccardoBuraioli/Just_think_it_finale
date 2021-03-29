@@ -1,49 +1,41 @@
 package bean2;
 
+import java.sql.SQLException;
 
-
-
-
-
-
-import entity.ShopUser;
-
+import bean.GestisciEventiBoundary;
 
 public class ShopHomeBoundary {
-	private GestisciEventiBoundary gestisciBoundary;
 	
+
+	private int idShop;
+	private GestisciEventiBoundary gestisciBoundary;
 	private static ShopHomeBoundary instance = null;
 	
-	private ShopUser currentUser;
-	 
-		public ShopUser getCurrentUser() {
-			return currentUser;
-		}
 
-		public void setCurrentUser(ShopUser user) {
-			this.currentUser = user;
-		}
-		
-		
 		public static ShopHomeBoundary getInstance() {
 			if (instance == null) {
 				instance = new ShopHomeBoundary();
 				}
 			return instance;
 		}
-	
 
-
- /*   @FXML
-    void cercaCaritas(ActionEvent event) {
+		public ShopHomeBoundary() {
+			 gestisciBoundary = new GestisciEventiBoundary();
+		}
+		
+    public void cercaCaritas(){
     	TransizionePagine switchPage = new TransizionePagine();
-    	switchPage.apriMappa(this.idShop, searchCaritasButton.getScene().getWindow());
+    	try {
+			switchPage.apriMappa(this.idShop);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
-*/
 
-		
-  /*  void deleteAccountButtonPressed() {
+    
+   /* void deleteAccountButtonPressed(ActionEvent event) {
     	
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Logout");
@@ -55,30 +47,18 @@ public class ShopHomeBoundary {
     	}
     }*/
 
-
-    public void gestisciEventi() {
-    		gestisciBoundary = new GestisciEventiBoundary();
-    		gestisciBoundary.setShop(currentUser);
-    		gestisciBoundary.loadShop(currentUser.getId());   	
-    }
-
-  
-    void helpButtonPressed() {
-    	//lo faremo sicuro sicuro
-    }
-
-  
-
    
- /*void logoutButtonPressed(ActionEvent event) {
-    	
-     	
-    	TransizionePagine pageSwitch = new TransizionePagine();
-    	pageSwitch.logout(logoutButton.getScene().getWindow());
-	}
-	*/
+    public void gestisciEventi() {
+    	// gestisciBoundary.loadShopBean(idShop);
+    }
+
+  
+
+
 
 	public void initData(int id, String nome) {
+		this.idShop = id;
+    	//nomeCognome.setText(nome);	
 	}
 
 
@@ -86,3 +66,4 @@ public class ShopHomeBoundary {
 
 
 }
+

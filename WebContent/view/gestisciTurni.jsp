@@ -53,18 +53,13 @@ Class.forName("com.mysql.jdbc.Driver");
 <body>
 	<form action = "gestisciTurni.jsp" name = "reg" method = "POST">
 	<div style= "position:absolute;top: 1%; left:74%">
-	<img src="../img/caritas.jpg"  width= "300px" height= "150px">
+  <img src="../img/caritas.jpg"  width= "300px" height= "150px">
 	</div>
-		<h1>GESTISCI TURNI</h1>
+	<h1>GESTISCI TURNI</h1>
 <div class = "tab">
 			<table class="content-table" id = "giorno">
   <thead>
     <tr>
- 
-	   
-       
-         
-      
       <th>ID TURNO</th> 
       <th>GIORNO</th>
       <th>ORARIO</th>
@@ -81,11 +76,11 @@ Class.forName("com.mysql.jdbc.Driver");
 	while (i < list.size()){
 %>
 <tr>
-<td style="word-break:break-all;"><% out.println(list.get(i).getId()); %>
+<td><% out.println(list.get(i).getId()); %>
 <td><% out.println(list.get(i).getGiorno());%> </td>
 <td><% out.println(list.get(i).getOraIn());%><% out.println(list.get(i).getOraFine()); %> </td>
 <td><% out.println(list.get(i).getPartecipanti()); %> </td>
-<td style="word-break:break-all;"><% out.println(list.get(i).getNote()); %> </td>
+<td><% out.println(list.get(i).getNote()); %> </td>
 </tr>
 
 

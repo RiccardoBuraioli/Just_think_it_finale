@@ -43,7 +43,7 @@
 
 
 <%
-	List<EventTab> list = GestisciEventiBoundary.loadShop(1);
+	List<EventTab> list = GestisciEventiBoundary.loadShopBoundary();
 	int i = 0;
 	while (i < list.size()){
 %>

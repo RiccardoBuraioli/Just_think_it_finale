@@ -73,7 +73,7 @@ public class CreaTurnoBoundary {
 			return false;
 		}else {			
 			CreaTurnoController creaTurno = new CreaTurnoController();
-			creaTurno.creaEvento(caritas.getId(), nome_giorno,oraInizio, oraFine,Integer.parseInt( numMaxParte), note);
+			creaTurno.creaEvento(caritas.getId(), nome_giorno,oraInizio, oraFine,Integer.parseInt(numMaxParte), note);
 		return true;
 		}
 	}
