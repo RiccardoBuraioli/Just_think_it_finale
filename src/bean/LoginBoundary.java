@@ -25,7 +25,7 @@ public class LoginBoundary {
 
 	private LoginController loginC = new LoginController();
 
-	private UserHomeBoundary userHomeBoundary;
+	
 	private ShopHomeBoundary shopHomeBoundary;
 	private CaritasHomeBoundary caritasHomeBoundary;
 
@@ -51,6 +51,7 @@ public class LoginBoundary {
 		if (loggedUser.equalsIgnoreCase("Volontario")) {
 
 			try {
+				UserHomeBoundary userHomeBoundary;
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 				Parent root = loader.load();
 				

@@ -9,7 +9,6 @@ import entity.VolunteerUser;
 
 public  class UserHomeController{
 	
-	private UserHomeBoundary userHomeBound; 
 	
 	
 	public UserHomeController() {
@@ -38,7 +37,6 @@ public  class UserHomeController{
 		}
 		else if(userHomeBoundary.getClass() == beanWeb.UserHomeBoundary.class){
 			((beanWeb.UserHomeBoundary) userHomeBoundary).getInstance().initData(user.getNome(), user.getCognome(), user.getId());
-			//((bean2.UserHomeBoundary) userHomeBoundary).initData(user.getNome(), user.getCognome(), user.getId());
 		}
     }
 

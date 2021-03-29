@@ -1,6 +1,6 @@
 package entity;
 
-import com.sothawo.mapjfx.Coordinate;
+
 
 public class User {
 	protected int id;

@@ -10,7 +10,6 @@ import entity.ShopUser;
 public class PromuoviEventoController {
 	private CaritasUser caritas;
 	private ShopUser shop;
-	private String nomeCaritas;
 	private EventoDao eventDao;
 	
 	
@@ -30,11 +29,4 @@ public class PromuoviEventoController {
 		
 	}
 	
-	
-	public void loadForm(int idCar, int idUser) {
-		/*CaritasRepository caritasdao = new CaritasRepository();
-		ShopRepository shopDao = new ShopRepository();
-		this.caritas = caritasdao.getCaritasByID(idCar);
-		this.shop = shopDao.getShopByID(idUser);*/
-	}
 }

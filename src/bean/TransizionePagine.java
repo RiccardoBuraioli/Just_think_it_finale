@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Optional;
 
 import org.slf4j.Logger;

@@ -54,7 +54,6 @@ public class CercaCaritasDao {
 	         } 
 	
 	     } catch (SQLException ex) {
-	    	 System.out.println(ex.getMessage());
 	         logger.debug(ex.getMessage());
 	     } finally {
 	         try {
@@ -160,7 +159,6 @@ public class CercaCaritasDao {
 	         } 
 	
 	     } catch (SQLException ex) {
-	    	 System.out.println(ex.getMessage());
 	         logger.debug(ex.getMessage());
 	     } finally {
 	         try {

@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.List;
-
-import beanWeb.GestisciTurniBoundary;
 import dao.EventoDao;
 import entity.EventTab;
 

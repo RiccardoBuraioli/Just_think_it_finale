@@ -2,8 +2,6 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.List;
-
-import beanWeb.CercaCaritas;
 import dao.CercaCaritasDao;
 import dao.CoordinateDao;
 import dao.UserDao;
