@@ -691,7 +691,9 @@ public class CercaCaritas {
 					case ALL:
 
 						listaBottoniDaRimuovere.add(btn);
+						break;
 					default:
+						break;
 					}
 				}
 
@@ -703,7 +705,9 @@ public class CercaCaritas {
 					case ALL:
 
 						listaBottoniDaRimuovere.add(btn);
+						break;
 					default:
+						break;
 					}
 				}
 
@@ -714,7 +718,9 @@ public class CercaCaritas {
 					case ALL:
 
 						listaBottoniDaRimuovere.add(btn);
+						break;
 					default:
+						break;
 					}
 				}
 			}
@@ -730,7 +736,9 @@ public class CercaCaritas {
 					case ALL:
 					case DON:
 						listaBottoniDaRimuovere.add(btn);
+						break;
 					default:
+						break;
 					}
 				} else {
 					switch (btn.getId()) {
@@ -741,7 +749,9 @@ public class CercaCaritas {
 					case BAC:
 					case DON:
 						listaBottoniDaRimuovere.add(btn);
+						break;
 					default:
+						break;
 					}
 					
 
@@ -758,7 +768,9 @@ public class CercaCaritas {
 				case EVE:
 				case DON:
 					listaBottoniDaRimuovere.add(btn);
+					break;
 					default:
+						break;
 				}
 			}
 		}

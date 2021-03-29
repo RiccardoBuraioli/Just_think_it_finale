@@ -9,25 +9,21 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
  		if(request.getParameter("COMPLETA REGISTRAZIONE")!=null){
- 			String ii = request.getParameter("Password");
- 			String i = request.getParameter("confermaPassword");
- 			if (i.equalsIgnoreCase(ii)){
- 				//if(request.getParameter("NomeCaritas") != null && request.getParameter("NomeCaritas") != "" && request.getParameter("IndirizzoCaritas") != null && request.getParameter("IndirizzoCaritas") != "" && request.getParameter("RecapitoTel") != null && request.getParameter("RecapitoTel") != "" && request.getParameter("Email") != null && request.getParameter("Email") != "" && request.getParameter("cittadiResidenza") != null && request.getParameter("cittadiResidenza") != "" && request.getParameter("Via") != null && request.getParameter("Via") != "" && request.getParameter("nCivico") != null && request.getParameter("nCivico") != ""){
- 				if ("clothes".equals(request.getParameter("Tipologia"))) {
- 					String x = "Vestiti";
- 					if ((RegistraCaritasBoundary.completaButtonPressed(request.getParameter("NomeCaritas"),request.getParameter("Password"),request.getParameter("IndirizzoCaritas")+ " "+ request.getParameter("Via")+" "+ request.getParameter("nCivico"),x,request.getParameter("RecapitoTel"),request.getParameter("Email"), request.getParameter("cittadiResidenza"))) == true ){ 			
+ 			if (request.getParameter("Password").equalsIgnoreCase(request.getParameter("confermaPassword"))){
+ 				if (request.getParameter("Tipologia").equalsIgnoreCase("Vestiti")){
+ 					if ((RegistraCaritasBoundary.completaButtonPressed(request.getParameter("NomeCaritas"),request.getParameter("Password"),request.getParameter("IndirizzoCaritas")+ " "+ request.getParameter("Via")+" "+ request.getParameter("nCivico"),"Vestiti",request.getParameter("RecapitoTel"),request.getParameter("Email"), request.getParameter("cittadiResidenza"))) == true ){ 			
 %>
        	<jsp:forward page="homeCaritas.jsp"/>
 
 <%	
-			}}
- 			else if ("food".equals(request.getParameter("Tipologia"))){
- 					String x = "Cibo";
-	 				if ((RegistraCaritasBoundary.completaButtonPressed(request.getParameter("NomeCaritas"),request.getParameter("Password"),request.getParameter("IndirizzoCaritas")+ " "+ request.getParameter("Via")+" "+ request.getParameter("nCivico"),x,request.getParameter("RecapitoTel"),request.getParameter("Email"), request.getParameter("cittadiResidenza"))) == true ){
+					}
+ 				}
+ 			else if ((request.getParameter("Tipologia").equalsIgnoreCase("Cibo"))){
+	 				if ((RegistraCaritasBoundary.completaButtonPressed(request.getParameter("NomeCaritas"),request.getParameter("Password"),request.getParameter("IndirizzoCaritas")+ " "+ request.getParameter("Via")+" "+ request.getParameter("nCivico"),"Cibo",request.getParameter("RecapitoTel"),request.getParameter("Email"), request.getParameter("cittadiResidenza"))) == true ){
  			
 %>
  			<jsp:forward page="homeCaritas.jsp"/>
-<% 			}
+<% 						}
 	 				 }
 	 			}
  			}

@@ -25,7 +25,7 @@ public class LoginBoundary {
 
 	private LoginController loginC = new LoginController();
 
-	
+	private UserHomeBoundary userHomeBoundary;
 	private ShopHomeBoundary shopHomeBoundary;
 	private CaritasHomeBoundary caritasHomeBoundary;
 
@@ -51,12 +51,11 @@ public class LoginBoundary {
 		if (loggedUser.equalsIgnoreCase("Volontario")) {
 
 			try {
-				UserHomeBoundary userHomeBoundary;
+				
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/UserHomePage.fxml"));
 				Parent root = loader.load();
-				
-				userHomeBoundary = loader.getController();
 				userHomeBoundary = userHomeBoundary.getInstance();
+				userHomeBoundary = loader.getController();
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				
@@ -73,7 +72,6 @@ public class LoginBoundary {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 				Parent root = loader.load();
-				caritasHomeBoundary = caritasHomeBoundary.getInstance();
 				caritasHomeBoundary = loader.getController();
 				CaritasHomeController caritasHomeController = new CaritasHomeController();
 				caritasHomeController.initDataCaritas(idUser, caritasHomeBoundary);
