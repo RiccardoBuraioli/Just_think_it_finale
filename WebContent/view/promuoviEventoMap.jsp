@@ -10,7 +10,7 @@
 <%
 	if(request.getParameter("CONFERMA") != null){
 		if (request.getParameter("Vestiti").equals("Vestiti")){
-			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Vestiti",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == 0){		
+			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Vestiti",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == true){		
 %>
 	     <jsp:forward page="NewMap.jsp"/>
 <%
@@ -18,7 +18,7 @@
 	}
 		
 		else if (request.getParameter("Cibo").equals("Cibo")){
-			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Cibo",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == 0){				
+			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Cibo",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == true){				
 %>
 	<jsp:forward page="NewMap.jsp"/>	
 <%	

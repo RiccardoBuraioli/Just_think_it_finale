@@ -11,25 +11,21 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
  		if(request.getParameter("COMPLETA REGISTRAZIONE")!=null){
- 			String i = request.getParameter("Password");
- 			String ii = request.getParameter("confermaPassword");
- 			if (ii.equalsIgnoreCase(i)){
- 			//	if(request.getParameter("NomeNegozio") != null && request.getParameter("NomeNegozio") != "" && request.getParameter("IndirizzoNeg") != null && request.getParameter("IndirizzoNeg") != "" && request.getParameter("RecapitoTel") != null && request.getParameter("RecapitoTel") != "" && request.getParameter("Email") != null && request.getParameter("Email") != "" && request.getParameter("Città") != null && request.getParameter("Città") != "" &&  request.getParameter("nCivico") != null &&   request.getParameter("nCivico") != "" && request.getParameter("Via") != null &&  request.getParameter("Via") == null){
- 				if ("clothes".equals(request.getParameter("Tipologia"))) {
- 					String x = "Vestiti";
- 					if ((RegistrationShopBoundary.registraNegozioPressed(x,request.getParameter("NomeNegozio"),request.getParameter("Password"),request.getParameter("IndirizzoNeg")+" "+ request.getParameter("Via")+ " "+ request.getParameter("nCivico"),request.getParameter("RecapitoTel"),request.getParameter("Email"),request.getParameter("Città")) == true )){ 			
+ 			if ( request.getParameter("confermaPassword").equalsIgnoreCase(request.getParameter("Password"))){
+ 				if ("Vestiti".equals(request.getParameter("Tipologia"))){
+ 					if ((RegistrationShopBoundary.registraNegozioPressed("Vestiti",request.getParameter("NomeNegozio"),request.getParameter("Password"),request.getParameter("IndirizzoNeg")+" "+ request.getParameter("Via")+ " "+ request.getParameter("nCivico"),request.getParameter("RecapitoTel"),request.getParameter("Email"),request.getParameter("Città")) == true )){ 			
 %>
 		<jsp:forward page="homeVolontario.jsp"/>
 <%	
-			}}
- 			else if ("food".equals(request.getParameter("Tipologia"))){
- 					String x = "Cibo";
-	 				if ((RegistrationShopBoundary.registraNegozioPressed(x,request.getParameter("NomeNegozio"),request.getParameter("Password"),request.getParameter("IndirizzoNeg")+ request.getParameter("Via")+ " "+ request.getParameter("nCivico"),request.getParameter("RecapitoTel"),request.getParameter("Email"),request.getParameter("Città")) == true )){
+					}
+ 				}
+ 			else if ("Cibo".equals(request.getParameter("Tipologia"))){
+	 				if ((RegistrationShopBoundary.registraNegozioPressed("Cibo",request.getParameter("NomeNegozio"),request.getParameter("Password"),request.getParameter("IndirizzoNeg")+ request.getParameter("Via")+ " "+ request.getParameter("nCivico"),request.getParameter("RecapitoTel"),request.getParameter("Email"),request.getParameter("Città")) == true )){
  			
 %>
  			<jsp:forward page="homeVolontario.jsp"/>
 <% 			
-	 				 }//}
+	 					 }
 	 				}
  				}
  			}
@@ -71,8 +67,8 @@ Class.forName("com.mysql.jdbc.Driver");
         <input type="text" id= "RecapitoTel" name= "RecapitoTel" placeholder="es.34324234"/>
         <h3>Email</h3>
         <input type="text" id = "Email"  name="Email" placeholder="es.mariorossi@gmail.com"/>
-         <br/><br/><h3>clothes<input type="checkbox" name="Tipologia" value="clothes"/>
-			 <input type="checkbox" name="Tipologia" value="food"/> food </h3>
+         <br/><br/><h3>clothes<input type="checkbox" name="Tipologia" value="Vestiti"/>
+			 <input type="checkbox" name="Tipologia" value="Cibo"/> food </h3>
       </div>
       <div class = "box">
 		<br/><h3><button type="submit" name= "COMPLETA REGISTRAZIONE" value="COMPLETA REGISTRAZIONE">COMPLETA REGISTRAZIONE</button></h3>

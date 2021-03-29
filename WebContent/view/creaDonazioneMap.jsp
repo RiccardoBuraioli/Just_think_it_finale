@@ -9,23 +9,21 @@
 
 <%	
 	if(request.getParameter("CONFERMA")!=null){
-		if("clothes".equals(request.getParameter("tipo"))){
-			if (request.getParameter("tipo") != null && request.getParameter("tipo") != "" && request.getParameter("descrizione") != null && request.getParameter("descrizione") != "" && request.getParameter("IndirizzoVolontario") != null && request.getParameter("IndirizzoVolontario") != ""){
-				if ((DonationBoundary.getInstance().creaDonazione(1,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione") )== 0)){
+		if("Vestiti".equals(request.getParameter("tipo"))){
+				if ((DonationBoundary.getInstance().creaDonazione(1,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione") )== true)){
 					
 %>
 		<jsp:forward page="NewMap.jsp"/>
-<%		}}}
+<%		}}//}
 			
 		
-		if("food".equals(request.getParameter("tipo"))){
-			if (request.getParameter("tipo") != null && request.getParameter("tipo") != "" && request.getParameter("descrizione") != null && request.getParameter("descrizione") != "" && request.getParameter("IndirizzoVolontario") != null && request.getParameter("IndirizzoVolontario") != ""){
-				if ((DonationBoundary.getInstance().creaDonazione(2,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione"))== 0)){
+		if("Cibo".equals(request.getParameter("tipo"))){
+				if ((DonationBoundary.getInstance().creaDonazione(2,request.getParameter("IndirizzoVolontario"), request.getParameter("descrizione"))== true)){
 %>
 	<jsp:forward page="NewMap.jsp"/>
 <%		
 	}}}
-	}
+	//}
 	
 %>
 
@@ -46,8 +44,8 @@
 			<h4>La tua donazione è veramente importante per noi e fa la differenza </h4>
 			<div class = "don">
 		  <h3>Cosa vuoi donare?</h3>
-			<h3>Vestiti<input type="checkbox" name="tipo" value="clothes"/>
-			<input type="checkbox" name="tipo" value="food"/> Cibo</h3>
+			<h3>Vestiti<input type="checkbox" name="tipo" value="Vestiti"/>
+			<input type="checkbox" name="tipo" value="Cibo"/> Cibo</h3>
 		</div>
 		<div align = "center" class = "descr">
 		<h3>Inserisci breve desrizione del/dei prodotti:</h3>

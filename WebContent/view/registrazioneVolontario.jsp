@@ -8,10 +8,7 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
  		if(request.getParameter("COMPLETA REGISTRAZIONE")!=null){
- 			String ii = request.getParameter("Password");
- 			String i = request.getParameter("confermaPassword");
- 			if ( i.equalsIgnoreCase(ii)){
- 		//	if(request.getParameter("Nome") != null && request.getParameter("Nome") != "" &&  request.getParameter("RecapitoTel") != null && request.getParameter("RecapitoTel") != "" && request.getParameter("Email") != null && request.getParameter("Email") != "" && request.getParameter("Città") != null && request.getParameter("Città") != "" && request.getParameter("Via") != null && request.getParameter("Via") != "" && request.getParameter("nCivico") != null && request.getParameter("nCivico") != "" && request.getParameter("Cognome") != null && request.getParameter("Cognome") != ""){
+ 			if ( request.getParameter("confermaPassword").equalsIgnoreCase(request.getParameter("Password"))){
  				if ((RegistrazioneVolontarioBoundary.registraVolontarioPressed(request.getParameter("Nome"),request.getParameter("Cognome"),request.getParameter("Password"), request.getParameter("confermaPassword"),request.getParameter("indirizzo")+ " "+ request.getParameter("Via")+" "+ request.getParameter("nCivico"),request.getParameter("RecapitoTel"),request.getParameter("Email"),request.getParameter("DataNascita"), request.getParameter("Città"))) == true ){ 			
 %>
   

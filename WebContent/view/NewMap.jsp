@@ -86,6 +86,7 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
  <input type="text" id = "eventoInput" name= "eventoInput"> 
  <input type="text" id = "necessitaInput" name= "necessitaInput">
  <input type="text" id = "promuoviInput" name= "promuoviInput">
+ <input type="text" id = "partecipaInput" name= "partecipaInput">
 </div>
 
 
@@ -155,6 +156,15 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
     	CercaCaritas.getInstance().vediNecessita(Integer.parseInt(parametroNecessita));
 %>
 		<jsp:forward page="bachecaCaritasMap.jsp"/>
+<%
+}
+    
+    if(request.getParameter("partecipaEvento") != null){
+     	String parametroPartecipa = request.getParameter("partecipaInput");
+    	out.print("<b>"+parametroPartecipa+"</b>");
+    	CercaCaritas.getInstance().partecipaEvento(Integer.parseInt(parametroPartecipa));
+%>
+		<jsp:forward page="partecipaEventoVolontario.jsp"/>
 <%
 }
     
@@ -270,7 +280,7 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
     		  document.getElementById("promuoviInput").value=idMarker;  
     	  }  	 
     	  else if (tipo == "Evento"){
-    		  document.getElementById("eventoInput").value=idMarker; 
+    		  document.getElementById("partecipaInput").value=idMarker; 
     	  }
           alert(e.layer.feature.properties.popupContent);           
         }
