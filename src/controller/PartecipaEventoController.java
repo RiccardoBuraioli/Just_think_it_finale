@@ -1,7 +1,7 @@
 package controller;
 
 import entity.PartecipaEvento;
-import bean2.DonationBoundary;
+import beanWeb.DonationBoundary;
 import dao.EventoDao;
 
 public class PartecipaEventoController {

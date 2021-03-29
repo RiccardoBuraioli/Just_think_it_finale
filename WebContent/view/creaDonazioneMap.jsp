@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%Class.forName("com.mysql.jdbc.Driver"); %>
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="DonationBoundary" scope="application" class="bean2.DonationBoundary"/>
+<jsp:useBean id="DonationBoundary" scope="application" class="beanWeb.DonationBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="DonationBoundary" property="*"/>

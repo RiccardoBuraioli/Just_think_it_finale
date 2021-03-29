@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="EmailBoundary" scope="application" class="bean2.EmailBoundary"/>
+<jsp:useBean id="EmailBoundary" scope="application" class="beanWeb.EmailBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="EmailBoundary" property="*"/>

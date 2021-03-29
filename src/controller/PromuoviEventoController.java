@@ -10,6 +10,7 @@ import entity.ShopUser;
 public class PromuoviEventoController {
 	private CaritasUser caritas;
 	private ShopUser shop;
+	private String nomeCaritas;
 	private EventoDao eventDao;
 	
 	
@@ -19,17 +20,21 @@ public class PromuoviEventoController {
 	}
 	
 
-	public void creaEventoController(String nomeEvento, String tipo, String noteEvento, float prezzoEvento) {
-		EventTab evento = new EventTab(caritas.getId(),tipo,shop.getId(),nomeEvento, this.caritas.getNome(), noteEvento, prezzoEvento, shop.getCoord().getLatitude().toString(), shop.getCoord().getLongitude().toString());	
+	public void creaEventoController(String nomeEvento, String tipo, String noteEvento, float prezzoEvento, int idCar, int idUser) {
+		CaritasRepository caritasdao = new CaritasRepository();
+		ShopRepository shopDao = new ShopRepository();
+		this.caritas = caritasdao.getCaritasByID(idCar);
+		this.shop = shopDao.getShopByID(idUser);
+		EventTab evento = new EventTab(caritas.getId(),tipo,shop.getId(),nomeEvento, this.caritas.getNome(), noteEvento, prezzoEvento, shop.getCoord().getLatitudine(), shop.getCoord().getLongitudine());
 		eventDao.creaEvento(evento);
 		
 	}
 	
 	
 	public void loadForm(int idCar, int idUser) {
-		CaritasRepository caritasdao = new CaritasRepository();
+		/*CaritasRepository caritasdao = new CaritasRepository();
 		ShopRepository shopDao = new ShopRepository();
 		this.caritas = caritasdao.getCaritasByID(idCar);
-		this.shop = shopDao.getShopByID(idUser);
+		this.shop = shopDao.getShopByID(idUser);*/
 	}
 }

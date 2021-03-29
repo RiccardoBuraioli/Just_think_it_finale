@@ -6,7 +6,7 @@
 <%@ page import = "entity.EventTab" %>
 
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="GestisciEventiBoundary" scope="application" class="bean2.GestisciEventiBoundary"/>
+<jsp:useBean id="GestisciEventiBoundary" scope="application" class="beanWeb.GestisciEventiBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="GestisciEventiBoundary" property="*"/>
@@ -43,7 +43,7 @@
 
 
 <%
-	List<EventTab> list = GestisciEventiBoundary.loadShopBoundary();
+	List<EventTab> list = GestisciEventiBoundary.getInstance().loadShopBoundary();
 	int i = 0;
 	while (i < list.size()){
 %>

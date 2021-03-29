@@ -29,8 +29,8 @@ public class CaritasHomeController {
 		if(caritasHomeBoundary.getClass() == bean.CaritasHomeBoundary.class) {
 			((bean.CaritasHomeBoundary) caritasHomeBoundary).initDataC(currentUser.getId(), currentUser.getNome());
 		}
-		else if (caritasHomeBoundary.getClass() == bean2.CaritasHomeBoundary.class) {
-			((bean2.CaritasHomeBoundary) caritasHomeBoundary).initDataC(currentUser.getId(), currentUser.getNome());
+		else if (caritasHomeBoundary.getClass() == beanWeb.CaritasHomeBoundary.class) {
+			((beanWeb.CaritasHomeBoundary) caritasHomeBoundary).initDataC(currentUser.getId(), currentUser.getNome());
 		}
 	}
 

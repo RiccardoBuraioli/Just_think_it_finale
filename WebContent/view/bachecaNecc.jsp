@@ -6,7 +6,7 @@
 <%@ page import = "entity.Necessita" %> 
 
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="BachecaPersonaleBoundary" scope="application" class="bean2.BachecaPersonaleBoundary"/>
+<jsp:useBean id="BachecaPersonaleBoundary" scope="application" class="beanWeb.BachecaPersonaleBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="BachecaPersonaleBoundary" property="*"/>

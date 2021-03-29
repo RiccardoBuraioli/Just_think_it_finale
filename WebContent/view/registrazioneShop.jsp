@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="RegistrationShopBoundary" scope="request" class="bean2.RegistrationShopBoundary"/>
+<jsp:useBean id="RegistrationShopBoundary" scope="request" class="beanWeb.RegistrationShopBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="RegistrationShopManagerBoundary" property="*"/>

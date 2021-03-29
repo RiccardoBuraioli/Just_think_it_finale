@@ -1,19 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="PartecipaEventoBoundary" scope="application" class="bean2.PartecipaEventoBoundary"/>
+<jsp:useBean id="PromuoviEventoBoundary" scope="application" class="beanWeb.PromuoviEventoBoundary"/>
  
 <!-- mappare gli attributi di un oggetto sui campi della form -->
-<jsp:setProperty name="PartecipaEventoBoundary" property="*"/>
+<jsp:setProperty name="PromuoviEventoBoundary" property="*"/>
  
 <%Class.forName("com.mysql.jdbc.Driver"); %>
 <%
 	if(request.getParameter("CONFERMA") != null){
-		PartecipaEventoBoundary.getInstance().partecipaEvento();		
+		if (request.getParameter("Vestiti").equals("Vestiti")){
+			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Vestiti",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == 0){		
 %>
 	     <jsp:forward page="NewMap.jsp"/>
 <%
+		}
 	}
+		
+		else if (request.getParameter("Cibo").equals("Cibo")){
+			if (PromuoviEventoBoundary.getInstance().confermaPressed(request.getParameter("NomeEvento"),"Cibo",request.getParameter("NoteEvento"), request.getParameter("PrezzoEvento")) == 0){				
+%>
+	<jsp:forward page="NewMap.jsp"/>	
+<%	
+			}
+		}
+		else{
+%>
+			
+<%		
+		}
+	}			
 %>
     
 
@@ -31,8 +47,8 @@
 	</div>
 		<h4>Proponi un evento alla caritas</h4>
 	<div class = "check">
-	<h3>Vestiti<input type="checkbox" name="tipo" value="clothes"/>
-			<input type="checkbox" name="tipo" value="food"/> Cibo</h3>
+	<h3>Vestiti<input type="checkbox"  name="Vestiti" value="Vestiti"/>
+			<input type="checkbox" name="Cibo" value="Cibo"/> Cibo</h3>
 	</div>
 	<div class = "nome">		
 	<h3>Nome evento</h3>
@@ -44,7 +60,7 @@
 	</div>
 	<div class = "note">		
 	<h3>Note evento</h3>
-	<textarea id = "NoteEvento"></textarea>
+	<textarea id = "NoteEvento" name = "NoteEvento"></textarea>
 	</div>
 	<div class = "conferma">
 		<button type="submit" name ="CONFERMA" value = "CONFERMA">CONFERMA</button>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="GestisciDonazioniBoundary" scope="application" class="bean2.GestisciDonazioniBoundary"/>
+<jsp:useBean id="GestisciDonazioniBoundary" scope="application" class="beanWeb.GestisciDonazioniBoundary"/>
 <jsp:setProperty name="GestisciDonazioniBoundary" property="*"/>
 
 <%

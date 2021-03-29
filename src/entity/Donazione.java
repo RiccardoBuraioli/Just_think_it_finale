@@ -1,6 +1,6 @@
 package entity;
 
-import com.sothawo.mapjfx.Coordinate;
+
 
 public class Donazione {
 	private String descrizione;

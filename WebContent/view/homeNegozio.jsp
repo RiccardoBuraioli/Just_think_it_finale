@@ -2,14 +2,14 @@
     pageEncoding="ISO-8859-1"%>
     
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="ShopHomeBoundary" scope="application" class="bean2.ShopHomeBoundary"/>
+<jsp:useBean id="ShopHomeBoundary" scope="application" class="beanWeb.ShopHomeBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="ShopHomeBoundary" property="*"/>
 
 <%
 	if (request.getParameter("GESTISCI EVENTI") != null){
-		ShopHomeBoundary.gestisciEventi();
+		ShopHomeBoundary.getInstance().gestisciEventi();
 %>
 	<jsp:forward page="gestisciEventiNegozio.jsp"/>
 <%
@@ -51,7 +51,7 @@
 	<button type="submit" name= "CANCELLA ACCOUNT" value="CANCELLA ACCOUNT">CANCELLA ACCOUNT</button>
 	</div>
 	<div class = "cercaCaritas">
-	<button type="submit" name= "cercaCaritas" value="cercaCaritas">CERCA CARITAS</button></a>
+	<button type="submit" name= "cercaCaritas" value="cercaCaritas">CERCA CARITAS</button>
 	</div>
 	<div class = "eventi">
 	<button type="submit" name= "GESTISCI EVENTI" value="GESTISCI EVENTI">GESTISCI EVENTI</button>

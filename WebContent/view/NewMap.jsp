@@ -6,7 +6,7 @@
 <%@ page import = "entity.CoordinateMap" %>
 <%Class.forName("com.mysql.jdbc.Driver"); %>
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="CercaCaritas" scope="application" class="bean2.CercaCaritas"/>
+<jsp:useBean id="CercaCaritas" scope="application" class="beanWeb.CercaCaritas"/>
  
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="CercaCaritas" property="*"/>
@@ -68,8 +68,9 @@
 
 else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio")){%>
 	<button  id = "donazione" name = "donazione" style="visibility:hidden" >CREA DONAZIONE</button> 
-	<button id = "promuoviEvento" name = "promuoviEvento" style="visibility:hidden">PROMUOVI EVENTO</button>
 	<button id = "necessita" name = "necessita" style="visibility:hidden">VEDI BACHECA</button>
+	<button id = "promuoviEvento" name = "promuoviEvento" style="visibility:hidden">PROMUOVI EVENTO</button>
+
 	
 <script>tipoUtente = "Negozio";</script>	
 <%}%>
@@ -84,6 +85,7 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
  <input type="text" id = "turnoInput" name= "turnoInput"> 
  <input type="text" id = "eventoInput" name= "eventoInput"> 
  <input type="text" id = "necessitaInput" name= "necessitaInput">
+ <input type="text" id = "promuoviInput" name= "promuoviInput">
 </div>
 
 
@@ -110,9 +112,17 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
 </div>
 </div>
 
-
-
+<%
+	if(request.getParameter("promuoviEvento") != null){
+ 		String parametroPromuovi = request.getParameter("promuoviInput");
+ 		System.out.println(parametroPromuovi);
+		out.print("<b>"+parametroPromuovi+"</b>");
+		CercaCaritas.getInstance().promuoviEvento(Integer.parseInt(parametroPromuovi));
+	
+%>
+	<jsp:forward page="promuoviEventoMap.jsp"/>
 <%  
+	}
     if(request.getParameter("donazione") != null){
      	String parametro = request.getParameter("donazioneInput");
     	out.print("<b>"+parametro+"</b>");
@@ -150,8 +160,8 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
     
         String jsMarker = "";
         for(int i=0; i< caritas.size(); i++){
-            double myY = caritas.get(i).getLongitudine();
-            double myX = caritas.get(i).getLatitudine();
+            String myY = caritas.get(i).getLongitudine();
+            String myX = caritas.get(i).getLatitudine();
 
             int id = caritas.get(i).getIdMarker();
             jsMarker += "{\"geometry\": {\"type\": \"Point\",\"coordinates\": ["+ myX +","+ myY + "]},\"type\": \"Feature\",\"properties\": {\"popupContent\": \"Caritas\"},\"id\": " + id + " }";
@@ -161,8 +171,8 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
         }
         String jsMarkerEvento = "";
         for(int i=0; i< evento.size(); i++){
-            double myY = evento.get(i).getLongitudine();
-            double myX = evento.get(i).getLatitudine();            
+            String myY = evento.get(i).getLongitudine();
+            String myX = evento.get(i).getLatitudine();            
             int id = evento.get(i).getIdMarker();
             jsMarkerEvento += "{\"geometry\": {\"type\": \"Point\",\"coordinates\": ["+ myX +","+ myY + "]},\"type\": \"Feature\",\"properties\": {\"popupContent\": \"Evento\"},\"id\": " + id + " }";
             if(i != evento.size() -1 ){
@@ -174,8 +184,8 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
 
         String jsMarkerDonazioni = "";
         for(int i=0; i< evento.size(); i++){
-            double myY = donazione.get(i).getLongitudine();
-            double myX = donazione.get(i).getLatitudine();            
+            String myY = donazione.get(i).getLongitudine();
+            String myX = donazione.get(i).getLatitudine();            
             int id = donazione.get(i).getIdMarker();
             jsMarkerDonazioni += "{\"geometry\": {\"type\": \"Point\",\"coordinates\": ["+ myX +","+ myY + "]},\"type\": \"Feature\",\"properties\": {\"popupContent\": \"Donazione\"},\"id\": " + id + " }";
             if(i != donazione.size() -1 ){
@@ -257,6 +267,7 @@ else if(CercaCaritas.getInstance().trovaRuoloBean().equalsIgnoreCase("Negozio"))
     		  document.getElementById("donazioneInput").value=idMarker;
     		  document.getElementById("turnoInput").value=idMarker;
     		  document.getElementById("necessitaInput").value=idMarker;  
+    		  document.getElementById("promuoviInput").value=idMarker;  
     	  }  	 
     	  else if (tipo == "Evento"){
     		  document.getElementById("eventoInput").value=idMarker; 

@@ -11,12 +11,14 @@ public class GestisciEventiController {
 	private EventoDao eventDao;
 	private static GestisciEventiController instance  = null;
 	
+	
 	public static GestisciEventiController getInstance() {
-		if(instance == null) {
-			instance = new  GestisciEventiController();
+		if (instance == null) {
+			instance = new GestisciEventiController();
 		}
 		return instance;
-		}
+	}
+	
 	
 	
 	public GestisciEventiController() {

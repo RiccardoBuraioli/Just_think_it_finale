@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="RegistraCaritasBoundary" scope="request" class="bean2.RegistraCaritasBoundary"/>
+<jsp:useBean id="RegistraCaritasBoundary" scope="request" class="beanWeb.RegistraCaritasBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="RegistraCaritasBoundary" property="*"/>

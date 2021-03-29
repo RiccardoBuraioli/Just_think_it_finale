@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import bean2.GestisciTurniBoundary;
+import beanWeb.GestisciTurniBoundary;
 import dao.EventoDao;
 import entity.EventTab;
 

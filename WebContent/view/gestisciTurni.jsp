@@ -6,7 +6,7 @@
 <%@ page import = "entity.TurnoTab" %>
    
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="GestisciTurniBoundary" scope="application" class="bean2.GestisciTurniBoundary"/>
+<jsp:useBean id="GestisciTurniBoundary" scope="application" class="beanWeb.GestisciTurniBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="GestisciTurniBoundary" property="*"/>

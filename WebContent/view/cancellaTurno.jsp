@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<jsp:useBean id="GestisciTurniBoundary" scope="application" class="bean2.GestisciTurniBoundary"/>
+<jsp:useBean id="GestisciTurniBoundary" scope="application" class="beanWeb.GestisciTurniBoundary"/>
 <jsp:setProperty name="GestisciTurniBoundary" property="*"/>
 
 <%

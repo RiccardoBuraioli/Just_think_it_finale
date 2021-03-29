@@ -5,7 +5,7 @@
 <%@ page import ="java.util.List"%>
 <%@ page import = "entity.DonazioneTab" %> 
 
-<jsp:useBean id="GestisciDonazioniBoundary" scope="application" class="bean2.GestisciDonazioniBoundary"/>
+<jsp:useBean id="GestisciDonazioniBoundary" scope="application" class="beanWeb.GestisciDonazioniBoundary"/>
 <jsp:setProperty name="GestisciDonazioniBoundary" property="*"/>
  
  <%

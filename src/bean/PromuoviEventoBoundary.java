@@ -43,7 +43,7 @@ public class PromuoviEventoBoundary {
 	    PromuoviEventoController promuoviEvento = new PromuoviEventoController();
 	    promuoviEvento.loadForm(idCar, idShop);
 	    
-	    promuoviEvento.creaEventoController(nome.getText(),tipo, note.getText(), costoEvento );	
+	    promuoviEvento.creaEventoController(nome.getText(),tipo, note.getText(), costoEvento, idCar, idShop );	
 	    }
 
 		public void loadFormBoundary(int idCar, int idShop) {

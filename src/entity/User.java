@@ -10,7 +10,7 @@ public class User {
 	protected String recapitoTel;
 	protected String email;
 	protected String citta;
-	protected Coordinate coord;
+	protected CoordinateMap coord;
 	protected String ruolo;
 	
 
@@ -82,11 +82,11 @@ public class User {
 		this.citta = citta;
 	}
 	
-	public Coordinate getCoord() {
+	public CoordinateMap getCoord() {
 		return coord;
 	}
 
-	public void setCoord(Coordinate coord) {
+	public void setCoord(CoordinateMap coord) {
 		this.coord = coord;
 	}
 	

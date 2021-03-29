@@ -55,7 +55,7 @@ public class LoginBoundary {
 				Parent root = loader.load();
 				
 				userHomeBoundary = loader.getController();
-				//userHomeBoundary = userHomeBoundary.getInstance();
+				userHomeBoundary = userHomeBoundary.getInstance();
 				UserHomeController userHomeController = new UserHomeController();
 				userHomeController.initDataCont(idUser, userHomeBoundary);
 				
@@ -72,7 +72,7 @@ public class LoginBoundary {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/CaritasHomePage.fxml"));
 				Parent root = loader.load();
-				//caritasHomeBoundary = caritasHomeBoundary.getInstance();
+				caritasHomeBoundary = caritasHomeBoundary.getInstance();
 				caritasHomeBoundary = loader.getController();
 				CaritasHomeController caritasHomeController = new CaritasHomeController();
 				caritasHomeController.initDataCaritas(idUser, caritasHomeBoundary);
@@ -89,7 +89,7 @@ public class LoginBoundary {
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/boundary/ShopHomePage.fxml"));
 				Parent root = loader.load();
-			//	shopHomeBoundary = shopHomeBoundary.getInstance();
+				shopHomeBoundary = shopHomeBoundary.getInstance();
 				shopHomeBoundary = loader.getController();
 				ShopHomeController shopHomeC = new ShopHomeController();
 				shopHomeC.initDataShop(idUser, shopHomeBoundary);

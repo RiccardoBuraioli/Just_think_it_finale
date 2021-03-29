@@ -5,7 +5,7 @@
 <%@ page import ="java.util.List"%>
 <%@ page import = "entity.EventTab" %> 
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="GestisciEventiCaritasBoundary" scope="application" class="bean2.GestisciEventiCaritasBoundary"/>
+<jsp:useBean id="GestisciEventiCaritasBoundary" scope="application" class="beanWeb.GestisciEventiCaritasBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="GestisciEventiCaritasBoundary" property="*"/>

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.sothawo.mapjfx.Coordinate;
 
 import connector.Connector;
+import entity.CoordinateMap;
 import entity.ShopUser;
 
 
@@ -81,10 +82,10 @@ public class ShopRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) { 
-            	//	Coordinate coord = new Coordinate(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")));
+            	CoordinateMap coord = new CoordinateMap(Double.parseDouble(rs.getString("latitudine")),Double.parseDouble(rs.getString("longitudine")), id);
             	shopUser.setId(id);
                 shopUser.setNome(rs.getString("NomeNegozio"));
-              //  shopUser.setCoord(coord);
+                shopUser.setCoord(coord);
                 shopUser.setIndirizzo(rs.getString("IndirizzoNeg"));
                 shopUser.setTipologia(rs.getString("Tipologia"));
                 shopUser.setRecapitoTel(rs.getString("RecapitoTel"));

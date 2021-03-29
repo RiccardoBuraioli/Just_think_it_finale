@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!-- dichiarazione e instanziazione di un loginBean !-->
-<jsp:useBean id="UserHomeBoundary" scope="application" class="bean2.UserHomeBoundary"/>
+<jsp:useBean id="UserHomeBoundary" scope="application" class="beanWeb.UserHomeBoundary"/>
 
 <!-- mappare gli attributi di un oggetto sui campi della form -->
 <jsp:setProperty name="UserHomeBoundary" property="*"/>
